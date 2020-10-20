@@ -1,0 +1,139 @@
+PODS:
+  - Action (4.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - Alamofire (4.9.1)
+  - AlamofireObjectMapper (5.2.1):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - DateTools (2.0.0)
+  - DateToolsSwift (5.0.0)
+  - ObjectMapper (3.5.2)
+  - "ObjectMapper+Realm (1.0)":
+    - ObjectMapper
+    - RealmSwift
+  - Presentr (1.9)
+  - Realm (4.4.1):
+    - Realm/Headers (= 4.4.1)
+  - Realm/Headers (4.4.1)
+  - RealmSwift (4.4.1):
+    - Realm (= 4.4.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxGesture (3.0.2):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - RxRealm (2.0.0):
+    - RealmSwift (~> 4.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - RxViewController (0.4.1):
+    - RxCocoa (>= 4.0.0)
+    - RxSwift (>= 4.0.0)
+  - RxWebKit (1.0.2):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - SVProgressHUD (2.2.5)
+  - SwifterSwift (5.2.0):
+    - SwifterSwift/AppKit (= 5.2.0)
+    - SwifterSwift/CoreAnimation (= 5.2.0)
+    - SwifterSwift/CoreGraphics (= 5.2.0)
+    - SwifterSwift/CoreLocation (= 5.2.0)
+    - SwifterSwift/Dispatch (= 5.2.0)
+    - SwifterSwift/Foundation (= 5.2.0)
+    - SwifterSwift/MapKit (= 5.2.0)
+    - SwifterSwift/SceneKit (= 5.2.0)
+    - SwifterSwift/SpriteKit (= 5.2.0)
+    - SwifterSwift/StoreKit (= 5.2.0)
+    - SwifterSwift/SwiftStdlib (= 5.2.0)
+    - SwifterSwift/UIKit (= 5.2.0)
+  - SwifterSwift/AppKit (5.2.0)
+  - SwifterSwift/CoreAnimation (5.2.0)
+  - SwifterSwift/CoreGraphics (5.2.0)
+  - SwifterSwift/CoreLocation (5.2.0)
+  - SwifterSwift/Dispatch (5.2.0)
+  - SwifterSwift/Foundation (5.2.0)
+  - SwifterSwift/MapKit (5.2.0)
+  - SwifterSwift/SceneKit (5.2.0)
+  - SwifterSwift/SpriteKit (5.2.0)
+  - SwifterSwift/StoreKit (5.2.0)
+  - SwifterSwift/SwiftStdlib (5.2.0)
+  - SwifterSwift/UIKit (5.2.0)
+  - UIScrollView-InfiniteScroll (1.0.2)
+
+DEPENDENCIES:
+  - Action
+  - Alamofire (~> 4.8)
+  - AlamofireObjectMapper (~> 5.0)
+  - DateTools
+  - DateToolsSwift
+  - ObjectMapper
+  - "ObjectMapper+Realm"
+  - Presentr
+  - RealmSwift
+  - RxCocoa
+  - RxGesture (~> 3.0.0)
+  - RxRealm
+  - RxViewController (~> 0.4.1)
+  - RxWebKit
+  - SDWebImage (~> 4.4.2)
+  - SVProgressHUD
+  - SwifterSwift
+  - UIScrollView-InfiniteScroll (~> 1.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Action
+    - Alamofire
+    - AlamofireObjectMapper
+    - DateTools
+    - DateToolsSwift
+    - ObjectMapper
+    - "ObjectMapper+Realm"
+    - Presentr
+    - Realm
+    - RealmSwift
+    - RxCocoa
+    - RxGesture
+    - RxRealm
+    - RxRelay
+    - RxSwift
+    - RxViewController
+    - RxWebKit
+    - SDWebImage
+    - SVProgressHUD
+    - SwifterSwift
+    - UIScrollView-InfiniteScroll
+
+SPEC CHECKSUMS:
+  Action: 0d14986aad0f1330aa27ce65d0cdeaacbb63d91c
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
+  DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
+  ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
+  "ObjectMapper+Realm": bd713d57132bf05880a656695137764692f7d2bb
+  Presentr: 7078d7eb5d1661ebeaae60c9e42a1e534de1b993
+  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
+  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
+  RxRealm: 900f5c7e6f0a2d6527b56eaf7283f3035ec1e8ba
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  RxViewController: e93e7c233d5b5b62c32231d69726d55f54081bc6
+  RxWebKit: a3085e7cd8b57182b452692686675702474014dd
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwifterSwift: 334181863c416882d97b7a60c05054d9e4d799e2
+  UIScrollView-InfiniteScroll: c132d6d5851daff229ab4a1060ccf70a05a051c9
+
+PODFILE CHECKSUM: 8f47b0f06ef7834f7ac0a1b604fa0668a65a8c26
+
+COCOAPODS: 1.9.1

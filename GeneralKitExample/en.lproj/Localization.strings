@@ -1,0 +1,16 @@
+/* 
+  Localization.strings
+  GeneralKit
+
+  Created by Salah on 10/20/20.
+  Copyright © 2020 Salah. All rights reserved.
+*/
+"Common.ConnectionError" = "No Internet Connection";
+"Common.No" = "No";
+"Common.Yes" = "Yes";
+"Common.Done" = "Done";
+"Common.Ok" = "Ok";
+"Common.Error" = "Error";
+"Common.ChooseOption" = "Choose Option";
+"Common.Cancel" = "Cancel";
+"Common.SavedSuccessfully" = "Saved Successfully";
