@@ -14,9 +14,9 @@ public class RequestBuilder {
     typealias WaitingView = (Bool) -> Void;
     typealias ErrorMessage = (String,String) -> Void;
     typealias ResponseDebug = (NSString?) -> Void;
-    typealias ResponseBuilderDebug = (RequestOperationBuilder,Error?) -> Void;
-    typealias CheckPagainatorHandler = (PagainatorManager) -> Bool;
-    typealias CurrentPageHandler = (PagainatorManager) -> Int;
+    typealias ResponseBuilderDebug = (RequestOperationBuilder<BaseResponse>,Error?) -> Void;
+    typealias CheckPagainatorHandler = (PagainatorManager<BaseResponse>) -> Bool;
+    typealias CurrentPageHandler = (PagainatorManager<BaseResponse>) -> Int;
     typealias ExitHandler = () -> Void;
 
     var waitingView: WaitingView? = nil
@@ -37,9 +37,6 @@ public class RequestBuilder {
         
         return instance
     }()
-    class func builder() -> RequestOperationBuilder {
-        return RequestOperationBuilder()
-    }
     func baseURL(_ baseURL:String) {
         self.baseURL = baseURL
     }
@@ -67,7 +64,10 @@ public class RequestBuilder {
 }
 
 
-public class RequestOperationBuilder:NSObject{
+public class RequestOperationBuilder<T: BaseResponse>:NSObject{
+    class func builder<T: BaseResponse>() -> RequestOperationBuilder<T> {
+        return RequestOperationBuilder<T>()
+    }
     override public var description: String {
         var string = String();
         string.append("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");

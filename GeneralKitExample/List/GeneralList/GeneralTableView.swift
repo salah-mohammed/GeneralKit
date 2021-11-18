@@ -87,7 +87,7 @@ class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection {
     
     
     var identifier: String?
-    var paginator:PagainatorManager?
+    var paginator:PagainatorManager<BaseResponse>?
     var listViewController:UIViewController?
     var listPlaceholderView: ListPlaceHolderView?{
         didSet{

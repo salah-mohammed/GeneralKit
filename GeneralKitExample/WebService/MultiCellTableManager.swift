@@ -74,7 +74,7 @@ class MultiCellTableManager: NSObject {
 
     
     
-    var paginator:PagainatorManager?
+    var paginator:PagainatorManager<BaseResponse>?
     var refreshHandler:RefreshHnadler?
     
     var converter:Converter?
@@ -149,7 +149,7 @@ class MultiCellTableManager: NSObject {
         }
     }
     
-    private func defaultSuccessHandler(paginator:PagainatorManager?, objects:[Any]?, index:Int){
+    private func defaultSuccessHandler(paginator:PagainatorManager<BaseResponse>?, objects:[Any]?, index:Int){
         if index==1{
             // pull to refresh
             self.objects.value.removeAll();

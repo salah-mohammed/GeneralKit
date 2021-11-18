@@ -11,16 +11,16 @@ import Alamofire
 
 
 
-class PagainatorManager: NSObject {
+class PagainatorManager<T:BaseResponse>: NSObject {
 
-    var restrictSuccessHandler: RequestOperationBuilder.RestrictSuccessHandler? = nil
-    var restrictErrorHandler: RequestOperationBuilder.RestrictErrorHandler? = nil
+    var restrictSuccessHandler: RequestOperationBuilder<T>.RestrictSuccessHandler? = nil
+    var restrictErrorHandler: RequestOperationBuilder<T>.RestrictErrorHandler? = nil
 
     var baseRequest:BaseRequest?
     var currentPageKey:String?
     var perPageKey:String?
     var path :String?
-    var requestBuilder:RequestOperationBuilder?
+    var requestBuilder:RequestOperationBuilder<T>?
 
     var parameters:Dictionary<String,String>
     {
@@ -38,7 +38,7 @@ class PagainatorManager: NSObject {
     var currentPageHandler:RequestBuilder.CurrentPageHandler? = RequestBuilder.shared.currentPageHandler
     
     
-    var baseResponse:BaseResponse?
+    var baseResponse:T?
     
     var hasNextPage:Bool{
         if self.hasNextPageHandler?(self) ?? false {
@@ -105,7 +105,7 @@ class PagainatorManager: NSObject {
     
     override init() {
         super.init();
-        self.requestBuilder = RequestBuilder.builder()
+        self.requestBuilder = RequestOperationBuilder<T>.builder()
     }
     
     func loadNextPage()
@@ -141,7 +141,7 @@ class PagainatorManager: NSObject {
         
         self.requestBuilder?.restrictSuccessHandler({ (response:BaseResponse?) in
             self.requestBuilder?.dataRequest = nil
-            self.baseResponse = response;
+            self.baseResponse = response as! T;
             self.currentPage = RequestBuilder.shared.currentPageHandler?(self);
 
             self.restrictSuccessHandler?(response);
@@ -155,11 +155,11 @@ class PagainatorManager: NSObject {
         self.requestBuilder?.execute();
 
     }
-    @discardableResult func restrictErrorHandler(_ restrictErrorHandler: @escaping RequestOperationBuilder.RestrictErrorHandler) -> PagainatorManager {
+    @discardableResult func restrictErrorHandler(_ restrictErrorHandler: @escaping RequestOperationBuilder<BaseResponse>.RestrictErrorHandler) -> PagainatorManager {
         self.restrictErrorHandler = restrictErrorHandler
         return self
     }
-    @discardableResult func restrictSuccessHandler(_ restrictSuccessHandler: @escaping RequestOperationBuilder.RestrictSuccessHandler) -> PagainatorManager {
+    @discardableResult func restrictSuccessHandler(_ restrictSuccessHandler: @escaping RequestOperationBuilder<BaseResponse>.RestrictSuccessHandler) -> PagainatorManager {
         self.restrictSuccessHandler = restrictSuccessHandler
         return self
     }

@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 class ResponseHandler {
-    static func responseHandler(result:SessionManager.MultipartFormDataEncodingResult,enableErrorMessage:Bool,enableWaitingView:Bool,enableUnAuthorizedExit:Bool,objectDebug:CustomDebugStringConvertible?,restrictSuccessHandler:RequestOperationBuilder.RestrictSuccessHandler?,restrictErrorHandler:RequestOperationBuilder.RestrictErrorHandler?,dataResponse:@escaping (DataResponse<BaseResponse>) -> Void){
+    static func responseHandler(result:SessionManager.MultipartFormDataEncodingResult,enableErrorMessage:Bool,enableWaitingView:Bool,enableUnAuthorizedExit:Bool,objectDebug:CustomDebugStringConvertible?,restrictSuccessHandler:RequestOperationBuilder<BaseResponse>.RestrictSuccessHandler?,restrictErrorHandler:RequestOperationBuilder<BaseResponse>.RestrictErrorHandler?,dataResponse:@escaping (DataResponse<BaseResponse>) -> Void){
         switch result {
         case .success(let request, let streamingFromDisk, let streamFileURL):
             request.responseObject { (response : DataResponse<BaseResponse>) in
@@ -38,8 +38,8 @@ class ResponseHandler {
                                 enableWaitingView:Bool,
                                 enableErrorMessage:Bool,
                                 enableUnAuthorizedExit:Bool,objectDebug:CustomDebugStringConvertible?,
-                                restrictSuccessHandler:RequestOperationBuilder.RestrictSuccessHandler?,
-                                restrictErrorHandler:RequestOperationBuilder.RestrictErrorHandler?){
+                                restrictSuccessHandler:RequestOperationBuilder<BaseResponse>.RestrictSuccessHandler?,
+                                restrictErrorHandler:RequestOperationBuilder<BaseResponse>.RestrictErrorHandler?){
         DispatchQueue.main.async {  UIApplication.shared.isNetworkActivityIndicatorVisible = false}
         if enableWaitingView {
             // hide progress

@@ -11,7 +11,7 @@ import ObjectMapper
 import RealmSwift
 import ObjectMapper_Realm
 
-class BaseResponse:NSObject,Mappable {
+open class BaseResponse:NSObject,Mappable {
     var error: ResponseError?
     var data:BaseData?
 //    var job:Job?
@@ -49,7 +49,7 @@ class BaseResponse:NSObject,Mappable {
     
 
     
-    required init?(map: Map){
+    required public init?(map: Map){
         error    <- map["error"]
         data    <- map["data"]
         
@@ -69,7 +69,7 @@ class BaseResponse:NSObject,Mappable {
 
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         error    <- map["error"]
         data    <- map["data"]
         

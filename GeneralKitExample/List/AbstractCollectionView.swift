@@ -25,7 +25,7 @@ class AbstractCollectionView: UICollectionView {
     
     public var objects:Variable<[Any]>=Variable<[Any]>([]);
     
-    var paginator:PagainatorManager?
+    var paginator:PagainatorManager<BaseResponse>?
     var refreshHandler:RefreshHnadler?
     
     var converter:Converter?
@@ -111,7 +111,7 @@ class AbstractCollectionView: UICollectionView {
             self.finishInfiniteScroll();
         }
     }
-    private func defaultSuccessHandler(paginator:PagainatorManager?, objects:[Any]?, index:Int?){
+    private func defaultSuccessHandler(paginator:PagainatorManager<BaseResponse>?, objects:[Any]?, index:Int?){
         if index==1{
             // pull to refresh
             self.objects.value.removeAll();

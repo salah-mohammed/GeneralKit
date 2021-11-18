@@ -31,12 +31,12 @@ protocol GeneralListViewProrocol:class {
     var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?{get set}
     var routerHandler:GeneralListConstant.Handlers.RouterHandler?{get set}
     var converterHandler:GeneralListConstant.Handlers.ConverterHandler?{get set}
-    var restrictSuccessHandler: RequestOperationBuilder.RestrictSuccessHandler? {get set}
-    var restrictErrorHandler: RequestOperationBuilder.RestrictErrorHandler?{get set}
+    var restrictSuccessHandler: RequestOperationBuilder<BaseResponse>.RestrictSuccessHandler? {get set}
+    var restrictErrorHandler: RequestOperationBuilder<BaseResponse>.RestrictErrorHandler?{get set}
     var listPlaceholderView: ListPlaceHolderView?{get set}
     var objects:Variable<[GeneralCellData]>{ get set}
     var listViewController:UIViewController?{ get set}
-    var paginator:PagainatorManager?{get set}
+    var paginator:PagainatorManager<BaseResponse>?{get set}
     var identifier: String?{get set}
     var refreshControl:UIRefreshControl?{get set}
     var enableListPlaceHolderView:Bool{get set}
@@ -137,7 +137,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         
     }
     
-    private func defaultSuccessHandler(paginator:PagainatorManager?, objects:[Any]?, index:Int?){
+    private func defaultSuccessHandler(paginator:PagainatorManager<BaseResponse>?, objects:[Any]?, index:Int?){
         if index==1{
             // pull to refresh
             self.objects.value.removeAll();
