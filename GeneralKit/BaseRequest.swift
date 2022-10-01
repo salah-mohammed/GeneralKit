@@ -30,7 +30,6 @@ open class BaseRequest:NSObject{
     }
     open var parameters:Dictionary<String,String>{
       var tempParameters =  Dictionary<String,String>()
-        tempParameters["page"] = page
         return tempParameters
     } // request paramter
     open  var type:HTTPMethod!{

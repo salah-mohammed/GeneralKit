@@ -18,4 +18,9 @@ return  "https://raw.githubusercontent.com"
 override var token:String?{
 return nil;
 }
+override var parameters:Dictionary<String,String>{
+    var tempParameters =  super.parameters;
+    tempParameters["page"] = self.page
+    return tempParameters
+}
 }

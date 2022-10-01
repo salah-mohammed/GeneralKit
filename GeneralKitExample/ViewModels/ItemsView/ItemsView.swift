@@ -11,7 +11,9 @@ struct ItemsView: View {
     @StateObject var viewModel = ItemsViewModel()
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(1..<100) { row in
+                    Text("Row \(row)")
+        }.refreshable(action:self.viewModel.refresh())
     }
 }
 

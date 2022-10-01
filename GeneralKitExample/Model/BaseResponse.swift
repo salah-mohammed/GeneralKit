@@ -12,5 +12,8 @@ import ObjectMapper
 import AlamofireObjectMapper
 
 class BaseResponse: BaseModel {
-
+//    var items:[NSNumber]=[NSNumber]();
+    open override func mapping(map: ObjectMapper.Map) {
+        
+    }
 }
