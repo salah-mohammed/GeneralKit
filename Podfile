@@ -15,7 +15,7 @@ pod 'SVProgressHUD'  # progress
 pod 'Presentr'   # show view controller as alert
 pod 'RxCocoa'#,'~> 5.0.1'
 pod 'RxGesture', '~> 3.0.0'
-pod 'RxWebKit'
+#pod 'RxWebKit'
 pod 'Action'
 pod 'RxViewController','~> 0.4.1'
 pod 'RxRealm'
@@ -41,7 +41,7 @@ pod 'SVProgressHUD'  # progress
 pod 'Presentr'   # show view controller as alert
 pod 'RxCocoa'#,'~> 5.0.1'
 pod 'RxGesture', '~> 3.0.0'
-pod 'RxWebKit'
+#pod 'RxWebKit'
 pod 'Action'
 pod 'RxViewController','~> 0.4.1'
 pod 'RxRealm'
