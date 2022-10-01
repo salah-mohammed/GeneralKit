@@ -17,6 +17,7 @@ public class PaginationManager<T:Mappable>:NSObject{
     
     var baseRequest:BaseRequest?
     var responseHandler:RequestOperationBuilder<T>.FinishHandler?
+    public var response:RequestOperationBuilder<T>.FinishData?;
     var requestBuilder:RequestOperationBuilder<T>
 
     private var hasNextPage:Bool{
@@ -67,6 +68,7 @@ public class PaginationManager<T:Mappable>:NSObject{
     private func paginatorRequest(){
         self.baseRequest?.page=self.currentPage?.bs_string ?? "1"
         self.requestBuilder.responseHandler { response in
+            self.response=response;
             self.responseHandler?(response);
             self.currentPage = self.currentPageHandler?(self);
         }
