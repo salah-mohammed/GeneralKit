@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
+import AlamofireObjectMapper
+
 public class ValidationObject: NSObject {
-    enum  MimeType:String {
+public  enum  MimeType:String {
         case pdf = "application/pdf"
         case photo = "image/*"
         case audio = "audio/*"
@@ -16,7 +20,7 @@ public class ValidationObject: NSObject {
         case video_mp4 = "video/mp4"
         case audio_mp3 = "audio/mp3"
     }
-    class MultiPartObject
+public class MultiPartObject
     {
         //                formData?.appendPart(withFileData: userImage?.pngData, name: "s_avatar", fileName: "photo.png", mimeType: "image/png")
         var data:Data?
@@ -59,3 +63,23 @@ public class ValidationObject: NSObject {
 //        multiPartObjects.append(object);
 //    }
 }
+
+public class NewBuilder<T:Mappable>:NSObject{
+    public override init() {
+        super.init();
+    }
+    public func aa(){
+        let URL = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json"
+        AF.request(URL).responseObject{ (response:DataResponse<T,AFError>) in
+            print(response.value);
+            switch response{
+                
+            default:
+                break;
+            }
+        }
+
+    }
+}
+
+

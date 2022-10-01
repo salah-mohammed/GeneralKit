@@ -2,8 +2,7 @@
 //  GeneralKit.h
 //  GeneralKit
 //
-//  Created by Salah on 6/1/20.
-//  Copyright © 2020 Salah. All rights reserved.
+//  Created by Salah on 9/23/22.
 //
 
 #import <Foundation/Foundation.h>
