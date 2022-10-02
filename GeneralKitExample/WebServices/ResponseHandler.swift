@@ -25,7 +25,7 @@ public class CutomResponseHandler<T:Mappable>:NSObject{
         return true
          }
          self.paginationManager.currentPageHandler { response in
-        return 1;
+             return response.response?.value?.pagination?.i_current_page?.intValue ?? 1;
          }
          self.paginationManager.hasPreviousPageHandler { response in
         return true
