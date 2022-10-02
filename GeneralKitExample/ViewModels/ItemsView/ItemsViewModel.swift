@@ -13,6 +13,7 @@ import AlamofireObjectMapper
 //https://island-bramble.glitch.me/data?page=1
 typealias ActionHandler = ()->Void
 class ItemsViewModel:NSObject,ObservableObject{
+    @Published  var list:[User] = []
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
     var paginationResponseHandler:PaginationResponseHandler
     override init() {
@@ -31,10 +32,15 @@ class ItemsViewModel:NSObject,ObservableObject{
         self.paginationManager.loadNextPage();
     }
     func paginationSetup(){
-        self.paginationManager.start();
+        paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
-        
+            if response.value?.pagination?.i_current_page == 1{
+                self.list = response.value?.users ?? []
+            }else{
+                self.list.append(contentsOf: response.value?.users ?? [])
+            }
         }
+        self.paginationManager.start();
     }
 }
 /*

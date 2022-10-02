@@ -11,9 +11,9 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
-class UserRequest:AppBaseRequest{
+class UserRequest:BaseRequest{
     override var baseUrl:String{
-    return  "http://nfcard.online/Salah/"
+    return  "https://nfcard.online/Salah/"
     }
     public enum Route{
         case users

@@ -67,6 +67,9 @@ public class PaginationManager<T:Mappable>:NSObject{
     }
     private func paginatorRequest(){
         self.baseRequest?.page=self.currentPage?.bs_string ?? "1"
+        if let baseRequest:BaseRequest = self.baseRequest{
+            self.requestBuilder.baseRequest(baseRequest);
+        }
         self.requestBuilder.responseHandler { response in
             self.response=response;
             self.responseHandler?(response);

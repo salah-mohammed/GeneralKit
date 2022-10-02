@@ -37,8 +37,10 @@ class Pagination:Mappable{
 class BaseResponse: BaseModel {
     var users:[User]=[User]();
     var user:User?
+    var pagination:Pagination?
     open override func mapping(map: ObjectMapper.Map) {
         users <- map["users"]
         user <- map["user"]
+        pagination <- map["pagination"]
     }
 }

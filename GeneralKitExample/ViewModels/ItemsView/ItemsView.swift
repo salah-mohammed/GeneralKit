@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
-
+import SalahUtility
 struct ItemsView: View {
     @StateObject var viewModel = ItemsViewModel()
 
     var body: some View {
-        List(1..<100) { row in
-                    Text("Row \(row)")
-        }.refreshable(action:self.viewModel.refresh()).onPreferenceChange(ViewOffsetKey.self) { _ in
-            self.viewModel.moreAction()
+        ZStack{
+            List(viewModel.list, id: \.self.id) {item in
+            Text("\(item.id?.stringValue ?? "") \(item.username ?? "")")
+            }.listStyle(InsetListStyle.init()).refreshable(action:self.viewModel.refresh()).onPreferenceChange(ViewOffsetKey.self) { _ in
+                self.viewModel.moreAction()
+            }
         }
+      
     }
 }
 
