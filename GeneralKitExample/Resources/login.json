@@ -1,0 +1,10 @@
+{
+  "user" :{
+    "username" : 1,
+    "fullname" : "salah"
+  },
+  "status":{
+    "code" : 0,
+    "message" : "success"
+  }
+}

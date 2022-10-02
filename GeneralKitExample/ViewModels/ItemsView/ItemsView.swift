@@ -13,12 +13,21 @@ struct ItemsView: View {
     var body: some View {
         List(1..<100) { row in
                     Text("Row \(row)")
-        }.refreshable(action:self.viewModel.refresh())
+        }.refreshable(action:self.viewModel.refresh()).onPreferenceChange(ViewOffsetKey.self) { _ in
+            self.viewModel.moreAction()
+        }
     }
 }
 
 struct ItemsView_Previews: PreviewProvider {
     static var previews: some View {
         ItemsView()
+    }
+}
+struct ViewOffsetKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue = CGFloat.zero
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
     }
 }

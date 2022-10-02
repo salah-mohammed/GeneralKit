@@ -22,10 +22,13 @@ class ItemsViewModel:NSObject,ObservableObject{
 
     }
     func refresh()->ActionHandler{
-    let actionHandler = {
-        self.paginationManager.start();
+        let actionHandler = {
+            self.paginationManager.start();
+        }
+        return actionHandler;
     }
-    return actionHandler
+    func moreAction(){
+        self.paginationManager.loadNextPage();
     }
     func paginationSetup(){
         self.paginationManager.start();
@@ -34,3 +37,10 @@ class ItemsViewModel:NSObject,ObservableObject{
         }
     }
 }
+/*
+ public var i_per_page: NSNumber?
+ public var i_total_pages: NSNumber?
+ public var i_total_objects: NSNumber?
+ public var i_current_page: NSNumber?
+ public var i_items_on_page: NSNumber?
+ */
