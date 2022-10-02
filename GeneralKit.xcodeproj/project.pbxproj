@@ -20,6 +20,7 @@
 		4E6323F528EA06CA005DBE9B /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6323F028EA06CA005DBE9B /* login.json */; };
 		4E6323F628EA06CA005DBE9B /* usersList1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6323F128EA06CA005DBE9B /* usersList1.json */; };
 		4E6323F828EA0951005DBE9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6323F728EA0951005DBE9B /* User.swift */; };
+		4E6323FA28EA0CD0005DBE9B /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6323F928EA0CD0005DBE9B /* UserRequest.swift */; };
 		4ECFD2E928DF1710006A5087 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFD2E828DF170F006A5087 /* BaseRequest.swift */; };
 		4ECFD2EB28DF175B006A5087 /* ValidationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFD2EA28DF175B006A5087 /* ValidationObject.swift */; };
 		4ECFD2F328DF415B006A5087 /* GeneralKitExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFD2F228DF415B006A5087 /* GeneralKitExampleApp.swift */; };
@@ -78,6 +79,7 @@
 		4E6323F028EA06CA005DBE9B /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
 		4E6323F128EA06CA005DBE9B /* usersList1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = usersList1.json; sourceTree = "<group>"; };
 		4E6323F728EA0951005DBE9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4E6323F928EA0CD0005DBE9B /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		4ECFD2E828DF170F006A5087 /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		4ECFD2EA28DF175B006A5087 /* ValidationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationObject.swift; sourceTree = "<group>"; };
 		4ECFD2F028DF415B006A5087 /* GeneralKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeneralKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 			children = (
 				4E57749028E8BBB60075C5B0 /* NewRequest.swift */,
 				4E57749C28E8D2AA0075C5B0 /* ItemRequest.swift */,
+				4E6323F928EA0CD0005DBE9B /* UserRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				4E57748E28E8BB790075C5B0 /* AppBaseRequest.swift in Sources */,
 				4E57749D28E8D2AA0075C5B0 /* ItemRequest.swift in Sources */,
 				4E57749828E8BF210075C5B0 /* ItemsView.swift in Sources */,
+				4E6323FA28EA0CD0005DBE9B /* UserRequest.swift in Sources */,
 				4ECFD2F328DF415B006A5087 /* GeneralKitExampleApp.swift in Sources */,
 				4E57749628E8BF060075C5B0 /* ItemsViewModel.swift in Sources */,
 				4E6323F828EA0951005DBE9B /* User.swift in Sources */,
