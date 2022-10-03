@@ -132,7 +132,11 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
         if showLoader{
         RequestBuilder.shared.waitingView?(true);
         }
-        self.dataRequest = AF.request(self.request)
+        if self.isMultipart{
+            self.dataRequest = AF.upload(multipartFormData:self.partAlamofire, with: self.request)
+        }else{
+            self.dataRequest = AF.request(self.request)
+        }
         self.dataRequest.responseObject{ (response:DataResponse<T,AFError>) in
             self.dataRequest=nil;
             if self.showLoader{
