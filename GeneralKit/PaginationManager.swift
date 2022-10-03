@@ -19,6 +19,7 @@ public class PaginationManager<T:Mappable>:NSObject{
     var responseHandler:RequestOperationBuilder<T>.FinishHandler?
     public var response:RequestOperationBuilder<T>.FinishData?;
     var requestBuilder:RequestOperationBuilder<T>
+    var testHandler:RequestOperationBuilder<T>.FinishHandler?
 
     public var hasNextPage:Bool{
         if self.hasNextPageHandler?(self) ?? false {
@@ -26,12 +27,12 @@ public class PaginationManager<T:Mappable>:NSObject{
         }
         return false
     }
-    private var isLoading:Bool
+    public var isLoading:Bool
     {
         if self.requestBuilder.dataRequest  == nil{return false;}
         return true;
     }
-    public var hasPreviousPage:Bool{
+    private var hasPreviousPage:Bool{
         if self.hasPreviousPageHandler?(self) ?? false {
             return true;
         }
@@ -59,7 +60,7 @@ public class PaginationManager<T:Mappable>:NSObject{
             self.paginatorRequest();
         }
     }
-    public func loadPreviousPage(){
+    private func loadPreviousPage(){
         if  self.hasPreviousPage {
             self.currentPage! -= 1
             self.paginatorRequest();

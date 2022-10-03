@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
-public class CutomResponseHandler<T:Mappable>:NSObject{
+public class ResponseHandler<T:Mappable>:NSObject{
     func responseHandler(showMsg:Bool=true){
 
     }
