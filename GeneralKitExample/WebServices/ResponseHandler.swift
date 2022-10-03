@@ -23,9 +23,9 @@ public class CutomResponseHandler<T:Mappable>:NSObject{
          self.paginationManager.hasNextPageHandler { response in
              if let currentPage:Int = response.currentPage,
                 let totalPages:Int = response.response?.value?.pagination?.i_total_pages?.bs_Int{
-                return true//(currentPage < totalPages)
+                return (currentPage < totalPages)
              }else{
-            return true
+            return false
              }
          }
          self.paginationManager.currentPageHandler { response in
