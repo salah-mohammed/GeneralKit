@@ -21,15 +21,15 @@ public class CutomResponseHandler<T:Mappable>:NSObject{
      init(_ paginationManager: PaginationManager<BaseResponse>) {
          self.paginationManager = paginationManager
          self.paginationManager.hasNextPageHandler { response in
-         
-        return true
+             if let currentPage:Int = response.currentPage,
+                let totalPages:Int = response.response?.value?.pagination?.i_total_pages?.bs_Int{
+                return true//(currentPage < totalPages)
+             }else{
+            return true
+             }
          }
          self.paginationManager.currentPageHandler { response in
              return response.response?.value?.pagination?.i_current_page?.intValue ?? 1;
          }
-         self.paginationManager.hasPreviousPageHandler { response in
-        return true
-         }
-
      }
 }

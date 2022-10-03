@@ -28,8 +28,11 @@ class ItemsViewModel:NSObject,ObservableObject{
         }
         return actionHandler;
     }
-    func moreAction(){
+    func loadMore()->ActionHandler{
+        let actionHandler = {
         self.paginationManager.loadNextPage();
+        }
+        return actionHandler;
     }
     func paginationSetup(){
         paginationManager.baseRequest(UserRequest.init(.users));
