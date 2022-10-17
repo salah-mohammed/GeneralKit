@@ -1,0 +1,6 @@
+framework module Pods_GeneralKit {
+  umbrella header "Pods-GeneralKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,59 @@
+/* 
+  Localizable.strings
+  SalahUtility
+
+  Created by Salah on 7/10/21.
+  Copyright © 2021 Salah. All rights reserved.
+*/
+// Constants
+"CantNotOpenLink"="لايمكن فتح هذا الرابط";
+"Choose"="اختر";
+"FieldRequired"="%@ مطلوب";
+"Ok"="تم";
+"Cancel"="إلغاء";
+"Done"="تم";
+"Yes"="نعم";
+"No"="لا";
+"Update"="تحديث";
+"Save"="حفظ";
+"Complete"="إكمال";
+"Verify"="تحقق";
+"Logout"="تسجيل خروج";
+"Settings"="الإعدادات";
+"Appearance"="المظهر";
+"DoneSuccessfully"="تم بنجاح";
+"Attention"="تنبيه";
+"Error"="خطأ";
+"AnErrorOccurred"="خطأ غير متوقع";
+//Alerts
+"AlertMessageLogoutConfirmation"="هل تريد تسجيل الخروج؟";
+//Titles
+"ContactUs"="اتصل بنا";
+"TermsAndConditions"="الشروط و الأحكام";
+"Notifications"="التنبيهات";
+"RateApp"="قيم التطبيق";
+"AboutApp"="عن التطبيق";
+"PrivacyPolicy"="سياسة الخصوصية";
+// Fields
+"FirstName"="الاسم الاول";
+"LastName"="الاسم الأخير";
+"FullName"="الاسم الكامل";
+"UserName"="اسم المستخدم";
+"Password"="كلمة المرور";
+"Address"="العنوان";
+"AddressDetails"="تفاصيل العنوان";
+"City"="المدينة";
+"Region"="المنطقة";
+"PhoneNumber"="رقم المحمول";
+"Title"="العنوان";
+"Description"="الوصف";
+"Details"="التفاصيل";
+"NoData"="لايوجد بيانات";
+"Email"="البريد الإلكتروني";
+"Gender"="الجنس";
+"DateOfBirth"="تاريخ الميلاد";
+"Version"="رقم النسخة";
+//dark mode
+"UIUserInterfaceStyle.unspecified.bs_title"="نظام";
+"UIUserInterfaceStyle.light.bs_title"="فاتح";
+"UIUserInterfaceStyle.dark.bs_title"="غامق";

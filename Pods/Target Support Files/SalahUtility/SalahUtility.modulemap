@@ -1,0 +1,6 @@
+framework module SalahUtility {
+  umbrella header "SalahUtility-umbrella.h"
+
+  export *
+  module * { export * }
+}

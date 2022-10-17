@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
+  - ObjectMapper (3.5.3)
+  - SalahUtility (0.0.10)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireObjectMapper
+  - ObjectMapper
+  - SalahUtility (from `https://github.com/salah-mohammed/SalahUtility.git`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireObjectMapper
+    - ObjectMapper
+
+EXTERNAL SOURCES:
+  SalahUtility:
+    :git: https://github.com/salah-mohammed/SalahUtility.git
+
+CHECKOUT OPTIONS:
+  SalahUtility:
+    :commit: 453fdf7379a0f2517a74233079b1550b13cb7ada
+    :git: https://github.com/salah-mohammed/SalahUtility.git
+
+SPEC CHECKSUMS:
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  SalahUtility: b15eba62a055316ca1e11e7a0a8996a3d6a946f1
+
+PODFILE CHECKSUM: 38ea86bacba83817fc1aa026eb036ab019c7056d
+
+COCOAPODS: 1.11.3
