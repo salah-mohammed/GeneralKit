@@ -1,0 +1,6 @@
+framework module AppTexts {
+  umbrella header "AppTexts-umbrella.h"
+
+  export *
+  module * { export * }
+}

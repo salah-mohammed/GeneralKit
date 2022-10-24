@@ -1,0 +1,217 @@
+/* 
+  Localizable.strings
+  AppTexts
+
+  Created by SalahMohamed on 18/10/2022.
+  
+*/
+// Constants
+"CantNotOpenLink"="Can't open this link";
+"Choose"="Choose";
+"Ok"="Ok";
+"Cancel"="Cancel";
+"Done"="Done";
+"Yes"="Yes";
+"No"="No";
+"Update"="Update";
+"Save"="Save";
+"Complete"="Complete";
+"Verify"="Verify";
+"Logout"="Logout";
+"Settings"="Settings";
+"Appearance"="Appearance";
+"DoneSuccessfully"="Done successfully";
+"Attention"="Attention";
+"Error"="Error";
+"AnErrorOccurred"="An unexpected error occurred";
+"Send"="Send";
+"Year"="Year";
+"Clear"="Clear";
+"Sort" = "Sort";
+"SortBy" = "Sort by";
+"Home"="Home";
+"SeeAll"="See All";
+"Favorite"="Favorite";
+"Signin"="Sign in";
+"Change"="Change";
+"Edit"="Edit";
+"KM"="%@ km";
+"ShowMore" = "show more";
+"ShowLess" = "show less";
+"Filter"="Filter";
+"SearchResult" = "Search Result";
+"Add" = "Add";
+"Back"="Back";
+"Activate"="Activate";
+"Next"="Next";
+"Previous"="Previous";
+"WriteAComment"="Write a comment";
+"Attachments"="Attachments";
+"Continue"="Continue";
+"ClearAll"="Clear All";
+"File"="File";
+"Photo"="Photo";
+"ProfilePicture"="Profile Picture";
+// Alerts
+"AlertMessageLogoutConfirmation"="Do you want to log out";
+"Unauthorized" = "There is UnExpected Error , You Should relogin know .";
+"TitleChangeLanguage" = "Do you want Change Language?";
+"SubTitleChangeLanguage" = "The app will close and you have to open it again";
+"SupportLater"="This feature will be supported later";
+"LanguageChangedSuccessfully" = "Language changed successfully";
+"ChooseCountry"="Sorry, Choose Country";
+"General.QuestionYesNo"="Are you sure you want to %@?";
+
+"General.QuestionYesNo.Delete"="Are you sure you want to delete this %@?";
+"General.QuestionYesNo.Add"="Are you sure you want to add this %@?";
+"General.QuestionYesNo.Edit"="Are you sure you want to edit this %@?";
+"General.QuestionYesNo.Save"="Are you sure you want to save this %@?";
+"General.QuestionYesNo.Send"="Are you sure you want to send this %@?";
+"General.QuestionYesNo.Change"="Are you sure you want to change this %@?";
+
+"General.Deleted.Successfully"="This %@ has been deleted successfully";
+"General.Added.Successfully" = "This %@ has been Added Successfully";
+"General.Edited.Successfully" = "This %@ has been Edited Successfully";
+"General.Saved.Successfully" = "This %@ has been Saved Successfully";
+"General.Sent.Successfully" = "This %@ has been Sent Successfully";
+"General.Changed.Successfully" = "This %@ has been Changed Successfully";
+"General.Uploaded.Successfully" = "This %@ has been Uploaded Successfully";
+
+"General.Deleted.Successfully.New"="This has been deleted successfully";
+"General.Added.Successfully.New" = "This has been Added Successfully";
+"General.Edited.Successfully.New" = "This has been Edited Successfully";
+"General.Saved.Successfully.New" = "This has been Saved Successfully";
+"General.Sent.Successfully.New" = "This has been Sent Successfully";
+"General.Changed.Successfully.New" = "This has been Changed Successfully";
+"General.Uploaded.Successfully.New" = "This has been Uploaded Successfully";
+
+//Titles
+"ContactUs"="Contact Us";
+"TermsAndConditions"="Terms and Conditions";
+"Notifications"="Notifications";
+"RateApp"="Rate App";
+"AboutApp"="About App";
+"PrivacyPolicy"="Privacy Policy";
+"Login"="Login";
+"Register"="Register";
+"Profile"="Profile";
+"EditProfile"="Edit Profile";
+"Search"="Search";
+"Language"="Language";
+"From"="From";
+"To"="To";
+"Registration"="Registration";
+"Chat"="Chat";
+"AccountInformation"="Account Information";
+"Skip"="Skip";
+"Join"="Join";
+"Delete"="Delete";
+"PaymentSuccessful"="Your payment was successful";
+"MyAccount"="My Account";
+"Pending"="Pending";
+"Confirmed"="Confirmed";
+"Cancelled"="Cancelled";
+"Unconfirmed"="Unconfirmed";
+"Confirm"="Confirm";
+"Version"="Version";
+"ForgotPassword"="Forgot Password";
+"Male"="Male";
+"Female"="Female";
+"Other"="Other";
+"Verfiy"="Verfiy";
+"AppLanguage"="App Language";
+"ShareApp"="Share App";
+"ChangePassword"="Change Password";
+"ResendVerificationCode"="Resend Verification Code";
+"CompleteProfile" ="Complete Profile";
+"Instructions"="Instructions";
+"RateUs"="Rate Us";
+"Price"="Price";
+"ExpiryDate"="Expiry date";
+"UsagePolicy"="Usage policy";
+"Verification"="Verification";
+// Fields
+"FirstName"="FirstName";
+"LastName"="LastName";
+"FullName"="FullName";
+"UserName"="FullName";
+"Password"="Password";
+"ConfirmPassword"="Confirm Password";
+"NewPassword"="New Password";
+"Address"="Address";
+"AddressDetails"="Address details";
+"City"="City";
+"Region"="Region";
+"PhoneNumber"="PhoneNumber";
+"Title"="Title";
+"Description"="Description";
+"Details"="Details";
+"NoData"="No Data";
+"Email"="Email";
+"Gender"="Gender";
+"DateOfBirth"="Date Of Birth";
+"Location"="Location";
+"Requirements"="Requirements";
+"MessageTitle"="Message Title";
+"MessageBody"="Message Body";
+"VerificationCode"="Verification Code";
+"Country"= "Country";
+"ChatTextMessagePlaceholder"="Write your message ...";
+"General.Message" = "Message";
+"AddressOnMap"="Address On Map";
+"CurrentLocation" = "Current location";
+"SearchHere"="Search here";
+"Nationality"="Nationality";
+"DrivingLicense"="Driving License";
+"BirthCertificate"="Birth Certificate";
+"UniversityCertificate"="University Certificate";
+"Governorate"="Governorate";
+"Street"="Street";
+"Neighborhood"="Neighborhood";
+"ApartmentNo"="Apartment No";
+"BuildingNo"="Building No";
+"FloorNo"="Floor No";
+//Other
+"Category"="Category";
+"ChooseCategory"="Choose Category";
+
+// validation
+"NotValid"="Sorry, Invalid %@";
+"FieldRequired"="Sorry, The %@ Field is required";
+"Required"="Sorry, The %@ is required";
+"PasswordNotMatch"="Sorry, Password does not match";
+"PasswordMustHave6"="Sorry,Password must be more than six characters";
+"PleaseChoose"="Sorry, choose %@ please";
+"EnterAllFields"="Please enter all fields";
+"PleaseEnter"="Sorry, please enter %@";
+"FileSizeLessThanMB"="File size must be less than %@ MB";
+//dark mode
+"UIUserInterfaceStyle.unspecified.bs_title"="system";
+"UIUserInterfaceStyle.light.bs_title"="light";
+"UIUserInterfaceStyle.dark.bs_title"="dark";
+
+
+//Firebase
+"VerificationCodeError"                                                           = "You should Correct Verification Code";
+"ConnectionError"                                                                 = "check netWork connection";
+"PhoneNumberIsNotValid"                                                           = "Phone Number is not correct";
+"PhoneNumberIsRequired"                                                           = "Phone Number is required";
+"TooManyFirebaseRequests"                                                         = "You have too many activation code requests";
+
+//cutom
+"Reports"="Reports";
+"Report"="Report";
+"Total"="Total";
+"Favorites"="Favorites";
+"MyOrders"="My Orders";
+"Orders"="Orders";
+"My Offers"="My Offers";
+"Offers"="Offers";
+"Points"="Points";
+"MyPoints"="My Points";
+"OfferDetails"="Offer details";
+"Categories"="Categories";
+"Rate"="Rate";
+//
+//cutom
+"VerificationCodeHasBeenSent"="The verification code has been sent to the number you entered";

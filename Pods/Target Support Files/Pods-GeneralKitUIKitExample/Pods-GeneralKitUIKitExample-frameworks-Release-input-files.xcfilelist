@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-GeneralKitUIKitExample/Pods-GeneralKitUIKitExample-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/AppTexts/AppTexts.framework
+${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/SalahUtility/SalahUtility.framework

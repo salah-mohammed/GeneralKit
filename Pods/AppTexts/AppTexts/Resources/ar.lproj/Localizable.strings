@@ -1,0 +1,215 @@
+/* 
+  Localizable.strings
+  AppTexts
+
+  Created by SalahMohamed on 18/10/2022.
+  
+*/
+// Constants
+"CantNotOpenLink"="لايمكن فتح هذا الرابط";
+"Choose"="اختر";
+"Ok"="تم";
+"Cancel"="إلغاء";
+"Done"="تم";
+"Yes"="نعم";
+"No"="لا";
+"Update"="تحديث";
+"Save"="حفظ";
+"Complete"="إكمال";
+"Verify"="تحقق";
+"Logout"="تسجيل خروج";
+"Settings"="الإعدادات";
+"Appearance"="المظهر";
+"DoneSuccessfully"="تم بنجاح";
+"Attention"="تنبيه";
+"Error"="خطأ";
+"AnErrorOccurred"="خطأ غير متوقع";
+"Send"="إرسال";
+"Year"="سنة";
+"Clear"="تفريغ";
+"Sort" = "ترتيب";
+"SortBy" = "ترتيب حسب";
+"Home"="الرئيسية";
+"SeeAll"="عرض المزيد";
+"Favorite"="المفضلة";
+"Signin" = "تسجيل الدخول";
+"Change" = "تغيير";
+"Edit"="تعديل";
+"KM"="%@ كم";
+"ShowMore" = "إقرا المزيد";
+"ShowLess" = "إقرا اقل";
+"Filter"="فلترة";
+"SearchResult" = "نتائج البحث";
+"Add" = "إضافة";
+"Back"="رجوع";
+"Activate"="تفعيل";
+"Next"="التالي";
+"Previous"="السابق";
+"WriteAComment"="اكتب تعليقا";
+"Attachments"="المرفقات";
+"Continue"="استمرار";
+"ClearAll"="مسح الكل";
+"File"="الملف";
+"Photo"="الصورة";
+"ProfilePicture"="الصورة الشخصية";
+//Alerts
+"AlertMessageLogoutConfirmation"="هل تريد تسجيل الخروج؟";
+"Unauthorized"                  = "حدث خطأ غير متوقع , يجب إعادة الدخول مرة إخري";
+"TitleChangeLanguage"           = "هل تريد فعلاً تغيير اللغة ؟";
+"SubTitleChangeLanguage"        =  "سوف يتم إغلاق التطبيق ويتوجب عليك فتحه مرة اخرى";
+"SupportLater" = "سيتم دعم هذه الخاصية لاحقا";
+"LanguageChangedSuccessfully"   = "تم تغير اللغة بنجاح";
+"ChooseCountry"="عذرا ،اختر الدولة";
+
+"General.QuestionYesNo"="هل تريد بالتأكيد %@؟";
+
+"General.QuestionYesNo.Delete"="هل تريد بالتأكيد حذف %@؟";
+"General.QuestionYesNo.Add"="هل تريد بالتأكيد إضافة %@؟";
+"General.QuestionYesNo.Edit"="هل تريد بالتأكيد تعديل %@؟";
+"General.QuestionYesNo.Save"="هل تريد بالتأكيد حفظ %@؟";
+"General.QuestionYesNo.Send"="هل تريد بالتأكيد إرسال %@؟";
+"General.QuestionYesNo.Change"="هل تريد بالتأكيد تغير %@؟";
+
+"General.Deleted.Successfully"="تم حذف هذا %@ بنجاح";
+"General.Added.Successfully" = "تم إضافة %@ بنجاح";
+"General.Edited.Successfully" = "تم تعديل %@ بنجاح";
+"General.Saved.Successfully" = "تم حفظ %@ بنجاح";
+"General.Sent.Successfully" = "تم إرسال %@ بنجاح";
+"General.Change.Successfully" = "تم تغير %@ بنجاح";
+"General.Uploaded.Successfully" = "تم رفع %@ بنجاح";
+
+"General.Deleted.Successfully.New"="تم الحذف بنجاح";
+"General.Added.Successfully.New" = "تمت الإضافة بنجاح";
+"General.Edited.Successfully.New" = "تم التعديل  بنجاح";
+"General.Saved.Successfully.New" = "تم الحفظ بنجاح";
+"General.Sent.Successfully.New" = "تم الإرسال بنجاح";
+"General.Change.Successfully.New" = "تم التغير بنجاح";
+"General.Uploaded.Successfully.New" = "تم الرفع بنجاح";
+//Titles
+"ContactUs"="اتصل بنا";
+"TermsAndConditions"="الشروط و الأحكام";
+"Notifications"="التنبيهات";
+"RateApp"="قيم التطبيق";
+"AboutApp"="عن التطبيق";
+"PrivacyPolicy"="سياسة الخصوصية";
+"Login"="تسجيل الدخول";
+"Register"="تسجيل";
+"Profile"="الملف الشخصي";
+"EditProfile"="تعديل الملف الشخصي";
+"Search"="بحث";
+"Language"="اللغة";
+"From"="من";
+"To"="إلى";
+"Registration"="التسجيل";
+"Chat"="المحادثات";
+"AccountInformation"="معلومات الحساب";
+"Skip"="تخطي";
+"Join"="انضمام";
+"Delete"="حذف";
+"PaymentSuccessful"="تم الدفع بنجاح";
+"MyAccount"="حسابي";
+"Pending"="معلقة";
+"Confirmed"="مقبول";
+"Cancelled"="ملغي";
+"Unconfirmed"="غير مقبول";
+"Confirm"="تأكيد";
+"Version"="رقم النسخة";
+"ForgotPassword"="نسيت كلمة المرور";
+"Male"="ذكر";
+"Female"="أنثى";
+"Other"="غير ذلك";
+"Verfiy"="تحقق";
+"AppLanguage"="لغة التطبيق";
+"ShareApp"="مشاركة التطبيق";
+"ChangePassword"="تغير كلمة المرور";
+"ResendVerificationCode"="إعادة ارسال رمز التفعيل";
+"CompleteProfile"="إكمال الملف الشخصي";
+"Instructions"="التعليمات";
+"RateUs"="قيمنا";
+"Price"="السعر";
+"ExpiryDate"="تاريخ الإنتهاء";
+"UsagePolicy"="سياسة الاستخدام";
+"Verification"="التحقق";
+// Fields
+"FirstName"="الاسم الاول";
+"LastName"="الاسم الأخير";
+"FullName"="الاسم الكامل";
+"UserName"="اسم المستخدم";
+"Password"="كلمة المرور";
+"ConfirmPassword"="تأكيد كلمة المرور";
+"NewPassword"="كلمة مرور جديدة";
+"Address"="العنوان";
+"AddressDetails"="تفاصيل العنوان";
+"City"="المدينة";
+"Region"="المنطقة";
+"PhoneNumber"="رقم المحمول";
+"Title"="العنوان";
+"Description"="الوصف";
+"Details"="التفاصيل";
+"NoData"="لايوجد بيانات";
+"Email"="البريد الإلكتروني";
+"Gender"="الجنس";
+"DateOfBirth"="تاريخ الميلاد";
+"Location"="الموقع";
+"Requirements"="المتطلبات";
+"MessageTitle"="عنوان الرسالة";
+"MessageBody"="نص الرسالة";
+"VerificationCode"="رمز التفعيل";
+"Country"= "الدولة";
+"ChatTextMessagePlaceholder"="...أكتب رسالتك";
+"General.Message"="الرسالة";
+"AddressOnMap" = "العنوان على الخريطة";
+"CurrentLocation" = "الموقع الحالي";
+"SearchHere"="ابحث هنا";
+"Nationality"="الجنسية";
+"DrivingLicense"="رخصة القيادة";
+"BirthCertificate"="شهادة الميلاد";
+"UniversityCertificate"="شهادة الجامعة";
+"Governorate"="المحافظة";
+"Street"="الشارع";
+"Neighborhood"="الحي";
+"ApartmentNo"="رقم الشقة";
+"BuildingNo"="رقم البناء";
+"FloorNo"="رقم الطابق";
+//Other
+"Category"="التصنيف";
+"ChooseCategory"="اختر تصنيف";
+
+// validation
+"NotValid"="عذراً، %@ غير صحيح";
+"FieldRequired" = "عذراً، حقل %@ مطلوب";
+"Required" = "عذراً، %@ مطلوب";
+"PasswordNotMatch"="عذراً، كلمة المرور غير متطابقة";
+"PasswordMustHave6"="عذراً، كلمة المرور يجب ان تكون اكثر من ستة حروف";
+"PleaseChoose" = "عذراً، الرجاء اختيار %@";
+"EnterAllFields"="الرجاء إدخال جميع الحقول";
+"PleaseEnter"= "عذرا ,الرجاء إدخال %@";
+"FileSizeLessThanMB"="حجم الملف يجب أن يكون أقل من %@ ميجا بايت";
+//dark mode
+"UIUserInterfaceStyle.unspecified.bs_title"="نظام";
+"UIUserInterfaceStyle.light.bs_title"="فاتح";
+"UIUserInterfaceStyle.dark.bs_title"="غامق";
+
+//Firebase
+"TooManyFirebaseRequests" = "لديك طلبات كود تفعيل كثيرة";
+"PhoneNumberIsRequired"   = "الرجاء إدخال رقم الجوال";
+"PhoneNumberIsNotValid"   = "الرجاء إدخال رقم الجوال بشكل صحيح";
+"ConnectionError"         = "تأكد من اتصالك في الإنترنت";
+"VerificationCodeError"   = "يجب التحقق من كود التفعيل";
+
+//cutom
+"Reports"="المقالات";
+"Report"="إبلاغ";
+"Total"="المجموع";
+"Favorites"="المفضلة";
+"MyOrders"="طلباتي";
+"Orders"="الطلبات";
+"My Offers"="عروضي";
+"Offers"="العروض";
+"Points"="النقاط";
+"MyPoints"="نقاطي";
+"OfferDetails"="تفاصيل العرض";
+"Categories"="التصنيفات";
+"Rate"="تقييم";
+//cutom
+"VerificationCodeHasBeenSent" = "لقد تم ارسال رمز التحقق برسالة إلى الرقم الذي ادخلته مسبقًا";

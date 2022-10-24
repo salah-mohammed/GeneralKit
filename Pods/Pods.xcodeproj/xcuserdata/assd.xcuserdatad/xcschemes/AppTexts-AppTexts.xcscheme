@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1300"
+   LastUpgradeVersion = "1240"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "822E2F06DABE71828BC0F551BEA5D749"
-               BuildableName = "SalahUtility.framework"
-               BlueprintName = "SalahUtility"
+               BlueprintIdentifier = "BAF33711EB25FF02F82B52576ADE0AA2"
+               BuildableName = "AppTexts.bundle"
+               BlueprintName = "AppTexts-AppTexts"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
