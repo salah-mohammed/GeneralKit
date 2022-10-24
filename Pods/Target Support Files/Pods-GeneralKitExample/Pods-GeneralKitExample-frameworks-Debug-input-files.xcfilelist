@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-GeneralKitExample/Pods-GeneralKitExample-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/AppTexts/AppTexts.framework
 ${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
 ${BUILT_PRODUCTS_DIR}/SalahUtility/SalahUtility.framework

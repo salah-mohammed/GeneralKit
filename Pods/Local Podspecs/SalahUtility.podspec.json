@@ -28,6 +28,11 @@
       "PhoneKit/View/*.{lproj,storybard}"
     ]
   },
+  "dependencies": {
+    "AppTexts": [
+
+    ]
+  },
   "pod_target_xcconfig": {
     "SWIFT_VERSION": "5.0"
   },

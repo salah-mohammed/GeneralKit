@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AppTexts
 public enum Element{
     case text(((UITextField) -> Void)?)
     case button(String,UIAlertAction.Style,((UIAlertAction) -> Void)?)
@@ -59,38 +60,45 @@ public class AlertBuilder{
         }
         return alert
     }
-    public func execute(){
+    @discardableResult public func execute()->UIAlertController{
         let alert = self.build()
         viewController.present(alert, animated: true)
+        return alert
     }
     
 }
 public enum Alert{
+    // (message,okHandler)
     case error(String?,((UIAlertAction) -> Void)?)
+    // (title,fieldName,okHandler)
     case fieldRequired(String,String,((UIAlertAction) -> Void)?)
-//    case fieldRequiredTowButton(String,String,((UIAlertAction) -> Void)?)
+//    case normal2Actions(String,String,(String?,((UIAlertAction) -> Void)?),(String?,((UIAlertAction) -> Void)?))
+    // (message,okHandler)
     case sucess(String,((UIAlertAction) -> Void)?)
+    // (message,okHandler)
     case attention(String?,((UIAlertAction) -> Void)?)
-    case yesOrNo(String,
+    // (message,yesHandler,noHandler)
+    case yesOrNo(String?,String,
                  yes:(String?,((UIAlertAction) -> Void)?),
                  no:(String?,((UIAlertAction) -> Void)?))
+    // (title,message,okHandler)
     case normal(String,String,((UIAlertAction) -> Void)?)
     var title: String{
         switch self {
-//        case .fieldRequiredTowButton(let title , let message , let action):
-//            return title
         case  .fieldRequired(let title,let message,let action):
             return title
+//        case .normal2Actions(let title,_,_,_):
+//            return title
         case .error(_, _):
-            return Localize.Error
+            return AppTexts.Error
         case .sucess(_, _):
-            return Localize.DoneSuccessfully
+            return AppTexts.DoneSuccessfully
         case .attention(_, _):
-            return Localize.Attention
+            return AppTexts.Attention
         case .normal(let title,_, _):
             return title
-        case .yesOrNo( _, yes: _, no: _):
-            return Localize.Attention
+        case .yesOrNo(let title, _, yes: _, no: _):
+            return title ?? AppTexts.Attention
         }
  }
     static public func show(_ viewController:UIViewController? = nil,_ alertType : Alert){
@@ -99,25 +107,25 @@ public enum Alert{
         alert.title(alertType.title)
         switch alertType{
         case .error(let message, let action):
-            alert.message(message ?? Localize.AnErrorOccurred).element(Element.button(Localize.Ok, .default, action))
+            alert.message(message ?? AppTexts.AnErrorOccurred).element(Element.button(AppTexts.Ok, .default, action))
             break
-        case .fieldRequired(let title,let message, let action):
-            alert.message(Localize.FieldRequired(message)).element(Element.button(Localize.Ok, .default, action))
+        case .fieldRequired(_,let message, let action):
+            alert.message(Validate.fieldRequired(message) ?? "").element(Element.button(AppTexts.Ok, .default, action))
             break
-//        case .fieldRequiredTowButton(let title,let message, let action):
-//            alert.message(Localize.FieldRequired(message)).element(Element.button(Localize.Ok, .default, action)).element(Element.button(Localize.Cancel, .default,nil))
+//        case .normal2Actions(_,let message, let yes,let no):
+//            alert.message(message).element(Element.button(yes.0 ?? AppTexts.Yes, .default, yes.1)).element(Element.button(no.0 ?? AppTexts.No, .cancel, no.1))
 //            break
         case .sucess(let message, let action):
-            alert.message(message).element(Element.button(Localize.Ok, .default, action))
+            alert.message(message).element(Element.button(AppTexts.Ok, .default, action))
             break
         case .attention(let message, let action):
-            alert.message(message ?? Localize.AnErrorOccurred).element(Element.button(Localize.Ok, .default, action))
+            alert.message(message ?? AppTexts.AnErrorOccurred).element(Element.button(AppTexts.Ok, .default, action))
             break
         case .normal(_ ,let message, let action):
-            alert.message(message).element(Element.button(Localize.Ok, .default, action))
+            alert.message(message).element(Element.button(AppTexts.Ok, .default, action))
             break
-        case .yesOrNo(let message, yes: let yes, no: let no):
-            alert.message(message).element(Element.button(yes.0 ?? Localize.Yes, .default, yes.1)).element(Element.button(no.0 ?? Localize.No, .cancel, no.1))
+        case .yesOrNo(_,let message, yes: let yes, no: let no):
+            alert.message(message).element(Element.button(yes.0 ?? AppTexts.Yes, .default, yes.1)).element(Element.button(no.0 ?? AppTexts.No, .cancel, no.1))
             break
         }
         alert.execute()

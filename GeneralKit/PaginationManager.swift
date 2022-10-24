@@ -11,7 +11,16 @@ import ObjectMapper
 import AlamofireObjectMapper
 import SalahUtility
 
-public class PaginationManager<T:Mappable>:NSObject{
+public protocol PaginationManagerProtocol{
+var hasNextPage:Bool{get}
+var isLoading:Bool{get}
+ var UICurrentPage:Int?{get}
+
+//private var hasPreviousPage:Bool{get}
+func loadNextPage()
+func start();
+}
+public class PaginationManager<T:Mappable>:NSObject,PaginationManagerProtocol{
     public typealias CheckPagainatorHandler = (PaginationManager<T>) -> Bool;
     public typealias CurrentPageHandler = (PaginationManager<T>) -> Int;
     
@@ -39,6 +48,10 @@ public class PaginationManager<T:Mappable>:NSObject{
         return false
     }
     public var currentPage:Int?
+    public var UICurrentPage:Int?{
+    return self.currentPageHandler?(self)
+    }
+
     private var hasPreviousPageHandler:CheckPagainatorHandler?
     public var hasNextPageHandler:CheckPagainatorHandler?
     public var currentPageHandler:CurrentPageHandler?
@@ -101,4 +114,5 @@ public class PaginationManager<T:Mappable>:NSObject{
         return self
     }
 }
+
 
