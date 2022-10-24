@@ -19,7 +19,6 @@ open class GeneralCellData: NSObject {
 public struct GeneralListConstant {
     public  struct Handlers {
         public typealias ConverterHandler = (Any) ->GeneralCellData;
-        public typealias SortHandler = (Any,Any) ->Bool;
         public typealias RefreshHnadler = () ->Void;
         public typealias RouterHandler = (BaseModel) ->[Any];
     }
@@ -48,7 +47,6 @@ public protocol GeneralListViewProrocol:class {
     var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?{get set}
     var routerHandler:GeneralListConstant.Handlers.RouterHandler?{get set}
     var converterHandler:GeneralListConstant.Handlers.ConverterHandler?{get set}
-    var sortHandler:GeneralListConstant.Handlers.SortHandler?{get set}
     var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?{get set}
 
     var objects:[GeneralCellData]{ get set}
@@ -127,7 +125,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     }
     public var enableWaitingView:Bool=GeneralTableView.global.enableWaitingView{
         didSet{
-//            self.paginator?.requestBuilder?.enableWaitingView=enableWaitingView;
+            self.paginator?.showLoader=enableWaitingView;
         }
     }
     public var enablePullToRefresh:Bool=true{
@@ -147,7 +145,6 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
 
     
     public var converterHandler: GeneralListConstant.Handlers.ConverterHandler?
-    public var sortHandler: GeneralListConstant.Handlers.SortHandler?
     public var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?
     public var routerHandler:GeneralListConstant.Handlers.RouterHandler?
     

@@ -14,9 +14,8 @@ import SalahUtility
 public protocol PaginationManagerProtocol{
 var hasNextPage:Bool{get}
 var isLoading:Bool{get}
- var UICurrentPage:Int?{get}
-
-//private var hasPreviousPage:Bool{get}
+var showLoader:Bool{get set}
+var UICurrentPage:Int?{get}
 func loadNextPage()
 func start();
 }
@@ -29,6 +28,11 @@ public class PaginationManager<T:Mappable>:NSObject,PaginationManagerProtocol{
     public var response:RequestOperationBuilder<T>.FinishData?;
     var requestBuilder:RequestOperationBuilder<T>
     var testHandler:RequestOperationBuilder<T>.FinishHandler?
+    public var showLoader:Bool=true{
+        didSet{
+            self.requestBuilder.showLoader=showLoader
+        }
+    }
 
     public var hasNextPage:Bool{
         if self.hasNextPageHandler?(self) ?? false {
@@ -80,6 +84,7 @@ public class PaginationManager<T:Mappable>:NSObject,PaginationManagerProtocol{
         }
     }
     private func paginatorRequest(){
+        self.requestBuilder.showLoader = self.showLoader
         self.baseRequest?.page=self.currentPage?.bs_string ?? "1"
         if let baseRequest:BaseRequest = self.baseRequest{
             self.requestBuilder.baseRequest(baseRequest);

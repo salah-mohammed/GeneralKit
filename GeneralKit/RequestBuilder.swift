@@ -43,7 +43,7 @@ public class RequestBuilder {
 
     open var headers:HTTPHeaders = HTTPHeaders();
     
-    static let shared: RequestBuilder = {
+    public static let shared: RequestBuilder = {
         let instance = RequestBuilder()
 
         return instance
