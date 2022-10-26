@@ -10,6 +10,7 @@ import UIKit
 open class GeneralCellData: NSObject {
     var identifier: String = ""
     var object: Any?
+    public var selected:Bool=false
     init(identifier: String, object: Any?) {
         super.init()
         self.identifier = identifier
@@ -41,22 +42,31 @@ public protocol GeneralListViewCellProtocol:class {
 public enum ItemType{
 case append([Any])
 case replace([Any])
+case seection([[GeneralCellData]])
 }
-
+enum ListType{
+    case list
+    case section
+}
+public enum SelectionType{
+    case single
+    case multi
+    case non
+    case signleSection
+}
 public protocol GeneralListViewProrocol:class {
     var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?{get set}
     var routerHandler:GeneralListConstant.Handlers.RouterHandler?{get set}
     var converterHandler:GeneralListConstant.Handlers.ConverterHandler?{get set}
     var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?{get set}
 
-    var objects:[GeneralCellData]{ get set}
+    var objects:[[GeneralCellData]]{ get set}
     var listViewController:UIViewController?{ get set}
     var paginator:PaginationManagerProtocol?{get set}
     var identifier: String?{get set}
     var refreshControl:UIRefreshControl?{get set}
     var enableListPlaceHolderView:Bool{get set}
     var enableTableProgress:Bool{get set}
-    var enableWaitingView:Bool{get set}
     var enablePagination:Bool{get set}
     var enablePullToRefresh:Bool{get set}
     var listPlaceholderView: ListPlaceHolderView?{get set}
@@ -66,6 +76,7 @@ public protocol GeneralListViewProrocol:class {
     func paginationManager(_ paginationManager:PaginationManagerProtocol) -> Self
     func start();
     func reloadData()
+    var selectionType:SelectionType{ get set}
 
 }
 
@@ -76,7 +87,7 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
     public var indexPath: IndexPath!
-    public var object: GeneralCellData!{return self.list.objects[indexPath.row]};
+    public var object: GeneralCellData!{return self.list.objects[indexPath.section][indexPath.row]};
 
     final public func config(_ list:GeneralListViewProrocol,_ listViewController:UIViewController?,_ indexPath:IndexPath){
         self.list = list as! GeneralTableView
@@ -89,27 +100,32 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     public func itemSelected() {
         
     }
+    func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData) {
+        
+    }
+    func editingStyleForRow(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{
+        return .none
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.objects.count
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        self.config(tableView: self, indexPath: indexPath, object: self.objects[indexPath.row]);
-    }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.itemSelected(indexPath);
-    }
-    
+    var sectionViewHandler:((Int)->UIView)?
+    var sectionHeightHandler:((Int)->CGFloat)?
+    var footerSectionViewHandler:((Int)->UIView?)?
+    var footerSectionHeightHandler:((Int)->CGFloat)?
+    var listType:ListType = .list
+    var containsHandler:((Any,Any)->Bool)?
 
+    ////
+    public var selectionType: SelectionType = .non
     static var global:GeneralListConstant.Global=GeneralListConstant.Global()
     public var errorConnectionData: ListPlaceHolderData?=ListPlaceHolderView.defaultErrorConnectionData;
     public var emptyData: ListPlaceHolderData?=ListPlaceHolderView.defaultEmptyData;
     public var loadingData: ListPlaceHolderData?=ListPlaceHolderView.defaultLoadingData;
-    
+    ////////////////////////-
     
     public var enablePagination: Bool=GeneralTableView.global.enablePagination{
         didSet{
@@ -121,11 +137,6 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
             }else{
                 self.removeInfiniteScroll()
             }
-        }
-    }
-    public var enableWaitingView:Bool=GeneralTableView.global.enableWaitingView{
-        didSet{
-            self.paginator?.showLoader=enableWaitingView;
         }
     }
     public var enablePullToRefresh:Bool=true{
@@ -141,13 +152,11 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         }
     }
     public var enableTableProgress:Bool=GeneralTableView.global.enableTableProgress;
-    public var objects:[GeneralCellData]=[GeneralCellData]([]);
-
+    public var objects:[[GeneralCellData]]=[[GeneralCellData]]([]);
     
     public var converterHandler: GeneralListConstant.Handlers.ConverterHandler?
     public var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?
     public var routerHandler:GeneralListConstant.Handlers.RouterHandler?
-    
     
     public var identifier: String?
     public var paginator:PaginationManagerProtocol?
@@ -169,45 +178,28 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
             }
         }
     }
+    ////////////////////////-
+    var willDisplayCell : (((IndexPath)-> Void))?
+    func willDisplayCell (_ willDisplayCell: (((IndexPath)-> Void))?) -> Self{
+        self.willDisplayCell = willDisplayCell;
+        return self
+    }
     @discardableResult public func setup()->Self{
         self.delegate=self;
         self.dataSource=self;
-//        paginator?.requestBuilder?.enableWaitingView=self.enableWaitingView;
         let tempEnablePagination = self.enablePagination;
         self.enablePagination=tempEnablePagination;
         let tempEnablePullToRefresh = self.enablePullToRefresh;
         self.enablePullToRefresh=tempEnablePullToRefresh;
-        self.setupView();
-//        self.relam = try? Realm();
-
+        let tempEnableListPlaceHolderView = self.enableListPlaceHolderView;
+        self.enableListPlaceHolderView=tempEnableListPlaceHolderView;
         return self;
     }
     open override func awakeFromNib() {
         super.awakeFromNib();
         self.setup()
     }
-    func setupView(){
-        let tempEnableListPlaceHolderView = self.enableListPlaceHolderView;
-        self.enableListPlaceHolderView=tempEnableListPlaceHolderView;
-
-    }
-    
-    private func loadMore(){
-        if ((self.paginator?.isLoading==false)&&(self.paginator?.hasNextPage)!){
-            self.paginator?.loadNextPage();
-        }
-        else{
-            self.finishInfiniteScroll();
-        }
-    }
-    
-    @objc func performToPullToRefresh(){
-        self.refreshControl?.beginRefreshing();
-        self.objects.removeAll();
-        self.paginator?.start();
-        self.refreshHandler?()
-    }
-
+    ////////////////////////-
     func config(tableView:UITableView,indexPath:IndexPath,object:GeneralCellData)->UITableViewCell{
         let object:GeneralCellData = object
         let cell = self.dequeueReusableCell(withIdentifier:object.identifier, for: indexPath) as! GeneralListViewCellProtocol
@@ -218,6 +210,61 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         if let cell:GeneralListViewCellProtocol = self.cellForRow(at:indexPath) as? GeneralListViewCellProtocol{
             cell.itemSelected();
         }
+    }
+    ////////////////////////-
+    private func loadMore(){
+        if ((self.paginator?.isLoading==false)&&(self.paginator?.hasNextPage)!){
+            self.paginator?.loadNextPage();
+        }
+        else{
+            self.finishInfiniteScroll();
+        }
+    }
+    @objc func performToPullToRefresh(){
+        self.refreshControl?.beginRefreshing();
+        self.objects.removeAll();
+        self.paginator?.start();
+        self.refreshHandler?()
+    }
+    ////////////////////////-
+    ///
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.willDisplayCell?(indexPath)
+        print(indexPath.row)
+    }
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.objects[section].count
+    }
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return self.objects.count
+    }
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.sectionViewHandler?(section)
+    }
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return self.footerSectionViewHandler?(section)
+    }
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+            return self.footerSectionHeightHandler?(section) ?? 0
+    }
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return (self.listType == ListType.list) ? 0 : (self.sectionHeightHandler?(section) ?? 40)
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.config(tableView: self, indexPath: indexPath, object: self.objects[indexPath.section][indexPath.row]);
+    }
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.itemSelected(indexPath);
+    }
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        var cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
+        return cell?.tableView(tableView, canEditRowAt: indexPath) ?? false
+    }
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if let cell:GeneralTableViewCell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell{
+            return cell.editingStyleForRow(tableView, editingStyleForRowAt: indexPath)
+        }
+        return .none
     }
 }
 
@@ -289,10 +336,17 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
     public func handle(itemsType:ItemType){
         switch itemsType{
         case .append(let items):
-            self.objects.append(contentsOf:items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)}));
+            var tempItems = self.objects.bs_get(0) ?? []
+            tempItems.append(contentsOf:items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)}))
+            self.objects = [tempItems]
             break;
         case .replace(let items):
-            self.objects=items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)})
+            self.objects=[items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)})]
+            self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
+            self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
+            break;
+        case .seection(let objects):
+            self.objects=objects
             self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
             self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
             break;
