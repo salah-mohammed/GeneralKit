@@ -20,53 +20,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6349B7D1-7E5B-4DC0-9F6D-CC34208E748D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeneralKit/GeneralCollectionView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6349B7D1-7E5B-4DC0-9F6D-CC34208E748D - 56592fb70322edba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GeneralKit.GeneralCollectionView.collectionView(_: __C.UICollectionView, layout: __C.UICollectionViewLayout, sizeForItemAt: Foundation.IndexPath) -&gt; __C.CGSize"
-                  moduleName = "GeneralKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKit/GeneralCollectionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "178">
-               </Location>
-               <Location
-                  uuid = "6349B7D1-7E5B-4DC0-9F6D-CC34208E748D - 56592fb70322edba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GeneralKit.GeneralCollectionView.collectionView(_: __C.UICollectionView, layout: __C.UICollectionViewLayout, sizeForItemAt: Foundation.IndexPath) -&gt; __C.CGSize"
-                  moduleName = "GeneralKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKit/GeneralCollectionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "670">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

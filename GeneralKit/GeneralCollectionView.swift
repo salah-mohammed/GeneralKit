@@ -14,7 +14,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
     public var object: GeneralCellData!{
         return list.objects[indexPath.section][indexPath.row];
     }
-    public func itemSelected() {
+    open func itemSelected() {
     }
     public func config(_ list: GeneralListViewProrocol, _ listViewController: UIViewController?, _ indexPath: IndexPath) {
         self.list = list
@@ -22,7 +22,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
         self.indexPath=indexPath;
         self.config();
     }
-    func config(){
+   open func config(){
     }
 }
 
@@ -157,5 +157,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize.init(width: 200, height:200);
     }
-    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.itemSelected(indexPath);
+    }
 }

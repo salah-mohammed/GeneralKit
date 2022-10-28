@@ -17,6 +17,10 @@ class CollectionListExampleViewController: UIViewController {
         super.viewDidLoad()
         collectionView.register(UINib(nibName: "SectionHeaderCollectionView", bundle: nil), forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeaderCollectionView")
         collectionView.bs_register("NewCollectionViewCell")
+        collectionView.selectionType = .single(optional: true)
+        collectionView.containsHandler = { object1 , object2 in
+            return (object1 as? User)?.id == (object2 as? User)?.id
+        }
         paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
         paginationSetup();
         collectionView.paginationManager(paginationManager).identifier("NewCollectionViewCell").start();
