@@ -35,6 +35,8 @@
 		4EE7AF1728E8249100B81C8B /* PaginationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7AF1628E8249100B81C8B /* PaginationManager.swift */; };
 		6CE38983F54E9F4EF1FD0662 /* Pods_GeneralKitExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8856D2F0110DAB555B607AE /* Pods_GeneralKitExample.framework */; };
 		75D6E0A951E7F2F99D55C27D /* Pods_GeneralKitUIKitExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC6FB5EA3D1A4A21CD0852F /* Pods_GeneralKitUIKitExample.framework */; };
+		8B091F46290BD54300D38C91 /* SectionHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */; };
+		8B091F48290BD55800D38C91 /* SectionHeaderCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */; };
 		8B2A0BC628FD398C00244000 /* GeneralTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC528FD398C00244000 /* GeneralTableView.swift */; };
 		8B2A0BC928FD3AF600244000 /* UIScrollView+InfiniteScroll.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */; };
 		8B2A0BCA28FD3AF600244000 /* UIScrollView+InfiniteScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */; };
@@ -161,6 +163,8 @@
 		4EE7AF1628E8249100B81C8B /* PaginationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationManager.swift; sourceTree = "<group>"; };
 		6AC6FB5EA3D1A4A21CD0852F /* Pods_GeneralKitUIKitExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeneralKitUIKitExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA254326E754360B8CAA819 /* Pods_GeneralKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeneralKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionView.swift; sourceTree = "<group>"; };
+		8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderCollectionView.xib; sourceTree = "<group>"; };
 		8B2A0BC528FD398C00244000 /* GeneralTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTableView.swift; sourceTree = "<group>"; };
 		8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+InfiniteScroll.h"; sourceTree = "<group>"; };
 		8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+InfiniteScroll.m"; sourceTree = "<group>"; };
@@ -387,6 +391,8 @@
 				8B2A0BE328FD605200244000 /* Assets.xcassets */,
 				8B2A0BE528FD605200244000 /* LaunchScreen.storyboard */,
 				8B2A0BE828FD605200244000 /* Info.plist */,
+				8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */,
+				8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */,
 				8B76580E2906F6910047E799 /* NewTableViewCell.swift */,
 				8B76580F2906F6910047E799 /* NewTableViewCell.xib */,
 				8B765814290703870047E799 /* NewCollectionViewCell.swift */,
@@ -644,6 +650,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B765817290703D70047E799 /* NewCollectionViewCell.xib in Resources */,
+				8B091F48290BD55800D38C91 /* SectionHeaderCollectionView.xib in Resources */,
 				8B2A0BE728FD605200244000 /* LaunchScreen.storyboard in Resources */,
 				8B2A0BE428FD605200244000 /* Assets.xcassets in Resources */,
 				8B7658112906F6920047E799 /* NewTableViewCell.xib in Resources */,
@@ -813,6 +820,7 @@
 				8B765819290705000047E799 /* CollectionListExampleViewController.swift in Sources */,
 				8BA6738129068A8500A6CE14 /* BaseResponse.swift in Sources */,
 				8B7DA028290AA20900D65C97 /* TableSectionListExampleViewController.swift in Sources */,
+				8B091F46290BD54300D38C91 /* SectionHeaderCollectionView.swift in Sources */,
 				8B2A0BDF28FD605200244000 /* TableListExampleViewController.swift in Sources */,
 				8BA6737C29068A6900A6CE14 /* ResponseHandler.swift in Sources */,
 				8B765815290703870047E799 /* NewCollectionViewCell.swift in Sources */,

@@ -11,10 +11,14 @@ open class GeneralCellData: NSObject {
     public var identifier: String = ""
     public var object: Any?
     public var selected:Bool=false
-    public init(identifier: String, object: Any?) {
+    public var cellSize:CGSize?=nil
+    public var cellHeight:CGFloat?=nil
+    public init(identifier: String, object: Any?,cellSize:CGSize?=nil,cellHeight:CGFloat?=nil) {
         super.init()
         self.identifier = identifier
         self.object = object
+        self.cellSize=cellSize;
+        self.cellHeight=cellHeight;
     }
 }
 public struct GeneralListConstant {
@@ -273,6 +277,9 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
         return cell?.tableView(tableView, canEditRowAt: indexPath) ?? false
     }
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return  self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)?.cellHeight ?? self.rowHeight
+    }
     public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if let cell:GeneralTableViewCell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell{
             return cell.editingStyleForRow(tableView, editingStyleForRowAt: indexPath)
@@ -346,15 +353,18 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
 //        }
 //
 //    }
+    func converterObject(_ object:Any?)->GeneralCellData{
+        return self.converterHandler?(object) ?? GeneralCellData.init(identifier:self.identifier ?? "", object:object)
+    }
     public func handle(itemsType:ItemType){
         switch itemsType{
         case .append(let items):
             var tempItems = self.objects.bs_get(0) ?? []
-            tempItems.append(contentsOf:items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)}))
+            tempItems.append(contentsOf:items.map({converterObject($0)}))
             self.objects = [tempItems]
             break;
         case .new(let items):
-            self.objects=[items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)})]
+            self.objects=[items.map({converterObject($0)})]
             self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
             self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
             break;

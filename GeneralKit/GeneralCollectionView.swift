@@ -26,7 +26,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
     }
 }
 
-open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource {
+open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     public var selectionHandler: GeneralListConstant.Handlers.SelectionHandler?
     
     public var containsHandler: GeneralListConstant.Handlers.ContainsHandler?
@@ -37,7 +37,11 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     public var loadingData: ListPlaceHolderData?=ListPlaceHolderView.defaultLoadingData;
     ////////////////////////-
 
-    
+    private var itemSize:CGSize?
+    public func itemSize(_ itemSize:CGSize)->Self{
+    self.itemSize=itemSize;
+      return self
+    }
     public var enablePagination: Bool=GeneralTableView.global.enablePagination{
         didSet{
             if enablePagination == true {
@@ -132,10 +136,26 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     ////////////////////////-
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.objects.count;
+        return self.objects.bs_get(section)?.count ?? 0;
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return self.config(collectionView: collectionView, indexPath: indexPath, object: self.objects[indexPath.section][indexPath.row])
     }
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.objects.count
+    }
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)?.cellSize ?? self.itemSize ?? CGSize.zero;
+        return size
+    }
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:"SectionHeaderCollectionView", for: indexPath)
+        reusableview.backgroundColor=UIColor.red
+        return reusableview;
+    }
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.init(width: 200, height:200);
+    }
+    
 }
