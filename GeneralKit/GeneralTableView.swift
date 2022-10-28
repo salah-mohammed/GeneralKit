@@ -35,14 +35,11 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
-    // tableView
+    // tableView only
     public var sectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
     public var sectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
     public var footerSectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
     public var footerSectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
-    public var selectionHandler :GeneralListConstant.Handlers.SelectionHandler?
-    public var containsHandler:GeneralListConstant.Handlers.ContainsHandler?
-
     public var listType:ListType = .list
     ////
     public var selectionType: SelectionType = .non
@@ -103,6 +100,8 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
             }
         }
     }
+    public var selectionHandler :GeneralListConstant.Handlers.SelectionHandler?
+    public var containsHandler:GeneralListConstant.Handlers.ContainsHandler?
     ////////////////////////-
     var willDisplayCell : (((IndexPath)-> Void))?
     func willDisplayCell (_ willDisplayCell: (((IndexPath)-> Void))?) -> Self{

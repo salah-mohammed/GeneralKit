@@ -57,6 +57,7 @@ public protocol GeneralListViewCellProtocol:class {
 public enum ItemType{
 case new([Any]) // new
 case append([Any]) //append
+case appendObject(section:Int=0,Any) //append
 case newSections([[GeneralCellData]]) // new
 case appendSection([GeneralCellData]) // new
 case replaceObject(Any,IndexPath) // replce item in section
@@ -146,6 +147,9 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
     }
     public func handle(itemsType:ItemType){
         switch itemsType{
+        case.appendObject(let section,let item):
+            self.objects[section].append(converterObject({item}))
+            break
         case .append(let items):
             var tempItems = self.objects.bs_get(0) ?? []
             tempItems.append(contentsOf:items.map({converterObject($0)}))
@@ -165,7 +169,6 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             let tempItems = self.objects.bs_get(indexPath.section) ?? []
             tempItems.bs_get(indexPath.row)?.object = object
             break;
-
         case .appendSection(let objects):
             self.objects.append(objects)
         }

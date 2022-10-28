@@ -17,21 +17,16 @@ class CollectionListExampleViewController: UIViewController {
         super.viewDidLoad()
         collectionView.register(UINib(nibName: "SectionHeaderCollectionView", bundle: nil), forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeaderCollectionView")
         collectionView.bs_register("NewCollectionViewCell")
-        collectionView.selectionType = .single(optional: true)
-        collectionView.containsHandler = { object1 , object2 in
-            return (object1 as? User)?.id == (object2 as? User)?.id
-        }
+        collectionView.selectionType = .non
+//        collectionView.containsHandler = { object1 , object2 in
+//            return (object1 as? User)?.id == (object2 as? User)?.id
+//        }
         paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
         paginationSetup();
         collectionView.paginationManager(paginationManager).identifier("NewCollectionViewCell").start();
         collectionView.converterHandler { item in
             return GeneralCellData.init(identifier:"NewCollectionViewCell", object: item,cellSize:CGSize.init(width:50, height: 50))
         }
-//        self.collectionView.viewForSupplementaryElementHandler { kind, indexPath in
-//            let reusableview = self.collectionView.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:"SectionHeaderCollectionView", for: indexPath)
-//            reusableview.backgroundColor=UIColor.red
-//            return reusableview;
-//        }
     }
     func paginationSetup(){
         paginationManager.baseRequest(UserRequest.init(.users));

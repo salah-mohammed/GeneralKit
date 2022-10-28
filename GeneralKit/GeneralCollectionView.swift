@@ -27,10 +27,6 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    public var selectionHandler: GeneralListConstant.Handlers.SelectionHandler?
-    
-    public var containsHandler: GeneralListConstant.Handlers.ContainsHandler?
-    public var selectionType: SelectionType = .non
     static var global:GeneralListConstant.Global=GeneralListConstant.Global()
     public var errorConnectionData: ListPlaceHolderData?=ListPlaceHolderView.defaultErrorConnectionData;
     public var emptyData: ListPlaceHolderData?=ListPlaceHolderView.defaultEmptyData;
@@ -110,7 +106,10 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     public var converterHandler: GeneralListConstant.Handlers.ConverterHandler?
     public var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?
     public var routerHandler:GeneralListConstant.Handlers.RouterHandler?
+    public var selectionHandler: GeneralListConstant.Handlers.SelectionHandler?
+    public var containsHandler: GeneralListConstant.Handlers.ContainsHandler?
     
+    public var selectionType: SelectionType = .non
     public var identifier: String?
     public var paginator:PaginationManagerProtocol?
     public var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?
