@@ -8,10 +8,10 @@
 import UIKit
 
 open class GeneralCellData: NSObject {
-    var identifier: String = ""
-    var object: Any?
+    public var identifier: String = ""
+    public var object: Any?
     public var selected:Bool=false
-    init(identifier: String, object: Any?) {
+    public init(identifier: String, object: Any?) {
         super.init()
         self.identifier = identifier
         self.object = object
@@ -22,6 +22,12 @@ public struct GeneralListConstant {
         public typealias ConverterHandler = (Any) ->GeneralCellData;
         public typealias RefreshHnadler = () ->Void;
         public typealias RouterHandler = (BaseModel) ->[Any];
+        public typealias SectionViewHandler = (Int)->UIView
+        public typealias SectionViewHeightHandler = (Int)->CGFloat
+        public typealias ContainsHandler = (Any,Any)->Bool
+        public typealias SelectionHandler = (([Any])-> Void)
+
+        
     }
     public  struct Global{
         var enableListPlaceHolderView:Bool=true;
@@ -36,20 +42,23 @@ public protocol GeneralListViewCellProtocol:class {
     var listViewController:UIViewController?{ get set}
     var indexPath:IndexPath!{ get set}
     var object:GeneralCellData!{get}
+
     func itemSelected();
     func config(_ list:GeneralListViewProrocol,_ listViewController:UIViewController?,_ indexPath:IndexPath)
 }
 public enum ItemType{
-case append([Any])
-case replace([Any])
-case seection([[GeneralCellData]])
+case new([Any]) // new
+case append([Any]) //append
+case newSection([[GeneralCellData]]) // new
+case appendSection([GeneralCellData]) // new
+case replaceObject(Any,IndexPath) // replce item in section
 }
-enum ListType{
+public enum ListType{
     case list
     case section
 }
 public enum SelectionType{
-    case single
+    case single(optional:Bool=false)
     case multi
     case non
     case signleSection
@@ -59,7 +68,10 @@ public protocol GeneralListViewProrocol:class {
     var routerHandler:GeneralListConstant.Handlers.RouterHandler?{get set}
     var converterHandler:GeneralListConstant.Handlers.ConverterHandler?{get set}
     var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?{get set}
-
+    
+    var containsHandler:GeneralListConstant.Handlers.ContainsHandler?{get set}
+    var selectionHandler:GeneralListConstant.Handlers.SelectionHandler?{get set}
+    
     var objects:[[GeneralCellData]]{ get set}
     var listViewController:UIViewController?{ get set}
     var paginator:PaginationManagerProtocol?{get set}
@@ -77,6 +89,7 @@ public protocol GeneralListViewProrocol:class {
     func start();
     func reloadData()
     var selectionType:SelectionType{ get set}
+    func selectAndDeselect(_ object:GeneralCellData)
 
 }
 
@@ -95,10 +108,9 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
         self.indexPath=indexPath;
         self.config();
     }
-    func config(){
+    open func config(){
     }
-    public func itemSelected() {
-        
+    open func itemSelected() {
     }
     func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData) {
         
@@ -112,13 +124,14 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
-    var sectionViewHandler:((Int)->UIView)?
-    var sectionHeightHandler:((Int)->CGFloat)?
-    var footerSectionViewHandler:((Int)->UIView?)?
-    var footerSectionHeightHandler:((Int)->CGFloat)?
-    var listType:ListType = .list
-    var containsHandler:((Any,Any)->Bool)?
+    public var sectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
+    public var sectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
+    public var footerSectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
+    public var footerSectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
+    public var selectionHandler :GeneralListConstant.Handlers.SelectionHandler?
+    public var containsHandler:GeneralListConstant.Handlers.ContainsHandler?
 
+    public var listType:ListType = .list
     ////
     public var selectionType: SelectionType = .non
     static var global:GeneralListConstant.Global=GeneralListConstant.Global()
@@ -257,7 +270,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.itemSelected(indexPath);
     }
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        var cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
         return cell?.tableView(tableView, canEditRowAt: indexPath) ?? false
     }
     public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -340,16 +353,23 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             tempItems.append(contentsOf:items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)}))
             self.objects = [tempItems]
             break;
-        case .replace(let items):
+        case .new(let items):
             self.objects=[items.map({GeneralCellData.init(identifier:self.identifier ?? "", object: $0)})]
             self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
             self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
             break;
-        case .seection(let objects):
+        case .newSection(let objects):
             self.objects=objects
             self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
             self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
             break;
+        case .replaceObject(let object,let indexPath):
+            var tempItems = self.objects.bs_get(indexPath.section) ?? []
+            tempItems.bs_get(indexPath.row)?.object = object
+            break;
+
+        case .appendSection(let objects):
+            self.objects.append(objects)
         }
         self.reloadData()
         if(self.refreshControl?.isRefreshing ?? false){
@@ -430,5 +450,60 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             self.refreshControl?.beginRefreshing()
         }
         self.paginator?.start();
+    }
+    
+     private var allObjects:Array<GeneralCellData>{
+  return self.objects.flatMap { (items:Array<GeneralCellData>) -> [GeneralCellData] in
+      return items}
+    }
+    public var selectedObject:[Any]{
+        set{
+            for object in newValue{
+                var cellsData = self.allObjects.filter { (internalObject) -> Bool in
+                    return self.containsHandler?(object,internalObject.object) ?? false}
+                for object in cellsData{
+                    object.selected=true;
+                }
+            }
+            self.reloadData();
+        }
+        get{
+            var tempSelected = [Any]();
+            for item in self.objects{
+                var items = item.filter { (data) -> Bool in
+                    return data.selected;};
+                var mappedItems = items.map({ (data) -> Any in
+                                                return data.object ?? ""})
+                tempSelected.append(contentsOf:mappedItems);
+            }
+            return tempSelected;
+        }
+    }
+    public func selectAndDeselect(_ object:GeneralCellData){
+        switch self.selectionType {
+        case .multi:
+            object.selected = !(object.selected);
+//            self.reloadData();
+            self.selectionHandler?(self.selectedObject);
+            break;
+        case .single(let optional):
+            for tempObject in self.allObjects{
+                if (self.containsHandler?(tempObject.object,object.object) ?? (tempObject == object)) == false{
+                    tempObject.selected=false
+                }
+            }
+            if optional == false{
+                object.selected=true;
+            }else{
+                object.selected = !object.selected;
+            }
+//            self.reloadData();
+            self.selectionHandler?(self.selectedObject);
+            break;
+        case .non:
+            break;
+        case .signleSection:
+            break
+        }
     }
 }

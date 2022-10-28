@@ -17,13 +17,13 @@ class ContentViewModel:NSObject,ObservableObject{
         requestOperationBuilder();        
     }
     func requestOperationBuilder(){
-        RequestOperationBuilder<WeatherResponse>.init().baseRequest(NewRequest.init(.firstRequest(s_phone: nil))).build().responseHandler({ response in
-            CutomResponseHandler<WeatherResponse>().responseHandler()
-            print(response.error);
-            print(response.value?.threeDayForecast ?? []);
-            print(response.value?.location ?? "");
-
-        }).execute()
+//        RequestOperationBuilder<WeatherResponse>.init().baseRequest(NewRequest.init(.firstRequest(s_phone: nil))).build().responseHandler({ response in
+//            CutomResponseHandler<WeatherResponse>().responseHandler()
+//            print(response.error);
+//            print(response.value?.threeDayForecast ?? []);
+//            print(response.value?.location ?? "");
+//
+//        }).execute()
     }
 }
 open class WeatherResponse:BaseModel {

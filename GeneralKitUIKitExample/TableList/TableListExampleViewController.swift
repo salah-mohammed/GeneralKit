@@ -27,7 +27,7 @@ class TableListExampleViewController: UIViewController {
         paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
             if response.value?.pagination?.i_current_page == 1{
-                self.tableView.handle(itemsType: .replace(response.value?.users ?? []))
+                self.tableView.handle(itemsType: .new(response.value?.users ?? []))
             }else{
                 self.tableView.handle(itemsType: .append(response.value?.users ?? []))
             }

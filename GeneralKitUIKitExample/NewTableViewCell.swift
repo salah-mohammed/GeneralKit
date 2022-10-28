@@ -19,5 +19,13 @@ class NewTableViewCell: GeneralTableViewCell {
 
         // Configure the view for the selected state
     }
-
+    override func config(){
+        super.config();
+        self.accessoryType = self.object.selected  ? .checkmark:.none
+    }
+    open override func itemSelected() {
+        super.itemSelected();
+        self.list.selectAndDeselect(self.object);
+        self.list.reloadData();
+    }
 }

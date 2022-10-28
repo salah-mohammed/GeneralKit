@@ -27,6 +27,9 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource {
+    public var selectionHandler: GeneralListConstant.Handlers.SelectionHandler?
+    
+    public var containsHandler: GeneralListConstant.Handlers.ContainsHandler?
     public var selectionType: SelectionType = .non
     static var global:GeneralListConstant.Global=GeneralListConstant.Global()
     public var errorConnectionData: ListPlaceHolderData?=ListPlaceHolderView.defaultErrorConnectionData;

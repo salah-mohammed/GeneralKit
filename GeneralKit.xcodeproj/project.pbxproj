@@ -56,6 +56,7 @@
 		8B765815290703870047E799 /* NewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765814290703870047E799 /* NewCollectionViewCell.swift */; };
 		8B765817290703D70047E799 /* NewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B765816290703D70047E799 /* NewCollectionViewCell.xib */; };
 		8B765819290705000047E799 /* CollectionListExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765818290705000047E799 /* CollectionListExampleViewController.swift */; };
+		8B7DA028290AA20900D65C97 /* TableSectionListExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */; };
 		8BA6737C29068A6900A6CE14 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7AF1428E8216F00B81C8B /* ResponseHandler.swift */; };
 		8BA6737D29068A6D00A6CE14 /* AppBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57748D28E8BB790075C5B0 /* AppBaseRequest.swift */; };
 		8BA6737E29068A7A00A6CE14 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6323F928EA0CD0005DBE9B /* UserRequest.swift */; };
@@ -186,6 +187,7 @@
 		8B765814290703870047E799 /* NewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B765816290703D70047E799 /* NewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B765818290705000047E799 /* CollectionListExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListExampleViewController.swift; sourceTree = "<group>"; };
+		8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionListExampleViewController.swift; sourceTree = "<group>"; };
 		AF20E814DCE5C8DAB96E13F8 /* Pods-GeneralKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeneralKit.debug.xcconfig"; path = "Target Support Files/Pods-GeneralKit/Pods-GeneralKit.debug.xcconfig"; sourceTree = "<group>"; };
 		D362F567F333A3308FFF0A8C /* Pods-GeneralKitUIKitExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeneralKitUIKitExample.release.xcconfig"; path = "Target Support Files/Pods-GeneralKitUIKitExample/Pods-GeneralKitUIKitExample.release.xcconfig"; sourceTree = "<group>"; };
 		D8856D2F0110DAB555B607AE /* Pods_GeneralKitExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeneralKitExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,8 +381,8 @@
 			children = (
 				8B2A0BDA28FD605200244000 /* AppDelegate.swift */,
 				8B2A0BDC28FD605200244000 /* SceneDelegate.swift */,
-				8B2A0BDE28FD605200244000 /* TableListExampleViewController.swift */,
-				8B765818290705000047E799 /* CollectionListExampleViewController.swift */,
+				8B7DA025290AA1D600D65C97 /* TableList */,
+				8B7DA026290AA1E100D65C97 /* CollectionList */,
 				8B2A0BE028FD605200244000 /* Main.storyboard */,
 				8B2A0BE328FD605200244000 /* Assets.xcassets */,
 				8B2A0BE528FD605200244000 /* LaunchScreen.storyboard */,
@@ -408,6 +410,23 @@
 				8B2A0BFD28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift */,
 			);
 			path = GeneralKitUIKitExampleUITests;
+			sourceTree = "<group>";
+		};
+		8B7DA025290AA1D600D65C97 /* TableList */ = {
+			isa = PBXGroup;
+			children = (
+				8B2A0BDE28FD605200244000 /* TableListExampleViewController.swift */,
+				8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */,
+			);
+			path = TableList;
+			sourceTree = "<group>";
+		};
+		8B7DA026290AA1E100D65C97 /* CollectionList */ = {
+			isa = PBXGroup;
+			children = (
+				8B765818290705000047E799 /* CollectionListExampleViewController.swift */,
+			);
+			path = CollectionList;
 			sourceTree = "<group>";
 		};
 		BE318A347E2C89068BBE3181 /* Pods */ = {
@@ -793,6 +812,7 @@
 			files = (
 				8B765819290705000047E799 /* CollectionListExampleViewController.swift in Sources */,
 				8BA6738129068A8500A6CE14 /* BaseResponse.swift in Sources */,
+				8B7DA028290AA20900D65C97 /* TableSectionListExampleViewController.swift in Sources */,
 				8B2A0BDF28FD605200244000 /* TableListExampleViewController.swift in Sources */,
 				8BA6737C29068A6900A6CE14 /* ResponseHandler.swift in Sources */,
 				8B765815290703870047E799 /* NewCollectionViewCell.swift in Sources */,
