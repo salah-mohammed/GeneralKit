@@ -22,17 +22,20 @@ open class GeneralCellData: NSObject {
         self.cellHeight=cellHeight;
     }
 }
+
 public struct GeneralListConstant {
     public  struct Handlers {
         public typealias ConverterHandler = (Any) ->GeneralCellData;
         public typealias RefreshHnadler = () ->Void;
         public typealias RouterHandler = (BaseModel) ->[Any];
+        public typealias SelectionHandler = (([Any])-> Void)
+        public typealias ContainsHandler = (Any,Any)->Bool
+        //tableview only
         public typealias SectionViewHandler = (Int)->UIView
         public typealias SectionViewHeightHandler = (Int)->CGFloat
-        public typealias ContainsHandler = (Any,Any)->Bool
-        public typealias SelectionHandler = (([Any])-> Void)
-
-        
+        //collectionview only
+        public typealias ViewForSupplementaryElementHandler = (String,IndexPath)->UICollectionReusableView
+//        public typealias SectionViewHeightHandler = (Int)->CGFloat
     }
     public  struct Global{
         var enableListPlaceHolderView:Bool=true;

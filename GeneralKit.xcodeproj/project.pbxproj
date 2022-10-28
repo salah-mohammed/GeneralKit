@@ -38,6 +38,7 @@
 		8B091F46290BD54300D38C91 /* SectionHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */; };
 		8B091F48290BD55800D38C91 /* SectionHeaderCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */; };
 		8B091F4A290C290100D38C91 /* GeneralList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B091F49290C290100D38C91 /* GeneralList.swift */; };
+		8B091F4C290C327100D38C91 /* CollectionSectionListExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */; };
 		8B2A0BC628FD398C00244000 /* GeneralTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC528FD398C00244000 /* GeneralTableView.swift */; };
 		8B2A0BC928FD3AF600244000 /* UIScrollView+InfiniteScroll.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */; };
 		8B2A0BCA28FD3AF600244000 /* UIScrollView+InfiniteScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */; };
@@ -167,6 +168,7 @@
 		8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionView.swift; sourceTree = "<group>"; };
 		8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderCollectionView.xib; sourceTree = "<group>"; };
 		8B091F49290C290100D38C91 /* GeneralList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralList.swift; sourceTree = "<group>"; };
+		8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSectionListExampleViewController.swift; sourceTree = "<group>"; };
 		8B2A0BC528FD398C00244000 /* GeneralTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTableView.swift; sourceTree = "<group>"; };
 		8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+InfiniteScroll.h"; sourceTree = "<group>"; };
 		8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+InfiniteScroll.m"; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 			isa = PBXGroup;
 			children = (
 				8B765818290705000047E799 /* CollectionListExampleViewController.swift */,
+				8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */,
 			);
 			path = CollectionList;
 			sourceTree = "<group>";
@@ -824,6 +827,7 @@
 				8B765819290705000047E799 /* CollectionListExampleViewController.swift in Sources */,
 				8BA6738129068A8500A6CE14 /* BaseResponse.swift in Sources */,
 				8B7DA028290AA20900D65C97 /* TableSectionListExampleViewController.swift in Sources */,
+				8B091F4C290C327100D38C91 /* CollectionSectionListExampleViewController.swift in Sources */,
 				8B091F46290BD54300D38C91 /* SectionHeaderCollectionView.swift in Sources */,
 				8B2A0BDF28FD605200244000 /* TableListExampleViewController.swift in Sources */,
 				8BA6737C29068A6900A6CE14 /* ResponseHandler.swift in Sources */,

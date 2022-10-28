@@ -42,6 +42,44 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     self.itemSize=itemSize;
       return self
     }
+    
+ 
+    var elementKindSectionHeaderIdentifire:String?
+    public func elementKindSectionHeaderIdentifire(_ elementKindSectionHeaderIdentifire:String)->Self{
+    self.elementKindSectionHeaderIdentifire=elementKindSectionHeaderIdentifire;
+      return self
+    }
+    var  elementKindSectionFooterIdentifire:String?
+    public func elementKindSectionFooterIdentifire(_ elementKindSectionFooterIdentifire:String)->Self{
+    self.elementKindSectionFooterIdentifire=elementKindSectionFooterIdentifire;
+      return self
+    }
+    var footerSize:CGSize?
+    public func footerSize(_ footerSize:CGSize)->Self{
+    self.footerSize=footerSize;
+      return self
+    }
+    var headerSize:CGSize?
+    public func headerSize(_ headerSize:CGSize)->Self{
+    self.headerSize=headerSize;
+      return self
+    }
+    
+    var footerSizeHandler:((Int)->CGSize)?
+    public func footerSizeHandler(_ footerSizeHandler:@escaping ((Int)->CGSize))->Self{
+    self.footerSizeHandler=footerSizeHandler;
+      return self
+    }
+    var headerSizeHandler:((Int)->CGSize)?
+    public func headerSizeHandler(_ headerSizeHandler:@escaping ((Int)->CGSize))->Self{
+    self.headerSizeHandler=headerSizeHandler;
+      return self
+    }
+    private var viewForSupplementaryElementHandler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?
+    public func viewForSupplementaryElementHandler(_ handler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?)->Self{
+    self.viewForSupplementaryElementHandler=handler;
+      return self
+    }
     public var enablePagination: Bool=GeneralTableView.global.enablePagination{
         didSet{
             if enablePagination == true {
@@ -150,12 +188,21 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         return size
     }
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let reusableview = collectionView.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:"SectionHeaderCollectionView", for: indexPath)
-        reusableview.backgroundColor=UIColor.red
-        return reusableview;
+        var internalView:UICollectionReusableView?
+        if  kind == UICollectionView.elementKindSectionHeader,let identifire:String = self.elementKindSectionHeaderIdentifire {
+        internalView = self.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:identifire, for: indexPath)
+        }else
+        if let identifire:String = self.elementKindSectionHeaderIdentifire
+        {
+        internalView = self.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:identifire, for: indexPath)
+        }
+        return  internalView ?? viewForSupplementaryElementHandler?(kind,indexPath) ?? UICollectionReusableView ()
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize.init(width: 200, height:200);
+        return self.headerSizeHandler?(section) ?? self.headerSize ?? CGSize.zero
+    }
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return self.footerSizeHandler?(section) ?? self.footerSize ?? CGSize.zero
     }
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.itemSelected(indexPath);

@@ -35,6 +35,7 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
+    // tableView
     public var sectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
     public var sectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
     public var footerSectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
