@@ -27,7 +27,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    public static var global:GeneralListConstant.Global=GeneralListConstant.Global()
+    public static var global:GeneralListConstant.Global=GeneralListConstant.global
     
     public var errorConnectionView: ListPlaceHolder?=global.errorConnectionDataViewHandler?()
     public var emptyDataView: ListPlaceHolder?=global.emptyDataViewHandler?()

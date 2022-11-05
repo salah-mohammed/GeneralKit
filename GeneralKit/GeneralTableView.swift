@@ -43,7 +43,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     public var listType:ListType = .list
     ////
     public var selectionType: SelectionType = .non
-    public static var global:GeneralListConstant.Global=GeneralListConstant.Global()
+    public static var global:GeneralListConstant.Global=GeneralListConstant.global
     
     public var errorConnectionView: ListPlaceHolder?=global.errorConnectionDataViewHandler?()
     public var emptyDataView: ListPlaceHolder?=global.emptyDataViewHandler?()

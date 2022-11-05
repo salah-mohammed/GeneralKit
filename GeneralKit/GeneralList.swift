@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Alamofire
 
 public protocol ListPlaceHolder:UIView{
 var list:GeneralListViewProrocol?{set get}
@@ -27,10 +27,9 @@ open class GeneralCellData: NSObject {
     }
 }
 public struct GeneralListConstant {
+    public static var global:Global=Global.init()
     public  struct Handlers {
-        public typealias ConnectionDataViewHandler = () ->ListPlaceHolder;
-        public typealias EmptyDataViewHandler = () ->ListPlaceHolder;
-        public typealias LoadingDataHandler = () ->ListPlaceHolder;
+        public typealias ListPlaceHolderHandler = () ->ListPlaceHolder;
         
         public typealias ConverterHandler = (Any) ->GeneralCellData;
         public typealias RefreshHnadler = () ->Void;
@@ -45,13 +44,13 @@ public struct GeneralListConstant {
 //        public typealias SectionViewHeightHandler = (Int)->CGFloat
     }
     public  struct Global{
-        var enableListPlaceHolderView:Bool=true;
-        var enableTableProgress: Bool=true;
-        var enableWaitingView: Bool=false
-        var enablePagination: Bool=true
-        var errorConnectionDataViewHandler:GeneralListConstant.Handlers.ConnectionDataViewHandler?
-        var emptyDataViewHandler:GeneralListConstant.Handlers.EmptyDataViewHandler?
-        var loadingDataHandler:GeneralListConstant.Handlers.LoadingDataHandler?
+        public var enableListPlaceHolderView:Bool=true;
+        public var enableTableProgress: Bool=true;
+        public var enableWaitingView: Bool=false
+        public var enablePagination: Bool=true
+        public var errorConnectionDataViewHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
+        public var emptyDataViewHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
+        public var loadingDataHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
 
     }
    
@@ -103,9 +102,9 @@ public protocol GeneralListViewProrocol:class {
     var enablePagination:Bool{get set}
     var enablePullToRefresh:Bool{get set}
     var backgroundView: UIView?{get set}
-     var errorConnectionView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultErrorConnectionData;
-     var emptyDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultEmptyData;
-     var loadingDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultLoadingData;
+    var errorConnectionView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultErrorConnectionData;
+    var emptyDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultEmptyData;
+    var loadingDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultLoadingData;
     func paginationManager(_ paginationManager:PaginationManagerProtocol) -> Self
     func start();
     func reloadData()
@@ -181,7 +180,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             self.objects.append(objects)
         }
         self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
-        if self.handlePlaceHolderViewConnectionError(error: error, enableListPlaceHolderView:self.enableListPlaceHolderView) == false {
+        if self.handlePlaceHolderViewConnectionError(error,enableListPlaceHolderView:self.enableListPlaceHolderView) == false {
             self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
         }
         self.reloadData()
@@ -198,14 +197,14 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
     func viewsSetup(){
         self.errorConnectionView = Self.global.errorConnectionDataViewHandler?()
         self.errorConnectionView?.list = self
-        self.emptyDataView =  Self.global.errorConnectionDataViewHandler?()
+        self.emptyDataView =  Self.global.emptyDataViewHandler?()
         self.emptyDataView?.list = self
         self.loadingDataView =  Self.global.loadingDataHandler?()
         self.loadingDataView?.list = self
     }
     func handlePlaceHolderViewEmptyData(objects:[[GeneralCellData]]?,enableListPlaceHolderView:Bool){
         if enableListPlaceHolderView {
-        if objects?.count ?? 0 == 0 {
+            if objects?.count ?? 0 == 0 || ((objects?.count ?? 0) == 1 && objects?.bs_get(0)?.count ?? 0 == 0) {
             self.backgroundView=self.emptyDataView;
         }else{
             self.backgroundView?.removeFromSuperview();
@@ -216,12 +215,29 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             self.backgroundView = nil
         }
     }
-    func handlePlaceHolderViewConnectionError(error:Error?,enableListPlaceHolderView:Bool)->Bool{
+    func handlePlaceHolderViewConnectionError(_ afError:Error?,enableListPlaceHolderView:Bool)->Bool{
         if enableListPlaceHolderView {
-        if let err = error as? URLError, err.code  == URLError.Code.notConnectedToInternet{
+        if let err = afError as? URLError,(err.code == URLError.Code.notConnectedToInternet) ||
+            (err.code == URLError.Code.networkConnectionLost) ||
+            (err.code == URLError.Code.dataNotAllowed){
             self.backgroundView=self.errorConnectionView;
             return true
-        }else{
+        }else
+            if let err = afError as? AFError{
+            switch err {
+            case .sessionTaskFailed(error: let error):
+                if let err = error as? URLError,(err.code == URLError.Code.notConnectedToInternet) ||
+                    (err.code == URLError.Code.networkConnectionLost) ||
+                    (err.code == URLError.Code.dataNotAllowed){
+                    self.backgroundView=self.errorConnectionView;
+                    return true
+                }
+            default:
+                break;
+            }
+            return false
+        }
+    else{
             self.backgroundView?.removeFromSuperview();
             self.backgroundView = nil
             return false

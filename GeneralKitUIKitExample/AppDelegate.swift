@@ -11,7 +11,6 @@ import GeneralKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         
@@ -21,6 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }else{
                 print("loader dismiss")
             }
+        }
+        GeneralListConstant.global.loadingDataHandler = {
+            let view = ListPlaceHolderView.loadViewFromNib()
+            view.data=LoadingData
+            return view
+        }
+        GeneralListConstant.global.errorConnectionDataViewHandler = {
+            let view = ListPlaceHolderView.loadViewFromNib()
+            view.data=ErrorConnection
+            return view
+        }
+        GeneralListConstant.global.emptyDataViewHandler = {
+            let view = ListPlaceHolderView.loadViewFromNib()
+            view.data=EmptyData
+            return view
         }
         // Override point for customization after application launch.
         return true
