@@ -135,7 +135,12 @@ s.resources = 'Pod/Resources/*'
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "Alamofire", "~> 5.0.0-rc.2"
+  s.dependency "ObjectMapper"
+  s.dependency "AlamofireObjectMapper"
+
+  s.dependency 'SalahUtility',:git => 'https://github.com/salah-mohammed/SalahUtility.git'
+  s.dependency 'AppTexts',:git => 'https://github.com/salah-mohammed/AppTexts.git'
 
 s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 
