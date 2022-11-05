@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+ 
 open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
@@ -43,10 +43,11 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     public var listType:ListType = .list
     ////
     public var selectionType: SelectionType = .non
-    static var global:GeneralListConstant.Global=GeneralListConstant.Global()
-    public var errorConnectionData: ListPlaceHolderData?=ListPlaceHolderView.defaultErrorConnectionData;
-    public var emptyData: ListPlaceHolderData?=ListPlaceHolderView.defaultEmptyData;
-    public var loadingData: ListPlaceHolderData?=ListPlaceHolderView.defaultLoadingData;
+    public static var global:GeneralListConstant.Global=GeneralListConstant.Global()
+    
+    public var errorConnectionView: ListPlaceHolder?=global.errorConnectionDataViewHandler?()
+    public var emptyDataView: ListPlaceHolder?=global.emptyDataViewHandler?()
+    public var loadingDataView: ListPlaceHolder?=global.loadingDataHandler?()
     ////////////////////////-
     
     public var enablePagination: Bool=GeneralTableView.global.enablePagination{
@@ -84,19 +85,13 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     public var paginator:PaginationManagerProtocol?
     public var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?
     public var listViewController:UIViewController?
-    public var listPlaceholderView: ListPlaceHolderView?{
-        didSet{
-            self.backgroundView = listPlaceholderView;
-        }
-    }
     public var enableListPlaceHolderView:Bool=GeneralTableView.global.enableListPlaceHolderView{
         didSet{
             if self.enableListPlaceHolderView {
-                self.listPlaceholderView=ListPlaceHolderView.loadViewFromNib()
+
             }else{
-                self.listPlaceholderView?.isHidden=true;
-                self.listPlaceholderView?.removeFromSuperview();
-                self.listPlaceholderView=nil;
+                self.backgroundView?.removeFromSuperview();
+                self.backgroundView=nil;
             }
         }
     }
@@ -117,6 +112,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.enablePullToRefresh=tempEnablePullToRefresh;
         let tempEnableListPlaceHolderView = self.enableListPlaceHolderView;
         self.enableListPlaceHolderView=tempEnableListPlaceHolderView;
+        viewsSetup();
         return self;
     }
     open override func awakeFromNib() {

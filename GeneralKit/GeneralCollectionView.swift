@@ -27,10 +27,11 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    static var global:GeneralListConstant.Global=GeneralListConstant.Global()
-    public var errorConnectionData: ListPlaceHolderData?=ListPlaceHolderView.defaultErrorConnectionData;
-    public var emptyData: ListPlaceHolderData?=ListPlaceHolderView.defaultEmptyData;
-    public var loadingData: ListPlaceHolderData?=ListPlaceHolderView.defaultLoadingData;
+    public static var global:GeneralListConstant.Global=GeneralListConstant.Global()
+    
+    public var errorConnectionView: ListPlaceHolder?=global.errorConnectionDataViewHandler?()
+    public var emptyDataView: ListPlaceHolder?=global.emptyDataViewHandler?()
+    public var loadingDataView: ListPlaceHolder?=global.loadingDataHandler?()
     ////////////////////////-
 
     private var itemSize:CGSize?
@@ -38,7 +39,6 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     self.itemSize=itemSize;
       return self
     }
-    
  
     var elementKindSectionHeaderIdentifire:String?
     public func elementKindSectionHeaderIdentifire(_ elementKindSectionHeaderIdentifire:String)->Self{
@@ -114,19 +114,12 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     public var paginator:PaginationManagerProtocol?
     public var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?
     public var listViewController:UIViewController?
-    public var listPlaceholderView: ListPlaceHolderView?{
-        didSet{
-            self.backgroundView = listPlaceholderView;
-        }
-    }
     public var enableListPlaceHolderView:Bool=GeneralTableView.global.enableListPlaceHolderView{
         didSet{
             if self.enableListPlaceHolderView {
-                self.listPlaceholderView=ListPlaceHolderView.loadViewFromNib()
             }else{
-                self.listPlaceholderView?.isHidden=true;
-                self.listPlaceholderView?.removeFromSuperview();
-                self.listPlaceholderView=nil;
+                self.backgroundView?.removeFromSuperview()
+                self.backgroundView=nil;
             }
         }
     }
@@ -140,6 +133,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         self.enablePullToRefresh=tempEnablePullToRefresh;
         let tempEnableListPlaceHolderView = self.enableListPlaceHolderView;
         self.enableListPlaceHolderView=tempEnableListPlaceHolderView;
+        viewsSetup();
         return self;
     }
     open override func awakeFromNib() {
