@@ -108,7 +108,11 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
-
+s.resources = 'Pod/Resources/*'
+  s.resource_bundles = {
+    'GeneralKit' => ['GeneralKit/Resources/**/*.{xib,xcassets,json,imageset,bundle,strings,storyboard}','GeneralKit/View/*.{lproj,storybard}']
+  }
+  
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Link your library with frameworks, or libraries. Libraries do not include
@@ -134,6 +138,5 @@ Pod::Spec.new do |s|
   # s.dependency "JSONKit", "~> 1.4"
 
 s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
-s.resources = 'Pod/Resources/*'
 
 end
