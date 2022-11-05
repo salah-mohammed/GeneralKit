@@ -141,6 +141,7 @@ s.resources = 'Pod/Resources/*'
 
   s.dependency "SalahUtility"
   s.dependency "AppTexts"
+  s.dependency "RealmSwift"
 
 s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 

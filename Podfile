@@ -5,29 +5,32 @@ target 'GeneralKit' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   # Pods for GeneralKit
-pod 'Alamofire'
+  pod 'Alamofire', '5.0.0-rc.2'
 pod 'ObjectMapper'
 pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
 pod 'AlamofireObjectMapper'
 pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
+pod 'RealmSwift','10.5.2'
 
 end
 
 target 'GeneralKitExample' do
   use_frameworks!
-  pod 'Alamofire'
+  pod 'Alamofire', '5.0.0-rc.2'
   pod 'ObjectMapper'
   pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
+  pod 'RealmSwift','10.5.2'
 
 end
 target 'GeneralKitUIKitExample' do
   use_frameworks!
-  pod 'Alamofire'
+  pod 'Alamofire', '5.0.0-rc.2'
   pod 'ObjectMapper'
   pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
+  pod 'RealmSwift','10.5.2'
 
 end

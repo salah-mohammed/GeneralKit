@@ -35,6 +35,8 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
+    public var sortHandler: GeneralListConstant.Handlers.SortHandler?
+    
     // tableView only
     public var sectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
     public var sectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?

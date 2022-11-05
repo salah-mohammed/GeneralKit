@@ -7,7 +7,8 @@
 
 import Foundation
 import Alamofire
-
+import Realm
+import RealmSwift
 public protocol ListPlaceHolder:UIView{
 var list:GeneralListViewProrocol?{set get}
 }
@@ -28,6 +29,12 @@ open class GeneralCellData: NSObject {
 }
 public struct GeneralListConstant {
     public static var global:Global=Global.init()
+    public enum OperationsHandler {
+        case initial([Any])
+        case deletions([Any])
+        case insertions([Any])
+        case modifications([Any])
+    }
     public  struct Handlers {
         public typealias ListPlaceHolderHandler = () ->ListPlaceHolder;
         
@@ -42,6 +49,8 @@ public struct GeneralListConstant {
         //collectionview only
         public typealias ViewForSupplementaryElementHandler = (String,IndexPath)->UICollectionReusableView
 //        public typealias SectionViewHeightHandler = (Int)->CGFloat
+        public typealias SortHandler = (Any,Any) ->Bool;
+
     }
     public  struct Global{
         public var enableListPlaceHolderView:Bool=true;
@@ -51,6 +60,7 @@ public struct GeneralListConstant {
         public var errorConnectionDataViewHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
         public var emptyDataViewHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
         public var loadingDataHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
+        public var sortHandler:GeneralListConstant.Handlers.SortHandler?
 
     }
    
@@ -90,7 +100,8 @@ public protocol GeneralListViewProrocol:class {
     
     var containsHandler:GeneralListConstant.Handlers.ContainsHandler?{get set}
     var selectionHandler:GeneralListConstant.Handlers.SelectionHandler?{get set}
-    
+    var sortHandler:GeneralListConstant.Handlers.SortHandler?{get set}
+
     static var global:GeneralListConstant.Global{get set}
     var objects:[[GeneralCellData]]{ get set}
     var listViewController:UIViewController?{ get set}
@@ -110,6 +121,7 @@ public protocol GeneralListViewProrocol:class {
     func reloadData()
     var  selectionType:SelectionType{ get set}
     func selectAndDeselect(_ object:GeneralCellData)
+    func handle(itemsType:ItemType,_ error:Error?)
 }
 
 public protocol GeneralConnection:GeneralListViewProrocol{
@@ -156,7 +168,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
     func converterObject(_ object:Any?)->GeneralCellData{
         return self.converterHandler?(object) ?? GeneralCellData.init(identifier:self.identifier ?? "", object:object)
     }
-    public func handle(itemsType:ItemType,_ error:Error?=nil){
+    public func handle(itemsType:ItemType,_ error:Error?){
         switch itemsType{
         case.appendObject(let section,let item):
             self.objects[section].append(converterObject({item}))
@@ -332,5 +344,91 @@ extension GeneralListViewProrocol where Self:GeneralConnection{
         case .signleSection:
             break
         }
+    }
+}
+
+
+
+
+
+protocol GeneralRealmListViewProrocol:GeneralListViewProrocol {
+    var relam:Realm?{get set}
+    var notificationToken:NotificationToken?{get set}
+}
+extension GeneralRealmListViewProrocol {
+
+    func realm<T: Object>(_ ofType:T.Type)->Results<T> {
+        return  self.relam!.objects(ofType.self)
+    }
+    func handleRelam<T: Object>(objects:Results<T>)->[GeneralCellData]{
+        var array:[GeneralCellData]=[GeneralCellData]();
+        for index in 0 ..< objects.count {
+            if let result = objects[index] as? T {
+            array.append(self.converterHandler?(result) ?? GeneralCellData.init(identifier: self.identifier!, object: result));
+            }
+        }
+        return array;
+    }
+    func executeRealm<T: Object>(ofType:T.Type,filter:((Results<T>)->Results<T>)?,operationHandler:((GeneralListConstant.OperationsHandler)->Void)?,observeChange:(([GeneralCellData])->Void)?){
+        let objects = self.realm(ofType);
+        let results:Results<T> = filter?(objects) ?? objects;
+
+         self.notificationToken = results.observe { change in
+            switch change {
+            case .initial(let results):
+                let objects = self.handleRelam(objects:results);
+                self.handle(itemsType:ItemType.append(objects), nil)
+                operationHandler?(.initial(self.objects[0]));
+                observeChange?(self.objects[0]);
+                break
+            case .update(let collection, let deletions, let insertions,let modifications):
+                DispatchQueue.main.async {
+                    if modifications.count > 0 {
+                        self.modifications(rows:modifications);
+                        operationHandler?(.modifications(modifications.map({ (index) -> GeneralCellData in
+                            return self.objects[0][index]
+                        })));
+                        observeChange?(self.objects[0]);
+                    }else
+                    if deletions.count > 0 {
+//                      let objects = self.deletions(deletions: deletions, objects:self.objects.value);
+//                        self.objects.value = objects;
+                 //       operationHandler?(.deletions(objects));
+                        observeChange?(self.objects[0]);
+
+                    }else
+                    if insertions.count > 0 {
+                       let objects = self.insertions(insertions: insertions,collection: collection)
+                        self.handle(itemsType:ItemType.append(objects), nil)
+                        operationHandler?(.insertions(objects));
+                        observeChange?(self.objects[0]);
+                    }
+                }
+                break;
+
+            default: ()
+            }
+        }
+    }
+    func modifications(rows:[Int]){
+//        var objects = self.objects.value
+//        self.objects.value = objects;
+        self.reloadData();
+    }
+    func insertions<T:Object>(insertions:[Int],collection:Results<T>)->[GeneralCellData]{
+        let objects :[GeneralCellData] = insertions.map { (index) -> T in return collection[index] }.sorted(by: { (object1:T, object2:T) -> Bool in
+            return self.sortHandler?(object1,object2) ?? true
+            }).map { (object) -> GeneralCellData in
+                return self.converterHandler?(object) ?? GeneralCellData.init(identifier: self.identifier!, object:object)
+        }
+        return objects
+    }
+    func deletions(deletions:[Int], objects:[GeneralCellData])->[GeneralCellData]{
+        var mainObjects = objects;
+        for index in deletions {
+            mainObjects.remove(at: index);
+        }
+       return mainObjects;
+
     }
 }
