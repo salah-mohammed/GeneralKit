@@ -124,7 +124,7 @@ public protocol GeneralListViewProrocol:class {
     func handle(itemsType:ItemType,_ error:Error?)
 }
 
-public protocol GeneralConnection:GeneralListViewProrocol{
+public protocol GeneralConnection:GeneralListViewProrocol,GeneralRealmListViewProrocol{
     
 }
 // webservice and object handling
@@ -351,7 +351,7 @@ extension GeneralListViewProrocol where Self:GeneralConnection{
 
 
 
-protocol GeneralRealmListViewProrocol:GeneralListViewProrocol {
+public protocol GeneralRealmListViewProrocol:GeneralListViewProrocol {
     var relam:Realm?{get set}
     var notificationToken:NotificationToken?{get set}
 }

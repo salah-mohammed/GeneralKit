@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import Realm
+import RealmSwift
 open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellProtocol {
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
@@ -27,6 +28,10 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    public var relam: RealmSwift.Realm?
+    
+    public var notificationToken: RealmSwift.NotificationToken?
+    
     public var sortHandler: GeneralListConstant.Handlers.SortHandler?
     
     public static var global:GeneralListConstant.Global=GeneralListConstant.global

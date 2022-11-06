@@ -6,7 +6,8 @@
 //
 
 import UIKit
- 
+import Realm
+import RealmSwift
 open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
@@ -35,6 +36,10 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
+    public var relam: RealmSwift.Realm?
+    
+    public var notificationToken: RealmSwift.NotificationToken?
+    
     public var sortHandler: GeneralListConstant.Handlers.SortHandler?
     
     // tableView only
