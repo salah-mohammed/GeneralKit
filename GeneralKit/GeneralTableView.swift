@@ -103,7 +103,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.willDisplayCell = willDisplayCell;
         return self
     }
-    @discardableResult public func setup()->Self{
+    @discardableResult private func setup()->Self{
         self.delegate=self;
         self.dataSource=self;
         let tempEnablePagination = self.enablePagination;
