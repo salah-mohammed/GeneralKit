@@ -24,14 +24,20 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     }
     open func itemSelected() {
     }
-    func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData) {
+    open func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData) {
         
     }
-    func editingStyleForRow(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{
+    open func editingStyleForRow(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{
         return .none
     }
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    open func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath){
+        
+    }
+    open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    return nil
     }
 }
 
@@ -110,7 +116,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.willDisplayCell = willDisplayCell;
         return self
     }
-    @discardableResult public func setup()->Self{
+    @discardableResult private func setup()->Self{
         self.delegate=self;
         self.dataSource=self;
         let tempEnablePagination = self.enablePagination;
@@ -196,4 +202,13 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         }
         return .none
     }
+    public func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
+        cell?.tableView(tableView, accessoryButtonTappedForRowWith: indexPath);
+    }
+    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
+        return cell?.tableView(tableView, editActionsForRowAt: indexPath);
+    }
+    
 }
