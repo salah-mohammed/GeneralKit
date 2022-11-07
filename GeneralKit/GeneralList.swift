@@ -166,7 +166,9 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         return self;
     }
     func converterObject(_ object:Any?)->GeneralCellData{
-        return self.converterHandler?(object) ?? GeneralCellData.init(identifier:self.identifier ?? "", object:object)
+        let generalCellData = self.converterHandler?(object) ?? GeneralCellData.init(identifier:self.identifier ?? "", object:object);
+        generalCellData.selected = self.selectedObject.contains(where: { item in self.containsCheck(item,object)})
+        return generalCellData
     }
     public func handle(itemsType:ItemType,_ error:Error?){
         switch itemsType{
@@ -357,10 +359,10 @@ public protocol GeneralRealmListViewProrocol:GeneralListViewProrocol {
 }
 extension GeneralRealmListViewProrocol {
 
-    func realm<T: Object>(_ ofType:T.Type)->Results<T> {
+    public  func realm<T: Object>(_ ofType:T.Type)->Results<T> {
         return  self.relam!.objects(ofType.self)
     }
-    func handleRelam<T: Object>(objects:Results<T>)->[GeneralCellData]{
+    public func handleRelam<T: Object>(objects:Results<T>)->[GeneralCellData]{
         var array:[GeneralCellData]=[GeneralCellData]();
         for index in 0 ..< objects.count {
             if let result = objects[index] as? T {
@@ -369,7 +371,7 @@ extension GeneralRealmListViewProrocol {
         }
         return array;
     }
-    func executeRealm<T: Object>(ofType:T.Type,filter:((Results<T>)->Results<T>)?,operationHandler:((GeneralListConstant.OperationsHandler)->Void)?,observeChange:(([GeneralCellData])->Void)?){
+   public func executeRealm<T: Object>(ofType:T.Type,filter:((Results<T>)->Results<T>)?,operationHandler:((GeneralListConstant.OperationsHandler)->Void)?,observeChange:(([GeneralCellData])->Void)?){
         let objects = self.realm(ofType);
         let results:Results<T> = filter?(objects) ?? objects;
 
