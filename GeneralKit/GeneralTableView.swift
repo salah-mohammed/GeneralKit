@@ -39,6 +39,10 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     return nil
     }
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
+    
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
@@ -210,5 +214,8 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
         return cell?.tableView(tableView, editActionsForRowAt: indexPath);
     }
-    
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
+        cell?.tableView(tableView, commit: editingStyle, forRowAt:indexPath)
+    }
 }
