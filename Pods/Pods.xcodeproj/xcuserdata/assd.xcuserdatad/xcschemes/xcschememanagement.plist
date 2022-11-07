@@ -60,6 +60,16 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>SalahUtility-SalahUtility.xcscheme</key>
 		<dict>
 			<key>isShown</key>
