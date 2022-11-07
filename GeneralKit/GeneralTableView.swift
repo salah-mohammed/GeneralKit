@@ -32,6 +32,9 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    public func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath){
+        
+    }
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
@@ -188,5 +191,9 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
             return cell.editingStyleForRow(tableView, editingStyleForRowAt: indexPath)
         }
         return .none
+    }
+    public func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
+        cell?.tableView(tableView, accessoryButtonTappedForRowWith: indexPath);
     }
 }
