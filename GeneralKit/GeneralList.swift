@@ -354,11 +354,11 @@ extension GeneralRealmListViewProrocol {
     public  func realm<T: Object>(_ ofType:T.Type)->Results<T> {
         return  self.relam!.objects(ofType.self)
     }
-    public func handleRelam<T: Object>(objects:Results<T>)->[GeneralCellData]{
-        var array:[GeneralCellData]=[GeneralCellData]();
+    public func handleRelam<T: Object>(objects:Results<T>)->[Any]{
+        var array:[Any]=[Any]();
         for index in 0 ..< objects.count {
             if let result = objects[index] as? T {
-            array.append(self.converterHandler?(result) ?? GeneralCellData.init(identifier: self.identifier!, object: result));
+            array.append(result);
             }
         }
         return array;
@@ -371,7 +371,7 @@ extension GeneralRealmListViewProrocol {
             switch change {
             case .initial(let results):
                 let objects = self.handleRelam(objects:results);
-                self.handle(itemsType:ItemType.append(objects), nil)
+                self.handle(itemsType:ItemType.new(objects), nil)
                 operationHandler?(.initial(self.objects[0]));
                 observeChange?(self.objects[0]);
                 break
@@ -409,12 +409,10 @@ extension GeneralRealmListViewProrocol {
 //        self.objects.value = objects;
         self.reloadData();
     }
-    func insertions<T:Object>(insertions:[Int],collection:Results<T>)->[GeneralCellData]{
-        let objects :[GeneralCellData] = insertions.map { (index) -> T in return collection[index] }.sorted(by: { (object1:T, object2:T) -> Bool in
+    func insertions<T:Object>(insertions:[Int],collection:Results<T>)->[Any]{
+        let objects :[Any] = insertions.map { (index) -> T in return collection[index] }.sorted(by: { (object1:T, object2:T) -> Bool in
             return self.sortHandler?(object1,object2) ?? true
-            }).map { (object) -> GeneralCellData in
-                return self.converterHandler?(object) ?? GeneralCellData.init(identifier: self.identifier!, object:object)
-        }
+            })
         return objects
     }
     func deletions(deletions:[Int], objects:[GeneralCellData])->[GeneralCellData]{
