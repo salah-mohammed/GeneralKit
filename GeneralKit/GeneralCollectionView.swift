@@ -124,7 +124,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         }
     }
     ////////////////////////-
-    @discardableResult public func setup()->Self{
+    @discardableResult private func setup()->Self{
         self.delegate=self;
         self.dataSource=self;
         let tempEnablePagination = self.enablePagination;
