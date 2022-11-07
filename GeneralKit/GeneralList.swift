@@ -145,16 +145,10 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.identifier=identifier;
         return self;
     }
-    @discardableResult public func build() -> Self{
-//        self.listPlaceholderView?.refreshCompletionHandler({ (currentData) in
-//            if self.errorConnectionData == currentData {
-//                self.start();
-//            }
-//        })
-        return self;
-    }
     func converterObject(_ object:Any?)->GeneralCellData{
-        return self.converterHandler?(object) ?? GeneralCellData.init(identifier:self.identifier ?? "", object:object)
+        let generalCellData = self.converterHandler?(object) ?? GeneralCellData.init(identifier:self.identifier ?? "", object:object);
+        generalCellData.selected = self.selectedObject.contains(where: { item in self.containsCheck(item,object)})
+        return generalCellData
     }
     public func handle(itemsType:ItemType,_ error:Error?=nil){
         switch itemsType{
