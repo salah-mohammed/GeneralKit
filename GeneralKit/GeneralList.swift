@@ -371,7 +371,7 @@ extension GeneralRealmListViewProrocol {
             switch change {
             case .initial(let results):
                 let objects = self.handleRelam(objects:results);
-                self.handle(itemsType:ItemType.new(objects), nil)
+                self.handle(itemsType:ItemType.append(objects), nil)
                 operationHandler?(.initial(self.objects[0]));
                 observeChange?(self.objects[0]);
                 break
