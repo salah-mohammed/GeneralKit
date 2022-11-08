@@ -25,3 +25,9 @@ if let secondBundle:Bundle = Bundle(path: "\(Bundle.main.bundlePath)/Frameworks/
       return nil
     }()
 }
+
+public extension Array where Element == [GeneralCellData] {
+    public mutating func removeIndexPath(_ indexPath:IndexPath){
+        self[indexPath.section].remove(at: indexPath.row)
+    }
+}
