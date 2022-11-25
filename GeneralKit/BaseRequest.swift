@@ -11,7 +11,7 @@ import Alamofire
 open class BaseRequest:NSObject{
     public var page : String?
     public var peerPage : String?
-
+    
     var fullURL:String{
         return "\(baseUrl)\(path ?? "")"
     }

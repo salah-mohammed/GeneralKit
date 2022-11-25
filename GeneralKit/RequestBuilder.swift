@@ -78,6 +78,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
     var multipart : Bool = false
     var timeout : TimeInterval = 60
     var showLoader:Bool=true;
+    var urlEncoding:URLEncoding = .default
     var partAlamofire:((MultipartFormData) -> Void)={ (formData:MultipartFormData) in}
     // MARK: intenral
     private var isMultipart:Bool{
@@ -111,7 +112,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
         do {
             if let type:HTTPMethod = self.baseRequest?.type , let url:URL = URL.init(string:self.baseRequest?.fullURL ?? ""){
                 self.request = try URLRequest.init(url:url, method:type, headers:self.allHeaders());
-                self.request = try URLEncoding.default.encode(self.request, with:paramters());
+                self.request = try self.urlEncoding.encode(self.request, with:paramters());
                 self.request.timeoutInterval = timeout;
             }else{
                 print("aa");
@@ -153,6 +154,11 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
     @discardableResult public func baseRequest(_ baseRequest:BaseRequest)->Self{
         self.baseRequest=baseRequest;
         return self
+    }
+    
+    @discardableResult public func urlEncoding(_ urlEncoding:URLEncoding)->Self{
+        self.urlEncoding=urlEncoding;
+        return self;
     }
     @discardableResult public func timeout(_ timeout:TimeInterval)->Self{
         self.timeout=timeout;

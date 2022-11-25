@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,8 @@
 		8B091F48290BD55800D38C91 /* SectionHeaderCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */; };
 		8B091F4A290C290100D38C91 /* GeneralList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B091F49290C290100D38C91 /* GeneralList.swift */; };
 		8B091F4C290C327100D38C91 /* CollectionSectionListExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */; };
+		8B27DED529313B9400026312 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27DED329313B9400026312 /* LoginViewModel.swift */; };
+		8B27DED629313B9400026312 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27DED429313B9400026312 /* LoginView.swift */; };
 		8B2A0BC628FD398C00244000 /* GeneralTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC528FD398C00244000 /* GeneralTableView.swift */; };
 		8B2A0BC928FD3AF600244000 /* UIScrollView+InfiniteScroll.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */; };
 		8B2A0BCA28FD3AF600244000 /* UIScrollView+InfiniteScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */; };
@@ -169,6 +171,8 @@
 		8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderCollectionView.xib; sourceTree = "<group>"; };
 		8B091F49290C290100D38C91 /* GeneralList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralList.swift; sourceTree = "<group>"; };
 		8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSectionListExampleViewController.swift; sourceTree = "<group>"; };
+		8B27DED329313B9400026312 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8B27DED429313B9400026312 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8B2A0BC528FD398C00244000 /* GeneralTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTableView.swift; sourceTree = "<group>"; };
 		8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+InfiniteScroll.h"; sourceTree = "<group>"; };
 		8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+InfiniteScroll.m"; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 		4E57749B28E8BF670075C5B0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8B27DED229313B9400026312 /* LoginView */,
 				4E57749A28E8BF5C0075C5B0 /* ContentView */,
 				4E57749928E8BF510075C5B0 /* ItemsView */,
 			);
@@ -385,6 +390,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8B27DED229313B9400026312 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				8B27DED329313B9400026312 /* LoginViewModel.swift */,
+				8B27DED429313B9400026312 /* LoginView.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
 		8B2A0BD928FD605200244000 /* GeneralKitUIKitExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,12 +410,6 @@
 				8B2A0BE328FD605200244000 /* Assets.xcassets */,
 				8B2A0BE528FD605200244000 /* LaunchScreen.storyboard */,
 				8B2A0BE828FD605200244000 /* Info.plist */,
-				8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */,
-				8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */,
-				8B76580E2906F6910047E799 /* NewTableViewCell.swift */,
-				8B76580F2906F6910047E799 /* NewTableViewCell.xib */,
-				8B765814290703870047E799 /* NewCollectionViewCell.swift */,
-				8B765816290703D70047E799 /* NewCollectionViewCell.xib */,
 			);
 			path = GeneralKitUIKitExample;
 			sourceTree = "<group>";
@@ -428,6 +436,8 @@
 			children = (
 				8B2A0BDE28FD605200244000 /* TableListExampleViewController.swift */,
 				8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */,
+				8B76580E2906F6910047E799 /* NewTableViewCell.swift */,
+				8B76580F2906F6910047E799 /* NewTableViewCell.xib */,
 			);
 			path = TableList;
 			sourceTree = "<group>";
@@ -437,6 +447,10 @@
 			children = (
 				8B765818290705000047E799 /* CollectionListExampleViewController.swift */,
 				8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */,
+				8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */,
+				8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */,
+				8B765814290703870047E799 /* NewCollectionViewCell.swift */,
+				8B765816290703D70047E799 /* NewCollectionViewCell.xib */,
 			);
 			path = CollectionList;
 			sourceTree = "<group>";
@@ -813,6 +827,8 @@
 				4E57748E28E8BB790075C5B0 /* AppBaseRequest.swift in Sources */,
 				4E57749D28E8D2AA0075C5B0 /* ItemRequest.swift in Sources */,
 				4E57749828E8BF210075C5B0 /* ItemsView.swift in Sources */,
+				8B27DED629313B9400026312 /* LoginView.swift in Sources */,
+				8B27DED529313B9400026312 /* LoginViewModel.swift in Sources */,
 				4E6323FA28EA0CD0005DBE9B /* UserRequest.swift in Sources */,
 				4ECFD2F328DF415B006A5087 /* GeneralKitExampleApp.swift in Sources */,
 				4E57749628E8BF060075C5B0 /* ItemsViewModel.swift in Sources */,
