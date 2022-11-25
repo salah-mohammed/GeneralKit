@@ -150,6 +150,21 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         generalCellData.selected = self.selectedObject.contains(where: { item in self.containsCheck(item,object)})
         return generalCellData
     }
+    public func refreshStyle(_ error:Error?){
+        self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
+        if self.handlePlaceHolderViewConnectionError(error,enableListPlaceHolderView:self.enableListPlaceHolderView) == false {
+            self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
+        }
+        if(self.refreshControl?.isRefreshing ?? false){
+            self.refreshControl?.endRefreshing()
+        }
+        if let scrollview:UIScrollView = self as? UIScrollView {
+            if scrollview.isAnimatingInfiniteScroll {
+                // load more
+                scrollview.finishInfiniteScroll();
+            }
+        }
+    }
     public func handle(itemsType:ItemType,_ error:Error?=nil){
         switch itemsType{
         case.appendObject(let section,let item):
@@ -173,20 +188,8 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         case .appendSection(let objects):
             self.objects.append(objects)
         }
-        self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
-        if self.handlePlaceHolderViewConnectionError(error,enableListPlaceHolderView:self.enableListPlaceHolderView) == false {
-            self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
-        }
         self.reloadData()
-        if(self.refreshControl?.isRefreshing ?? false){
-            self.refreshControl?.endRefreshing()
-        }
-        if let scrollview:UIScrollView = self as? UIScrollView {
-            if scrollview.isAnimatingInfiniteScroll {
-                // load more
-                scrollview.finishInfiniteScroll();
-            }
-        }
+        self.refreshStyle(error)
     }
     func viewsSetup(){
         self.errorConnectionView = Self.global.errorConnectionDataViewHandler?()
@@ -255,7 +258,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             self.backgroundView = nil
         }
     }
-    func refreshHandler (_ refreshHandler:@escaping GeneralListConstant.Handlers.RefreshHnadler)
+    func refreshHandler(_ refreshHandler:@escaping GeneralListConstant.Handlers.RefreshHnadler)
     {
         self.refreshHandler=refreshHandler;
     }
