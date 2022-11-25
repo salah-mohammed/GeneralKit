@@ -26,6 +26,10 @@ class TableListExampleViewController: UIViewController {
     func paginationSetup(){
         paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
+            ResponseHandler.check(response,{ baseResponse in
+                
+            })
+
             if response.value?.pagination?.i_current_page == 1{
                 self.tableView.handle(itemsType: .new(response.value?.users ?? []),response.error)
             }else{
