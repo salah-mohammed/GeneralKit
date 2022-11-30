@@ -24,6 +24,8 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
     }
    open func config(){
     }
+    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    }
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -199,5 +201,8 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.itemSelected(indexPath);
+    }
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        (cell as? GeneralCollectionViewCell)?.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
     }
 }
