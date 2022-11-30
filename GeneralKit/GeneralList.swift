@@ -162,7 +162,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         generalCellData.selected = self.selectedObject.contains(where: { item in self.containsCheck(item,object)})
         return generalCellData
     }
-    public func refresh(_ error:Error?){
+    public func refreshStyle(_ error:Error?){
         self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
         if self.handlePlaceHolderViewConnectionError(error,enableListPlaceHolderView:self.enableListPlaceHolderView) == false {
             self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
@@ -177,7 +177,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             }
         }
     }
-    public func handle(itemsType:ItemType,_ error:Error?){
+    public func handle(itemsType:ItemType,_ error:Error?=nil){
         switch itemsType{
         case.appendObject(let section,let item):
             self.objects[section].append(converterObject({item}))
@@ -201,7 +201,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             self.objects.append(objects)
         }
         self.reloadData()
-        refresh(error);
+        self.refreshStyle(error)
     }
     func viewsSetup(){
         self.errorConnectionView = Self.global.errorConnectionDataViewHandler?()
@@ -270,7 +270,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             self.backgroundView = nil
         }
     }
-    func refreshHandler (_ refreshHandler:@escaping GeneralListConstant.Handlers.RefreshHnadler)
+    func refreshHandler(_ refreshHandler:@escaping GeneralListConstant.Handlers.RefreshHnadler)
     {
         self.refreshHandler=refreshHandler;
     }

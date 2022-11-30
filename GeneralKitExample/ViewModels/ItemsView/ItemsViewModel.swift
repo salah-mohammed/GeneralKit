@@ -37,6 +37,9 @@ class ItemsViewModel:NSObject,ObservableObject{
     func paginationSetup(){
         paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
+            ResponseHandler.check(response,{ baseResponse in
+                
+            })
             if response.value?.pagination?.i_current_page == 1{
                 self.list = response.value?.users ?? []
             }else{

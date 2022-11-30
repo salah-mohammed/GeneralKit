@@ -11,18 +11,21 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
-extension DataResponse<BaseResponse,AFError>{
-    func check(_ successFinish:((BaseResponse)->Void)?,error:(()->Void)? = nil){
-        if let baseResponse:BaseResponse = self.value{
-            successFinish?(baseResponse);
-        }else{
-            error?();
-        }
+extension RequestOperationBuilder<BaseResponse> {
+    func executeWithCheckResponse(_ successFinish:((BaseResponse)->Void)?,
+                             error:(()->Void)? = nil){
+        self.responseHandler { dataResponse in
+            ResponseHandler.check(dataResponse, successFinish,error:error)
+        }.execute()
     }
 }
-//public class ResponseHandler<T:Mappable>:NSObject{
-//  
-//}
+public class ResponseHandler:NSObject{
+    static func check(_ dataReponse:DataResponse<BaseResponse,AFError>,
+                               _ successFinish:((BaseResponse)->Void)?,
+                               error:(()->Void)? = nil){
+        
+    }
+}
  class PaginationResponseHandler:NSObject{
     var paginationManager:PaginationManager<BaseResponse>
      init(_ paginationManager: PaginationManager<BaseResponse>) {

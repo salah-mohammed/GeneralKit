@@ -17,8 +17,15 @@ class LoginViewModel:NSObject,ObservableObject{
     }
     func loginRequest(){
         RequestOperationBuilder<BaseResponse>.init().baseRequest(NewRequest.init(.firstRequest(s_phone: nil))).build().responseHandler({ response in
+            ResponseHandler.check(response, { baseResponse in
 
+            })
         }).execute()
+    }
+    func loginRequest2(){
+        RequestOperationBuilder<BaseResponse>.init().baseRequest(NewRequest.init(.firstRequest(s_phone: nil))).build().executeWithCheckResponse { baseResponse in
+            
+        }
     }
 }
 
