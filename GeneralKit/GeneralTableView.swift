@@ -211,4 +211,18 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
         cell?.tableView(tableView, commit: editingStyle, forRowAt:indexPath)
     }
+    public func insertInList(indexPaths:[IndexPath]){
+        self.beginUpdates();
+        self.insertRows(at:indexPaths, with: .automatic)
+        self.endUpdates()
+    }
+    public func reloadRowInList(indexPaths:[IndexPath]){
+        self.reloadRows(at:indexPaths, with: .automatic)
+    }
+    public func reloadSectionsInList(_ indexSet:IndexSet){
+        self.reloadSections(indexSet, with: .automatic)
+    }
+    public func deleteRowsInList(_ indexPath:[IndexPath]){
+        self.deleteRows(at:indexPath, with: UITableView.RowAnimation.automatic)
+    }
 }

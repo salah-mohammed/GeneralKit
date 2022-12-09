@@ -31,3 +31,12 @@ public extension Array where Element == [GeneralCellData] {
         self[indexPath.section].remove(at: indexPath.row)
     }
 }
+public extension Array{
+    func indexPaths(section:Int)->[IndexPath]{
+        var indexPaths:[IndexPath] = [IndexPath]()
+        for object in self.enumerated(){
+            indexPaths.append(IndexPath.init(row:object.offset, section:section))
+        }
+     return indexPaths
+    }
+}

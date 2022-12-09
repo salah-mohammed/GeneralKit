@@ -10,6 +10,7 @@ import GeneralKit
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
+
 class TableListExampleViewController: UIViewController {
     @IBOutlet weak var tableView:GeneralTableView!
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
@@ -21,7 +22,6 @@ class TableListExampleViewController: UIViewController {
         paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
         paginationSetup();
         tableView.paginationManager(paginationManager).identifier("NewTableViewCell").start();
-        
     }
     func paginationSetup(){
         paginationManager.baseRequest(UserRequest.init(.users));

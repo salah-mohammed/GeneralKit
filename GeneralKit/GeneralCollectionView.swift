@@ -205,4 +205,18 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         (cell as? GeneralCollectionViewCell)?.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
     }
+    public func insertInList(indexPaths:[IndexPath]){
+        self.performBatchUpdates({ () -> Void in
+            self.insertItems(at:indexPaths)
+        }, completion: nil)
+    }
+    public func reloadRowInList(indexPaths:[IndexPath]){
+        self.reloadItems(at: indexPaths);
+    }
+    public func reloadSectionsInList(_ indexSet: IndexSet) {
+        self.reloadSections(indexSet);
+    }
+    public func deleteRowsInList(_ indexPath:[IndexPath]){
+        self.deleteItems(at: indexPath)
+    }
 }
