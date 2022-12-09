@@ -225,4 +225,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     public func deleteRowsInList(_ indexPath:[IndexPath]){
         self.deleteRows(at:indexPath, with: UITableView.RowAnimation.automatic)
     }
+    public func insertSectionsInList(sections:IndexSet){
+        self.insertSections(sections, with: .automatic)
+    }
 }

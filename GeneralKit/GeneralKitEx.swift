@@ -32,10 +32,10 @@ public extension Array where Element == [GeneralCellData] {
     }
 }
 public extension Array{
-    func indexPaths(section:Int)->[IndexPath]{
+    func indexPaths(section:Int,_ lastIndex:Int? = nil)->[IndexPath]{
         var indexPaths:[IndexPath] = [IndexPath]()
         for object in self.enumerated(){
-            indexPaths.append(IndexPath.init(row:object.offset, section:section))
+            indexPaths.append(IndexPath.init(row:(object.offset+(lastIndex ?? 0)), section:section))
         }
      return indexPaths
     }

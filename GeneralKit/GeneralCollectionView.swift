@@ -219,4 +219,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     public func deleteRowsInList(_ indexPath:[IndexPath]){
         self.deleteItems(at: indexPath)
     }
+    public func insertSectionsInList(sections:IndexSet){
+        self.insertSections(sections);
+    }
 }

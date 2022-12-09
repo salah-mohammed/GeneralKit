@@ -78,10 +78,10 @@ case replaceObject(IndexPath,Any) // replce item in section
 }
 public enum DataHandling{
 case objects([[GeneralCellData]])
-case appendObject(section:Int=0,atRow:Int?,GeneralCellData)
-case appendNewSection(Int?,[GeneralCellData])
-case appendItemsInSection(section:Int=0,[GeneralCellData])
-case replaceObject(IndexPath,GeneralCellData) // replce item in section
+case appendObject(section:Int=0,atRow:Int?,GeneralCellData)// work
+case appendNewSection(Int?,[GeneralCellData]) // work
+case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])// work
+case replaceObject(IndexPath,GeneralCellData) // replce item in section 
 
 }
 public enum ItemType{
@@ -135,6 +135,7 @@ public protocol GeneralListViewProrocol:class {
     func reloadRowInList(indexPaths:[IndexPath]);
     func reloadSectionsInList(_ indexSet:IndexSet)
     func deleteRowsInList(_ indexPath:[IndexPath]);
+    func insertSectionsInList(sections:IndexSet)
 }
 
 public protocol GeneralConnection:GeneralListViewProrocol{
@@ -221,18 +222,17 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
                 }
                 break;
             case .appendNewSection(let index,let items):
-                if let index:Int=index{
-                    self.objects.insert(self.convertObjects(items), at: index)
-                }else{
-                    self.objects.append(self.convertObjects(items))
-                }
+                let index = index ?? self.objects.count
+                self.objects.insert(self.convertObjects(items), at: index)
                 if autoHandle{
-                    let section = index ?? self.objects.count > 0 ? self.objects.count-1:0
-                    self.insertInList(indexPaths:items.indexPaths(section:section))
-//                    self.reloadSectionsInList(IndexSet([section]))
+                let section = index ?? (self.objects.count > 0 ? self.objects.count-1:0)
+                self.insertSectionsInList(sections: IndexSet([section]))
                 }
                 break;
             case .appendItemsInSection(section: let section, let items):
+//                if self.objects.count == 0,items.count > 0{
+//                    self.objects.append([])
+//                }
                 self.objects[section].append(contentsOf:self.convertObjects(items))
                 self.insertInList(indexPaths: items.indexPaths(section:section))
                 break;
@@ -262,21 +262,21 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
                 }
                 break;
             case .appendNewSection(let index,let items):
-                if let index:Int=index{
+                let index = index ?? self.objects.count
                 self.objects.insert(items, at: index)
-                }else{
-                self.objects.append(items)
-                }
                 if autoHandle{
-                let section = index ?? self.objects.count > 0 ? self.objects.count-1:0
-                self.insertInList(indexPaths:items.indexPaths(section:section))
-//                self.reloadSectionsInList(IndexSet([section]))
+                let section = index ?? (index > 0 ? self.objects.count-1:0)
+                self.insertSectionsInList(sections: IndexSet([section]))
                 }
                 break
-            case .appendItemsInSection(section: let section, let items):
-                self.objects[section].append(contentsOf: items)
+            case .appendItemsInSection(section: let section,let row, let items):
+//                if self.objects.count == 0,items.count > 0{
+//                    self.objects.append([])
+//                }
+                let cutomeRow = row ?? self.objects[section].count
+                self.objects[section].insert(contentsOf: items, at: cutomeRow)
                 if autoHandle{
-                self.insertInList(indexPaths: items.indexPaths(section:section))
+                self.insertInList(indexPaths: items.indexPaths(section:section,cutomeRow))
                 }
                 break
             case .replaceObject(let indexPath, let item):

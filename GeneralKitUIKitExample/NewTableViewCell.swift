@@ -8,6 +8,7 @@
 import UIKit
 import GeneralKit
 class NewTableViewCell: GeneralTableViewCell {
+    @IBOutlet weak var lblSubtitle:UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +23,7 @@ class NewTableViewCell: GeneralTableViewCell {
     override func config(){
         super.config();
         self.accessoryType = self.object.selected  ? .checkmark:.none
+        self.lblSubtitle.text = (self.object.object as? String) ?? ""
     }
     open override func itemSelected() {
         super.itemSelected();
