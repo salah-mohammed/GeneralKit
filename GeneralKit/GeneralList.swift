@@ -59,7 +59,7 @@ public protocol GeneralListViewCellProtocol:class {
     var list:GeneralListViewProrocol!{ get set}
     var listViewController:UIViewController?{ get set}
     var indexPath:IndexPath!{ get set}
-    var object:GeneralCellData!{get}
+    var object:GeneralCellData?{get}
 
     func itemSelected();
     func config(_ list:GeneralListViewProrocol,_ listViewController:UIViewController?,_ indexPath:IndexPath)
@@ -72,7 +72,7 @@ public enum AnyHandling{
 case objects([[Any]])
 case appendObject(section:Int=0,atRow:Int?,Any)
 case appendNewSection(Int?,[Any])
-case appendItemsInSection(section:Int=0,[Any])
+case appendItemsInSection(section:Int=0,atRow:Int?,[Any])
 case replaceObject(IndexPath,Any) // replce item in section
 
 }
@@ -81,7 +81,7 @@ case objects([[GeneralCellData]])
 case appendObject(section:Int=0,atRow:Int?,GeneralCellData)// work
 case appendNewSection(Int?,[GeneralCellData]) // work
 case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])// work
-case replaceObject(IndexPath,GeneralCellData) // replce item in section 
+case replaceObject(IndexPath,GeneralCellData) // replce item in section
 
 }
 public enum ItemType{
@@ -212,36 +212,16 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
                 if autoHandle{ self.reloadData()}
                 break;
             case .appendObject(section: let section,atRow:let row, let item):
-                if let row:Int=row{
-                    self.objects[section].insert(self.converterObject(item), at: row)
-                }else{
-                    self.objects[section].append(self.converterObject(item))
-                }
-                if autoHandle{
-                self.insertInList(indexPaths:[IndexPath.init(row: row ?? (self.objects[section].count-1),section:section)])
-                }
+                self.appendObject(section, row,self.converterObject(item), autoHandle: true)
                 break;
             case .appendNewSection(let index,let items):
-                let index = index ?? self.objects.count
-                self.objects.insert(self.convertObjects(items), at: index)
-                if autoHandle{
-                let section = index ?? (self.objects.count > 0 ? self.objects.count-1:0)
-                self.insertSectionsInList(sections: IndexSet([section]))
-                }
+                self.appendNewSection(index,self.convertObjects(items), true);
                 break;
-            case .appendItemsInSection(section: let section, let items):
-//                if self.objects.count == 0,items.count > 0{
-//                    self.objects.append([])
-//                }
-                self.objects[section].append(contentsOf:self.convertObjects(items))
-                self.insertInList(indexPaths: items.indexPaths(section:section))
+            case .appendItemsInSection(section: let section,let row, let items):
+                self.appendItemsInSection(section, row,self.convertObjects(items), autoHandle);
                 break;
             case .replaceObject(let indexPath, let item):
-                let tempItems = self.objects.bs_get(indexPath.section) ?? []
-                tempItems.bs_get(indexPath.row)?.object = item
-                if autoHandle{
-                self.reloadRowInList(indexPaths: [indexPath])
-                }
+                self.replaceObject(indexPath, self.converterObject(item), autoHandle)
                 break;
             }
             break;
@@ -249,47 +229,58 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             switch dataHandling{
             case .objects(let items):
                 self.objects = items
+                if autoHandle{
                 self.reloadData();
+                }
                 break;
             case .appendObject(section: let section,atRow:let row,let item):
-                if let row:Int=row{
-                    self.objects[section].insert(item, at: row)
-                }else{
-                    self.objects[section].append(item)
-                }
-                if autoHandle{
-                self.insertInList(indexPaths:[IndexPath.init(row: row ?? (self.objects[section].count-1),section:section)])
-                }
+                appendObject(section, row, item, autoHandle: autoHandle)
                 break;
             case .appendNewSection(let index,let items):
-                let index = index ?? self.objects.count
-                self.objects.insert(items, at: index)
-                if autoHandle{
-                let section = index ?? (index > 0 ? self.objects.count-1:0)
-                self.insertSectionsInList(sections: IndexSet([section]))
-                }
+                self.appendNewSection(index,items,autoHandle)
                 break
             case .appendItemsInSection(section: let section,let row, let items):
-//                if self.objects.count == 0,items.count > 0{
-//                    self.objects.append([])
-//                }
-                let cutomeRow = row ?? self.objects[section].count
-                self.objects[section].insert(contentsOf: items, at: cutomeRow)
-                if autoHandle{
-                self.insertInList(indexPaths: items.indexPaths(section:section,cutomeRow))
-                }
+                appendItemsInSection(section,row,items,autoHandle);
                 break
             case .replaceObject(let indexPath, let item):
-                var tempItems = self.objects.bs_get(indexPath.section) ?? []
-                tempItems.remove(at:indexPath.row)
-                tempItems.insert(contentsOf: [item], at: indexPath.row);
-                if autoHandle{
-                self.reloadRowInList(indexPaths: [indexPath])
-                }
+                self.replaceObject(indexPath, item, autoHandle)
                 break
             }
             self.refreshStyle(error)
             break;
+        }
+    }
+    func appendObject(_ section:Int,_ row:Int?,_ item:GeneralCellData,autoHandle:Bool){
+        if let row:Int=row{
+            self.objects[section].insert(item, at: row)
+        }else{
+            self.objects[section].append(item)
+        }
+        if autoHandle{
+        self.insertInList(indexPaths:[IndexPath.init(row: row ?? (self.objects[section].count-1),section:section)])
+        }
+    }
+    func appendNewSection(_ index:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
+        let index = index ?? self.objects.count
+        self.objects.insert(items, at: index)
+        if autoHandle{
+        let section = index
+        self.insertSectionsInList(sections: IndexSet([section]))
+        }
+    }
+    func appendItemsInSection(_ section:Int,_ row:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
+        let cutomeRow = row ?? self.objects[section].count
+        self.objects[section].insert(contentsOf: items, at: cutomeRow)
+        if autoHandle{
+        self.insertInList(indexPaths: items.indexPaths(section:section,cutomeRow))
+        }
+    }
+    func replaceObject(_ indexPath:IndexPath,_ item:GeneralCellData,_ autoHandle:Bool){
+        var tempItems = self.objects.bs_get(indexPath.section) ?? []
+        tempItems.remove(at:indexPath.row)
+        tempItems.insert(contentsOf: [item], at: indexPath.row);
+        if autoHandle{
+        self.reloadRowInList(indexPaths: [indexPath])
         }
     }
     public func handle(itemsType:ItemType,_ error:Error?=nil){

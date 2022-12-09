@@ -11,7 +11,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
     public var indexPath: IndexPath!
-    public var object: GeneralCellData!{
+    public var object: GeneralCellData?{
         return list.objects[indexPath.section][indexPath.row];
     }
     open func itemSelected() {

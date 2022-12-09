@@ -20,53 +20,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4EC3191F-DF95-47EB-84A4-792750B856BB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeneralKit/GeneralList.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "handle(_:_:_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4EC3191F-DF95-47EB-84A4-792750B856BB - 64ffc61bda51db9e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GeneralKit.GeneralListViewProrocol&lt; where &#x3c4;_0_0: GeneralKit.GeneralConnection&gt;.handle(GeneralKit.ObjectType, Swift.Optional&lt;Swift.Error&gt;, Swift.Bool) -&gt; ()"
-                  moduleName = "GeneralKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKit/GeneralList.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "268"
-                  endingLineNumber = "268"
-                  offsetFromSymbolStart = "5356">
-               </Location>
-               <Location
-                  uuid = "4EC3191F-DF95-47EB-84A4-792750B856BB - 64ffc61bda51db9e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GeneralKit.GeneralListViewProrocol&lt; where &#x3c4;_0_0: GeneralKit.GeneralConnection&gt;.handle(GeneralKit.ObjectType, Swift.Optional&lt;Swift.Error&gt;, Swift.Bool) -&gt; ()"
-                  moduleName = "GeneralKit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKit/GeneralList.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "268"
-                  endingLineNumber = "268"
-                  offsetFromSymbolStart = "5280">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

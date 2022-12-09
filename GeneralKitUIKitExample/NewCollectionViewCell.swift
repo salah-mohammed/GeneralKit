@@ -10,11 +10,13 @@ import GeneralKit
 class NewCollectionViewCell:GeneralCollectionViewCell {
     override func config(){
         super.config();
-        self.backgroundColor = self.object.selected ? UIColor.red:UIColor.yellow;
+        self.backgroundColor = self.object?.selected ?? false ? UIColor.red:UIColor.yellow;
     }
     override func itemSelected() {
         super.itemSelected();
-        self.list.selectAndDeselect(self.object);
+        if let  object:GeneralCellData = self.object{
+            self.list.selectAndDeselect(object);
+        }
         self.list.reloadData();
     }
 }

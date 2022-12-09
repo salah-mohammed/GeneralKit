@@ -22,12 +22,17 @@ class NewTableViewCell: GeneralTableViewCell {
     }
     override func config(){
         super.config();
-        self.accessoryType = self.object.selected  ? .checkmark:.none
-        self.lblSubtitle.text = (self.object.object as? String) ?? ""
+        self.accessoryType = self.object?.selected ?? false  ? .checkmark:.none
+        self.lblSubtitle.text = (self.object?.object as? String) ?? ""
     }
     open override func itemSelected() {
         super.itemSelected();
-        self.list.selectAndDeselect(self.object);
+        if let object:GeneralCellData = self.object{
+        self.list.selectAndDeselect(object);
+        }
         self.list.reloadData();
+    }
+    @IBAction func btnDelete(_ sender:Any?){
+    (self.list as? GeneralTableView)?.handleRemove([indexPath])
     }
 }

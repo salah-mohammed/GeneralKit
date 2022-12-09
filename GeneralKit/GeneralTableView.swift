@@ -11,7 +11,7 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
     public var indexPath: IndexPath!
-    public var object: GeneralCellData!{return self.list.objects[indexPath.section][indexPath.row]};
+    public var object: GeneralCellData?{return self.list.objects[indexPath.section][indexPath.row]};
 
     final public func config(_ list:GeneralListViewProrocol,_ listViewController:UIViewController?,_ indexPath:IndexPath){
         self.list = list as! GeneralTableView

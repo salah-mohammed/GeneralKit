@@ -35,7 +35,7 @@ class TableSectionListExampleViewController: UIViewController {
         let cell =  GeneralCellData.init(identifier:"NewTableViewCell", object:"7");
         tableView.handle(itemsType: .newSections([section0]))
         DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-            self.tableView.handle(.data(.appendNewSection(nil, section1)))
+            self.tableView.handle(.data(.appendNewSection(0, section1)))
         })
     }
     
