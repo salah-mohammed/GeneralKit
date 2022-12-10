@@ -20,5 +20,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8767DFA-5846-4EEE-9D18-AB15284F9B92"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeneralKit/GeneralTableView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "deleteRowsInList(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C8767DFA-5846-4EEE-9D18-AB15284F9B92 - dccbd50a36076c66"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeneralKit.GeneralTableView.deleteRowsInList(Swift.Array&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "GeneralKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKit/GeneralTableView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "240"
+                  endingLineNumber = "240"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "C8767DFA-5846-4EEE-9D18-AB15284F9B92 - d8804f7ee1d43888"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in GeneralKit.GeneralTableView.deleteRowsInList(Swift.Array&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "GeneralKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKit/GeneralTableView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "241"
+                  endingLineNumber = "241"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

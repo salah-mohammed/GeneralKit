@@ -10,17 +10,20 @@ import UIKit
 open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
-    public var indexPath: IndexPath!
-    public var object: GeneralCellData?{return self.list.objects[indexPath.section][indexPath.row]};
+    public var object: GeneralCellData?{
+        if let indexPath:IndexPath=indexPath{
+            return self.list.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)
+        }
+        return nil
+    }
+    public var indexPath: IndexPath?{
+        return (self.list as? UITableView)?.indexPathForRow(at: self.center)
+    }
+    open func config(_ indexPath:IndexPath,
+                     _ data: GeneralCellData){
 
-    final public func config(_ list:GeneralListViewProrocol,_ listViewController:UIViewController?,_ indexPath:IndexPath){
-        self.list = list as! GeneralTableView
-        self.listViewController=listViewController;
-        self.indexPath=indexPath;
-        self.config();
     }
-    open func config(){
-    }
+
     open func itemSelected() {
     }
     open func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData) {
@@ -133,7 +136,9 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     func config(tableView:UITableView,indexPath:IndexPath,object:GeneralCellData)->UITableViewCell{
         let object:GeneralCellData = object
         let cell = self.dequeueReusableCell(withIdentifier:object.identifier, for: indexPath) as! GeneralListViewCellProtocol
-        cell.config(self,self.listViewController, indexPath)
+        cell.list = self;
+        cell.listViewController = self.listViewController
+        cell.config(indexPath, self.objects[indexPath.section][indexPath.row])
         return cell as! UITableViewCell
     }
     func itemSelected(_ indexPath:IndexPath){
@@ -212,20 +217,35 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         cell?.tableView(tableView, commit: editingStyle, forRowAt:indexPath)
     }
     public func insertInList(indexPaths:[IndexPath]){
-        self.beginUpdates();
+        self.performBatchUpdates({
         self.insertRows(at:indexPaths, with: .automatic)
-        self.endUpdates()
+        }, completion: { _ in
+//            self.reloadData() // to update indexPaths
+        })
     }
     public func reloadRowInList(indexPaths:[IndexPath]){
-        self.reloadRows(at:indexPaths, with: .automatic)
+        self.performBatchUpdates({
+            self.reloadRows(at:indexPaths, with: .automatic)
+        }, completion: { _ in
+        })
     }
     public func reloadSectionsInList(_ indexSet:IndexSet){
+        self.performBatchUpdates({
         self.reloadSections(indexSet, with: .automatic)
+        }, completion: { _ in
+        })
     }
     public func deleteRowsInList(_ indexPath:[IndexPath]){
-        self.deleteRows(at:indexPath, with: UITableView.RowAnimation.automatic)
+        self.performBatchUpdates({
+            self.deleteRows(at:indexPath, with: UITableView.RowAnimation.automatic)
+        }, completion: { _ in
+        })
     }
     public func insertSectionsInList(sections:IndexSet){
-        self.insertSections(sections, with: .automatic)
+        self.performBatchUpdates({
+            self.insertSections(sections, with: .automatic)
+        }, completion: { _ in
+        })
+
     }
 }

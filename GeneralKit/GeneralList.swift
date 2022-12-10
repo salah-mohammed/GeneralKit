@@ -58,11 +58,11 @@ public struct GeneralListConstant {
 public protocol GeneralListViewCellProtocol:class {
     var list:GeneralListViewProrocol!{ get set}
     var listViewController:UIViewController?{ get set}
-    var indexPath:IndexPath!{ get set}
+    var indexPath:IndexPath?{get}
     var object:GeneralCellData?{get}
 
     func itemSelected();
-    func config(_ list:GeneralListViewProrocol,_ listViewController:UIViewController?,_ indexPath:IndexPath)
+    func config(_ indexPath:IndexPath,_ data:GeneralCellData)
 }
 public enum ObjectType{
 case any(AnyHandling)
@@ -196,7 +196,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
     }
     public func handleRemove(_ indexPaths:[IndexPath]){
         for indexPath in indexPaths{
-            self.objects.removeIndexPath(indexPath)
+            self.objects[indexPath.section].remove(at: indexPath.row);
         }
         self.deleteRowsInList(indexPaths)
     }

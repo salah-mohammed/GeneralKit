@@ -8,8 +8,9 @@
 import UIKit
 import GeneralKit
 class NewCollectionViewCell:GeneralCollectionViewCell {
-    override func config(){
-        super.config();
+    override func config(_ indexPath: IndexPath,
+                         _ data:GeneralCellData) {
+        super.config(indexPath, data)
         self.backgroundColor = self.object?.selected ?? false ? UIColor.red:UIColor.yellow;
     }
     override func itemSelected() {

@@ -20,10 +20,11 @@ class NewTableViewCell: GeneralTableViewCell {
 
         // Configure the view for the selected state
     }
-    override func config(){
-        super.config();
+    override func config(_ indexPath: IndexPath,
+                         _ data:GeneralCellData) {
+        super.config(indexPath,data);
         self.accessoryType = self.object?.selected ?? false  ? .checkmark:.none
-        self.lblSubtitle.text = (self.object?.object as? String) ?? ""
+        self.lblSubtitle.text = (data.object as? String) ?? ""
     }
     open override func itemSelected() {
         super.itemSelected();
@@ -33,6 +34,8 @@ class NewTableViewCell: GeneralTableViewCell {
         self.list.reloadData();
     }
     @IBAction func btnDelete(_ sender:Any?){
-    (self.list as? GeneralTableView)?.handleRemove([indexPath])
+        if let indexPath:IndexPath = self.indexPath{
+            (self.list as? GeneralTableView)?.handleRemove([indexPath])
+        }
     }
 }
