@@ -209,6 +209,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
                 for  sectionArray in items{
                 cells.append(self.convertObjects(sectionArray))
                 }
+                self.objects=cells;
                 if autoHandle{ self.reloadData()}
                 break;
             case .appendObject(section: let section,atRow:let row, let item):
@@ -250,6 +251,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             break;
         }
     }
+    // UI
     func appendObject(_ section:Int,_ row:Int?,_ item:GeneralCellData,autoHandle:Bool){
         if let row:Int=row{
             self.objects[section].insert(item, at: row)
@@ -283,32 +285,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.reloadRowInList(indexPaths: [indexPath])
         }
     }
-    public func handle(itemsType:ItemType,_ error:Error?=nil){
-        switch itemsType{
-        case.appendObject(let section,let item):
-            self.objects[section].append(converterObject({item}))
-            break
-        case .append(let items):
-            var tempItems = self.objects.bs_get(0) ?? []
-            tempItems.append(contentsOf:convertObjects(items))
-            self.objects = [tempItems]
-            break;
-        case .new(let items):
-            self.objects = [convertObjects(items)]
-            break;
-        case .newSections(let objects):
-            self.objects=objects
-            break;
-        case .replaceObject(let object,let indexPath):
-            let tempItems = self.objects.bs_get(indexPath.section) ?? []
-            tempItems.bs_get(indexPath.row)?.object = object
-            break;
-        case .appendSection(let objects):
-            self.objects.append(objects)
-        }
-        self.reloadData()
-        self.refreshStyle(error)
-    }
+    //
     func viewsSetup(){
         self.errorConnectionView = Self.global.errorConnectionDataViewHandler?()
         self.errorConnectionView?.list = self

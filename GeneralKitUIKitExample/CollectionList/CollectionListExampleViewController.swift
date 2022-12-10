@@ -36,9 +36,9 @@ class CollectionListExampleViewController: UIViewController {
             })
 
             if response.value?.pagination?.i_current_page == 1{
-                self.collectionView.handle(itemsType: .new(response.value?.users ?? []))
+                self.collectionView.handle(.any(.objects([response.value?.users ?? []])))
             }else{
-                self.collectionView.handle(itemsType: .append(response.value?.users ?? []))
+                self.collectionView.handle(.any(.appendItemsInSection(atRow: nil, response.value?.users ?? [])))
             }
         }
     }

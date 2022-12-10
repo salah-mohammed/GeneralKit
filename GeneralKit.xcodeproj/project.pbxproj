@@ -410,12 +410,6 @@
 				8B2A0BE328FD605200244000 /* Assets.xcassets */,
 				8B2A0BE528FD605200244000 /* LaunchScreen.storyboard */,
 				8B2A0BE828FD605200244000 /* Info.plist */,
-				8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */,
-				8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */,
-				8B76580E2906F6910047E799 /* NewTableViewCell.swift */,
-				8B76580F2906F6910047E799 /* NewTableViewCell.xib */,
-				8B765814290703870047E799 /* NewCollectionViewCell.swift */,
-				8B765816290703D70047E799 /* NewCollectionViewCell.xib */,
 			);
 			path = GeneralKitUIKitExample;
 			sourceTree = "<group>";
@@ -442,6 +436,8 @@
 			children = (
 				8B2A0BDE28FD605200244000 /* TableListExampleViewController.swift */,
 				8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */,
+				8B76580E2906F6910047E799 /* NewTableViewCell.swift */,
+				8B76580F2906F6910047E799 /* NewTableViewCell.xib */,
 			);
 			path = TableList;
 			sourceTree = "<group>";
@@ -449,6 +445,10 @@
 		8B7DA026290AA1E100D65C97 /* CollectionList */ = {
 			isa = PBXGroup;
 			children = (
+				8B091F45290BD54300D38C91 /* SectionHeaderCollectionView.swift */,
+				8B091F47290BD55800D38C91 /* SectionHeaderCollectionView.xib */,
+				8B765814290703870047E799 /* NewCollectionViewCell.swift */,
+				8B765816290703D70047E799 /* NewCollectionViewCell.xib */,
 				8B765818290705000047E799 /* CollectionListExampleViewController.swift */,
 				8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */,
 			);
