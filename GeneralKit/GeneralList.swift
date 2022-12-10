@@ -130,6 +130,7 @@ public protocol GeneralListViewProrocol:class {
     func reloadData()
     var  selectionType:SelectionType{ get set}
     func selectAndDeselect(_ object:GeneralCellData)
+    func handleRemove(_ indexPaths:[IndexPath])
     //UI
     func insertInList(indexPaths:[IndexPath]);
     func reloadRowInList(indexPaths:[IndexPath]);
