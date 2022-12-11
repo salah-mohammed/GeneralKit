@@ -7,7 +7,12 @@
 
 import UIKit
 
-open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellProtocol {
+@objc public protocol GeneralCollectionViewCellProtocol{
+    @objc optional func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
+}
+open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellProtocol,GeneralCollectionViewCellProtocol {
+    // MARK: - GeneralListViewProrocol
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
     public var object: GeneralCellData?{
@@ -17,7 +22,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
         return nil;
     }
     public var indexPath: IndexPath?{
-        return (self.list as? UICollectionView)?.indexPath(for: self)
+        return self.list.indexPathForItemInList(at: self.center)
     }
     open func itemSelected() {
     }
@@ -25,7 +30,11 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
                      _ data:GeneralCellData) {
 
     }
+    // MARK: - GeneralCollectionViewCellProtocol
     open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    }
+    open func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
+        
     }
 }
 
@@ -128,6 +137,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     ////////////////////////-
     @discardableResult private func setup()->Self{
+        self.listViewController = self.bs_getParentViewController()
         self.delegate=self;
         self.dataSource=self;
         let tempEnablePagination = self.enablePagination;
@@ -169,6 +179,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         cell.itemSelected();
     }
     ////////////////////////-
+    // MARK: - UICollectionViewDelegate
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.objects.bs_get(section)?.count ?? 0;
     }
@@ -204,8 +215,12 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         self.itemSelected(indexPath);
     }
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as? GeneralCollectionViewCell)?.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
+        (cell as? GeneralCollectionViewCellProtocol)?.collectionView?(collectionView, willDisplay: cell, forItemAt: indexPath)
     }
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        (cell as? GeneralCollectionViewCellProtocol)?.collectionView?(collectionView, didEndDisplaying: cell, forItemAt: indexPath)
+    }
+    // MARK: - UI
     public func insertInList(indexPaths:[IndexPath]){
         self.performBatchUpdates({ () -> Void in
             self.insertItems(at:indexPaths)
@@ -222,5 +237,8 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     public func insertSectionsInList(sections:IndexSet){
         self.insertSections(sections);
+    }
+    public func indexPathForItemInList(at point: CGPoint)->IndexPath?{
+        return self.indexPathForItem(at: point);
     }
 }

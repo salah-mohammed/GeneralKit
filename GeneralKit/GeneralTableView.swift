@@ -6,8 +6,17 @@
 //
 
 import UIKit
- 
-open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
+
+@objc public protocol GeneralTableViewCellProtocol{
+    @objc optional func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData)
+    @objc optional func editingStyleForRow(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
+    @objc optional func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    @objc optional func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath)
+    @objc optional func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    @objc optional func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+}
+open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol,GeneralTableViewCellProtocol {
+    // MARK: - GeneralListViewProrocol
     public var list: GeneralListViewProrocol!
     public var listViewController: UIViewController?
     public var object: GeneralCellData?{
@@ -17,15 +26,15 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
         return nil
     }
     public var indexPath: IndexPath?{
-        return (self.list as? UITableView)?.indexPathForRow(at: self.center)
+        return self.list.indexPathForItemInList(at: self.center)
     }
     open func config(_ indexPath:IndexPath,
                      _ data: GeneralCellData){
-
     }
-
     open func itemSelected() {
     }
+    
+    // MARK: - GeneralTableViewCellProtocol
     open func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData) {
         
     }
@@ -38,13 +47,12 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol {
     open func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath){
         
     }
-    open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?{
     return nil
     }
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
     }
-    
 }
 
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
@@ -117,6 +125,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         return self
     }
     @discardableResult private func setup()->Self{
+        self.listViewController = self.bs_getParentViewController()
         self.delegate=self;
         self.dataSource=self;
         let tempEnablePagination = self.enablePagination;
@@ -162,7 +171,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.refreshHandler?()
     }
     ////////////////////////-
-    ///
+    // MARK: - UITableViewDelegate
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.willDisplayCell?(indexPath)
         print(indexPath.row)
@@ -192,35 +201,35 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.itemSelected(indexPath);
     }
     open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
-        return cell?.tableView(tableView, canEditRowAt: indexPath) ?? false
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCellProtocol
+        return cell?.tableView?(tableView, canEditRowAt: indexPath) ?? false
     }
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return  self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)?.cellHeight ?? self.rowHeight
     }
     open func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if let cell:GeneralTableViewCell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell{
-            return cell.editingStyleForRow(tableView, editingStyleForRowAt: indexPath)
+        if let cell:GeneralTableViewCellProtocol = tableView.cellForRow(at: indexPath) as? GeneralTableViewCellProtocol{
+            return cell.editingStyleForRow?(tableView, editingStyleForRowAt: indexPath) ?? .none
         }
         return .none
     }
     open func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
-        cell?.tableView(tableView, accessoryButtonTappedForRowWith: indexPath);
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCellProtocol
+        cell?.tableView?(tableView, accessoryButtonTappedForRowWith: indexPath);
     }
-    open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
-        return cell?.tableView(tableView, editActionsForRowAt: indexPath);
-    }
+    open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCellProtocol
+        return cell?.tableView?(tableView, trailingSwipeActionsConfigurationForRowAt:indexPath);
+   }
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCell
-        cell?.tableView(tableView, commit: editingStyle, forRowAt:indexPath)
+        let cell = tableView.cellForRow(at: indexPath) as? GeneralTableViewCellProtocol
+        cell?.tableView?(tableView, commit: editingStyle, forRowAt:indexPath)
     }
+    // MARK: - UI
     public func insertInList(indexPaths:[IndexPath]){
         self.performBatchUpdates({
         self.insertRows(at:indexPaths, with: .automatic)
         }, completion: { _ in
-//            self.reloadData() // to update indexPaths
         })
     }
     public func reloadRowInList(indexPaths:[IndexPath]){
@@ -246,6 +255,8 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
             self.insertSections(sections, with: .automatic)
         }, completion: { _ in
         })
-
+    }
+    public func indexPathForItemInList(at point: CGPoint) -> IndexPath? {
+        return self.indexPathForRow(at: point)
     }
 }

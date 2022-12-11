@@ -137,6 +137,7 @@ public protocol GeneralListViewProrocol:class {
     func reloadSectionsInList(_ indexSet:IndexSet)
     func deleteRowsInList(_ indexPath:[IndexPath]);
     func insertSectionsInList(sections:IndexSet)
+    func indexPathForItemInList(at point: CGPoint)->IndexPath?
 }
 
 public protocol GeneralConnection:GeneralListViewProrocol{
@@ -253,7 +254,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         }
     }
     // UI
-    func appendObject(_ section:Int,_ row:Int?,_ item:GeneralCellData,autoHandle:Bool){
+    private func appendObject(_ section:Int,_ row:Int?,_ item:GeneralCellData,autoHandle:Bool){
         if let row:Int=row{
             self.objects[section].insert(item, at: row)
         }else{
@@ -263,7 +264,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.insertInList(indexPaths:[IndexPath.init(row: row ?? (self.objects[section].count-1),section:section)])
         }
     }
-    func appendNewSection(_ index:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
+    private func appendNewSection(_ index:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
         let index = index ?? self.objects.count
         self.objects.insert(items, at: index)
         if autoHandle{
@@ -271,14 +272,14 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.insertSectionsInList(sections: IndexSet([section]))
         }
     }
-    func appendItemsInSection(_ section:Int,_ row:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
+    private func appendItemsInSection(_ section:Int,_ row:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
         let cutomeRow = row ?? self.objects[section].count
         self.objects[section].insert(contentsOf: items, at: cutomeRow)
         if autoHandle{
         self.insertInList(indexPaths: items.indexPaths(section:section,cutomeRow))
         }
     }
-    func replaceObject(_ indexPath:IndexPath,_ item:GeneralCellData,_ autoHandle:Bool){
+    private func replaceObject(_ indexPath:IndexPath,_ item:GeneralCellData,_ autoHandle:Bool){
         var tempItems = self.objects.bs_get(indexPath.section) ?? []
         tempItems.remove(at:indexPath.row)
         tempItems.insert(contentsOf: [item], at: indexPath.row);
