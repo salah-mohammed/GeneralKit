@@ -31,9 +31,9 @@ class TableListExampleViewController: UIViewController {
             })
 
             if response.value?.pagination?.i_current_page == 1{
-                self.tableView.handle(.any(.objects([response.value?.users ?? []])),response.error)
+                self.tableView.handleAny(.objects([response.value?.users ?? []]),response.error)
             }else{
-                self.tableView.handle(.any(.appendItemsInSection(atRow: nil,response.value?.users ?? [])),response.error)
+                self.tableView.handleAny(.appendItemsInSection(atRow: nil,response.value?.users ?? []),response.error)
             }
         }
     }
