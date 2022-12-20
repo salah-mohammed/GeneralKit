@@ -16,8 +16,8 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
     override func itemSelected() {
         super.itemSelected();
         if let  object:GeneralCellData = self.object{
-            self.list.selectAndDeselect(object);
+            self.list?.selectAndDeselect(object);
         }
-        self.list.reloadData();
+        self.list?.reloadData();
     }
 }

@@ -17,16 +17,16 @@ import UIKit
 }
 open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol,GeneralTableViewCellProtocol {
     // MARK: - GeneralListViewProrocol
-    public var list: GeneralListViewProrocol!
+    public var list: GeneralListViewProrocol?
     public var listViewController: UIViewController?
     public var object: GeneralCellData?{
         if let indexPath:IndexPath=indexPath{
-            return self.list.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)
+            return self.list?.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)
         }
         return nil
     }
     public var indexPath: IndexPath?{
-        return self.list.indexPathForItemInList(at: self.center)
+        return self.list?.indexPathForItemInList(at: self.center)
     }
     open func config(_ indexPath:IndexPath,
                      _ data: GeneralCellData){
@@ -144,7 +144,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     ////////////////////////-
     func config(tableView:UITableView,indexPath:IndexPath,object:GeneralCellData)->UITableViewCell{
         let object:GeneralCellData = object
-        let cell = self.dequeueReusableCell(withIdentifier:object.identifier, for: indexPath) as! GeneralListViewCellProtocol
+        var cell = self.dequeueReusableCell(withIdentifier:object.identifier, for: indexPath) as! GeneralListViewCellProtocol
         cell.list = self;
         cell.listViewController = self.listViewController
         cell.config(indexPath, self.objects[indexPath.section][indexPath.row])

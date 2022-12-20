@@ -55,8 +55,8 @@ public struct GeneralListConstant {
     }
    
 }
-public protocol GeneralListViewCellProtocol:class {
-    var list:GeneralListViewProrocol!{ get set}
+public protocol GeneralListViewCellProtocol{
+    var list:GeneralListViewProrocol?{ get set}
     var listViewController:UIViewController?{ get set}
     var indexPath:IndexPath?{get}
     var object:GeneralCellData?{get}

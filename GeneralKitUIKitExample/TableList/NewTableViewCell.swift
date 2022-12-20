@@ -29,9 +29,9 @@ class NewTableViewCell: GeneralTableViewCell {
     open override func itemSelected() {
         super.itemSelected();
         if let object:GeneralCellData = self.object{
-        self.list.selectAndDeselect(object);
+        self.list?.selectAndDeselect(object);
         }
-        self.list.reloadData();
+        self.list?.reloadData();
     }
     @IBAction func btnDelete(_ sender:Any?){
         if let indexPath:IndexPath = self.indexPath{

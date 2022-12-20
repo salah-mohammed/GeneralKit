@@ -13,16 +13,16 @@ import UIKit
 }
 open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellProtocol,GeneralCollectionViewCellProtocol {
     // MARK: - GeneralListViewProrocol
-    public var list: GeneralListViewProrocol!
+    public var list: GeneralListViewProrocol?
     public var listViewController: UIViewController?
     public var object: GeneralCellData?{
         if let indexPath:IndexPath = self.indexPath{
-        return list.objects[indexPath.section][indexPath.row];
+        return list?.objects[indexPath.section][indexPath.row];
         }
         return nil;
     }
     public var indexPath: IndexPath?{
-        return self.list.indexPathForItemInList(at: self.center)
+        return self.list?.indexPathForItemInList(at: self.center)
     }
     open func itemSelected() {
     }
@@ -170,7 +170,9 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     ////////////////////////-
     func config(collectionView:UICollectionView,indexPath:IndexPath,object:GeneralCellData)->UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:object.identifier, for:indexPath) as! GeneralListViewCellProtocol;
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier:object.identifier, for:indexPath) as! GeneralListViewCellProtocol;
+        cell.list = self;
+        cell.listViewController = self.listViewController
         cell.config(indexPath,self.objects[indexPath.section][indexPath.row]);
         return cell as! UICollectionViewCell;
     }
