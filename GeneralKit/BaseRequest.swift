@@ -28,8 +28,8 @@ open class BaseRequest:NSObject{
     open  var token:String?{
         return nil;
     }
-    open var parameters:Dictionary<String,String>{
-      var tempParameters =  Dictionary<String,String>()
+    open var parameters:Parameters{
+      var tempParameters =  Parameters()
         return tempParameters
     } // request paramter
     open  var type:HTTPMethod!{

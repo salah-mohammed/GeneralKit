@@ -34,7 +34,7 @@ class UserRequest:BaseRequest{
     override var header : HTTPHeaders?{
         return nil
     }
-    override var parameters:Dictionary<String,String>{
+    override var parameters:Parameters{
         let parameters =  super.parameters
         switch self.route{
         case .users:

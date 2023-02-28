@@ -40,6 +40,14 @@ struct NormalNetworkExampleView: View {
                     Text("Request Example_2")
                 }
                 Button.init {
+                    self.viewModel.requestExample3()
+                } label: {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                    Text("Request Example_2(encoding)")
+                }
+                Button.init {
                     self.viewModel.requestMultipart()
                 } label: {
                     Image(systemName: "globe")
@@ -47,6 +55,7 @@ struct NormalNetworkExampleView: View {
                         .foregroundColor(.accentColor)
                     Text("Multipart Request")
                 }
+                
             }.navigationTitle("Normal Request")
                 .padding()
             Spacer()

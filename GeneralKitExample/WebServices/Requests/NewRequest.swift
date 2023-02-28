@@ -35,7 +35,7 @@ class NewRequest:AppBaseRequest{
     override var header : HTTPHeaders?{
         return nil
     }
-    override var parameters:Dictionary<String,String>{
+    override var parameters:Parameters{
        var parameters =  super.parameters
         switch self.route{
         case .firstRequest(_):
