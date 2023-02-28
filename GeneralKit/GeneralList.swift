@@ -84,14 +84,14 @@ case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])// work
 case replaceObject(IndexPath,GeneralCellData) // replce item in section
 
 }
-public enum ItemType{
-case new([Any]) // new
-case append([Any]) //append
-case appendObject(section:Int=0,Any) //append
-case newSections([[GeneralCellData]]) // new
-case appendSection([GeneralCellData]) // new
-case replaceObject(Any,IndexPath) // replce item in section
-}
+//public enum ItemType{
+//case new([Any]) // new
+//case append([Any]) //append
+//case appendObject(section:Int=0,Any) //append
+//case newSections([[GeneralCellData]]) // new
+//case appendSection([GeneralCellData]) // new
+//case replaceObject(Any,IndexPath) // replce item in section
+//}
 public enum ListType{
     case list
     case section

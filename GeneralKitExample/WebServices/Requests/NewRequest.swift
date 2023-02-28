@@ -15,6 +15,7 @@ class NewRequest:AppBaseRequest{
     public enum Route{
         case firstRequest(s_phone:String?)
         case secondRequest(s_phone:String?)
+        case multipartRequest(s_phone:String?,image:Data?)
     }
     private var route:Route
     init(_ route:Route) {
@@ -26,6 +27,8 @@ class NewRequest:AppBaseRequest{
             break;
         case .secondRequest(_):
             break;
+        case .multipartRequest(s_phone: let s_phone, image: let image):
+            break;
         }
         return "/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json";
     }  // for request path
@@ -34,31 +37,36 @@ class NewRequest:AppBaseRequest{
     }
     override var parameters:Dictionary<String,String>{
        var parameters =  super.parameters
-//        switch self.route{
-//        case .firstRequest(_):
-//            break;
-//        case .secondRequest(_):
-//            break;
-//        }
+        switch self.route{
+        case .firstRequest(_):
+            break;
+        case .secondRequest(_):
+            break;
+        case .multipartRequest(s_phone: let s_phone, image: _):
+            parameters["s_phone"]=s_phone
+            break;
+        }
         return parameters;
     } // request paramter
     override var type:HTTPMethod!{
-//        switch self.route{
-//        case .firstRequest(_):
-//            break;
-//        case .secondRequest(_):
-//            break;
-//        }
-        return .get
+        switch self.route{
+        case .secondRequest(_),.firstRequest(_):
+            return .get
+        case .multipartRequest(s_phone: _, image: _):
+            return .post
+        }
     } // for post type : .post,.get,.delete
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
-//        switch self.route{
-//        case .firstRequest(_):
-//            break;
-//        case .secondRequest(_):
-//            break;
-//        }
-        let items = [ValidationObject.MultiPartObject]();
+        var items = [ValidationObject.MultiPartObject]();
+        switch self.route{
+        case .firstRequest(_),.secondRequest(_):
+            break;
+        case .multipartRequest(s_phone:let _, image: let image):
+            if let image:Data=image{
+                items.append(ValidationObject.MultiPartObject(data:image,name:"",fileName:"",mimeType:""))
+            }
+            break
+        }
         return items
     }
 }

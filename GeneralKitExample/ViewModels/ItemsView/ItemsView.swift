@@ -22,7 +22,7 @@ struct ItemsView: View {
                 }
             }.refreshable(action:self.viewModel.refresh())
             .listStyle(InsetListStyle.init())
-        }
+        }.navigationTitle("List With Pagination Request (Data From Network)")
                 
         }
       
