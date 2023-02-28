@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
-class NetworkExampleViewModel:NSObject,ObservableObject{
+class NormalNetworkExampleViewModel:NSObject,ObservableObject{
     override init() {
         super.init();
     }

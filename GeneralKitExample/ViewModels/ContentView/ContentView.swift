@@ -17,7 +17,7 @@ struct ContentView: View {
             NavigationLink(destination: ItemsView(), tag: 1, selection: $listFromNetworkWithPagination) {
                EmptyView()
              }
-            NavigationLink(destination: NetworkExampleView(), tag: 1, selection: $loginScreen) {
+            NavigationLink(destination: NormalNetworkExampleView(), tag: 1, selection: $loginScreen) {
                EmptyView()
              }
             List{
@@ -29,7 +29,7 @@ struct ContentView: View {
                     Image(systemName: "globe")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
-                    Text("Normal Request Example(Data From Network)")
+                    Text("Normal Request Examples(Data From Network)")
                 }
             }.padding([.bottom],16.0)
             
