@@ -20,5 +20,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9DB0DBF4-CA2C-4681-9CD7-8C0FF67A2D26"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeneralKitUIKitExample/TableList/NewTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "itemSelected()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9DB0DBF4-CA2C-4681-9CD7-8C0FF67A2D26 - 93345feae897a271"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeneralKitUIKitExample.NewTableViewCell.itemSelected() -&gt; ()"
+                  moduleName = "GeneralKitUIKitExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKitUIKitExample/TableList/NewTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  uuid = "9DB0DBF4-CA2C-4681-9CD7-8C0FF67A2D26 - 93345feae897a271"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GeneralKitUIKitExample.NewTableViewCell.itemSelected() -&gt; ()"
+                  moduleName = "GeneralKitUIKitExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKitUIKitExample/TableList/NewTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "145">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E663B246-5E0A-4E32-BD8E-8B106B54853B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeneralKit/GeneralList.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "appendNewSection(_:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3950ACE-A279-498A-9338-049CBFA5963F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GeneralKit/GeneralTableView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "listHeaderView(forSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -11,7 +11,9 @@ import Alamofire
 public protocol ListPlaceHolder:UIView{
 var list:GeneralListViewProrocol?{set get}
 }
-
+public protocol ListSectionProtocol{
+    var section:Int?{set get}
+}
 open class GeneralCellData: NSObject {
     public var identifier: String = ""
     public var object: Any?
@@ -84,18 +86,6 @@ case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])// work
 case replaceObject(IndexPath,GeneralCellData) // replce item in section
 
 }
-//public enum ItemType{
-//case new([Any]) // new
-//case append([Any]) //append
-//case appendObject(section:Int=0,Any) //append
-//case newSections([[GeneralCellData]]) // new
-//case appendSection([GeneralCellData]) // new
-//case replaceObject(Any,IndexPath) // replce item in section
-//}
-public enum ListType{
-    case list
-    case section
-}
 public enum SelectionType{
     case single(optional:Bool=false)
     case multi
@@ -138,6 +128,8 @@ public protocol GeneralListViewProrocol:class {
     func deleteRowsInList(_ indexPath:[IndexPath]);
     func insertSectionsInList(sections:IndexSet)
     func indexPathForItemInList(at point: CGPoint)->IndexPath?
+    func listHeaderView(forSection:Int)->ListSectionProtocol?
+    
 }
 
 public protocol GeneralConnection:GeneralListViewProrocol{
@@ -272,11 +264,19 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         }
     }
     private func appendNewSection(_ index:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
-        let index = index ?? self.objects.count
-        self.objects.insert(items, at: index)
+        let section = index ?? self.objects.count
+        self.objects.insert(items, at: section)
         if autoHandle{
-        let section = index
         self.insertSectionsInList(sections: IndexSet([section]))
+        }
+        if let index:Int = index{
+            let lastSections = index ... (self.objects.count-1)
+            for tempSection in lastSections{
+                var sectionView = self.listHeaderView(forSection:tempSection)
+                sectionView?.section = tempSection
+                print(tempSection)
+            }
+
         }
     }
     private func appendItemsInSection(_ section:Int,_ row:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){

@@ -11,20 +11,22 @@ class TableSectionListExampleViewController: UIViewController {
     @IBOutlet weak var tableView:GeneralTableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.listType = .section
         self.tableView.selectionType = .single(optional:true)
         self.tableView.bs_registerNib(NibName:"NewTableViewCell");
-        
+        self.tableView.enablePullToRefresh=false
         self.tableView.containsHandler = { object1,object2 in
         return (object1 as! String) == (object2 as! String)
         }
+        tableView.register(TableSectionViewHeader.self, forHeaderFooterViewReuseIdentifier:"TableSectionViewHeader")
+
         self.tableView.sectionViewHandler = { section in
-            var a = UIView.init()
-            a.backgroundColor=UIColor.red
-            return a
+            let cell = self.tableView!.dequeueReusableHeaderFooterView(withIdentifier:"TableSectionViewHeader") as! TableSectionViewHeader
+            cell.tableView=self.tableView
+            cell.section = section
+            return cell
         }
-        self.tableView.sectionHeightHandler = { section in
-          return 20
+        self.tableView.heightForHeaderInSectionHandler = { section in
+          return 50
         }
         var section0 = [GeneralCellData.init(identifier:"NewTableViewCell", object:"1"),
                          GeneralCellData.init(identifier:"NewTableViewCell", object:"2"),
@@ -40,15 +42,19 @@ class TableSectionListExampleViewController: UIViewController {
                         GeneralCellData.init(identifier:"NewTableViewCell", object:"12")]
         var section1 = [GeneralCellData.init(identifier:"NewTableViewCell", object:"13"),
                          GeneralCellData.init(identifier:"NewTableViewCell", object:"14"),
-                         GeneralCellData.init(identifier:"NewTableViewCell", object:"15")]
+                        GeneralCellData.init(identifier:"NewTableViewCell", object:"15")]
         var section2 = [GeneralCellData.init(identifier:"NewTableViewCell", object:"16"),
                          GeneralCellData.init(identifier:"NewTableViewCell", object:"17"),
-                         GeneralCellData.init(identifier:"NewTableViewCell", object:"18")]
+                        GeneralCellData.init(identifier:"NewTableViewCell", object:"18")]
 //        let cell =  GeneralCellData.init(identifier:"NewTableViewCell", object:"19");
         var section3 = [GeneralCellData.init(identifier:"NewTableViewCell", object:"19"),
                          GeneralCellData.init(identifier:"NewTableViewCell", object:"20"),
                          GeneralCellData.init(identifier:"NewTableViewCell", object:"21")]
 
+        var appendToSection0 = [GeneralCellData.init(identifier:"NewTableViewCell", object:"22"),
+                         GeneralCellData.init(identifier:"NewTableViewCell", object:"23"),
+                         GeneralCellData.init(identifier:"NewTableViewCell", object:"24")]
+        
         
         tableView.handleData(.objects([section0]))
         DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
@@ -57,6 +63,9 @@ class TableSectionListExampleViewController: UIViewController {
                 self.tableView.handleData(.appendNewSection(0, section2))
                 DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
                     self.tableView.handleData(.appendNewSection(0, section3))
+                    DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+                        self.tableView.handleData(.appendItemsInSection(atRow:0, appendToSection0))
+                    })
                     
                 })
             })

@@ -7,12 +7,12 @@
 		<key>GeneralKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>12</integer>
 		</dict>
 		<key>GeneralKitExample.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>10</integer>
 		</dict>
 		<key>GeneralKitUIKitExample.xcscheme_^#shared#^_</key>
 		<dict>

@@ -55,6 +55,8 @@
 		8B2A0BF228FD605300244000 /* GeneralKitUIKitExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BF128FD605300244000 /* GeneralKitUIKitExampleTests.swift */; };
 		8B2A0BFC28FD605300244000 /* GeneralKitUIKitExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BFB28FD605300244000 /* GeneralKitUIKitExampleUITests.swift */; };
 		8B2A0BFE28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BFD28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift */; };
+		8B4D270029AE7A0C00E51353 /* TableSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B4D26FE29AE7A0C00E51353 /* TableSectionView.xib */; };
+		8B4D270129AE7A0C00E51353 /* TableSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D26FF29AE7A0C00E51353 /* TableSectionView.swift */; };
 		8B76580D2906F4BF0047E799 /* GeneralKitEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */; };
 		8B7658102906F6920047E799 /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580E2906F6910047E799 /* NewTableViewCell.swift */; };
 		8B7658112906F6920047E799 /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B76580F2906F6910047E799 /* NewTableViewCell.xib */; };
@@ -192,6 +194,8 @@
 		8B2A0BF728FD605300244000 /* GeneralKitUIKitExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeneralKitUIKitExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2A0BFB28FD605300244000 /* GeneralKitUIKitExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitUIKitExampleUITests.swift; sourceTree = "<group>"; };
 		8B2A0BFD28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitUIKitExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8B4D26FE29AE7A0C00E51353 /* TableSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableSectionView.xib; sourceTree = "<group>"; };
+		8B4D26FF29AE7A0C00E51353 /* TableSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSectionView.swift; sourceTree = "<group>"; };
 		8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitEx.swift; sourceTree = "<group>"; };
 		8B76580E2906F6910047E799 /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		8B76580F2906F6910047E799 /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
@@ -431,6 +435,15 @@
 			path = GeneralKitUIKitExampleUITests;
 			sourceTree = "<group>";
 		};
+		8B4D26FD29AE7A0C00E51353 /* TableSectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8B4D26FE29AE7A0C00E51353 /* TableSectionView.xib */,
+				8B4D26FF29AE7A0C00E51353 /* TableSectionView.swift */,
+			);
+			path = TableSectionView;
+			sourceTree = "<group>";
+		};
 		8B7DA025290AA1D600D65C97 /* TableList */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +451,7 @@
 				8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */,
 				8B76580E2906F6910047E799 /* NewTableViewCell.swift */,
 				8B76580F2906F6910047E799 /* NewTableViewCell.xib */,
+				8B4D26FD29AE7A0C00E51353 /* TableSectionView */,
 			);
 			path = TableList;
 			sourceTree = "<group>";
@@ -672,6 +686,7 @@
 				8B765817290703D70047E799 /* NewCollectionViewCell.xib in Resources */,
 				8B091F48290BD55800D38C91 /* SectionHeaderCollectionView.xib in Resources */,
 				8B2A0BE728FD605200244000 /* LaunchScreen.storyboard in Resources */,
+				8B4D270029AE7A0C00E51353 /* TableSectionView.xib in Resources */,
 				8B2A0BE428FD605200244000 /* Assets.xcassets in Resources */,
 				8B7658112906F6920047E799 /* NewTableViewCell.xib in Resources */,
 				8B2A0BE228FD605200244000 /* Main.storyboard in Resources */,
@@ -851,6 +866,7 @@
 				8B7658102906F6920047E799 /* NewTableViewCell.swift in Sources */,
 				8BA6737E29068A7A00A6CE14 /* UserRequest.swift in Sources */,
 				8B2A0BDB28FD605200244000 /* AppDelegate.swift in Sources */,
+				8B4D270129AE7A0C00E51353 /* TableSectionView.swift in Sources */,
 				8BA6737D29068A6D00A6CE14 /* AppBaseRequest.swift in Sources */,
 				8B2A0BDD28FD605200244000 /* SceneDelegate.swift in Sources */,
 				8BA6738029068A7A00A6CE14 /* NewRequest.swift in Sources */,

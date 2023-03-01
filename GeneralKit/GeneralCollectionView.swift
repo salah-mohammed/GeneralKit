@@ -39,8 +39,8 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    public static var global:GeneralListConstant.Global=GeneralListConstant.global
     
+    public static var global:GeneralListConstant.Global=GeneralListConstant.global
     public var errorConnectionView: ListPlaceHolder?=global.errorConnectionDataViewHandler?()
     public var emptyDataView: ListPlaceHolder?=global.emptyDataViewHandler?()
     public var loadingDataView: ListPlaceHolder?=global.loadingDataHandler?()
@@ -163,8 +163,11 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         }
     }
     @objc func performToPullToRefresh(){
+        let sectionCount = self.objects.count
         self.refreshControl?.beginRefreshing();
         self.objects.removeAll();
+        let indexSet = IndexSet.init(integersIn: 0...sectionCount-1)
+        self.deleteSections(indexSet);
         self.paginator?.start();
         self.refreshHandler?()
     }
@@ -242,5 +245,8 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     public func indexPathForItemInList(at point: CGPoint)->IndexPath?{
         return self.indexPathForItem(at: point);
+    }
+    public func listHeaderView(forSection: Int) -> ListSectionProtocol? {
+        return nil
     }
 }

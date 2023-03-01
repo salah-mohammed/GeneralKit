@@ -7,6 +7,15 @@
 
 import UIKit
 
+
+
+public protocol GeneralTableViewSectionProtocol:ListSectionProtocol{
+    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int);
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int);
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int);
+    func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int);
+
+}
 @objc public protocol GeneralTableViewCellProtocol{
     @objc optional func editing(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath,forObject object:GeneralCellData)
     @objc optional func editingStyleForRow(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
@@ -58,10 +67,11 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol,Gene
 open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnection,UITableViewDelegate,UITableViewDataSource {
     // tableView only
     public var sectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
-    public var sectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
+    public var heightForHeaderInSectionHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
+    public var estimatedHeightForHeaderInSectionHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
     public var footerSectionViewHandler:GeneralListConstant.Handlers.SectionViewHandler?
-    public var footerSectionHeightHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
-    public var listType:ListType = .list
+    public var heightForFooterInSectionHandler:GeneralListConstant.Handlers.SectionViewHeightHandler?
+    
     ////
     public var selectionType: SelectionType = .non
     public static var global:GeneralListConstant.Global=GeneralListConstant.global
@@ -109,7 +119,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     public var enableListPlaceHolderView:Bool=GeneralTableView.global.enableListPlaceHolderView{
         didSet{
             if self.enableListPlaceHolderView {
-
+                
             }else{
                 self.backgroundView?.removeFromSuperview();
                 self.backgroundView=nil;
@@ -165,16 +175,30 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         }
     }
     @objc func performToPullToRefresh(){
+        let sectionCount = self.objects.count
         self.refreshControl?.beginRefreshing();
         self.objects.removeAll();
+        let indexSet = IndexSet.init(integersIn: 0...sectionCount-1)
+        self.deleteSections(indexSet, with:.automatic);
         self.paginator?.start();
         self.refreshHandler?()
     }
     ////////////////////////-
     // MARK: - UITableViewDelegate
+    open func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int){
+        (view as? GeneralTableViewSectionProtocol)?.tableView(tableView, didEndDisplayingHeaderView: view, forSection:section)
+    }
+    open func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        (view as? GeneralTableViewSectionProtocol)?.tableView(tableView, willDisplayHeaderView: view, forSection:section)
+    }
+    open func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int){
+        (view as? GeneralTableViewSectionProtocol)?.tableView(tableView, willDisplayFooterView: view, forSection:section)
+    }
+    open func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int){
+        (view as? GeneralTableViewSectionProtocol)?.tableView(tableView, didEndDisplayingFooterView: view, forSection:section)
+    }
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.willDisplayCell?(indexPath)
-        print(indexPath.row)
     }
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.objects[section].count
@@ -189,10 +213,13 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         return self.footerSectionViewHandler?(section)
     }
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-            return self.footerSectionHeightHandler?(section) ?? 0
+            return self.heightForFooterInSectionHandler?(section) ?? 0
     }
     open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return (self.listType == ListType.list) ? 0 : (self.sectionHeightHandler?(section) ?? 40)
+        return self.estimatedHeightForHeaderInSectionHandler?(section) ?? UITableView.automaticDimension
+    }
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return  (self.heightForHeaderInSectionHandler?(section) ?? UITableView.automaticDimension)
     }
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         self.config(tableView: self, indexPath: indexPath, object: self.objects[indexPath.section][indexPath.row]);
@@ -258,5 +285,8 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     }
     public func indexPathForItemInList(at point: CGPoint) -> IndexPath? {
         return self.indexPathForRow(at: point)
+    }
+    public func listHeaderView(forSection: Int) -> ListSectionProtocol? {
+        return self.headerView(forSection: forSection) as? ListSectionProtocol
     }
 }
