@@ -279,10 +279,13 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         }
     }
     private func appendItemsInSection(_ section:Int,_ row:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
-        let cutomeRow = row ?? self.objects[section].count
-        self.objects[section].insert(contentsOf: items, at: cutomeRow)
-        if autoHandle{
-        self.insertInList(indexPaths: items.indexPaths(section:section,cutomeRow))
+        if let cutomeRow:Int = row ?? self.objects.bs_get(section)?.count{
+            self.objects[section].insert(contentsOf: items, at: cutomeRow)
+            if autoHandle{
+            self.insertInList(indexPaths: items.indexPaths(section:section,cutomeRow))
+            }
+        }else{
+            self.appendNewSection(nil, items,autoHandle)
         }
     }
     private func replaceObject(_ indexPath:IndexPath,_ item:GeneralCellData,_ autoHandle:Bool){
