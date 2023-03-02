@@ -13,6 +13,11 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
         super.config(indexPath, data)
         self.backgroundColor = self.object?.selected ?? false ? UIColor.red:UIColor.yellow;
     }
+    override func layoutSubviews() {
+        super.layoutSubviews();
+        self.contentView.layer.cornerRadius = 8
+        self.layer.cornerRadius = 8
+    }
     override func itemSelected() {
         super.itemSelected();
         if let  object:GeneralCellData = self.object{

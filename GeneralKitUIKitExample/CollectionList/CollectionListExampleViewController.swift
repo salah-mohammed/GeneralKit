@@ -15,20 +15,26 @@ class CollectionListExampleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        collectionView.register(UINib(nibName: "SectionHeaderCollectionView", bundle: nil), forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeaderCollectionView")
-        collectionView.bs_register("NewCollectionViewCell")
-        collectionView.selectionType = .non
-//        collectionView.containsHandler = { object1 , object2 in
-//            return (object1 as? User)?.id == (object2 as? User)?.id
-//        }
-        paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
+        setupView();
+        setupData();
         paginationSetup();
-        collectionView.paginationManager(paginationManager).identifier("NewCollectionViewCell").start();
+    }
+    func setupView(){
+        collectionView.bs_register("NewCollectionViewCell")
+    }
+    func setupData(){
+        //        collectionView.register(UINib(nibName: "SectionHeaderCollectionView", bundle: nil), forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeaderCollectionView")
+        collectionView.selectionType = .non
         collectionView.converterHandler { item in
-            return GeneralCellData.init(identifier:"NewCollectionViewCell", object: item,cellSize:CGSize.init(width:50, height: 50))
+            let value = (UIScreen.main.bounds.width-40)/2;
+            return GeneralCellData.init(identifier:"NewCollectionViewCell", object: item,cellSize:CGSize.init(width:value, height:value))
         }
+        //        collectionView.containsHandler = { object1 , object2 in
+        //            return (object1 as? User)?.id == (object2 as? User)?.id
+        //        }
     }
     func paginationSetup(){
+        paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
         paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
             ResponseHandler.check(response,{ baseResponse in
@@ -41,5 +47,6 @@ class CollectionListExampleViewController: UIViewController {
                 self.collectionView.handleAny(.appendItemsInSection(atRow: nil, response.value?.users ?? []))
             }
         }
+        collectionView.paginationManager(paginationManager).identifier("NewCollectionViewCell").start();
     }
 }

@@ -52,16 +52,16 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
       return self
     }
  
-    var elementKindSectionHeaderIdentifire:String?
-    public func elementKindSectionHeaderIdentifire(_ elementKindSectionHeaderIdentifire:String)->Self{
-    self.elementKindSectionHeaderIdentifire=elementKindSectionHeaderIdentifire;
-      return self
-    }
-    var  elementKindSectionFooterIdentifire:String?
-    public func elementKindSectionFooterIdentifire(_ elementKindSectionFooterIdentifire:String)->Self{
-    self.elementKindSectionFooterIdentifire=elementKindSectionFooterIdentifire;
-      return self
-    }
+//    var elementKindSectionHeaderIdentifire:String?
+//    public func elementKindSectionHeaderIdentifire(_ elementKindSectionHeaderIdentifire:String)->Self{
+//    self.elementKindSectionHeaderIdentifire=elementKindSectionHeaderIdentifire;
+//      return self
+//    }
+//    var  elementKindSectionFooterIdentifire:String?
+//    public func elementKindSectionFooterIdentifire(_ elementKindSectionFooterIdentifire:String)->Self{
+//    self.elementKindSectionFooterIdentifire=elementKindSectionFooterIdentifire;
+//      return self
+//    }
     var footerSize:CGSize?
     public func footerSize(_ footerSize:CGSize)->Self{
     self.footerSize=footerSize;
@@ -88,6 +88,16 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     self.viewForSupplementaryElementHandler=handler;
       return self
     }
+//    private var viewForSupplementaryFooterElementHandler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?
+//    public func viewForSupplementaryFooterElementHandler(_ handler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?)->Self{
+//    self.viewForSupplementaryFooterElementHandler=handler;
+//      return self
+//    }
+//    private var viewForSupplementaryHeaderElementHandler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?
+//    public func viewForSupplementaryHeaderElementHandler(_ handler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?)->Self{
+//    self.viewForSupplementaryHeaderElementHandler=handler;
+//      return self
+//    }
     public var enablePagination: Bool=GeneralTableView.global.enablePagination{
         didSet{
             if enablePagination == true {
@@ -201,14 +211,14 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var internalView:UICollectionReusableView?
-        if  kind == UICollectionView.elementKindSectionHeader,let identifire:String = self.elementKindSectionHeaderIdentifire {
-        internalView = self.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:identifire, for: indexPath)
-        }else
-        if let identifire:String = self.elementKindSectionHeaderIdentifire
-        {
-        internalView = self.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:identifire, for: indexPath)
-        }
-        return  internalView ?? viewForSupplementaryElementHandler?(kind,indexPath) ?? UICollectionReusableView ()
+//        if  kind == UICollectionView.elementKindSectionHeader{
+//        internalView = self.viewForSupplementaryHeaderElementHandler?(kind,indexPath);
+//        }else
+//        if kind == UICollectionView.elementKindSectionFooter
+//        {
+//        internalView = self.viewForSupplementaryFooterElementHandler?(kind,indexPath);
+//        }
+        return  internalView ?? viewForSupplementaryElementHandler?(kind,indexPath) ?? UICollectionReusableView()
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return self.headerSizeHandler?(section) ?? self.headerSize ?? CGSize.zero

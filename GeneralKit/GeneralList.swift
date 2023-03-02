@@ -53,7 +53,6 @@ public struct GeneralListConstant {
         public var errorConnectionDataViewHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
         public var emptyDataViewHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
         public var loadingDataHandler:GeneralListConstant.Handlers.ListPlaceHolderHandler?
-
     }
    
 }

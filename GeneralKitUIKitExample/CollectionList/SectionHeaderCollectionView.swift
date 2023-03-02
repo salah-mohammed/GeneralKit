@@ -6,15 +6,12 @@
 //
 
 import UIKit
+import GeneralKit
+class SectionHeaderCollectionView: UICollectionReusableView,ListSectionProtocol {
+    var section: Int?
 
-class SectionHeaderCollectionView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var lblTitle:UILabel!
+    func config(){
+        self.lblTitle.text="Section \(section ?? 0)"
     }
-    */
-
 }
