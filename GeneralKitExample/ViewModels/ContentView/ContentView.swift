@@ -14,6 +14,10 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
+            HStack{
+                Text("SwiftUI Example:").font(Font.system(size:21,weight:.bold))
+                Spacer()
+            }
             NavigationLink(destination: ItemsView(), tag: 1, selection: $listFromNetworkWithPagination) {
                EmptyView()
              }
@@ -29,7 +33,7 @@ struct ContentView: View {
                     Image(systemName: "globe")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
-                    Text("Normal Request Examples(Data From Network)")
+                    Text("Normal Request Examples(Data From Network)").font(.system(size: 16,weight:.semibold))
                 }
             }.padding([.bottom],16.0)
             
@@ -40,7 +44,7 @@ struct ContentView: View {
                     Image(systemName: "globe")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
-                    Text("List With Pagination Request Example(Data From Network)")
+                    Text("List With Pagination Request Example(Data From Network)").font(.system(size: 16,weight:.semibold))
                 }
             }
             }.listStyle(InsetListStyle.init()).navigationTitle("How Use GeneralKit")
