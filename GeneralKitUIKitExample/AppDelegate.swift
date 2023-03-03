@@ -7,6 +7,7 @@
 
 import UIKit
 import GeneralKit
+import MBProgressHUD
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,7 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RequestBuilder.shared.waitingView { value in
             if value {
                 print("loader loaded")
+                DispatchQueue.main.async {
+                    if let view:UIView = UIApplication.shared.bs_window?.rootViewController?.view{
+                        MBProgressHUD.showAdded(to:view, animated: true);
+                    }
+                }
             }else{
+                DispatchQueue.main.async {
+                    if let view:UIView = UIApplication.shared.bs_window?.rootViewController?.view{
+                        MBProgressHUD.hide(for:view, animated: true);
+                    }
+                }
                 print("loader dismiss")
             }
         }
@@ -57,3 +68,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+extension UIApplication{
+    public var bs_window: UIWindow? {
+        if #available(iOS 13.0, *) {
+            return UIApplication
+                .shared
+                .connectedScenes
+                .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+                .first { $0.isKeyWindow }
+        } else {
+            return UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        }
+   }
+}

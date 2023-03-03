@@ -20,14 +20,16 @@ target 'GeneralKitExample' do
   pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
+  pod 'MBProgressHUD'
 
 end
 target 'GeneralKitUIKitExample' do
   use_frameworks!
-  pod 'Alamofire'
+  pod 'Alamofire','~> 5.0.0-rc.2'
   pod 'ObjectMapper'
   pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
+  pod 'MBProgressHUD'
 
 end
