@@ -21,7 +21,7 @@ class NormalNetworkExampleViewController: UIViewController {
             .build()
             .responseHandler({ response in
             ResponseHandler.check(response, { baseResponse in
-
+                print(baseResponse);
             })
         }).execute()
     }
@@ -47,7 +47,7 @@ class NormalNetworkExampleViewController: UIViewController {
             .baseRequest(NewRequest.init(.multipartRequest(s_phone:nil, image:nil)))
             .build()
             .executeWithCheckResponse { baseResponse in
-            
+            print(baseResponse)
         }
     }
 

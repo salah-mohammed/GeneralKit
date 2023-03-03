@@ -23,6 +23,11 @@ public class ResponseHandler:NSObject{
     static func check(_ dataReponse:DataResponse<BaseResponse,AFError>,
                                _ successFinish:((BaseResponse)->Void)?,
                                error:(()->Void)? = nil){
+        if let value:BaseResponse = dataReponse.value {
+            successFinish?(value)
+        }else{
+            error?();
+        }
         
     }
 }
