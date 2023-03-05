@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SalahUtility
 struct ItemsView: View {
     @StateObject var viewModel = ItemsViewModel()
     @State var headerSize: CGSize = .zero
@@ -44,5 +43,23 @@ struct LoadMoreView: View {
         .padding()
         .onAppear(perform:action)
         .listRowSeparator(.hidden)
+    }
+}
+
+@available(iOS 13.0, *)
+public struct ActivityIndicator: UIViewRepresentable {
+
+    @Binding public var isAnimating: Bool
+    let style: UIActivityIndicatorView.Style
+    public init(style:UIActivityIndicatorView.Style,isAnimating:Binding<Bool>) {
+        _isAnimating = isAnimating
+        self.style = style
+     }
+    public func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+        return UIActivityIndicatorView(style: style)
+    }
+
+    public func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
 }

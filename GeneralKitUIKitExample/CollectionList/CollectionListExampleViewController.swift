@@ -7,7 +7,6 @@
 
 import UIKit
 import GeneralKit
-import SalahUtility
 class CollectionListExampleViewController: UIViewController {
     @IBOutlet weak var collectionView:GeneralCollectionView!
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()

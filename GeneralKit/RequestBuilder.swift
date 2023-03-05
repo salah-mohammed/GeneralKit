@@ -90,12 +90,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
         var dic = Parameters();
         for object in (self.baseRequest?.parameters ?? Parameters()){
             let key = object.key
-            if var  value :  String = object.value as? String{
-                value = value.bs_arNumberToEn()
-                dic[key]=value;
-            }else{
-                dic[key]=object.value;
-            }
+            dic[key]=object.value;
         }
         return dic;
     }

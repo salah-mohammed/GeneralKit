@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
-import SalahUtility
 
 public protocol PaginationManagerProtocol{
 var hasNextPage:Bool{get}

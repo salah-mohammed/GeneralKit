@@ -7,7 +7,6 @@ target 'GeneralKit' do
   # Pods for GeneralKit
 pod 'Alamofire'
 pod 'ObjectMapper'
-pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
 pod 'AlamofireObjectMapper'
 pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
 
@@ -17,7 +16,6 @@ target 'GeneralKitExample' do
   use_frameworks!
   pod 'Alamofire'
   pod 'ObjectMapper'
-  pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
   pod 'MBProgressHUD'
@@ -27,7 +25,6 @@ target 'GeneralKitUIKitExample' do
   use_frameworks!
   pod 'Alamofire','~> 5.0.0-rc.2'
   pod 'ObjectMapper'
-  pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
   pod 'MBProgressHUD'

@@ -138,8 +138,6 @@ s.resources = 'Pod/Resources/*'
   s.dependency "Alamofire", "~> 5.0.0-rc.2"
   s.dependency "ObjectMapper"
   s.dependency "AlamofireObjectMapper"
-
-  s.dependency "SalahUtility"
   s.dependency "AppTexts"
 
 s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }

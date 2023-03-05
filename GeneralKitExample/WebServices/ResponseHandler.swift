@@ -37,7 +37,7 @@ public class ResponseHandler:NSObject{
          self.paginationManager = paginationManager
          self.paginationManager.hasNextPageHandler { response in
              if let currentPage:Int = response.currentPage,
-                let totalPages:Int = response.response?.value?.pagination?.i_total_pages?.bs_Int{
+                let totalPages:Int = response.response?.value?.pagination?.i_total_pages?.intValue{
                 return (currentPage < totalPages)
              }else{
             return false
