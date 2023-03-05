@@ -23,15 +23,14 @@ class CollectionListExampleViewController: UIViewController {
         collectionView.bs_register("NewCollectionViewCell")
     }
     func setupData(){
-        //        collectionView.register(UINib(nibName: "SectionHeaderCollectionView", bundle: nil), forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeaderCollectionView")
-        collectionView.selectionType = .non
+        collectionView.selectionType = .multi
         collectionView.converterHandler { item in
             let value = (UIScreen.main.bounds.width-40)/2;
             return GeneralCellData.init(identifier:"NewCollectionViewCell", object: item,cellSize:CGSize.init(width:value, height:value))
         }
-        //        collectionView.containsHandler = { object1 , object2 in
-        //            return (object1 as? User)?.id == (object2 as? User)?.id
-        //        }
+        collectionView.containsHandler = { object1 , object2 in
+        return (object1 as? User)?.id == (object2 as? User)?.id
+        }
     }
     func paginationSetup(){
         paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);

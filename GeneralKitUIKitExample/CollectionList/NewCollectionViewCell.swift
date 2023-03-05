@@ -8,10 +8,12 @@
 import UIKit
 import GeneralKit
 class NewCollectionViewCell:GeneralCollectionViewCell {
+    @IBOutlet weak var btnSelect: UIButton!
+    @IBOutlet weak var imgSelect: UIImageView!
     override func config(_ indexPath: IndexPath,
                          _ data:GeneralCellData) {
         super.config(indexPath, data)
-        self.backgroundColor = data.selected ? UIColor.red:UIColor.yellow;
+        self.imgSelect.image = data.selected ? UIImage(named:"ic_checked"):UIImage(named:"ic_not_checked")
     }
     override func layoutSubviews() {
         super.layoutSubviews();
@@ -20,6 +22,12 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
     }
     override func itemSelected() {
         super.itemSelected();
+        selection();
+    }
+    @IBAction func btnSelect(_ sender: Any) {
+        selection();
+    }
+    func selection(){
         if let  object:GeneralCellData = self.object{
             self.list?.selectAndDeselect(object);
         }

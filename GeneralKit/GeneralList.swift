@@ -111,9 +111,9 @@ public protocol GeneralListViewProrocol:class {
     var enablePagination:Bool{get set}
     var enablePullToRefresh:Bool{get set}
     var backgroundView: UIView?{get set}
-    var errorConnectionView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultErrorConnectionData;
-    var emptyDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultEmptyData;
-    var loadingDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultLoadingData;
+    var errorConnectionView: ListPlaceHolder?{get set}
+    var emptyDataView: ListPlaceHolder?{get set}
+    var loadingDataView: ListPlaceHolder?{get set}
     func paginationManager(_ paginationManager:PaginationManagerProtocol) -> Self
     func start();
     func reloadData()
