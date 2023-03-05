@@ -11,23 +11,31 @@ class TableSectionListExampleViewController: UIViewController {
     @IBOutlet weak var tableView:GeneralTableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.selectionType = .single(optional:true)
+        self.setupView();
+        setupView();
+        setupData();
+    }
+    
+    func setupView(){
+        self.tableView.register(TableSectionViewHeader.self, forHeaderFooterViewReuseIdentifier:"TableSectionViewHeader")
         self.tableView.bs_registerNib(NibName:"NewTableViewCell");
-        self.tableView.enablePullToRefresh=false
-        self.tableView.containsHandler = { object1,object2 in
-        return (object1 as! String) == (object2 as! String)
+        self.tableView.heightForHeaderInSectionHandler = { section in
+          return 50
         }
-        tableView.register(TableSectionViewHeader.self, forHeaderFooterViewReuseIdentifier:"TableSectionViewHeader")
-
         self.tableView.sectionViewHandler = { section in
             let cell = self.tableView!.dequeueReusableHeaderFooterView(withIdentifier:"TableSectionViewHeader") as! TableSectionViewHeader
             cell.tableView=self.tableView
             cell.section = section
             return cell
         }
-        self.tableView.heightForHeaderInSectionHandler = { section in
-          return 50
+    }
+    func setupData(){
+        self.tableView.selectionType = .single(optional:false)
+        self.tableView.enablePullToRefresh=false
+        self.tableView.containsHandler = { object1,object2 in
+        return (object1 as! String) == (object2 as! String)
         }
+        
         var section0 = [GeneralCellData.init(identifier:"NewTableViewCell", object:"1"),
                          GeneralCellData.init(identifier:"NewTableViewCell", object:"2"),
                          GeneralCellData.init(identifier:"NewTableViewCell", object:"3"),
@@ -71,8 +79,6 @@ class TableSectionListExampleViewController: UIViewController {
             })
         })
     }
-    
-
     /*
     // MARK: - Navigation
 

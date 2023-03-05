@@ -23,8 +23,13 @@ class NewTableViewCell: GeneralTableViewCell {
     override func config(_ indexPath: IndexPath,
                          _ data:GeneralCellData) {
         super.config(indexPath,data);
-        self.accessoryType = self.object?.selected ?? false  ? .checkmark:.none
-        self.lblSubtitle.text = (data.object as? String) ?? (data.object as? User)?.username ?? ""
+        self.accessoryType = data.selected ? .checkmark:.none
+        if let user:User = data.object as? User{
+            self.lblSubtitle.text = (indexPath.row+1).bs_string+" "+(user.username ?? "")
+
+        }else{
+            self.lblSubtitle.text = (data.object as? String) ?? ""
+        }
     }
     open override func itemSelected() {
         super.itemSelected();

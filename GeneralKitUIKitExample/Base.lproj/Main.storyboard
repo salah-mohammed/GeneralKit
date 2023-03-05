@@ -252,7 +252,7 @@
             </objects>
             <point key="canvasLocation" x="57" y="-1444"/>
         </scene>
-        <!--Pagination UITableView-->
+        <!--UITableView (Pagination)-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TableListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -261,7 +261,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XtH-Bh-cm7" customClass="GeneralTableView" customModule="GeneralKit">
-                                <rect key="frame" x="0.0" y="143" width="390" height="667"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -274,7 +274,7 @@
                             <constraint firstItem="XtH-Bh-cm7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rE7-GY-duq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Pagination UITableView" id="TrW-he-Q4Z"/>
+                    <navigationItem key="navigationItem" title="UITableView (Pagination)" largeTitleDisplayMode="never" id="TrW-he-Q4Z"/>
                     <connections>
                         <outlet property="tableView" destination="XtH-Bh-cm7" id="KmJ-bX-3NO"/>
                     </connections>
@@ -283,7 +283,7 @@
             </objects>
             <point key="canvasLocation" x="82" y="-748"/>
         </scene>
-        <!--Collection with Pagination-->
+        <!--UICollection (Pagination)-->
         <scene sceneID="K8E-1A-m5W">
             <objects>
                 <viewController storyboardIdentifier="CollectionListExampleViewController" id="hvf-xX-cwr" customClass="CollectionListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -292,7 +292,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OeU-oZ-Ukz" customClass="GeneralCollectionView" customModule="GeneralKit">
-                                <rect key="frame" x="0.0" y="143" width="390" height="667"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RMk-fr-bj9">
                                     <size key="itemSize" width="128" height="128"/>
@@ -313,7 +313,7 @@
                             <constraint firstItem="5ug-Nj-IJC" firstAttribute="trailing" secondItem="OeU-oZ-Ukz" secondAttribute="trailing" id="iQz-pc-AZd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Collection with Pagination" id="nTY-X9-uQa"/>
+                    <navigationItem key="navigationItem" title="UICollection (Pagination)" largeTitleDisplayMode="never" id="nTY-X9-uQa"/>
                     <connections>
                         <outlet property="collectionView" destination="OeU-oZ-Ukz" id="Wi9-SZ-9k0"/>
                     </connections>
@@ -322,7 +322,7 @@
             </objects>
             <point key="canvasLocation" x="82" y="776"/>
         </scene>
-        <!--UITableView(Section)-->
+        <!--UITableView (Section)-->
         <scene sceneID="f1n-5g-Txt">
             <objects>
                 <viewController storyboardIdentifier="TableSectionListExampleViewController" id="Fba-RD-Uus" customClass="TableSectionListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -331,7 +331,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qs8-Qf-LwS" customClass="GeneralTableView" customModule="GeneralKit">
-                                <rect key="frame" x="0.0" y="143" width="390" height="667"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -344,7 +344,7 @@
                             <constraint firstItem="RSb-Kd-HZv" firstAttribute="trailing" secondItem="Qs8-Qf-LwS" secondAttribute="trailing" id="fEu-fj-JtR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="UITableView(Section)" id="RPm-gQ-THs"/>
+                    <navigationItem key="navigationItem" title="UITableView (Section)" largeTitleDisplayMode="never" id="RPm-gQ-THs"/>
                     <connections>
                         <outlet property="tableView" destination="Qs8-Qf-LwS" id="i7A-31-nOc"/>
                     </connections>
@@ -353,7 +353,7 @@
             </objects>
             <point key="canvasLocation" x="82" y="28"/>
         </scene>
-        <!--CollectionView Section-->
+        <!--UICollectionView (Section)-->
         <scene sceneID="AyT-NB-OQl">
             <objects>
                 <viewController storyboardIdentifier="CollectionSectionListExampleViewController" id="BuM-uF-PaV" customClass="CollectionSectionListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -362,7 +362,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D0o-hQ-rWL" customClass="GeneralCollectionView" customModule="GeneralKit">
-                                <rect key="frame" x="0.0" y="143" width="390" height="667"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FYC-Ns-MQz">
                                     <size key="itemSize" width="128" height="128"/>
@@ -383,7 +383,7 @@
                             <constraint firstItem="D0o-hQ-rWL" firstAttribute="leading" secondItem="7jT-ht-RMd" secondAttribute="leading" id="VMu-qm-xAd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CollectionView Section" id="aIM-yl-8iH"/>
+                    <navigationItem key="navigationItem" title="UICollectionView (Section)" largeTitleDisplayMode="never" id="aIM-yl-8iH"/>
                     <connections>
                         <outlet property="collectionView" destination="D0o-hQ-rWL" id="3uG-yI-7cw"/>
                     </connections>

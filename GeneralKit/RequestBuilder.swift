@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
-import SalahUtility
+//import SalahUtility
 
 open class BaseModel:Mappable{
     required  public init?(map: ObjectMapper.Map) {

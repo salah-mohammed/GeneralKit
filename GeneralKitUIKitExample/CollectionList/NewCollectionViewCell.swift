@@ -11,7 +11,7 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
     override func config(_ indexPath: IndexPath,
                          _ data:GeneralCellData) {
         super.config(indexPath, data)
-        self.backgroundColor = self.object?.selected ?? false ? UIColor.red:UIColor.yellow;
+        self.backgroundColor = data.selected ? UIColor.red:UIColor.yellow;
     }
     override func layoutSubviews() {
         super.layoutSubviews();

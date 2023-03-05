@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -164,7 +164,6 @@
 		4ECFD2FA28DF415E006A5087 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4ECFD2FF28DF41B9006A5087 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4ECFD30628DF465E006A5087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		4ECFD30C28DF4B4F006A5087 /* RequestOperationBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestOperationBuilder.swift; sourceTree = "<group>"; };
 		4ECFD30E28DF515A006A5087 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		4EE7AF1428E8216F00B81C8B /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
 		4EE7AF1628E8249100B81C8B /* PaginationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationManager.swift; sourceTree = "<group>"; };
@@ -288,7 +287,6 @@
 				8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */,
 				4ECFD2E828DF170F006A5087 /* BaseRequest.swift */,
 				4ECFD2EA28DF175B006A5087 /* ValidationObject.swift */,
-				4ECFD30C28DF4B4F006A5087 /* RequestOperationBuilder.swift */,
 				4ECFD30E28DF515A006A5087 /* RequestBuilder.swift */,
 				4EE7AF1628E8249100B81C8B /* PaginationManager.swift */,
 				8B091F49290C290100D38C91 /* GeneralList.swift */,

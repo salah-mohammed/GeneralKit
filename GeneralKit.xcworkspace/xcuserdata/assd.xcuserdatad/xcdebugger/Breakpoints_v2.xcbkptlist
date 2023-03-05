@@ -23,54 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9DB0DBF4-CA2C-4681-9CD7-8C0FF67A2D26"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeneralKitUIKitExample/TableList/NewTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "itemSelected()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9DB0DBF4-CA2C-4681-9CD7-8C0FF67A2D26 - 93345feae897a271"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GeneralKitUIKitExample.NewTableViewCell.itemSelected() -&gt; ()"
-                  moduleName = "GeneralKitUIKitExample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKitUIKitExample/TableList/NewTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "85">
-               </Location>
-               <Location
-                  uuid = "9DB0DBF4-CA2C-4681-9CD7-8C0FF67A2D26 - 93345feae897a271"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GeneralKitUIKitExample.NewTableViewCell.itemSelected() -&gt; ()"
-                  moduleName = "GeneralKitUIKitExample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/GeneralKit/GeneralKitUIKitExample/TableList/NewTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "145">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9EB78C1D-91EE-4AC1-BF1F-7CFA93E6C719"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
