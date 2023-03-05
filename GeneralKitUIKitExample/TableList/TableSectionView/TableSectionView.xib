@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,9 +21,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="379" height="54"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CO-qF-K5E">
-                                    <rect key="frame" x="15.999999999999996" y="0.0" width="43.666666666666657" height="54"/>
+                                    <rect key="frame" x="16" y="0.0" width="44" height="54"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -44,7 +44,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="chb-Mv-LaL"/>
-            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="SectionColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="jGH-ne-soJ" secondAttribute="bottom" id="Sa9-ai-VHn"/>
                 <constraint firstItem="jGH-ne-soJ" firstAttribute="leading" secondItem="chb-Mv-LaL" secondAttribute="leading" id="hXa-TY-dkW"/>
@@ -58,4 +58,9 @@
             <point key="canvasLocation" x="72.799999999999997" y="45.877061469265371"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="SectionColor">
+            <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

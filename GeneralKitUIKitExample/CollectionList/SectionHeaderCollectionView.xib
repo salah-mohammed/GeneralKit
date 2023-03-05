@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +24,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="SectionColor"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="jwM-Zo-dIp" secondAttribute="bottom" id="22T-9I-art"/>
                         <constraint firstAttribute="trailing" secondItem="jwM-Zo-dIp" secondAttribute="trailing" constant="16" id="Hk6-zL-bkZ"/>
@@ -45,4 +46,9 @@
             <point key="canvasLocation" x="186.15384615384616" y="118.00947867298578"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <namedColor name="SectionColor">
+            <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
