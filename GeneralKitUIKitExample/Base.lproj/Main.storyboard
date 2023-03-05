@@ -252,7 +252,7 @@
             </objects>
             <point key="canvasLocation" x="57" y="-1444"/>
         </scene>
-        <!--Table List Example View Controller-->
+        <!--Pagination UITableView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TableListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -274,7 +274,7 @@
                             <constraint firstItem="XtH-Bh-cm7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rE7-GY-duq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="WUe-a0-csq"/>
+                    <navigationItem key="navigationItem" title="Pagination UITableView" id="TrW-he-Q4Z"/>
                     <connections>
                         <outlet property="tableView" destination="XtH-Bh-cm7" id="KmJ-bX-3NO"/>
                     </connections>
@@ -283,7 +283,7 @@
             </objects>
             <point key="canvasLocation" x="82" y="-748"/>
         </scene>
-        <!--Collection List Example View Controller-->
+        <!--Collection with Pagination-->
         <scene sceneID="K8E-1A-m5W">
             <objects>
                 <viewController storyboardIdentifier="CollectionListExampleViewController" id="hvf-xX-cwr" customClass="CollectionListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -313,7 +313,7 @@
                             <constraint firstItem="5ug-Nj-IJC" firstAttribute="trailing" secondItem="OeU-oZ-Ukz" secondAttribute="trailing" id="iQz-pc-AZd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="89H-UT-lyQ"/>
+                    <navigationItem key="navigationItem" title="Collection with Pagination" id="nTY-X9-uQa"/>
                     <connections>
                         <outlet property="collectionView" destination="OeU-oZ-Ukz" id="Wi9-SZ-9k0"/>
                     </connections>
@@ -322,7 +322,7 @@
             </objects>
             <point key="canvasLocation" x="82" y="776"/>
         </scene>
-        <!--Table Section List Example View Controller-->
+        <!--UITableView(Section)-->
         <scene sceneID="f1n-5g-Txt">
             <objects>
                 <viewController storyboardIdentifier="TableSectionListExampleViewController" id="Fba-RD-Uus" customClass="TableSectionListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -344,7 +344,7 @@
                             <constraint firstItem="RSb-Kd-HZv" firstAttribute="trailing" secondItem="Qs8-Qf-LwS" secondAttribute="trailing" id="fEu-fj-JtR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VUj-Lz-KYn"/>
+                    <navigationItem key="navigationItem" title="UITableView(Section)" id="RPm-gQ-THs"/>
                     <connections>
                         <outlet property="tableView" destination="Qs8-Qf-LwS" id="i7A-31-nOc"/>
                     </connections>
@@ -353,7 +353,7 @@
             </objects>
             <point key="canvasLocation" x="82" y="28"/>
         </scene>
-        <!--Collection Section List Example View Controller-->
+        <!--CollectionView Section-->
         <scene sceneID="AyT-NB-OQl">
             <objects>
                 <viewController storyboardIdentifier="CollectionSectionListExampleViewController" id="BuM-uF-PaV" customClass="CollectionSectionListExampleViewController" customModule="GeneralKitUIKitExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -383,7 +383,7 @@
                             <constraint firstItem="D0o-hQ-rWL" firstAttribute="leading" secondItem="7jT-ht-RMd" secondAttribute="leading" id="VMu-qm-xAd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6OY-m4-pqo"/>
+                    <navigationItem key="navigationItem" title="CollectionView Section" id="aIM-yl-8iH"/>
                     <connections>
                         <outlet property="collectionView" destination="D0o-hQ-rWL" id="3uG-yI-7cw"/>
                     </connections>
