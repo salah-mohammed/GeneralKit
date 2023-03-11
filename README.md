@@ -120,6 +120,19 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
+- For Multipart Request use ValidationObject.MultiPartObject that in Your request Example UserRequest.swift
+
+```swift
+ RequestOperationBuilder<BaseResponse>.init()
+ .multipart(true)
+ .baseRequest(UserRequest.init(.profile(image:nil)))
+ .build()
+ .responseHandler({ response in
+        ResponseHandler.check(response, { baseResponse in
+               print(baseResponse);
+        })
+   }).execute()
+```
 - Parameter Encoding use(JSONEncoding.default or URLEncoding.default)
 ```swift
  RequestOperationBuilder<BaseResponse>.init()
