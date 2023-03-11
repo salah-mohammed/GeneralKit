@@ -18,6 +18,7 @@ class UserRequest:BaseRequest{
     public enum Route{
         case users
         case login
+        case profile(image:Data?=nil)
     }
     private var route:Route
     init(_ route:Route) {
@@ -29,6 +30,8 @@ class UserRequest:BaseRequest{
             return "usersList\(self.page ?? "1").json";
         case .login:
             return "login"
+        case .profile(image: let image):
+            return "profile"
         }
     }  // for request path
     override var header : HTTPHeaders?{
@@ -41,19 +44,29 @@ class UserRequest:BaseRequest{
             break;
         case .login:
             break;
+        case .profile:
+            break;
         }
         return parameters;
     } // request paramter
     override var type:HTTPMethod!{
         switch self.route{
-        case .login,.users:
+        case .profile,.login:
+            return .post
+        case .users:
             return .get
         }
     } // for post type : .post,.get,.delete
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
-        let items = [ValidationObject.MultiPartObject]();
+        var items = [ValidationObject.MultiPartObject]();
         switch self.route{
         case .users,.login:
+            return items
+        case .profile(image:let imageData):
+            if let imageData:Data = imageData{
+                let multiPartObject = ValidationObject.MultiPartObject.init(data:imageData, name:"photo", fileName:"file.png", mimeType: "image/*");
+                items.append(multiPartObject)
+            }
             return items
         }
     }
