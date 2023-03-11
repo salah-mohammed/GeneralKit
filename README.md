@@ -31,7 +31,7 @@ pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
  
 ```
 - Base Request
-```
+```swift
 import Foundation
 import GeneralKit
 import Alamofire
@@ -40,7 +40,7 @@ import AlamofireObjectMapper
 
 class UserRequest:BaseRequest{
     override var baseUrl:String{
-    return  "https://nfcard.online/Salah/"
+    return  "https://www.google.com"
     }
     public enum Route{
         case users
@@ -85,7 +85,7 @@ class UserRequest:BaseRequest{
         }
     }
 }
-```swift
+```
 - Normal request example
 
 ```swift
