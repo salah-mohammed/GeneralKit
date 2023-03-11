@@ -132,7 +132,7 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
-UITableView Example
+UITableView with Pagination Example
 ```swift
 import UIKit
 import GeneralKit
