@@ -2,6 +2,7 @@
 
 GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code.
 
+![alt text](https://drive.google.com/file/d/1m2G8yNMKq8rqRlcRV4xXCpunVm6h_Pv4/view?usp=share_link)
 
 # Features
 
