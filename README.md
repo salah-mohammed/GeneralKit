@@ -146,7 +146,7 @@ class UserRequest:BaseRequest{
    }).execute()
 ```
 - For (Multipart if have data) 
-second in Your request class for Example: in UserRequest
+second: in Your request class for Example: in UserRequest.swift
     ```swift
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
         var items = [ValidationObject.MultiPartObject]();
