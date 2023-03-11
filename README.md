@@ -51,3 +51,15 @@ pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
             
      }
 ```
+- Force Multipart Request 
+
+```swift
+ RequestOperationBuilder<BaseResponse>.init()
+ .baseRequest(UserRequest.init(.profile(image:nil)))
+ .build()
+ .responseHandler({ response in
+        ResponseHandler.check(response, { baseResponse in
+               print(baseResponse);
+        })
+   }).execute()
+```
