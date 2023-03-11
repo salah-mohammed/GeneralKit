@@ -132,3 +132,37 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
+UITableView Example
+```swift
+import UIKit
+import GeneralKit
+import Alamofire
+import ObjectMapper
+import AlamofireObjectMapper
+
+class TableListExampleViewController: UIViewController {
+    @IBOutlet weak var tableView:GeneralTableView!
+    var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
+    var paginationResponseHandler:PaginationResponseHandler?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.bs_registerNib(NibName:"NewTableViewCell");
+        paginationSetup();
+        tableView.paginationManager(paginationManager).identifier("NewTableViewCell").start();
+    }
+    func paginationSetup(){
+        paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
+        paginationManager.baseRequest(UserRequest.init(.users));
+        self.paginationManager.responseHandler { response in
+            
+            if response.value?.pagination?.i_current_page == 1{
+                self.tableView.handleAny(.objects([response.value?.users ?? []]),response.error)
+            }else{
+                self.tableView.handleAny(.appendItemsInSection(atRow: nil,response.value?.users ?? []),response.error)
+            }
+        }
+    }
+
+}
+```
