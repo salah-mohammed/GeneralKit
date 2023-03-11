@@ -297,7 +297,7 @@ GeneralListConstant.global.emptyDataViewHandler = {
       return view
  }
 ```
-- Full Screen loader for: 
+- Full Screen loader: 
 put this code in App Delegate for show full screen loader for all requests in your app.
 ```swift
 // for full screen loader
