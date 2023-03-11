@@ -42,3 +42,12 @@ pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
         })
    }).execute()
 ```
+- Normal Request as GeneralKit Example
+```swift
+   RequestOperationBuilder<BaseResponse>.init()
+    .baseRequest(NewRequest.init(.firstRequest(s_phone: nil)))
+    .build()
+    .executeWithCheckResponse { baseResponse in
+            
+     }
+```
