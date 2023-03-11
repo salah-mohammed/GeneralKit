@@ -2,7 +2,6 @@
 
 GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code.
 
-![alt text](https://drive.google.com/file/d/1m2G8yNMKq8rqRlcRV4xXCpunVm6h_Pv4/view?usp=share_link)
 
 # Features
 
@@ -24,14 +23,13 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 * IOS 13+ 
 * Swift 5+
 
-# How used (configuration): 
 
 # Pod install
 ```ruby
 pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
  
 ```
-# How used (Webservice configuration only):
+# How used (Webservice configuration):
 - Base Request
 ```swift
 import Foundation
@@ -134,7 +132,7 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
-# How used (Webservice  and UIKit):
+# How used (Webservice and UIKit):
 - UITableView with Pagination Example
 ```swift
 import UIKit
@@ -244,7 +242,7 @@ case replaceObject(IndexPath,GeneralCellData)
 }
 ```
 
-- default placeholder view for (UITableView and for UICollectionView): 
+- Default placeholder view for (UITableView and for UICollectionView): 
  put this code in App Delegate for (UITableView and for UICollectionView) in your app.
 ```swift
 GeneralListConstant.global.loadingDataHandler = {
@@ -264,7 +262,7 @@ GeneralListConstant.global.emptyDataViewHandler = {
  }
 ```
 
-# How used (Webservice  and SwiftUI):
+# How used (Webservice and SwiftUI):
 - List with Pagination Example
 ```swift
 import Foundation
