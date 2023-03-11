@@ -297,7 +297,20 @@ GeneralListConstant.global.emptyDataViewHandler = {
       return view
  }
 ```
-
+- Full Screen loader for: 
+put this code in App Delegate for show full screen loader for all requests in your app.
+```swift
+// for full screen loader
+RequestBuilder.shared.waitingView { value in
+    if value {
+        // show loader
+        print("loader loaded")
+    }else{
+        //  dismiss loader
+        print("loader dismiss")
+    }
+}
+```
 # How used (Webservice and SwiftUI):
 - List with Pagination Example
 ```swift
