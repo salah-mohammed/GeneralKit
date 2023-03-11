@@ -120,7 +120,7 @@ class UserRequest:BaseRequest{
             
      }
 ```
-- Force Multipart Request 
+- Force Multipart Request always
 
 ```swift
  RequestOperationBuilder<BaseResponse>.init()
@@ -133,11 +133,10 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
-- For Multipart Request use ValidationObject.MultiPartObject that in Your request Example UserRequest.swift
-
+- For (Multipart if have data) 
+ first:
 ```swift
  RequestOperationBuilder<BaseResponse>.init()
- .multipart(true)
  .baseRequest(UserRequest.init(.profile(image:nil)))
  .build()
  .responseHandler({ response in
@@ -145,7 +144,10 @@ class UserRequest:BaseRequest{
                print(baseResponse);
         })
    }).execute()
-    // in Your request class for Example: in UserRequest
+```
+- For (Multipart if have data) 
+second in Your request class for Example: in UserRequest
+    ```swift
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
         var items = [ValidationObject.MultiPartObject]();
         switch self.route{
