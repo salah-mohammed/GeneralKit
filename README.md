@@ -147,7 +147,7 @@ class UserRequest:BaseRequest{
 ```
 - For (Multipart if have data) 
 second: in Your request class for Example: in UserRequest.swift
-    ```swift
+```swift
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
         var items = [ValidationObject.MultiPartObject]();
         switch self.route{
