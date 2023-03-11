@@ -220,3 +220,42 @@ class CollectionListExampleViewController: UIViewController {
     }
 }
 ```
+- GeneralKit Tools to present data in UITableView and UICollectionView.
+
+```swift
+public enum AnyHandling{
+case objects([[Any]])
+case appendObject(section:Int=0,atRow:Int?,Any)
+case appendNewSection(Int?,[Any])
+case appendItemsInSection(section:Int=0,atRow:Int?,[Any])
+case replaceObject(IndexPath,Any) // replce item in section
+
+}
+public enum DataHandling{
+case objects([[GeneralCellData]])
+case appendObject(section:Int=0,atRow:Int?,GeneralCellData)// work
+case appendNewSection(Int?,[GeneralCellData]) // work
+case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])// work
+case replaceObject(IndexPath,GeneralCellData) // replce item in section
+
+}
+```
+
+- default placeholder view for (UITableView and for UICollectionView): put this code in App Delegate to present view for all (UITableView and for UICollectionView) in your app.
+```swift
+        GeneralListConstant.global.loadingDataHandler = {
+            let view = ListPlaceHolderView.loadViewFromNib()
+            view.data=LoadingData
+            return view
+        }
+        GeneralListConstant.global.errorConnectionDataViewHandler = {
+            let view = ListPlaceHolderView.loadViewFromNib()
+            view.data=ErrorConnection
+            return view
+        }
+        GeneralListConstant.global.emptyDataViewHandler = {
+            let view = ListPlaceHolderView.loadViewFromNib()
+            view.data=EmptyData
+            return view
+        }
+```
