@@ -1,6 +1,6 @@
 # GeneralKit
 
-GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code.   
+GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code.
 
 
 # Features
@@ -57,6 +57,18 @@ pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
  RequestOperationBuilder<BaseResponse>.init()
  .multipart(true)
  .baseRequest(UserRequest.init(.profile(image:nil)))
+ .build()
+ .responseHandler({ response in
+        ResponseHandler.check(response, { baseResponse in
+               print(baseResponse);
+        })
+   }).execute()
+```
+- Parameter Encoding use(JSONEncoding.default or URLEncoding.default(default value))
+```swift
+ RequestOperationBuilder<BaseResponse>.init()
+ .encoding(JSONEncoding.default)
+ .baseRequest(UserRequest.init(.login(s_phone: nil)))
  .build()
  .responseHandler({ response in
         ResponseHandler.check(response, { baseResponse in
