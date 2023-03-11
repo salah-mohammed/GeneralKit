@@ -228,15 +228,15 @@ case objects([[Any]])
 case appendObject(section:Int=0,atRow:Int?,Any)
 case appendNewSection(Int?,[Any])
 case appendItemsInSection(section:Int=0,atRow:Int?,[Any])
-case replaceObject(IndexPath,Any) // replce item in section
+case replaceObject(IndexPath,Any)
 
 }
 public enum DataHandling{
 case objects([[GeneralCellData]])
-case appendObject(section:Int=0,atRow:Int?,GeneralCellData)// work
-case appendNewSection(Int?,[GeneralCellData]) // work
-case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])// work
-case replaceObject(IndexPath,GeneralCellData) // replce item in section
+case appendObject(section:Int=0,atRow:Int?,GeneralCellData)
+case appendNewSection(Int?,[GeneralCellData]) 
+case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])
+case replaceObject(IndexPath,GeneralCellData) 
 
 }
 ```
