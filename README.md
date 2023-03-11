@@ -2,7 +2,6 @@
 
 GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code.
 
-
 # Features
 
 * It is a Data management Library  support HTTP networking.
@@ -359,3 +358,12 @@ class ItemsViewModel:NSObject,ObservableObject{
     }
 }
 ```
+#Result:
+it is very important framework for IOS developers to create IOS project with minimum code.
+
+# Developer's information to communicate
+
+- salah.mohamed_1995@hotmail.com
+- https://www.facebook.com/salah.shaker.7
+- +972597105861 (whatsApp And PhoneNumber)
+- https://www.linkedin.com/in/salah-mohamed-676b6a17a (Linkedin)
