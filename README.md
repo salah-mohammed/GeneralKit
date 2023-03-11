@@ -2,7 +2,6 @@
 
 GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code.
 
-
 # Features
 
 * It is a Data management Library  support HTTP networking.
@@ -23,14 +22,13 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 * IOS 13+ 
 * Swift 5+
 
-# How used (configuration): 
 
 # Pod install
 ```ruby
 pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
  
 ```
-# How used (Webservice configuration only):
+# How used (Webservice configuration):
 - Base Request
 ```swift
 import Foundation
@@ -41,11 +39,12 @@ import AlamofireObjectMapper
 
 class UserRequest:BaseRequest{
     override var baseUrl:String{
-    return  "https://www.google.com"
+    return  "https://nfcard.online/Salah/"
     }
     public enum Route{
         case users
         case login
+        case profile(image:Data?=nil)
     }
     private var route:Route
     init(_ route:Route) {
@@ -57,6 +56,8 @@ class UserRequest:BaseRequest{
             return "usersList\(self.page ?? "1").json";
         case .login:
             return "login"
+        case .profile(image: let image):
+            return "profile"
         }
     }  // for request path
     override var header : HTTPHeaders?{
@@ -69,19 +70,29 @@ class UserRequest:BaseRequest{
             break;
         case .login:
             break;
+        case .profile:
+            break;
         }
         return parameters;
     } // request paramter
     override var type:HTTPMethod!{
         switch self.route{
-        case .login,.users:
+        case .profile,.login:
+            return .post
+        case .users:
             return .get
         }
     } // for post type : .post,.get,.delete
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
-        let items = [ValidationObject.MultiPartObject]();
+        var items = [ValidationObject.MultiPartObject]();
         switch self.route{
         case .users,.login:
+            return items
+        case .profile(image:let imageData):
+            if let imageData:Data = imageData{
+                let multiPartObject = ValidationObject.MultiPartObject.init(data:imageData, name:"photo", fileName:"file.png", mimeType: "image/*");
+                items.append(multiPartObject)
+            }
             return items
         }
     }
@@ -108,7 +119,7 @@ class UserRequest:BaseRequest{
             
      }
 ```
-- Force Multipart Request 
+- Force Multipart Request always
 
 ```swift
  RequestOperationBuilder<BaseResponse>.init()
@@ -120,6 +131,35 @@ class UserRequest:BaseRequest{
                print(baseResponse);
         })
    }).execute()
+```
+- For (Multipart if have data) 
+ first:
+```swift
+ RequestOperationBuilder<BaseResponse>.init()
+ .baseRequest(UserRequest.init(.profile(image:nil)))
+ .build()
+ .responseHandler({ response in
+        ResponseHandler.check(response, { baseResponse in
+               print(baseResponse);
+        })
+   }).execute()
+```
+- For (Multipart if have data) 
+second: in Your request class for Example: in UserRequest.swift
+```swift
+    override var multiPartObjects : [ValidationObject.MultiPartObject]{
+        var items = [ValidationObject.MultiPartObject]();
+        switch self.route{
+        case .users,.login:
+            return items
+        case .profile(image:let imageData):
+            if let imageData:Data = imageData{
+                let multiPartObject = ValidationObject.MultiPartObject.init(data:imageData, name:"photo", fileName:"file.png", mimeType: "image/*");
+                items.append(multiPartObject)
+            }
+            return items
+        }
+    }
 ```
 - Parameter Encoding use(JSONEncoding.default or URLEncoding.default)
 ```swift
@@ -133,7 +173,7 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
-# How used (Webservice  and UIKit):
+# How used (Webservice and UIKit):
 - UITableView with Pagination Example
 ```swift
 import UIKit
@@ -171,12 +211,6 @@ class TableListExampleViewController: UIViewController {
 
 - UICollectionView with Pagination Example with selection feature for items
 ```swift
-//
-//  CollectionListExampleViewController.swift
-//  GeneralKitUIKitExample
-//
-//  Created by SalahMohamed on 24/10/2022.
-//
 
 import UIKit
 import GeneralKit
@@ -243,7 +277,7 @@ case replaceObject(IndexPath,GeneralCellData)
 }
 ```
 
-- default placeholder view for (UITableView and for UICollectionView): 
+- Default placeholder view for (UITableView and for UICollectionView): 
  put this code in App Delegate for (UITableView and for UICollectionView) in your app.
 ```swift
 GeneralListConstant.global.loadingDataHandler = {
@@ -262,8 +296,21 @@ GeneralListConstant.global.emptyDataViewHandler = {
       return view
  }
 ```
-
-# How used (Webservice  and SwiftUI):
+- Full Screen loader: 
+put this code in App Delegate for show full screen loader for all requests in your app.
+```swift
+// for full screen loader
+RequestBuilder.shared.waitingView { value in
+    if value {
+        // show loader
+        print("loader loaded")
+    }else{
+        //  dismiss loader
+        print("loader dismiss")
+    }
+}
+```
+# How used (Webservice and SwiftUI):
 - List with Pagination Example
 ```swift
 import Foundation
@@ -311,3 +358,12 @@ class ItemsViewModel:NSObject,ObservableObject{
     }
 }
 ```
+#Result:
+it is very important framework for IOS developers to create IOS project with minimum code.
+
+# Developer's information to communicate
+
+- salah.mohamed_1995@hotmail.com
+- https://www.facebook.com/salah.shaker.7
+- +972597105861 (whatsApp And PhoneNumber)
+- https://www.linkedin.com/in/salah-mohamed-676b6a17a (Linkedin)
