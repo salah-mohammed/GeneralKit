@@ -64,7 +64,7 @@ pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
         })
    }).execute()
 ```
-- Parameter Encoding use(JSONEncoding.default or URLEncoding.default(default value))
+- Parameter Encoding use(JSONEncoding.default or URLEncoding.default)
 ```swift
  RequestOperationBuilder<BaseResponse>.init()
  .encoding(JSONEncoding.default)
