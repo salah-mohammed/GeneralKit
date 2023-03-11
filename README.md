@@ -30,6 +30,7 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
  
 ```
+# How used (Webservice configuration only):
 - Base Request
 ```swift
 import Foundation
@@ -132,6 +133,7 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
+# How used (Webservice  and UIKit):
 - UITableView with Pagination Example
 ```swift
 import UIKit
@@ -260,3 +262,4 @@ GeneralListConstant.global.emptyDataViewHandler = {
       return view
  }
 ```
+# How used (Webservice  and SwiftUI):
