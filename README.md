@@ -212,12 +212,6 @@ class TableListExampleViewController: UIViewController {
 
 - UICollectionView with Pagination Example with selection feature for items
 ```swift
-//
-//  CollectionListExampleViewController.swift
-//  GeneralKitUIKitExample
-//
-//  Created by SalahMohamed on 24/10/2022.
-//
 
 import UIKit
 import GeneralKit
