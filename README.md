@@ -132,7 +132,7 @@ class UserRequest:BaseRequest{
         })
    }).execute()
 ```
-UITableView with Pagination Example
+- UITableView with Pagination Example
 ```swift
 import UIKit
 import GeneralKit
@@ -167,7 +167,7 @@ class TableListExampleViewController: UIViewController {
 }
 ```
 
-UICollectionView with Pagination Example with selection feature for items
+- UICollectionView with Pagination Example with selection feature for items
 ```swift
 //
 //  CollectionListExampleViewController.swift
