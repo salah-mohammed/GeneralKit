@@ -242,7 +242,7 @@ case replaceObject(IndexPath,GeneralCellData) // replce item in section
 ```
 
 - default placeholder view for (UITableView and for UICollectionView): 
-put this code in App Delegate for (UITableView and for UICollectionView) in your app.
+ put this code in App Delegate for (UITableView and for UICollectionView) in your app.
 ```swift
         GeneralListConstant.global.loadingDataHandler = {
             let view = ListPlaceHolderView.loadViewFromNib()
