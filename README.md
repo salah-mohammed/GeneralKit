@@ -30,3 +30,15 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
  
 ```
+- Normal request example
+
+```swift
+ RequestOperationBuilder<BaseResponse>.init()
+ .baseRequest(UserRequest.init(.login(s_phone: nil)))
+ .build()
+ .responseHandler({ response in
+        ResponseHandler.check(response, { baseResponse in
+               print(baseResponse);
+        })
+   }).execute()
+```
