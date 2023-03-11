@@ -55,6 +55,7 @@ pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
 
 ```swift
  RequestOperationBuilder<BaseResponse>.init()
+ .multipart(true)
  .baseRequest(UserRequest.init(.profile(image:nil)))
  .build()
  .responseHandler({ response in
