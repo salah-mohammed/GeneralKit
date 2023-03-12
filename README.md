@@ -256,6 +256,18 @@ class CollectionListExampleViewController: UIViewController {
     }
 }
 ```
+- Selection Feature setup.
+```swift
+ collectionView.selectionType = .multi // for multi select
+ /*or*/collectionView.selectionType = .single(false) //for mandatory selection
+ /*or*/collectionView.selectionType = .single(true) // for optional selection
+ /*or*/collectionView.selectionType = .signleSection // for multi section
+
+ collectionView.containsHandler = { object1 , object2 in
+        return (object1 as? User)?.id == (object2 as? User)?.id
+  }
+     
+```
 - GeneralKit Tools to present data in UITableView and UICollectionView.
 
 ```swift
