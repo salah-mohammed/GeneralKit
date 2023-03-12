@@ -256,7 +256,7 @@ class CollectionListExampleViewController: UIViewController {
     }
 }
 ```
-- Selection Feature setup.
+- Selection Feature setup(for UITableView and UICollectionView).
 ```swift
  collectionView.selectionType = .multi // for multi select
  /*or*/collectionView.selectionType = .single(false) //for mandatory selection
