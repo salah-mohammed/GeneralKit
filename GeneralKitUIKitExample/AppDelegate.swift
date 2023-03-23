@@ -81,3 +81,10 @@ extension UIApplication{
         }
    }
 }
+
+
+/*
+ xcodebuild archive -scheme GeneralKit -destination="iOS" -archivePath /tmp/xcf/ios.xcarchive -derivedDataPath /tmp/iphoneos -sdk iphoneos SKIP_INSTALL=NO
+   xcodebuild archive -scheme GeneralKit -destination="iOS Simulator" -archivePath /tmp/xcf/iossimulator.xcarchive -derivedDataPath /tmp/iphoneos -sdk iphonesimulator SKIP_INSTALL=NO
+    xcodebuild -create-xcframework -framework /tmp/xcf/ios.xcarchive/Products/Library/Frameworks/GeneralKit.framework -framework /tmp/xcf/iossimulator.xcarchive/Products/Library/Frameworks/GeneralKit.framework -output GeneralKit.xcframework
+ */

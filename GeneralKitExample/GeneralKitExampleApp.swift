@@ -13,6 +13,7 @@ struct GeneralKitExampleApp: App {
         WindowGroup {
             NavigationView{
                 ContentView()
+                
             }
         }
     }
