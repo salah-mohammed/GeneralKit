@@ -28,7 +28,8 @@ public class ResponseHandler:NSObject{
         }else{
             [MaintenanceError.init(dataReponse),
              NoInternetCheckError.init(dataReponse),
-             AuthError.init(dataReponse)].checkWithOperation()
+             AuthError.init(dataReponse),
+             GeneralRemoteError.init(dataReponse)].checkWithOperation()
             error?();
         }
         
@@ -105,3 +106,12 @@ class AuthError:RemoteError{
     }
 }
 
+class GeneralRemoteError:RemoteError{
+    override var check: Bool{
+        return self.dataResponse?.error == nil && (200..<300).contains(self.statusCode ?? 0)
+    }
+    override func operation() -> Bool {
+        Alert.show(nil,.error("خطأ غير معروف", nil))
+        return false
+    }
+}
