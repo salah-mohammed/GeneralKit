@@ -29,7 +29,6 @@ class TableListExampleViewController: UIViewController {
             ResponseHandler.check(response,{ baseResponse in
                 
             })
-
             if response.value?.pagination?.i_current_page == 1{
                 self.tableView.handleAny(.objects([response.value?.users ?? []]),response.error)
             }else{

@@ -8,7 +8,7 @@
 import UIKit
 import GeneralKit
 import MBProgressHUD
-import NavigationKit
+//import NavigationKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

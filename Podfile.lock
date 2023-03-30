@@ -5,9 +5,8 @@ PODS:
     - ObjectMapper (~> 3.5.1)
   - AppTexts (0.0.1)
   - MBProgressHUD (1.2.0)
-  - NavigationKit (0.0.13)
   - ObjectMapper (3.5.3)
-  - SalahUtility (0.0.10):
+  - SalahUtility (0.0.14):
     - AppTexts
 
 DEPENDENCIES:
@@ -16,7 +15,6 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - AppTexts (from `https://github.com/salah-mohammed/AppTexts.git`)
   - MBProgressHUD
-  - NavigationKit (from `https://github.com/salah-mohammed/NavigationKit.git`)
   - ObjectMapper
   - SalahUtility (from `https://github.com/salah-mohammed/SalahUtility.git`)
 
@@ -30,20 +28,15 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   AppTexts:
     :git: https://github.com/salah-mohammed/AppTexts.git
-  NavigationKit:
-    :git: https://github.com/salah-mohammed/NavigationKit.git
   SalahUtility:
     :git: https://github.com/salah-mohammed/SalahUtility.git
 
 CHECKOUT OPTIONS:
   AppTexts:
-    :commit: 2d07929388734cc0a406edd2c41b7bbf3a0194c9
+    :commit: 7db7f8b71d8ed59ff5142ec4da24c8d771e7165d
     :git: https://github.com/salah-mohammed/AppTexts.git
-  NavigationKit:
-    :commit: cea9ca9adc18d3dce3a0c82cc1e6231323562ccc
-    :git: https://github.com/salah-mohammed/NavigationKit.git
   SalahUtility:
-    :commit: b39bfd7e969f92b7d315f290706c855d412fcb5c
+    :commit: 928363b871f6edd5d1445cd13dc933d188963893
     :git: https://github.com/salah-mohammed/SalahUtility.git
 
 SPEC CHECKSUMS:
@@ -51,10 +44,9 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
   AppTexts: 44546f1c429ac7a166e0ed96dafd3bb65ca9a25c
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  NavigationKit: 5f04c63e6d3e771436a580e35c09815d1e2ea3cf
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  SalahUtility: 5f38967f382c469ae6d133c30c5317655bbf10c5
+  SalahUtility: 21678348865de36efbee5d1f3a53efd73c79d5bf
 
-PODFILE CHECKSUM: b9aba33c0cf6c7f51752ac7541e9ba81ce181160
+PODFILE CHECKSUM: c2f1f220d6a557c25a749f58d08dd905f4aed78c
 
 COCOAPODS: 1.11.3

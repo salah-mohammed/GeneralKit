@@ -5,7 +5,7 @@
 //  Created by Salah on 11/11/21.
 //  Copyright © 2021 Salah. All rights reserved.
 //
-
+#if os(iOS)
 import Foundation
 import UIKit
 public protocol HighlightAnimatable: class {
@@ -136,3 +136,4 @@ public class AnimatableImageView: UIImageView, HighlightAnimatable {
     }
 
 }
+#endif

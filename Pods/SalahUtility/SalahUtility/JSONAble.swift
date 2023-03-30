@@ -11,7 +11,7 @@ import Foundation
 private protocol JSONAble {}
 
 private extension JSONAble {
-    func toDict() -> [String:Any] {
+    func bs_dict() -> [String:Any] {
         var dict = [String:Any]()
         let otherSelf = Mirror(reflecting: self)
         for child in otherSelf.children {

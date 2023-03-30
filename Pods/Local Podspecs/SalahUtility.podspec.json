@@ -1,6 +1,6 @@
 {
   "name": "SalahUtility",
-  "version": "0.0.10",
+  "version": "0.0.14",
   "summary": "SalahUtility",
   "description": "SalahUtility",
   "homepage": "https://github.com/salah-mohammed/SalahUtility",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/salah-mohammed/SalahUtility.git",
-    "tag": "0.0.10",
+    "tag": "0.0.14",
     "branch": "master"
   },
   "source_files": [

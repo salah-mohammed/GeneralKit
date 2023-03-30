@@ -4,6 +4,7 @@
 //
 //  Created by Salah on 11/16/21.
 //
+#if os(iOS)
 
 import Foundation
 import UIKit
@@ -61,4 +62,4 @@ open class SheetViewController:UIViewController,UITextFieldDelegate{
         activeField = nil
     }
 }
-
+#endif

@@ -10,7 +10,7 @@ import GeneralKit
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
-
+import SalahUtility
 extension RequestOperationBuilder<BaseResponse> {
     func executeWithCheckResponse(_ successFinish:((BaseResponse)->Void)?,
                              error:(()->Void)? = nil){
@@ -26,6 +26,9 @@ public class ResponseHandler:NSObject{
         if let value:BaseResponse = dataReponse.value {
             successFinish?(value)
         }else{
+            [MaintenanceError.init(dataReponse),
+             NoInternetCheckError.init(dataReponse),
+             AuthError.init(dataReponse)].checkWithOperation()
             error?();
         }
         
@@ -48,3 +51,57 @@ public class ResponseHandler:NSObject{
          }
      }
 }
+
+
+protocol RemoteErrorProtocol{
+var dataResponse:DataResponse<BaseResponse,AFError>?{set get}
+}
+class RemoteError:ConditionProtocol,RemoteErrorProtocol{
+    var dataResponse:DataResponse<BaseResponse,AFError>?
+    init(_ dataResponse:DataResponse<BaseResponse,AFError>?) {
+        self.dataResponse=dataResponse
+    }
+    var subConditions:[ConditionProtocol]{
+     return []
+    }
+    var check: Bool{
+      return false
+    }
+    func operation() -> Bool {
+        return false;
+    }
+    var statusCode:Int?{
+      return self.dataResponse?.response?.statusCode
+    }
+    var errorCode:Int?{
+        return self.dataResponse?.error?._code
+    }
+}
+class MaintenanceError:RemoteError{
+    override var check:Bool{
+        return statusCode == 500 || statusCode == 404
+    }
+    override func operation() -> Bool {
+        Alert.show(nil,.error("", nil))
+        return false
+    }
+}
+class NoInternetCheckError:RemoteError{
+    override var check: Bool{
+        return  (errorCode == -1009) || (errorCode == -1020)
+    }
+    override func operation() -> Bool {
+        Alert.show(nil,.error("", nil))
+        return false
+    }
+}
+class AuthError:RemoteError{
+    override var check: Bool{
+        return  self.statusCode == 401
+    }
+    override func operation() -> Bool {
+        Alert.show(nil,.error("", nil))
+        return false
+    }
+}
+

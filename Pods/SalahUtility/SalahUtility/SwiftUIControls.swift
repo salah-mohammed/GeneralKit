@@ -5,7 +5,7 @@
 //  Created by Salah on 6/2/22.
 //  Copyright © 2022 Salah. All rights reserved.
 //
-
+#if os(iOS)
 import Foundation
 import SwiftUI
 import UIKit
@@ -48,3 +48,4 @@ public struct Anything<Wrapper : UIView>: UIViewRepresentable {
         update(view, context)
     }
 }
+#endif

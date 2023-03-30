@@ -6,6 +6,8 @@
   
 */
 // Constants
+"All"="الكل";
+"DownloadAll"="تحميل الكل";
 "CantNotOpenLink"="لايمكن فتح هذا الرابط";
 "Choose"="اختر";
 "Ok"="تم";
@@ -70,6 +72,7 @@
 "General.QuestionYesNo.Send"="هل تريد بالتأكيد إرسال %@؟";
 "General.QuestionYesNo.Change"="هل تريد بالتأكيد تغير %@؟";
 
+"General.Successfully"="تم %@ بنجاح";
 "General.Deleted.Successfully"="تم حذف هذا %@ بنجاح";
 "General.Added.Successfully" = "تم إضافة %@ بنجاح";
 "General.Edited.Successfully" = "تم تعديل %@ بنجاح";
@@ -130,6 +133,8 @@
 "ExpiryDate"="تاريخ الإنتهاء";
 "UsagePolicy"="سياسة الاستخدام";
 "Verification"="التحقق";
+"Item"="العنصر";
+"Product"="المنتج";
 // Fields
 "FirstName"="الاسم الاول";
 "LastName"="الاسم الأخير";
@@ -142,7 +147,7 @@
 "AddressDetails"="تفاصيل العنوان";
 "City"="المدينة";
 "Region"="المنطقة";
-"PhoneNumber"="رقم المحمول";
+"MobileNumber"="رقم المحمول";
 "Title"="العنوان";
 "Description"="الوصف";
 "Details"="التفاصيل";
@@ -157,7 +162,7 @@
 "VerificationCode"="رمز التفعيل";
 "Country"= "الدولة";
 "ChatTextMessagePlaceholder"="...أكتب رسالتك";
-"General.Message"="الرسالة";
+"Message"="الرسالة";
 "AddressOnMap" = "العنوان على الخريطة";
 "CurrentLocation" = "الموقع الحالي";
 "SearchHere"="ابحث هنا";
@@ -179,12 +184,12 @@
 "NotValid"="عذراً، %@ غير صحيح";
 "FieldRequired" = "عذراً، حقل %@ مطلوب";
 "Required" = "عذراً، %@ مطلوب";
+"PleaseChoose" = "عذراً، الرجاء اختيار %@";
+"PleaseEnter"= "عذرا ,الرجاء إدخال %@";
+"EnterAllFields"="الرجاء إدخال جميع الحقول";
+"FileSizeLessThanMB"="حجم الملف يجب أن يكون أقل من %@ ميجا بايت";
 "PasswordNotMatch"="عذراً، كلمة المرور غير متطابقة";
 "PasswordMustHave6"="عذراً، كلمة المرور يجب ان تكون اكثر من ستة حروف";
-"PleaseChoose" = "عذراً، الرجاء اختيار %@";
-"EnterAllFields"="الرجاء إدخال جميع الحقول";
-"PleaseEnter"= "عذرا ,الرجاء إدخال %@";
-"FileSizeLessThanMB"="حجم الملف يجب أن يكون أقل من %@ ميجا بايت";
 //dark mode
 "UIUserInterfaceStyle.unspecified.bs_title"="نظام";
 "UIUserInterfaceStyle.light.bs_title"="فاتح";
@@ -192,8 +197,8 @@
 
 //Firebase
 "TooManyFirebaseRequests" = "لديك طلبات كود تفعيل كثيرة";
-"PhoneNumberIsRequired"   = "الرجاء إدخال رقم الجوال";
-"PhoneNumberIsNotValid"   = "الرجاء إدخال رقم الجوال بشكل صحيح";
+"MobileNumberIsRequired"   = "الرجاء إدخال رقم الجوال";
+"MobileNumberIsNotValid"   = "الرجاء إدخال رقم الجوال بشكل صحيح";
 "ConnectionError"         = "تأكد من اتصالك في الإنترنت";
 "VerificationCodeError"   = "يجب التحقق من كود التفعيل";
 

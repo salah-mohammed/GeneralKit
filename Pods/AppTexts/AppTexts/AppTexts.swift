@@ -5,9 +5,8 @@
 //  Created by Salah on 11/30/21.
 //  Copyright © 2021 Salah. All rights reserved.
 //
-
+#if os(iOS)
 import UIKit
-
 public extension UIUserInterfaceStyle {
     var bs_title:String?{
         switch self {
@@ -23,10 +22,11 @@ public extension UIUserInterfaceStyle {
         return nil
     }
 }
+#endif
 public enum FireBaseError:String{
  case tooMany="TooManyFirebaseRequests"
- case required="PhoneNumberIsRequired"
- case notValid="PhoneNumberIsNotValid"
+ case required="MobileNumberIsRequired"
+ case notValid="MobileNumberIsNotValid"
  case connectionError="ConnectionError"
  case verificationCodeError="VerificationCodeError"
     public func string(_ value:String)->String{
@@ -47,13 +47,13 @@ case cutome="General.QuestionYesNo"
 }
 public enum DoneSuccessfully:String{
 case deleted="General.Deleted.Successfully"
-case Added="General.Added.Successfully"
-case Edited="General.Edited.Successfully"
-case Saved="General.Saved.Successfully"
-case Sent="General.Sent.Successfully"
-case Change="General.Change.Successfully"
+case added="General.Added.Successfully"
+case edited="General.Edited.Successfully"
+case saved="General.Saved.Successfully"
+case sent="General.Sent.Successfully"
+case change="General.Change.Successfully"
 case uploaded="General.Uploaded.Successfully"
-func string(_ value:String?)->String{
+public func string(_ value:String?)->String{
     if let value:String=value{
         return String.init(format:self.rawValue.internalLocalize_, arguments:[value])
     }else{
@@ -63,6 +63,12 @@ func string(_ value:String?)->String{
 }
 public class AppTexts: NSObject {
     // Constants
+    public class var All:String{
+        return "All".internalLocalize_
+    }
+    public class var DownloadAll:String{
+        return "DownloadAll".internalLocalize_
+    }
     public class var PasswordMustHave6:String{
         return "PasswordMustHave6".internalLocalize_
     }
@@ -156,8 +162,11 @@ public class AppTexts: NSObject {
     public class var Edit:String{
         return "Edit".internalLocalize_
     }
-    func KM(value:String)->String{
+    public func KM(value:String)->String{
     return String.init(format: "KM".internalLocalize_, arguments:[value])
+    }
+    public class func DoneSuccessfully(title:String)->String{
+        return String.init(format: "General.Successfully".internalLocalize_, arguments:[title])
     }
     public class var ShowMore:String{
         return "ShowMore".internalLocalize_
@@ -207,6 +216,13 @@ public class AppTexts: NSObject {
     public class var ProfilePicture:String{
         return "ProfilePicture".internalLocalize_
     }
+    public class var Item:String{
+        return "Item".internalLocalize_
+    }
+    public class var Product:String{
+        return "Product".internalLocalize_
+    }
+    
     // Alerts
     public class var LogoutConfirmation:String{
         return "AlertMessageLogoutConfirmation".internalLocalize_
@@ -378,8 +394,8 @@ public class AppTexts: NSObject {
     public class var Region:String{
         return "Region".internalLocalize_
     }
-    public class var PhoneNumber:String{
-        return "PhoneNumber".internalLocalize_
+    public class var MobileNumber:String{
+        return "MobileNumber".internalLocalize_
     }
     public class var Title:String{
         return "Title".internalLocalize_
@@ -423,8 +439,8 @@ public class AppTexts: NSObject {
     public class var ChatTextMessagePlaceholder:String{
         return "ChatTextMessagePlaceholder".internalLocalize_
     }
-    public class var GeneralMessage:String{
-        return "General.Message".internalLocalize_
+    public class var Message:String{
+        return "Message".internalLocalize_
     }
     public class var AddressOnMap:String{
         return "AddressOnMap".internalLocalize_
