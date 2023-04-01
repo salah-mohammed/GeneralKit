@@ -14,6 +14,22 @@ import AlamofireObjectMapper
 class NormalNetworkExampleViewModel:NSObject,ObservableObject{
     override init() {
         super.init();
+//        let group = RequestBuilderGroup<BaseResponse>.init(nil)
+//
+//        let firstRequest = RequestOperationBuilder<BaseResponse>.init()
+//            .baseRequest(NewRequest.init(.firstRequest(s_phone: nil)))
+//
+//        let firstProcess:RequestBuilderGroup<BaseResponse>.Process = (firstRequest,{ a in
+//
+//        })
+//        let secondRequest = RequestOperationBuilder<BaseResponse>.init()
+//            .baseRequest(NewRequest.init(.firstRequest(s_phone: nil)))
+//
+//        let secondProcess:RequestBuilderGroup<BaseResponse>.Process = (secondRequest,{ a in
+//
+//        })
+//        group.append(firstProcess).append(secondProcess)
+//        group.build().execute()
     }
     func requestExample1(){
         RequestOperationBuilder<BaseResponse>.init()

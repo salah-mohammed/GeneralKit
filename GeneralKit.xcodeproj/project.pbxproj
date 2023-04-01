@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,6 +55,7 @@
 		8B2A0BF228FD605300244000 /* GeneralKitUIKitExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BF128FD605300244000 /* GeneralKitUIKitExampleTests.swift */; };
 		8B2A0BFC28FD605300244000 /* GeneralKitUIKitExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BFB28FD605300244000 /* GeneralKitUIKitExampleUITests.swift */; };
 		8B2A0BFE28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BFD28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift */; };
+		8B45381229D8DF21007966D1 /* RequestBuilderGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45381129D8DF21007966D1 /* RequestBuilderGroup.swift */; };
 		8B4D270029AE7A0C00E51353 /* TableSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B4D26FE29AE7A0C00E51353 /* TableSectionView.xib */; };
 		8B4D270129AE7A0C00E51353 /* TableSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D26FF29AE7A0C00E51353 /* TableSectionView.swift */; };
 		8B76580D2906F4BF0047E799 /* GeneralKitEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */; };
@@ -194,6 +195,7 @@
 		8B2A0BF728FD605300244000 /* GeneralKitUIKitExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeneralKitUIKitExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2A0BFB28FD605300244000 /* GeneralKitUIKitExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitUIKitExampleUITests.swift; sourceTree = "<group>"; };
 		8B2A0BFD28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitUIKitExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8B45381129D8DF21007966D1 /* RequestBuilderGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderGroup.swift; sourceTree = "<group>"; };
 		8B4D26FE29AE7A0C00E51353 /* TableSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableSectionView.xib; sourceTree = "<group>"; };
 		8B4D26FF29AE7A0C00E51353 /* TableSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSectionView.swift; sourceTree = "<group>"; };
 		8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitEx.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				8B2A0BD128FD57F400244000 /* ListPlaceHolderView.swift */,
 				8B2A0BD028FD57F400244000 /* ListPlaceHolderView.xib */,
 				8B2A0BCF28FD3C0900244000 /* GeneralKitBridge.h */,
+				8B45381129D8DF21007966D1 /* RequestBuilderGroup.swift */,
 			);
 			path = GeneralKit;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				4ECFD30F28DF515B006A5087 /* RequestBuilder.swift in Sources */,
 				4ECFD2E928DF1710006A5087 /* BaseRequest.swift in Sources */,
 				8B7658132906FCB50047E799 /* GeneralCollectionView.swift in Sources */,
+				8B45381229D8DF21007966D1 /* RequestBuilderGroup.swift in Sources */,
 				8B091F4A290C290100D38C91 /* GeneralList.swift in Sources */,
 				8B2A0BCA28FD3AF600244000 /* UIScrollView+InfiniteScroll.m in Sources */,
 				8B2A0BD328FD57F400244000 /* ListPlaceHolderView.swift in Sources */,
