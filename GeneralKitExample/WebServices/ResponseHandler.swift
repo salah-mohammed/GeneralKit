@@ -20,10 +20,10 @@ extension RequestOperationBuilder<BaseResponse> {
     }
 }
 public class ResponseHandler:NSObject{
-    static func check(_ dataReponse:DataResponse<BaseResponse,AFError>,
+    static func check(_ dataReponse:(DataResponse<BaseResponse,AFError>)?,
                                _ successFinish:((BaseResponse)->Void)?,
                                error:(()->Void)? = nil){
-        if let value:BaseResponse = dataReponse.value {
+        if let value:BaseResponse = dataReponse?.value {
             successFinish?(value)
         }else{
             [MaintenanceError.init(dataReponse),
@@ -36,19 +36,19 @@ public class ResponseHandler:NSObject{
     }
 }
  class PaginationResponseHandler:NSObject{
-    var paginationManager:PaginationManager<BaseResponse>
+    weak var paginationManager:PaginationManager<BaseResponse>?
      init(_ paginationManager: PaginationManager<BaseResponse>) {
          self.paginationManager = paginationManager
-         self.paginationManager.hasNextPageHandler { response in
-             if let currentPage:Int = response.currentPage,
-                let totalPages:Int = response.response?.value?.pagination?.i_total_pages?.bs_Int{
+         self.paginationManager?.hasNextPageHandler{ paginationManager ,response in
+             if let currentPage:Int = paginationManager.currentPage,
+                let totalPages:Int = response?.value?.pagination?.i_total_pages?.bs_Int{
                 return (currentPage < totalPages)
              }else{
             return false
              }
          }
-         self.paginationManager.currentPageHandler { response in
-             return response.response?.value?.pagination?.i_current_page?.intValue ?? 1;
+         self.paginationManager?.currentPageHandler {_ ,response in
+             return response?.value?.pagination?.i_current_page?.intValue ?? 1;
          }
      }
 }

@@ -13,11 +13,11 @@ import UIKit
 }
 open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellProtocol,GeneralCollectionViewCellProtocol {
     // MARK: - GeneralListViewProrocol
-    public var list: GeneralListViewProrocol?
-    public var listViewController: UIViewController?
+    weak public var list: GeneralListViewProrocol?
+    weak public var listViewController: UIViewController?
     public var object: GeneralCellData?{
         if let indexPath:IndexPath = self.indexPath{
-        return list?.objects[indexPath.section][indexPath.row];
+            return list?.objects.bs_get(indexPath.section)?.bs_get(indexPath.row);
         }
         return nil;
     }
@@ -27,7 +27,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
     open func itemSelected() {
     }
     open func config(_ indexPath: IndexPath,
-                     _ data:GeneralCellData) {
+                     _ data:GeneralCellData?) {
 
     }
     // MARK: - GeneralCollectionViewCellProtocol
@@ -39,6 +39,7 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
 }
 
 open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,GeneralConnection,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
     
     public static var global:GeneralListConstant.Global=GeneralListConstant.global
     public var errorConnectionView: ListPlaceHolder?=global.errorConnectionDataViewHandler?()
@@ -123,8 +124,8 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         }
     }
     public var enableTableProgress:Bool=GeneralTableView.global.enableTableProgress;
-    public var objects:[[GeneralCellData]]=[[GeneralCellData]]([]);
-    
+    public var objects:[[GeneralCellData]]=[[GeneralCellData]]()
+
     public var converterHandler: GeneralListConstant.Handlers.ConverterHandler?
     public var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?
     public var routerHandler:GeneralListConstant.Handlers.RouterHandler?
@@ -182,11 +183,11 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         self.refreshHandler?()
     }
     ////////////////////////-
-    func config(collectionView:UICollectionView,indexPath:IndexPath,object:GeneralCellData)->UICollectionViewCell{
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier:object.identifier, for:indexPath) as! GeneralListViewCellProtocol;
+    func config(collectionView:UICollectionView,indexPath:IndexPath,object:GeneralCellData?)->UICollectionViewCell{
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier:object?.identifier ?? "", for:indexPath) as! GeneralListViewCellProtocol;
         cell.list = self;
         cell.listViewController = self.listViewController
-        cell.config(indexPath,self.objects[indexPath.section][indexPath.row]);
+        cell.config(indexPath,object);
         return cell as! UICollectionViewCell;
     }
     func itemSelected(_ indexPath:IndexPath){

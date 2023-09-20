@@ -19,9 +19,9 @@ class TableSectionListExampleViewController: UIViewController {
     func setupView(){
         self.tableView.register(TableSectionViewHeader.self, forHeaderFooterViewReuseIdentifier:"TableSectionViewHeader")
         self.tableView.bs_registerNib(NibName:"NewTableViewCell");
-        self.tableView.heightForHeaderInSectionHandler = { section in
-          return 50
-        }
+//        self.tableView.heightForHeaderInSectionHandler = { [weak self] section in
+//          return 50
+//        }
         self.tableView.sectionViewHandler = { section in
             let cell = self.tableView!.dequeueReusableHeaderFooterView(withIdentifier:"TableSectionViewHeader") as! TableSectionViewHeader
             cell.tableView=self.tableView

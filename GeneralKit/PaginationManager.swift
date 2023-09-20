@@ -11,21 +11,22 @@ import ObjectMapper
 import AlamofireObjectMapper
 import SalahUtility
 
-public protocol PaginationManagerProtocol{
+public protocol PaginationManagerProtocol:NSObjectProtocol{
 var hasNextPage:Bool{get}
 var isLoading:Bool{get}
 var showLoader:Bool{get set}
-var UICurrentPage:Int?{get}
+//var UICurrentPage:Int?{get}
 func loadNextPage()
 func start();
 }
+
 public class PaginationManager<T:Mappable>:NSObject,PaginationManagerProtocol{
-    public typealias CheckPagainatorHandler = (PaginationManager<T>) -> Bool;
-    public typealias CurrentPageHandler = (PaginationManager<T>) -> Int;
+    public typealias CheckPagainatorHandler = (PaginationManager<T>,RequestOperationBuilder<T>.FinishData?) -> Bool;
+    public typealias CurrentPageHandler = (PaginationManager<T>,RequestOperationBuilder<T>.FinishData?) -> Int;
     
     var baseRequest:BaseRequest?
     var responseHandler:RequestOperationBuilder<T>.FinishHandler?
-    public var response:RequestOperationBuilder<T>.FinishData?;
+    
     var requestBuilder:RequestOperationBuilder<T>
     var testHandler:RequestOperationBuilder<T>.FinishHandler?
     public var showLoader:Bool=true{
@@ -34,27 +35,14 @@ public class PaginationManager<T:Mappable>:NSObject,PaginationManagerProtocol{
         }
     }
 
-    public var hasNextPage:Bool{
-        if self.hasNextPageHandler?(self) ?? false {
-            return true;
-        }
-        return false
-    }
+    public var hasNextPage:Bool=false
     public var isLoading:Bool
     {
         if self.requestBuilder.dataRequest  == nil{return false;}
         return true;
     }
-    private var hasPreviousPage:Bool{
-        if self.hasPreviousPageHandler?(self) ?? false {
-            return true;
-        }
-        return false
-    }
+    private var hasPreviousPage:Bool=false
     public var currentPage:Int?
-    public var UICurrentPage:Int?{
-    return self.currentPageHandler?(self)
-    }
 
     private var hasPreviousPageHandler:CheckPagainatorHandler?
     public var hasNextPageHandler:CheckPagainatorHandler?
@@ -89,10 +77,11 @@ public class PaginationManager<T:Mappable>:NSObject,PaginationManagerProtocol{
         if let baseRequest:BaseRequest = self.baseRequest{
             self.requestBuilder.baseRequest(baseRequest);
         }
-        self.requestBuilder.responseHandler { response in
-            self.response=response;
-            self.responseHandler?(response);
-            self.currentPage = self.currentPageHandler?(self);
+        self.requestBuilder.responseHandler {[weak self] response in
+            self?.hasNextPage = self?.hasNextPageHandler?(self!,response) ?? false
+            self?.hasPreviousPage = self?.hasPreviousPageHandler?(self!,response) ?? false
+            self?.responseHandler?(response);
+            self?.currentPage = self?.currentPageHandler?(self!,response);
         }
         self.requestBuilder.build();
         self.requestBuilder.execute();

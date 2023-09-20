@@ -11,9 +11,9 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
     @IBOutlet weak var btnSelect: UIButton!
     @IBOutlet weak var imgSelect: UIImageView!
     override func config(_ indexPath: IndexPath,
-                         _ data:GeneralCellData) {
+                         _ data:GeneralCellData?) {
         super.config(indexPath, data)
-        self.imgSelect.image = data.selected ? UIImage(named:"ic_checked"):UIImage(named:"ic_not_checked")
+        self.imgSelect.image = data?.selected ?? false ? UIImage(named:"ic_checked"):UIImage(named:"ic_not_checked")
     }
     override func layoutSubviews() {
         super.layoutSubviews();

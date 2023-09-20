@@ -21,14 +21,14 @@ class NewTableViewCell: GeneralTableViewCell {
         // Configure the view for the selected state
     }
     override func config(_ indexPath: IndexPath,
-                         _ data:GeneralCellData) {
+                         _ data:GeneralCellData?) {
         super.config(indexPath,data);
-        self.accessoryType = data.selected ? .checkmark:.none
-        if let user:User = data.object as? User{
+        self.accessoryType = (data?.selected ?? false) ? .checkmark:.none
+        if let user:User = data?.object as? User{
             self.lblSubtitle.text = (indexPath.row+1).bs_string+" "+(user.username ?? "")
 
         }else{
-            self.lblSubtitle.text = (data.object as? String) ?? ""
+            self.lblSubtitle.text = (data?.object as? String) ?? ""
         }
     }
     open override func itemSelected() {

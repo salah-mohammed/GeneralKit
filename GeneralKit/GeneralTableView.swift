@@ -26,8 +26,8 @@ public protocol GeneralTableViewSectionProtocol:ListSectionProtocol{
 }
 open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol,GeneralTableViewCellProtocol {
     // MARK: - GeneralListViewProrocol
-    public var list: GeneralListViewProrocol?
-    public var listViewController: UIViewController?
+    weak public var list: GeneralListViewProrocol?
+    weak public var listViewController: UIViewController?
     public var object: GeneralCellData?{
         if let indexPath:IndexPath=indexPath{
             return self.list?.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)
@@ -38,7 +38,7 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol,Gene
         return self.list?.indexPathForItemInList(at: self.center)
     }
     open func config(_ indexPath:IndexPath,
-                     _ data: GeneralCellData){
+                     _ data: GeneralCellData?){
     }
     open func itemSelected() {
     }
@@ -85,8 +85,8 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         didSet{
             if enablePagination == true {
                 self.removeInfiniteScroll()
-                self.addInfiniteScroll { (tableView:UITableView) in
-                    self.loadMore();
+                self.addInfiniteScroll {[weak self] (tableView:UITableView) in
+                    self?.loadMore();
                 }
             }else{
                 self.removeInfiniteScroll()
@@ -106,16 +106,17 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         }
     }
     public var enableTableProgress:Bool=GeneralTableView.global.enableTableProgress;
-    public var objects:[[GeneralCellData]]=[[GeneralCellData]]([]);
     
+    public var objects:[[GeneralCellData]]=[[GeneralCellData]]([]);
+
     public var converterHandler: GeneralListConstant.Handlers.ConverterHandler?
     public var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?
     public var routerHandler:GeneralListConstant.Handlers.RouterHandler?
     
     public var identifier: String?
-    public var paginator:PaginationManagerProtocol?
-    public var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?
-    public var listViewController:UIViewController?
+    weak public var paginator:PaginationManagerProtocol?
+    
+    weak public var listViewController:UIViewController?
     public var enableListPlaceHolderView:Bool=GeneralTableView.global.enableListPlaceHolderView{
         didSet{
             if self.enableListPlaceHolderView {
@@ -152,12 +153,12 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.setup()
     }
     ////////////////////////-
-    func config(tableView:UITableView,indexPath:IndexPath,object:GeneralCellData)->UITableViewCell{
-        let object:GeneralCellData = object
-        var cell = self.dequeueReusableCell(withIdentifier:object.identifier, for: indexPath) as! GeneralListViewCellProtocol
+    func config(tableView:UITableView,indexPath:IndexPath,object:GeneralCellData?)->UITableViewCell{
+        let object:GeneralCellData? = object
+        var cell = self.dequeueReusableCell(withIdentifier:object?.identifier ?? "", for: indexPath) as! GeneralListViewCellProtocol
         cell.list = self;
         cell.listViewController = self.listViewController
-        cell.config(indexPath, self.objects[indexPath.section][indexPath.row])
+        cell.config(indexPath,object)
         return cell as! UITableViewCell
     }
     func itemSelected(_ indexPath:IndexPath){
@@ -182,6 +183,10 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         self.deleteSections(indexSet, with:.automatic);
         self.paginator?.start();
         self.refreshHandler?()
+    }
+    deinit{
+        self.removeInfiniteScroll();
+        self.refreshControl?.removeTarget(self, action: #selector(performToPullToRefresh), for: .valueChanged)
     }
     ////////////////////////-
     // MARK: - UITableViewDelegate
@@ -222,7 +227,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         return  (self.heightForHeaderInSectionHandler?(section) ?? UITableView.automaticDimension)
     }
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        self.config(tableView: self, indexPath: indexPath, object: self.objects[indexPath.section][indexPath.row]);
+        self.config(tableView: self, indexPath: indexPath, object:self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row));
     }
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.itemSelected(indexPath);

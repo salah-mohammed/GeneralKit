@@ -31,21 +31,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("loader dismiss")
             }
         }
-        GeneralListConstant.global.loadingDataHandler = {
-            let view = ListPlaceHolderView.loadViewFromNib()
-            view.data=LoadingData
-            return view
-        }
-        GeneralListConstant.global.errorConnectionDataViewHandler = {
-            let view = ListPlaceHolderView.loadViewFromNib()
-            view.data=ErrorConnection
-            return view
-        }
-        GeneralListConstant.global.emptyDataViewHandler = {
-            let view = ListPlaceHolderView.loadViewFromNib()
-            view.data=EmptyData
-            return view
-        }
+//        GeneralListConstant.global.loadingDataHandler = {
+//            let view = ListPlaceHolderView.loadViewFromNib()
+//            view.data=LoadingData
+//            return view
+//        }
+//        GeneralListConstant.global.errorConnectionDataViewHandler = {
+//            let view = ListPlaceHolderView.loadViewFromNib()
+//            view.data=ErrorConnection
+//            return view
+//        }
+//        GeneralListConstant.global.emptyDataViewHandler = {
+//            let view = ListPlaceHolderView.loadViewFromNib()
+//            view.data=EmptyData
+//            return view
+//        }
         // Override point for customization after application launch.
         return true
     }
