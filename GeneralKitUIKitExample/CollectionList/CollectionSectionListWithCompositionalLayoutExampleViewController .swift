@@ -53,16 +53,15 @@ class CollectionSectionListWithCompositionalLayoutExampleViewController : UIView
                 paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
                 paginationManager.baseRequest(UserRequest.init(.users));
                 self.paginationManager.responseHandler {[weak self] response in
-                    self?.collectionView.handleAny(.objects([["","","",""],["","","",""],
-                                                            ["","","",""],["","","",""],
-                                                            ["","","",""],["","","",""],
-                                                            ["","","",""],["","","",""],
-                                                            ["","","",""],[]]))
                     if response.value?.pagination?.i_current_page == 1{
-                        self?.collectionView.handleAny(.appendItemsInSection(section:8,atRow:nil, response.value?.users ?? []),nil,false)
+                    self?.collectionView.handleAny(.objects([["","","",""],["","","",""],
+                                                                ["","","",""],["","","",""],
+                                                                ["","","",""],["","","",""],
+                                                                ["","","",""],["","","",""],[]]))
+                        self?.collectionView?.handleAny(.appendItemsInSection(section:8,atRow:nil,response.value?.users ?? []),response.error,false)
                         self?.collectionView.reloadData()
                     }else{
-                        self?.collectionView.handleAny(.appendItemsInSection(section:8,atRow:nil, response.value?.users ?? []),nil,false)
+                        self?.collectionView?.handleAny(.appendItemsInSection(section:8,atRow:nil,response.value?.users ?? []),response.error,false)
                         self?.collectionView.reloadData()
                     }
                 }

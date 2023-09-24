@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,6 +19,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="521" height="272"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8N-WR-kse">
+                        <rect key="frame" x="239.66666666666663" y="125.66666666666669" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htr-hF-V4U">
                         <rect key="frame" x="475" y="16" width="30" height="30"/>
                         <subviews>
@@ -25,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-DA-W6w" customClass="RoundedUIButton" customModule="SMPlayer" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-DA-W6w" customClass="RoundedUIButton" customModule="GeneralKitUIKitExample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -53,6 +60,8 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="a8N-WR-kse" firstAttribute="centerY" secondItem="bgl-X7-lsF" secondAttribute="centerY" id="1yR-9U-70P"/>
+                    <constraint firstItem="a8N-WR-kse" firstAttribute="centerX" secondItem="bgl-X7-lsF" secondAttribute="centerX" id="7Jv-eL-XOz"/>
                     <constraint firstItem="htr-hF-V4U" firstAttribute="top" secondItem="bgl-X7-lsF" secondAttribute="top" constant="16" id="Bac-lw-hl6"/>
                     <constraint firstAttribute="trailing" secondItem="htr-hF-V4U" secondAttribute="trailing" constant="16" id="gDO-3x-B3S"/>
                 </constraints>
@@ -62,6 +71,7 @@
             <connections>
                 <outlet property="btnSelect" destination="xJN-DA-W6w" id="Ydc-pp-ljD"/>
                 <outlet property="imgSelect" destination="FeS-LO-f3F" id="pAP-gk-dR6"/>
+                <outlet property="lblTitle" destination="a8N-WR-kse" id="CPE-tO-bwL"/>
             </connections>
             <point key="canvasLocation" x="-157.69230769230768" y="153.55450236966823"/>
         </collectionViewCell>

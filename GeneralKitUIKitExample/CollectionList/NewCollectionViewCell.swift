@@ -8,12 +8,14 @@
 import UIKit
 import GeneralKit
 class NewCollectionViewCell:GeneralCollectionViewCell {
+    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnSelect: UIButton!
     @IBOutlet weak var imgSelect: UIImageView!
     override func config(_ indexPath: IndexPath,
                          _ data:GeneralCellData?) {
         super.config(indexPath, data)
         self.imgSelect.image = data?.selected ?? false ? UIImage(named:"ic_checked"):UIImage(named:"ic_not_checked")
+        lblTitle.text = (data?.object as? User)?.id?.stringValue ?? ""
     }
     override func layoutSubviews() {
         super.layoutSubviews();
