@@ -28,8 +28,8 @@ class CollectionSectionListExampleViewController: UIViewController {
             let value = (UIScreen.main.bounds.width-40)/2;
             return GeneralCellData.init(identifier:"NewCollectionViewCell", object: item,cellSize:CGSize.init(width:value, height:value))
         }
-        self.collectionView.viewForSupplementaryElementHandler { kind, indexPath in
-        let reusableview = self.collectionView.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:"SectionHeaderCollectionView", for: indexPath) as? SectionHeaderCollectionView
+        self.collectionView.viewForSupplementaryElementHandler { [weak self] kind, indexPath in
+        let reusableview = self?.collectionView.dequeueReusableSupplementaryView(ofKind:kind, withReuseIdentifier:"SectionHeaderCollectionView", for: indexPath) as? SectionHeaderCollectionView
             reusableview?.section = indexPath.section
             reusableview?.config();
             return reusableview ?? UICollectionReusableView();
@@ -45,11 +45,11 @@ class CollectionSectionListExampleViewController: UIViewController {
     func paginationSetup(){
         paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
         paginationManager.baseRequest(UserRequest.init(.users));
-        self.paginationManager.responseHandler { response in
+        self.paginationManager.responseHandler {[weak self] response in
             if response.value?.pagination?.i_current_page == 1{
-                self.collectionView.handleAny(.objects([response.value?.users ?? []]))
+                self?.collectionView.handleAny(.objects([response.value?.users ?? []]))
             }else{
-                self.collectionView.handleAny(.appendItemsInSection(atRow:nil, response.value?.users ?? []))
+                self?.collectionView.handleAny(.appendItemsInSection(atRow:nil, response.value?.users ?? []))
             }
         }
         collectionView.paginationManager(paginationManager).identifier("NewCollectionViewCell").start();

@@ -22,9 +22,9 @@ class TableSectionListExampleViewController: UIViewController {
 //        self.tableView.heightForHeaderInSectionHandler = { [weak self] section in
 //          return 50
 //        }
-        self.tableView.sectionViewHandler = { section in
-            let cell = self.tableView!.dequeueReusableHeaderFooterView(withIdentifier:"TableSectionViewHeader") as! TableSectionViewHeader
-            cell.tableView=self.tableView
+        self.tableView.sectionViewHandler = { [weak self] section in
+            let cell = self?.tableView!.dequeueReusableHeaderFooterView(withIdentifier:"TableSectionViewHeader") as! TableSectionViewHeader
+            cell.tableView=self?.tableView
             cell.section = section
             return cell
         }
@@ -65,14 +65,14 @@ class TableSectionListExampleViewController: UIViewController {
         
         
         tableView.handleData(.objects([section0]))
-        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
-            self.tableView.handleData(.appendNewSection(0, section1))
-            DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
-                self.tableView.handleData(.appendNewSection(0, section2))
-                DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
-                    self.tableView.handleData(.appendNewSection(0, section3))
-                    DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
-                        self.tableView.handleData(.appendItemsInSection(atRow:0, appendToSection0))
+        DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: { [weak self] in
+            self?.tableView.handleData(.appendNewSection(0, section1))
+            DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: { [weak self] in
+                self?.tableView.handleData(.appendNewSection(0, section2))
+                DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: { [weak self] in
+                    self?.tableView.handleData(.appendNewSection(0, section3))
+                    DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: { [weak self] in
+                        self?.tableView.handleData(.appendItemsInSection(atRow:0, appendToSection0))
                     })
                     
                 })

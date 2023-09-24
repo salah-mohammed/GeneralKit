@@ -48,7 +48,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     ////////////////////////-
 
     private var itemSize:CGSize?
-    public func itemSize(_ itemSize:CGSize)->Self{
+    @discardableResult public func itemSize(_ itemSize:CGSize)->Self{
     self.itemSize=itemSize;
       return self
     }
@@ -64,12 +64,12 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
 //      return self
 //    }
     var footerSize:CGSize?
-    public func footerSize(_ footerSize:CGSize)->Self{
+    @discardableResult public func footerSize(_ footerSize:CGSize)->Self{
     self.footerSize=footerSize;
       return self
     }
     var headerSize:CGSize?
-    public func headerSize(_ headerSize:CGSize)->Self{
+    @discardableResult public func headerSize(_ headerSize:CGSize)->Self{
     self.headerSize=headerSize;
       return self
     }
@@ -80,12 +80,12 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
       return self
     }
     var headerSizeHandler:((Int)->CGSize)?
-    public func headerSizeHandler(_ headerSizeHandler:@escaping ((Int)->CGSize))->Self{
+    @discardableResult public func headerSizeHandler(_ headerSizeHandler:@escaping ((Int)->CGSize))->Self{
     self.headerSizeHandler=headerSizeHandler;
       return self
     }
     private var viewForSupplementaryElementHandler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?
-    public func viewForSupplementaryElementHandler(_ handler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?)->Self{
+    @discardableResult public func viewForSupplementaryElementHandler(_ handler:GeneralListConstant.Handlers.ViewForSupplementaryElementHandler?)->Self{
     self.viewForSupplementaryElementHandler=handler;
       return self
     }
