@@ -66,6 +66,7 @@
 		8B765817290703D70047E799 /* NewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B765816290703D70047E799 /* NewCollectionViewCell.xib */; };
 		8B765819290705000047E799 /* CollectionListExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B765818290705000047E799 /* CollectionListExampleViewController.swift */; };
 		8B7DA028290AA20900D65C97 /* TableSectionListExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */; };
+		8BA42AC62AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA42AC52AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift */; };
 		8BA6737C29068A6900A6CE14 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7AF1428E8216F00B81C8B /* ResponseHandler.swift */; };
 		8BA6737D29068A6D00A6CE14 /* AppBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57748D28E8BB790075C5B0 /* AppBaseRequest.swift */; };
 		8BA6737E29068A7A00A6CE14 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6323F928EA0CD0005DBE9B /* UserRequest.swift */; };
@@ -206,6 +207,7 @@
 		8B765816290703D70047E799 /* NewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B765818290705000047E799 /* CollectionListExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListExampleViewController.swift; sourceTree = "<group>"; };
 		8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionListExampleViewController.swift; sourceTree = "<group>"; };
+		8BA42AC52AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionSectionListWithCompositionalLayoutExampleViewController .swift"; sourceTree = "<group>"; };
 		8BD1493629B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalNetworkExampleViewController.swift; sourceTree = "<group>"; };
 		AF20E814DCE5C8DAB96E13F8 /* Pods-GeneralKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeneralKit.debug.xcconfig"; path = "Target Support Files/Pods-GeneralKit/Pods-GeneralKit.debug.xcconfig"; sourceTree = "<group>"; };
 		D362F567F333A3308FFF0A8C /* Pods-GeneralKitUIKitExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeneralKitUIKitExample.release.xcconfig"; path = "Target Support Files/Pods-GeneralKitUIKitExample/Pods-GeneralKitUIKitExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				8B765816290703D70047E799 /* NewCollectionViewCell.xib */,
 				8B765818290705000047E799 /* CollectionListExampleViewController.swift */,
 				8B091F4B290C327100D38C91 /* CollectionSectionListExampleViewController.swift */,
+				8BA42AC52AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift */,
 			);
 			path = CollectionList;
 			sourceTree = "<group>";
@@ -871,6 +874,7 @@
 				8B765815290703870047E799 /* NewCollectionViewCell.swift in Sources */,
 				8B7658102906F6920047E799 /* NewTableViewCell.swift in Sources */,
 				8BA6737E29068A7A00A6CE14 /* UserRequest.swift in Sources */,
+				8BA42AC62AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift in Sources */,
 				8B2A0BDB28FD605200244000 /* AppDelegate.swift in Sources */,
 				8B4D270129AE7A0C00E51353 /* TableSectionView.swift in Sources */,
 				8BA6737D29068A6D00A6CE14 /* AppBaseRequest.swift in Sources */,
