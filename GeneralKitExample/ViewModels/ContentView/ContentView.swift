@@ -9,22 +9,45 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = ContentViewModel()
-    @State var showItems:Int? = 0
+    @State var listFromNetworkWithPagination:Int? = 0
+    @State var loginScreen:Int? = 0
 
     var body: some View {
         VStack {
-            NavigationLink(destination: ItemsView(), tag: 1, selection: $showItems) {
+            HStack{
+                Text("SwiftUI Example:").font(Font.system(size:21,weight:.bold))
+                Spacer()
+            }
+            NavigationLink(destination: ItemsView(), tag: 1, selection: $listFromNetworkWithPagination) {
                EmptyView()
              }
-            Button.init {
-                showItems=1;
-            } label: {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                Text("Hello, world!")
-            }
+            NavigationLink(destination: NormalNetworkExampleView(), tag: 1, selection: $loginScreen) {
+               EmptyView()
+             }
+            List{
 
+            Button.init {
+                loginScreen=1;
+            } label: {
+                HStack{
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                    Text("Normal Request Examples(Data From Network)").font(.system(size: 16,weight:.semibold))
+                }
+            }.padding([.bottom],16.0)
+            
+            Button.init {
+                listFromNetworkWithPagination=1;
+            } label: {
+                HStack{
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                    Text("List With Pagination Request Example(Data From Network)").font(.system(size: 16,weight:.semibold))
+                }
+            }
+            }.listStyle(InsetListStyle.init()).navigationTitle("How Use GeneralKit")
 
         }
         .padding()

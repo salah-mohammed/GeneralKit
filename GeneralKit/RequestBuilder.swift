@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
-import SalahUtility
+//import SalahUtility
 
 open class BaseModel:Mappable{
     required  public init?(map: ObjectMapper.Map) {
@@ -72,13 +72,13 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
     public typealias FinishHandler = ((FinishData)->Void)
     var responseHandler:FinishHandler?
     var dataRequest:DataRequest!;
-    var request:URLRequest!
+    var request:URLRequest?
     var dataResponse:FinishData?
     var baseRequest:BaseRequest?
     var multipart : Bool = false
     var timeout : TimeInterval = 60
     var showLoader:Bool=true;
-    open var urlEncoding:URLEncoding = .default
+    open var encoding:ParameterEncoding =  URLEncoding.default
 
     var partAlamofire:((MultipartFormData) -> Void)={ (formData:MultipartFormData) in}
     // MARK: intenral
@@ -86,35 +86,43 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
         return (self.baseRequest?.multiPartObjects.count ?? 0) > 0 || self.multipart
     }
     // MARK: build
-    func paramters()->[String:String]{
-        var dic = [String:String]();
-        for object in (self.baseRequest?.parameters ?? Dictionary<String,String>()){
+    func paramters()->Parameters{
+        var dic = Parameters();
+        for object in (self.baseRequest?.parameters ?? Parameters()){
             let key = object.key
-            let value = object.value.bs_arNumberToEn()
-            
-            dic[key]=value;
+            if var  value :  String = object.value as? String{
+                value = value.bs_arNumberToEn()
+                dic[key]=value;
+            }else{
+                dic[key]=object.value;
+            }
         }
         return dic;
     }
     @discardableResult public func build()->Self{
         if self.isMultipart{
-            self.partAlamofire={ (formData:MultipartFormData) in
-                for object in self.baseRequest?.multiPartObjects ?? []
+            self.partAlamofire={ [weak self] (formData:MultipartFormData) in
+                for object in self?.baseRequest?.multiPartObjects ?? []
                 {
-                    formData.append(object.data!, withName: object.name!, fileName: object.fileName!, mimeType: object.mimeType!)
+                 if let data:Data = object.data{
+                    formData.append(data, withName:object.name ?? "", fileName: object.fileName ?? "", mimeType: object.mimeType ?? "")
+                 }
                 }
-                for object in self.paramters() {
+                for object in self?.paramters() ?? [:] {
                     let key = object.key
-                    let value = object.value.data(using:.utf8)!;
-                    formData.append(value, withName:key);
+                    if let value:Data = (object.value as AnyObject).data(using: String.Encoding.utf8.rawValue){
+                        formData.append(value, withName:key);
+                    }
                 }
             }
         }
         do {
             if let type:HTTPMethod = self.baseRequest?.type , let url:URL = URL.init(string:self.baseRequest?.fullURL ?? ""){
                 self.request = try URLRequest.init(url:url, method:type, headers:self.allHeaders());
-                self.request = try urlEncoding.encode(self.request, with:paramters());
-                self.request.timeoutInterval = timeout;
+                if let request:URLRequest = self.request{
+                    self.request = try encoding.encode(request, with:paramters());
+                }
+                self.request?.timeoutInterval = timeout;
             }else{
                 print("aa");
             }
@@ -131,21 +139,23 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
          return HTTPHeaders.init(dic)
      }
     public func execute(){
-        if showLoader{
-        RequestBuilder.shared.waitingView?(true);
-        }
-        if self.isMultipart{
-            self.dataRequest = AF.upload(multipartFormData:self.partAlamofire, with: self.request)
-        }else{
-            self.dataRequest = AF.request(self.request)
-        }
-        self.dataRequest.responseObject{ (response:DataResponse<T,AFError>) in
-            self.dataRequest=nil;
-            if self.showLoader{
-                RequestBuilder.shared.waitingView?(false);
+        if let request:URLRequest = self.request{
+            if showLoader{
+            RequestBuilder.shared.waitingView?(true);
             }
-            self.dataResponse=response;
-            self.responseHandler?(response);
+            if self.isMultipart{
+                self.dataRequest = AF.upload(multipartFormData:self.partAlamofire, with:request)
+            }else{
+                self.dataRequest = AF.request(request)
+            }
+            self.dataRequest.responseObject{ [weak self] (response:DataResponse<T,AFError>) in
+                self?.dataRequest=nil;
+                if self?.showLoader ?? false{
+                    RequestBuilder.shared.waitingView?(false);
+                }
+                self?.dataResponse=response;
+                self?.responseHandler?(response);
+            }
         }
     }
     @discardableResult public func responseHandler(_ responseHandler:FinishHandler?)->Self{
@@ -164,8 +174,8 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
         self.multipart=multipart;
         return self
     }
-    @discardableResult public func urlEncoding(_ urlEncoding:URLEncoding)->Self{
-        self.urlEncoding=urlEncoding;
+    @discardableResult public func encoding(_ encoding:ParameterEncoding)->Self{
+        self.encoding=encoding;
         return self;
     }
 }

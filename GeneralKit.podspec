@@ -16,15 +16,15 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GeneralKit"
-  s.version      = "0.0.1"
-  s.summary      = "PageKit use UIPageViewController to make slider this maker build slider easy"
+  s.version      = "0.0.5"
+  s.summary      = "GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "PageKit library library library library library library library library library library library library library library adas dasd sad asd  das dsa d sad asd sa das dsa d sad as das das dsa d asd asd asd "
+  s.description  = "GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code."
 
   s.homepage     = "https://github.com/salah-mohammed/GeneralKit"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -37,8 +37,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (library librarylibrary library library library)"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license      = ""
+  # s.license      = { :type => "", :file => "" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -51,10 +51,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "salah mohamed" => "salah.mohamed_1995@hotmail.com" }
+  s.author             = { "salah mohamed" => "salahalimohamed1995@gmail.com" }
   # Or just: s.author    = ""
   # s.authors            = { "" => "" }
-  # s.social_media_url   = "http://twitter.com/"
+  # s.social_media_url   = "https://www.linkedin.com/in/salah-mohamed-676b6a17a"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

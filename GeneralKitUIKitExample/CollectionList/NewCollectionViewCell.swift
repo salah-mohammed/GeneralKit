@@ -8,13 +8,31 @@
 import UIKit
 import GeneralKit
 class NewCollectionViewCell:GeneralCollectionViewCell {
-    override func config(){
-        super.config();
-        self.backgroundColor = self.object.selected ? UIColor.red:UIColor.yellow;
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var btnSelect: UIButton!
+    @IBOutlet weak var imgSelect: UIImageView!
+    override func config(_ indexPath: IndexPath,
+                         _ data:GeneralCellData?) {
+        super.config(indexPath, data)
+        self.imgSelect.image = data?.selected ?? false ? UIImage(named:"ic_checked"):UIImage(named:"ic_not_checked")
+        lblTitle.text = (data?.object as? User)?.id?.stringValue ?? ""
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews();
+        self.contentView.layer.cornerRadius = 8
+        self.layer.cornerRadius = 8
     }
     override func itemSelected() {
         super.itemSelected();
-        self.list.selectAndDeselect(self.object);
-        self.list.reloadData();
+        selection();
+    }
+    @IBAction func btnSelect(_ sender: Any) {
+        selection();
+    }
+    func selection(){
+        if let  object:GeneralCellData = self.object{
+            self.list?.selectAndDeselect(object);
+        }
+        self.list?.reloadData();
     }
 }

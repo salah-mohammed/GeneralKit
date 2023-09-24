@@ -12,7 +12,9 @@ import RealmSwift
 public protocol ListPlaceHolder:UIView{
 var list:GeneralListViewProrocol?{set get}
 }
-
+public protocol ListSectionProtocol{
+    var section:Int?{set get}
+}
 open class GeneralCellData: NSObject {
     public var identifier: String = ""
     public var object: Any?
@@ -65,26 +67,34 @@ public struct GeneralListConstant {
     }
    
 }
-public protocol GeneralListViewCellProtocol:class {
-    var list:GeneralListViewProrocol!{ get set}
+public protocol GeneralListViewCellProtocol{
+    var list:GeneralListViewProrocol?{ get set}
     var listViewController:UIViewController?{ get set}
-    var indexPath:IndexPath!{ get set}
-    var object:GeneralCellData!{get}
+    var indexPath:IndexPath?{get}
+    var object:GeneralCellData?{get}
 
     func itemSelected();
-    func config(_ list:GeneralListViewProrocol,_ listViewController:UIViewController?,_ indexPath:IndexPath)
+    func config(_ indexPath:IndexPath,_ data:GeneralCellData?)
 }
-public enum ItemType{
-case new([Any]) // new
-case append([Any]) //append
-case appendObject(section:Int=0,Any) //append
-case newSections([[GeneralCellData]]) // new
-case appendSection([GeneralCellData]) // new
-case replaceObject(Any,IndexPath) // replce item in section
+public enum ObjectType{
+case any(AnyHandling)
+case data(DataHandling)
 }
-public enum ListType{
-    case list
-    case section
+public enum AnyHandling{
+case objects([[Any]])
+case appendObject(section:Int=0,atRow:Int?,Any)
+case appendNewSection(Int?,[Any])
+case appendItemsInSection(section:Int=0,atRow:Int?,[Any])
+case replaceObject(IndexPath,Any) // replce item in section
+
+}
+public enum DataHandling{
+case objects([[GeneralCellData]])
+case appendObject(section:Int=0,atRow:Int?,GeneralCellData)// work
+case appendNewSection(Int?,[GeneralCellData]) // work
+case appendItemsInSection(section:Int=0,atRow:Int?,[GeneralCellData])// work
+case replaceObject(IndexPath,GeneralCellData) // replce item in section
+
 }
 public enum SelectionType{
     case single(optional:Bool=false)
@@ -96,7 +106,6 @@ public protocol GeneralListViewProrocol:class {
     var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?{get set}
     var routerHandler:GeneralListConstant.Handlers.RouterHandler?{get set}
     var converterHandler:GeneralListConstant.Handlers.ConverterHandler?{get set}
-    var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?{get set}
     
     var containsHandler:GeneralListConstant.Handlers.ContainsHandler?{get set}
     var selectionHandler:GeneralListConstant.Handlers.SelectionHandler?{get set}
@@ -104,6 +113,7 @@ public protocol GeneralListViewProrocol:class {
 
     static var global:GeneralListConstant.Global{get set}
     var objects:[[GeneralCellData]]{ get set}
+
     var listViewController:UIViewController?{ get set}
     var paginator:PaginationManagerProtocol?{get set}
     var identifier: String?{get set}
@@ -113,22 +123,32 @@ public protocol GeneralListViewProrocol:class {
     var enablePagination:Bool{get set}
     var enablePullToRefresh:Bool{get set}
     var backgroundView: UIView?{get set}
-    var errorConnectionView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultErrorConnectionData;
-    var emptyDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultEmptyData;
-    var loadingDataView: ListPlaceHolder?{get set}//=ListPlaceHolderView.defaultLoadingData;
+    var errorConnectionView: ListPlaceHolder?{get set}
+    var emptyDataView: ListPlaceHolder?{get set}
+    var loadingDataView: ListPlaceHolder?{get set}
     func paginationManager(_ paginationManager:PaginationManagerProtocol) -> Self
     func start();
     func reloadData()
     var  selectionType:SelectionType{ get set}
     func selectAndDeselect(_ object:GeneralCellData)
-    func handle(itemsType:ItemType,_ error:Error?)
+
+    func handleRemove(_ indexPaths:[IndexPath])
+    //UI
+    func insertInList(indexPaths:[IndexPath]);
+    func reloadRowInList(indexPaths:[IndexPath]);
+    func reloadSectionsInList(_ indexSet:IndexSet)
+    func deleteRowsInList(_ indexPath:[IndexPath]);
+    func insertSectionsInList(sections:IndexSet)
+    func indexPathForItemInList(at point: CGPoint)->IndexPath?
+    func listHeaderView(forSection:Int)->ListSectionProtocol?
+    
 }
 
 public protocol GeneralConnection:GeneralListViewProrocol,GeneralRealmListViewProrocol{
     
 }
 // webservice and object handling
-extension GeneralListViewProrocol where Self: GeneralConnection {
+extension GeneralListViewProrocol /*where Self: GeneralConnection*/ {
     @discardableResult public func paginationManager(_ paginationManager:PaginationManagerProtocol) -> Self {
         self.paginator=paginationManager
         return self
@@ -149,23 +169,22 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.refreshHandler=refreshHandler;
         return self;
     }
-    @discardableResult public func responseHandler (_ refreshHandler:@escaping RequestOperationBuilder<BaseModel>.FinishHandler) -> Self{
-        self.responseHandler=responseHandler;
-        return self;
-    }
     @discardableResult public func identifier(_ identifier:String) -> Self{
         self.identifier=identifier;
         return self;
     }
     func converterObject(_ object:Any?)->GeneralCellData{
         let generalCellData = self.converterHandler?(object) ?? GeneralCellData.init(identifier:self.identifier ?? "", object:object);
-        generalCellData.selected = self.selectedObject.contains(where: { item in self.containsCheck(item,object)})
+        generalCellData.selected = self.selectedObject.contains(where:{ [weak self] item in self?.containsCheck(item,object) ?? false})
         return generalCellData
+    }
+    func convertObjects(_ objects:[Any])->[GeneralCellData]{
+        return objects.map({ [weak self] a in self!.converterObject(a)})
     }
     public func refreshStyle(_ error:Error?){
         self.handlePlaceHolderViewLoading(start:false,enableListPlaceHolderView:self.enableListPlaceHolderView);
         if self.handlePlaceHolderViewConnectionError(error,enableListPlaceHolderView:self.enableListPlaceHolderView) == false {
-            self.handlePlaceHolderViewEmptyData(objects: objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
+            self.handlePlaceHolderViewEmptyData(objects:objects, enableListPlaceHolderView: self.enableListPlaceHolderView)
         }
         if(self.refreshControl?.isRefreshing ?? false){
             self.refreshControl?.endRefreshing()
@@ -177,32 +196,117 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             }
         }
     }
-    public func handle(itemsType:ItemType,_ error:Error?=nil){
-        switch itemsType{
-        case.appendObject(let section,let item):
-            self.objects[section].append(converterObject({item}))
-            break
-        case .append(let items):
-            var tempItems = self.objects.bs_get(0) ?? []
-            tempItems.append(contentsOf:items.map({converterObject($0)}))
-            self.objects = [tempItems]
-            break;
-        case .new(let items):
-            self.objects=[items.map({converterObject($0)})]
-            break;
-        case .newSections(let objects):
-            self.objects=objects
-            break;
-        case .replaceObject(let object,let indexPath):
-            let tempItems = self.objects.bs_get(indexPath.section) ?? []
-            tempItems.bs_get(indexPath.row)?.object = object
-            break;
-        case .appendSection(let objects):
-            self.objects.append(objects)
+    public func handleRemove(_ indexPaths:[IndexPath]){
+        var objects = self.objects ?? []
+        for indexPath in indexPaths{
+            objects[indexPath.section].remove(at: indexPath.row);
         }
-        self.reloadData()
+        self.deleteRowsInList(indexPaths)
+    }
+    public func handleAny(_ anyHandling:AnyHandling,_ error:Error?=nil,_ autoHandle:Bool=true){
+        switch anyHandling {
+        case .objects(let items):
+            var cells:[[GeneralCellData]] = [[GeneralCellData]]()
+            for  sectionArray in items{
+            cells.append(self.convertObjects(sectionArray))
+            }
+            self.objects=cells;
+            if autoHandle{ self.reloadData()}
+            break;
+        case .appendObject(section: let section,atRow:let row, let item):
+            self.appendObject(section, row,self.converterObject(item), autoHandle: true)
+            break;
+        case .appendNewSection(let index,let items):
+            self.appendNewSection(index,self.convertObjects(items), true);
+            break;
+        case .appendItemsInSection(section: let section,let row, let items):
+            self.appendItemsInSection(section, row,self.convertObjects(items), autoHandle);
+            break;
+        case .replaceObject(let indexPath, let item):
+            self.replaceObject(indexPath, self.converterObject(item), autoHandle)
+            break;
+        }
         self.refreshStyle(error)
     }
+    public func handleData(_ dataHandling:DataHandling,_ error:Error?=nil,_ autoHandle:Bool=true){
+          switch dataHandling{
+          case .objects(let items):
+              self.objects = items
+              if autoHandle{
+              self.reloadData();
+              }
+              break;
+          case .appendObject(section: let section,atRow:let row,let item):
+              appendObject(section, row, item, autoHandle: autoHandle)
+              break;
+          case .appendNewSection(let index,let items):
+              self.appendNewSection(index,items,autoHandle)
+              break
+          case .appendItemsInSection(section: let section,let row, let items):
+              appendItemsInSection(section,row,items,autoHandle);
+              break
+          case .replaceObject(let indexPath, let item):
+              self.replaceObject(indexPath, item, autoHandle)
+              break
+          }
+          self.refreshStyle(error)
+      }
+    private func handle(_ objectType:ObjectType,_ error:Error?=nil,_ autoHandle:Bool=true){
+        switch objectType{
+        case .any(let anyHandling):
+            self.handleAny(anyHandling,error,autoHandle)
+            break;
+        case .data(let dataHandling):
+            self.handleData(dataHandling,error,autoHandle)
+            break;
+        }
+    }
+    // UI
+    private func appendObject(_ section:Int,_ row:Int?,_ item:GeneralCellData,autoHandle:Bool){
+        if let row:Int=row{
+            objects[section].insert(item, at: row)
+        }else{
+            objects[section].append(item)
+        }
+        if autoHandle{
+        self.insertInList(indexPaths:[IndexPath.init(row: row ?? (objects[section].count-1),section:section)])
+        }
+    }
+    private func appendNewSection(_ index:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
+        let section = index ?? objects.count
+        objects.insert(items, at: section)
+        if autoHandle{
+        self.insertSectionsInList(sections: IndexSet([section]))
+        }
+        if let index:Int = index{
+            let lastSections = index ... (objects.count-1)
+            for tempSection in lastSections{
+                var sectionView = self.listHeaderView(forSection:tempSection)
+                sectionView?.section = tempSection
+                print(tempSection)
+            }
+
+        }
+    }
+    private func appendItemsInSection(_ section:Int,_ row:Int?,_ items:[GeneralCellData],_ autoHandle:Bool){
+        if let cutomeRow:Int = row ?? objects.bs_get(section)?.count{
+            objects[section].insert(contentsOf: items, at: cutomeRow)
+            if autoHandle{
+            self.insertInList(indexPaths: items.indexPaths(section:section,cutomeRow))
+            }
+        }else{
+            self.appendNewSection(nil, items,autoHandle)
+        }
+    }
+    private func replaceObject(_ indexPath:IndexPath,_ item:GeneralCellData,_ autoHandle:Bool){
+        var tempItems = objects.bs_get(indexPath.section) ?? []
+        tempItems.remove(at:indexPath.row)
+        tempItems.insert(contentsOf: [item], at: indexPath.row);
+        if autoHandle{
+        self.reloadRowInList(indexPaths: [indexPath])
+        }
+    }
+    //
     func viewsSetup(){
         self.errorConnectionView = Self.global.errorConnectionDataViewHandler?()
         self.errorConnectionView?.list = self
@@ -275,7 +379,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.refreshHandler=refreshHandler;
     }
     public func start(){
-        self.objects.removeAll();
+        self.objects.removeAll()
         self.handlePlaceHolderViewLoading(start:true,enableListPlaceHolderView:self.enableListPlaceHolderView);
         if self.enableTableProgress{
             self.refreshControl?.beginRefreshing()
@@ -284,9 +388,9 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
     }
 }
 // selection
-extension GeneralListViewProrocol where Self:GeneralConnection{
+extension GeneralListViewProrocol /*where Self:GeneralConnection*/{
      private var allObjects:Array<GeneralCellData>{
-  return self.objects.flatMap { (items:Array<GeneralCellData>) -> [GeneralCellData] in
+  return self.objects.flatMap {[weak self] (items:Array<GeneralCellData>) -> [GeneralCellData] in
       return items}
     }
     func containsCheck(_ object1:Any,_ object2:Any)->Bool{
@@ -295,8 +399,8 @@ extension GeneralListViewProrocol where Self:GeneralConnection{
     public var selectedObject:[Any]{
         set{
             for object in newValue{
-                var cellsData = self.allObjects.filter { (internalObject) -> Bool in
-                    return self.containsCheck(object,internalObject.object)}
+                var cellsData = self.allObjects.filter {[weak self] (internalObject) -> Bool in
+                    return self?.containsCheck(object,internalObject.object) ?? false}
                 for object in cellsData{
                     object.selected=true;
                 }
@@ -306,9 +410,9 @@ extension GeneralListViewProrocol where Self:GeneralConnection{
         get{
             var tempSelected = [Any]();
             for item in self.objects{
-                var items = item.filter { (data) -> Bool in
+                var items = item.filter {[weak self] (data) -> Bool in
                     return data.selected;};
-                var mappedItems = items.map({ (data) -> Any in
+                var mappedItems = items.map({[weak self] (data) -> Any in
                                                 return data.object ?? ""})
                 tempSelected.append(contentsOf:mappedItems);
             }
@@ -374,7 +478,8 @@ extension GeneralRealmListViewProrocol {
             switch change {
             case .initial(let results):
                 let objects = self.handleRelam(objects:results);
-                self.handle(itemsType:ItemType.append(objects), nil)
+                self.handleAny(.objects([[objects]]), nil,false)
+                self.reloadData()
                 operationHandler?(.initial(self.objects[0]));
                 observeChange?(self.objects[0]);
                 break
@@ -396,7 +501,8 @@ extension GeneralRealmListViewProrocol {
                     }else
                     if insertions.count > 0 {
                        let objects = self.insertions(insertions: insertions,collection: collection)
-                        self.handle(itemsType:ItemType.append(objects), nil)
+                        self.handleAny(.appendItemsInSection(atRow: nil, objects),nil,false)
+                        self.reloadData()
                         operationHandler?(.insertions(objects));
                         observeChange?(self.objects[0]);
                     }

@@ -29,7 +29,7 @@ public class MultiPartObject
         var mimeType:String?;
         
         
-        init(data:Data,name:String,fileName:String,mimeType:String) {
+        public init(data:Data,name:String,fileName:String,mimeType:String) {
             self.data=data;
             self.name=name;
             self.fileName=fileName;

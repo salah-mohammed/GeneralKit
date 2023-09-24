@@ -49,10 +49,3 @@ class ItemsViewModel:NSObject,ObservableObject{
         self.paginationManager.start();
     }
 }
-/*
- public var i_per_page: NSNumber?
- public var i_total_pages: NSNumber?
- public var i_total_objects: NSNumber?
- public var i_current_page: NSNumber?
- public var i_items_on_page: NSNumber?
- */
