@@ -95,7 +95,6 @@ public protocol GeneralListViewProrocol:class {
     var refreshHandler:GeneralListConstant.Handlers.RefreshHnadler?{get set}
     var routerHandler:GeneralListConstant.Handlers.RouterHandler?{get set}
     var converterHandler:GeneralListConstant.Handlers.ConverterHandler?{get set}
-//    var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?{get set}
     
     var containsHandler:GeneralListConstant.Handlers.ContainsHandler?{get set}
     var selectionHandler:GeneralListConstant.Handlers.SelectionHandler?{get set}
@@ -157,10 +156,6 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.refreshHandler=refreshHandler;
         return self;
     }
-//    @discardableResult public func responseHandler (_ refreshHandler:@escaping RequestOperationBuilder<BaseModel>.FinishHandler) -> Self{
-//        self.responseHandler=responseHandler;
-//        return self;
-//    }
     @discardableResult public func identifier(_ identifier:String) -> Self{
         self.identifier=identifier;
         return self;
@@ -202,6 +197,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             for  sectionArray in items{
             cells.append(self.convertObjects(sectionArray))
             }
+            self.objects=cells;
             if autoHandle{ self.reloadData()}
             break;
         case .appendObject(section: let section,atRow:let row, let item):
@@ -220,28 +216,28 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         self.refreshStyle(error)
     }
     public func handleData(_ dataHandling:DataHandling,_ error:Error?=nil,_ autoHandle:Bool=true){
-        switch dataHandling{
-        case .objects(let items):
-            self.objects=items
-            if autoHandle{
-            self.reloadData();
-            }
-            break;
-        case .appendObject(section: let section,atRow:let row,let item):
-            appendObject(section, row, item, autoHandle: autoHandle)
-            break;
-        case .appendNewSection(let index,let items):
-            self.appendNewSection(index,items,autoHandle)
-            break
-        case .appendItemsInSection(section: let section,let row, let items):
-            appendItemsInSection(section,row,items,autoHandle);
-            break
-        case .replaceObject(let indexPath, let item):
-            self.replaceObject(indexPath, item, autoHandle)
-            break
-        }
-        self.refreshStyle(error)
-    }
+          switch dataHandling{
+          case .objects(let items):
+              self.objects = items
+              if autoHandle{
+              self.reloadData();
+              }
+              break;
+          case .appendObject(section: let section,atRow:let row,let item):
+              appendObject(section, row, item, autoHandle: autoHandle)
+              break;
+          case .appendNewSection(let index,let items):
+              self.appendNewSection(index,items,autoHandle)
+              break
+          case .appendItemsInSection(section: let section,let row, let items):
+              appendItemsInSection(section,row,items,autoHandle);
+              break
+          case .replaceObject(let indexPath, let item):
+              self.replaceObject(indexPath, item, autoHandle)
+              break
+          }
+          self.refreshStyle(error)
+      }
     private func handle(_ objectType:ObjectType,_ error:Error?=nil,_ autoHandle:Bool=true){
         switch objectType{
         case .any(let anyHandling):

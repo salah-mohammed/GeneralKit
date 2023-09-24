@@ -134,9 +134,8 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     
     public var selectionType: SelectionType = .non
     public var identifier: String?
-    public var paginator:PaginationManagerProtocol?
-    public var responseHandler:RequestOperationBuilder<BaseModel>.FinishHandler?
-    public var listViewController:UIViewController?
+    weak public var paginator:PaginationManagerProtocol?
+    weak public var listViewController:UIViewController?
     public var enableListPlaceHolderView:Bool=GeneralTableView.global.enableListPlaceHolderView{
         didSet{
             if self.enableListPlaceHolderView {

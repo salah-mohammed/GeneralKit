@@ -79,6 +79,9 @@ class TableSectionListExampleViewController: UIViewController {
             })
         })
     }
+    deinit{
+        print("deinit");
+    }
     /*
     // MARK: - Navigation
 

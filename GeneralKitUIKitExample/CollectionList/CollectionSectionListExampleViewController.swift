@@ -54,4 +54,7 @@ class CollectionSectionListExampleViewController: UIViewController {
         }
         collectionView.paginationManager(paginationManager).identifier("NewCollectionViewCell").start();
     }
+    deinit{
+        print("deinit");
+    }
 }
