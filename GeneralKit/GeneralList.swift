@@ -62,7 +62,8 @@ public protocol GeneralListViewCellProtocol{
     var indexPath:IndexPath?{get}
     var object:GeneralCellData?{get}
 
-    func itemSelected();
+    func itemSelected(_ indexPath:IndexPath,
+                      _ data: GeneralCellData?);
     func config(_ indexPath:IndexPath,_ data:GeneralCellData?)
 }
 public enum ObjectType{

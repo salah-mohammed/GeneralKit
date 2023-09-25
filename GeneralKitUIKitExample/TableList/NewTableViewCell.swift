@@ -31,9 +31,10 @@ class NewTableViewCell: GeneralTableViewCell {
             self.lblSubtitle.text = (data?.object as? String) ?? ""
         }
     }
-    open override func itemSelected() {
-        super.itemSelected();
-        if let object:GeneralCellData = self.object{
+    open override func itemSelected(_ indexPath:IndexPath,
+                                    _ data: GeneralCellData?) {
+        super.itemSelected(indexPath, data);
+        if let object:GeneralCellData = data{
         self.list?.selectAndDeselect(object);
         }
         self.list?.reloadData();

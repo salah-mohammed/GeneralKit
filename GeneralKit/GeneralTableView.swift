@@ -40,7 +40,8 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol,Gene
     open func config(_ indexPath:IndexPath,
                      _ data: GeneralCellData?){
     }
-    open func itemSelected() {
+    open func itemSelected(_ indexPath:IndexPath,
+                           _ data: GeneralCellData?) {
     }
     
     // MARK: - GeneralTableViewCellProtocol
@@ -163,7 +164,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
     }
     func itemSelected(_ indexPath:IndexPath){
         if let cell:GeneralListViewCellProtocol = self.cellForRow(at:indexPath) as? GeneralListViewCellProtocol{
-            cell.itemSelected();
+            cell.itemSelected(indexPath,self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row));
         }
     }
     ////////////////////////-
