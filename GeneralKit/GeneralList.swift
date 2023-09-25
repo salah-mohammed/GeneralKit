@@ -191,7 +191,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         }
         self.deleteRowsInList(indexPaths)
     }
-    public func handleAny(_ anyHandling:AnyHandling,_ error:Error?=nil,_ autoHandle:Bool=true){
+    public func handleAny(_ anyHandling:AnyHandling,_ error:Error?=nil,_ autoHandle:Bool=false){
         switch anyHandling {
         case .objects(let items):
             var cells:[[GeneralCellData]] = [[GeneralCellData]]()
@@ -216,7 +216,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         }
         self.refreshStyle(error)
     }
-    public func handleData(_ dataHandling:DataHandling,_ error:Error?=nil,_ autoHandle:Bool=true){
+    public func handleData(_ dataHandling:DataHandling,_ error:Error?=nil,_ autoHandle:Bool=false){
           switch dataHandling{
           case .objects(let items):
               self.objects = items
