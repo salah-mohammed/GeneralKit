@@ -15,12 +15,12 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
     // MARK: - GeneralListViewProrocol
     weak public var list: GeneralListViewProrocol?
     weak public var listViewController: UIViewController?
-    public var object: GeneralCellData?{
-        if let indexPath:IndexPath = self.indexPath{
-            return list?.objects.bs_get(indexPath.section)?.bs_get(indexPath.row);
-        }
-        return nil;
-    }
+//    public var object: GeneralCellData?{
+//        if let indexPath:IndexPath = self.indexPath{
+//            return list?.objects.bs_get(indexPath.section)?.bs_get(indexPath.row);
+//        }
+//        return nil;
+//    }
     public var indexPath: IndexPath?{
         return self.list?.indexPathForItemInList(at: self.center)
     }
