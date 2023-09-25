@@ -10,8 +10,7 @@ PODS:
     - AppTexts
 
 DEPENDENCIES:
-  - Alamofire
-  - Alamofire (~> 5.0.0-rc.2)
+  - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
   - AppTexts (from `https://github.com/salah-mohammed/AppTexts.git`)
   - MBProgressHUD
@@ -47,6 +46,6 @@ SPEC CHECKSUMS:
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SalahUtility: 21678348865de36efbee5d1f3a53efd73c79d5bf
 
-PODFILE CHECKSUM: c2f1f220d6a557c25a749f58d08dd905f4aed78c
+PODFILE CHECKSUM: a8938706059c260bfc7e3648ec3285d0897c4cb8
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

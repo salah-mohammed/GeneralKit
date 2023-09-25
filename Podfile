@@ -8,7 +8,6 @@ def custom_pods
   pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
-  pod 'RealmSwift','10.5.2'
 end
 
 target 'GeneralKit' do
@@ -28,6 +27,7 @@ end
 target 'GeneralKitUIKitExample' do
   use_frameworks!
   custom_pods
+  pod 'MBProgressHUD'
 end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
