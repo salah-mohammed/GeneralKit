@@ -20,3 +20,12 @@ target 'SalahUtilityExample' do
   # Pods for SalahUtilityExample
 
 end
+target 'SalahUtilitySwiftUIExample' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
+
+  # Pods for SalahUtilityExample
+
+end

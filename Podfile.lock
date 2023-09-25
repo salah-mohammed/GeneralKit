@@ -3,20 +3,22 @@ PODS:
   - AlamofireObjectMapper (6.2.0):
     - Alamofire (= 5.0.0-rc.2)
     - ObjectMapper (~> 3.5.1)
-  - AppTexts (0.0.1)
+  - AppTexts (0.0.2)
+  - MBProgressHUD (1.2.0)
   - ObjectMapper (3.5.3)
   - Realm (10.5.2):
     - Realm/Headers (= 10.5.2)
   - Realm/Headers (10.5.2)
   - RealmSwift (10.5.2):
     - Realm (= 10.5.2)
-  - SalahUtility (0.0.10):
+  - SalahUtility (0.0.14):
     - AppTexts
 
 DEPENDENCIES:
   - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
   - AppTexts (from `https://github.com/salah-mohammed/AppTexts.git`)
+  - MBProgressHUD
   - ObjectMapper
   - RealmSwift (= 10.5.2)
   - SalahUtility (from `https://github.com/salah-mohammed/SalahUtility.git`)
@@ -25,6 +27,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireObjectMapper
+    - MBProgressHUD
     - ObjectMapper
     - Realm
     - RealmSwift
@@ -37,21 +40,22 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AppTexts:
-    :commit: 2d07929388734cc0a406edd2c41b7bbf3a0194c9
+    :commit: e512b684b404a2e0384dca555ca1ab3df9ffe005
     :git: https://github.com/salah-mohammed/AppTexts.git
   SalahUtility:
-    :commit: b39bfd7e969f92b7d315f290706c855d412fcb5c
+    :commit: 243976542a272c4b7375ae412b4f37db06fc1251
     :git: https://github.com/salah-mohammed/SalahUtility.git
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
-  AppTexts: 44546f1c429ac7a166e0ed96dafd3bb65ca9a25c
+  AppTexts: ae36eecd6b9a41458ceb60229c49ea11a6ad0cc5
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   Realm: 2e1bc0d28301006176692da234deff51f867d5ae
   RealmSwift: a522ad39715e8b4e491af4460059bc32b84f5a9b
-  SalahUtility: 5f38967f382c469ae6d133c30c5317655bbf10c5
+  SalahUtility: 21678348865de36efbee5d1f3a53efd73c79d5bf
 
-PODFILE CHECKSUM: 141423341208dc52cb12629fc815d77f7d928856
+PODFILE CHECKSUM: 9043fb554c5e715e17a1477bc72ad29497634192
 
 COCOAPODS: 1.12.1

@@ -5,8 +5,9 @@
 //  Created by SalahMohamed on 18/10/2022.
 //  Copyright © 2022 Salah. All rights reserved.
 //
-
+#if os(iOS)
 import UIKit
+#endif
 
 public class Validate: NSObject {
     public class func fieldRequired(_ value:String)->String?{

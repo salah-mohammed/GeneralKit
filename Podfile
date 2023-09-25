@@ -28,6 +28,7 @@ end
 target 'GeneralKitUIKitExample' do
   use_frameworks!
   custom_pods
+  pod 'MBProgressHUD'
 end
 post_install do |installer|
   installer.pods_project.targets.each do |target|

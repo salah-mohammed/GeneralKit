@@ -6,6 +6,8 @@
   
 */
 // Constants
+"All"="All";
+"DownloadAll"="DownloadAll";
 "CantNotOpenLink"="Can't open this link";
 "Choose"="Choose";
 "Ok"="Ok";
@@ -69,6 +71,7 @@
 "General.QuestionYesNo.Send"="Are you sure you want to send this %@?";
 "General.QuestionYesNo.Change"="Are you sure you want to change this %@?";
 
+"General.Successfully"="%@ done in successfully";
 "General.Deleted.Successfully"="This %@ has been deleted successfully";
 "General.Added.Successfully" = "This %@ has been Added Successfully";
 "General.Edited.Successfully" = "This %@ has been Edited Successfully";
@@ -130,11 +133,13 @@
 "ExpiryDate"="Expiry date";
 "UsagePolicy"="Usage policy";
 "Verification"="Verification";
+"Item"="Item";
+"Product"="Product";
 // Fields
-"FirstName"="FirstName";
-"LastName"="LastName";
-"FullName"="FullName";
-"UserName"="FullName";
+"FirstName"="Firstname";
+"LastName"="Lastname";
+"FullName"="Fullname";
+"UserName"="Username";
 "Password"="Password";
 "ConfirmPassword"="Confirm Password";
 "NewPassword"="New Password";
@@ -142,7 +147,7 @@
 "AddressDetails"="Address details";
 "City"="City";
 "Region"="Region";
-"PhoneNumber"="PhoneNumber";
+"MobileNumber"="Mobile Number";
 "Title"="Title";
 "Description"="Description";
 "Details"="Details";
@@ -157,7 +162,7 @@
 "VerificationCode"="Verification Code";
 "Country"= "Country";
 "ChatTextMessagePlaceholder"="Write your message ...";
-"General.Message" = "Message";
+"Message" = "Message";
 "AddressOnMap"="Address On Map";
 "CurrentLocation" = "Current location";
 "SearchHere"="Search here";
@@ -179,12 +184,12 @@
 "NotValid"="Sorry, Invalid %@";
 "FieldRequired"="Sorry, The %@ Field is required";
 "Required"="Sorry, The %@ is required";
+"PleaseChoose"="Sorry, choose %@ please";
+"PleaseEnter"="Sorry, please enter %@";
+"EnterAllFields"="Please enter all fields";
+"FileSizeLessThanMB"="File size must be less than %@ MB";
 "PasswordNotMatch"="Sorry, Password does not match";
 "PasswordMustHave6"="Sorry,Password must be more than six characters";
-"PleaseChoose"="Sorry, choose %@ please";
-"EnterAllFields"="Please enter all fields";
-"PleaseEnter"="Sorry, please enter %@";
-"FileSizeLessThanMB"="File size must be less than %@ MB";
 //dark mode
 "UIUserInterfaceStyle.unspecified.bs_title"="system";
 "UIUserInterfaceStyle.light.bs_title"="light";
@@ -194,8 +199,8 @@
 //Firebase
 "VerificationCodeError"                                                           = "You should Correct Verification Code";
 "ConnectionError"                                                                 = "check netWork connection";
-"PhoneNumberIsNotValid"                                                           = "Phone Number is not correct";
-"PhoneNumberIsRequired"                                                           = "Phone Number is required";
+"MobileNumberIsNotValid"                                                           = "Mobile Number is not correct";
+"MobileNumberIsRequired"                                                           = "Mobile Number is required";
 "TooManyFirebaseRequests"                                                         = "You have too many activation code requests";
 
 //cutom
@@ -215,3 +220,36 @@
 //
 //cutom
 "VerificationCodeHasBeenSent"="The verification code has been sent to the number you entered";
+
+
+
+
+
+"BirthDay"="Birth Day";
+"Name"="Name";
+"OldPassword"="Old Password";
+"BirthDay"="تاريخ الميلاد";
+"Name"="الاسم";
+"Info"="معلومات";
+"OldPassword"="كلمة المرور القديمة";
+"MobileDigits"="عذراً، رقم الجوال لابد أن يكون %@ خانة";
+"PleaseAcceptTheTerms" = "يرجى قبول الشروط!";
+"MobileDigits"= "Mobile number must be %@ digits";
+"PleaseAcceptTheTerms" = "Please accept the terms!";
+"AboutUS" = "من نحن";
+"English"="إنجليزي";
+"Arabic"="عربي";
+"Signout"="تسجيل الخروج";
+"AboutUS"="About Us";
+"English"="English";
+"Arabic"="Arabic";
+"Signout"="Sign out";
+"LogInSuccess"                  = "تم تسجيل الدخول بنجاح.";
+"LogOutSuccess"                 = "تم تسجيل الخروج بنحاح";
+"LogInSuccess"="logged in successfully.";
+"LogOutSuccess"="logged out successfully.";
+
+"ResetPasswordSuccess"                                                            = "Password reset successfully done.";
+"ResetCodeToResetPasswordSuccess"                                                 = "Password reset code sent successfully.";
+"ResetPasswordSuccess"                                                            = "تم إستعادة كلمة المرور بنجاح.";
+"ResetCodeToResetPasswordSuccess"                                                 = "تم إرسال رمز إعادة تعيين كلمة المرور بنجاح.";

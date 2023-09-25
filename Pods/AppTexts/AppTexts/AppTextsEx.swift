@@ -46,3 +46,11 @@ if let secondBundle:Bundle = Bundle(path: "\(Bundle.main.bundlePath)/Frameworks/
     return self.regex.matches(input:input)
     }
 }
+public extension String{
+     func at_localized(_ language:String?=nil,_ tableName:String?=nil) ->String {
+        let tempLanguage:String = language  ?? Locale.current.languageCode ?? "Base"
+        if let path:String = (Bundle.module ?? Bundle.main).path(forResource: tempLanguage, ofType: "lproj") , let bundle:Bundle = Bundle(path: path) {
+        return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: "-", comment: "-")
+        }else{return "-"};
+    }
+}

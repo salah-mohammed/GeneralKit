@@ -5,7 +5,7 @@
 //  Created by Salah on 11/21/21.
 //  Copyright © 2021 Salah. All rights reserved.
 //
-
+#if os(iOS)
 import Foundation
 import UIKit
 public class VerticallyCenteredTextView: UITextView {
@@ -32,3 +32,4 @@ public class VerticallyCenteredTextView: UITextView {
         }
     }
 }
+#endif

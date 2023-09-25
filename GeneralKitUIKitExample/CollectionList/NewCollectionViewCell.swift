@@ -22,8 +22,9 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
         self.contentView.layer.cornerRadius = 8
         self.layer.cornerRadius = 8
     }
-    override func itemSelected() {
-        super.itemSelected();
+    override func itemSelected(_ indexPath:IndexPath,
+                               _ data: GeneralCellData?) {
+        super.itemSelected(indexPath,data);
         selection();
     }
     @IBAction func btnSelect(_ sender: Any) {

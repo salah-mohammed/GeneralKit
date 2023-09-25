@@ -34,6 +34,18 @@ import AppTexts
 //    #endif
 /*    **Array**   */
 
+
+
+#if os(iOS)
+public var statusBarHeight:CGFloat{
+    var top:CGFloat=0
+    if #available(iOS 13.0, *) {
+              top += UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+          } else {
+              top += UIApplication.shared.statusBarFrame.height
+          }
+    return top;
+}
 public enum Vibration {
         case error
         case success
@@ -77,6 +89,20 @@ public enum Vibration {
             }
         }
     }
+#endif
+public var bs_letters:[String]{
+        let aScalars = "a".unicodeScalars
+        let aCode = aScalars[aScalars.startIndex].value
+        let letters: [String] = (0..<26).compactMap {
+            i in
+            if let unicode:Unicode.Scalar =  UnicodeScalar(aCode + UInt32(i)){
+                return String([Character(unicode)]);
+            }else{
+             return nil
+            }
+        }
+    return letters
+}
 public extension CLLocationCoordinate2D{
     var stringValue:String{
         let latitude = String.init(format:"%.6f", self.latitude)
@@ -88,6 +114,7 @@ public enum RegularExpression:String{
     case email="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
     case phone = "[+]+[0-9 ]{1,}|[00]+[0-9 ]{1,}|[0-9 ]{9,}"
     case empty="^[. ]*$"
+    case isNumberOnly="^[0-9]"
     public var regex:Regex{
         return Regex.init(self.rawValue);
     }
@@ -394,6 +421,27 @@ public extension String{
 //            return item
 //        }
 //    }
+    // remove newline from start and end of text
+    var bs_removeNewline:String{
+        var item = String.init(self)
+        repeat {
+            if item.hasPrefix("\n"){
+                item.removeFirst()
+            }else{
+                break;
+            }
+        }while item.hasPrefix("\n")
+        
+        repeat {
+            if item.hasSuffix("\n"){
+                item.removeLast()
+            }else{
+                break;
+            }
+        } while item.hasSuffix("\n")
+
+        return item
+    }
     public var bs_fileURL:URL{
         return URL.init(fileURLWithPath: self);
     }
@@ -534,7 +582,6 @@ public extension String{
     #endif
 
     public func bs_replace(target: String, withString: String) -> String {
-        
         return self.replacingOccurrences(of: target, with:withString, options: .literal, range: nil)
     }
     public func bs_subtract(_ start:Int,_ last:Int)->String{
@@ -636,7 +683,7 @@ public extension String{
         return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: "", comment: "")
         }else{return ""};
     }
-    public func bs_toDic()->[String:String]{
+     func bs_toDic()->[String:String]{
         var  dic:[String:String]=[String:String]();
         for object in self.components(separatedBy:",") {
             let components = object.components(separatedBy:"=")
@@ -648,7 +695,7 @@ public extension String{
         }
         return dic;
     }
-    public func bs_matches(pattern: String) -> Bool {
+     func bs_matches(pattern: String) -> Bool {
            let regex = try! NSRegularExpression(
                pattern: pattern,
                options: [.caseInsensitive])
@@ -658,7 +705,7 @@ public extension String{
                range: NSRange(location: 0, length: utf16.count)) != nil
     }
     #if os(iOS)
-    public func bs_isValidURL() -> Bool {
+     func bs_isValidURL() -> Bool {
         guard let url = URL(string: self) else { return false }
         if !UIApplication.shared.canOpenURL(url) {
             return false
@@ -668,20 +715,20 @@ public extension String{
         return self.bs_matches(pattern: urlPattern)
     }
     #endif
-    public func bs_isValidEmail() -> Bool {
+     func bs_isValidEmail() -> Bool {
         // print("validate calendar: \(testStr)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
-    public func bs_stripHTML() -> String {
+     func bs_stripHTML() -> String {
         var tempString = self;
         tempString = tempString.replacingOccurrences(of: "&ndash;", with: "-")
         tempString = tempString.replacingOccurrences(of: "&nbsp;", with: " ")
         return tempString.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
     }
-     public func bs_matchingStrings(regex: String) -> [[String]] {
+      func bs_matchingStrings(regex: String) -> [[String]] {
         guard let regex = try? NSRegularExpression(pattern: regex, options: []) else { return [] }
         let nsString = self as NSString
         let results  = regex.matches(in: self, options: [], range: NSMakeRange(0, nsString.length))
@@ -701,20 +748,20 @@ public extension String{
 //            return true
 //        }
 //    }
-     public var bs_locationDegrees:CLLocationDegrees?{
+      var bs_locationDegrees:CLLocationDegrees?{
         let itemString:String = self;
         if let  item:CLLocationDegrees = CLLocationDegrees.init(itemString){
             return item;
         }
         return nil;
     }
-     public var bs_nsNumber:NSNumber?{
+      var bs_nsNumber:NSNumber?{
         if let doubleValue = Double.init(self) {
             return NSNumber(value:doubleValue);
         }
         return nil;
     }
-     public var bs_isRemoteFile:Bool{ if self.contains("http"){
+      var bs_isRemoteFile:Bool{ if self.contains("http"){
         return true
         }
         return false
@@ -736,12 +783,12 @@ public extension String{
             }
         }
     }
-    public var bs_isDigit:Bool{
+     var bs_isDigit:Bool{
         let formate = NumberFormatter.init();
         let isDecimal = formate.number(from: self) != nil;
         return isDecimal;
     }
-    public func bs_slice(from: String, to: String) -> String? {
+     func bs_slice(from: String, to: String) -> String? {
 
         return (range(of: from)?.upperBound).flatMap { substringFrom in
             (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
@@ -750,7 +797,7 @@ public extension String{
         }
     }
     ///*////
-    public func bs_search(searchedText:String)->Range<String.Index>?{
+     func bs_search(searchedText:String)->Range<String.Index>?{
         if let range = self.range(of:searchedText) {
             return range
         }
@@ -1008,7 +1055,7 @@ public extension Int32{
 
  extension CGFloat
 {
-    public var bs_float:Float?{
+    public var bs_float:Float{
         return Float.init(self);
     }
     public func bs_int() ->Int{
@@ -1235,6 +1282,13 @@ public extension Array where Element: Equatable {
 
             return results
     }
+    func getRandomWithRemove()->(Element?,[Element]){
+      var items = Array(self)
+      let randomIndex = Int.init(random:ClosedRange.init(uncheckedBounds: (lower:0, upper:items.count-1)))
+      let selectedVariable = items.bs_get(randomIndex)
+      items.remove(at:randomIndex)
+     return (selectedVariable,items)
+  }
 }
 public extension Bundle {
     static var bs_releaseVersionNumber: String? {
@@ -1416,6 +1470,21 @@ public extension Array{
         }
     }
 }
+public extension Sequence {
+    var count:Int{
+        return Array(self).count
+    }
+    var last:Iterator.Element?{
+        return Array(self).last
+    }
+    var first:Iterator.Element?{
+        return Array(self).first
+    }
+    func get(_ index:Int)->Iterator.Element?{
+        var items = Array(self)
+        return index < items.count ?  items[index]: nil;
+    }
+}
 /*    **MKMapItem**   */
 
  extension MKMapItem
@@ -1429,6 +1498,13 @@ public extension Array{
 /*    **UIImage**   */
  #if os(iOS)
  public extension UIImage {
+     var bs_mutableAttributedString:NSMutableAttributedString{
+             let image1Attachment = NSTextAttachment()
+             image1Attachment.image = self
+             let image1String = NSMutableAttributedString(attachment: image1Attachment)
+             return image1String;
+         }
+     
         public func bs_pixelColor(atLocation point: CGPoint) -> UIColor? {
              guard let cgImage = cgImage, let pixelData = cgImage.dataProvider?.data else { return nil }
 
@@ -2623,72 +2699,6 @@ public func bs_subtractLargeFontWithInRange(subtractFontValueEveryWorlds:Float,m
      return alertViewController
     }
  }
- public extension UINavigationBar{
-    // set line for navigation bar
-    func defaultStyle(){
-        if #available(iOS 13.0, *) {
-         let appearance = self.standardAppearance ?? UINavigationBarAppearance()
-          let navigationApperance = UINavigationBarAppearance()
-          appearance.backgroundEffect = navigationApperance.backgroundEffect
-          appearance.shadowColor = navigationApperance.shadowColor
-          appearance.backgroundColor = navigationApperance.backgroundColor
-          self.standardAppearance = appearance
-          self.compactAppearance = appearance
-          self.scrollEdgeAppearance = appearance
-        }
-        self.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.shadowImage = UIImage()
-        self.isTranslucent = true
-        self.tintColor = UINavigationBar.appearance().tintColor
-      }
-    
-    public func bs_set(backgroundImage:UIImage?,backgroundColor:UIColor?,textAttributes:[NSAttributedString.Key : Any]?,tintColor:UIColor?){
-        if #available(iOS 13.0, *) {
-            let appearance = self.standardAppearance
-            appearance.configureWithDefaultBackground()
-            appearance.titleTextAttributes=textAttributes ?? [:]
-            appearance.largeTitleTextAttributes=textAttributes ?? [:]
-            appearance.backgroundColor = backgroundColor
-            appearance.backgroundImage = backgroundImage?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0 ,right: 0), resizingMode:.stretch) ?? UIImage()
-            self.standardAppearance = appearance
-            self.compactAppearance = appearance
-            self.scrollEdgeAppearance = appearance
-
-        } else {
-        }
-        self.titleTextAttributes = textAttributes ?? [:]
-        self.setBackgroundImage(backgroundImage?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0 ,right: 0), resizingMode:.stretch) ?? UIImage(), for: .default)
-        self.tintColor = tintColor
-        self.barTintColor = backgroundColor
-
-    }
-    public func bs_setTransparent(backgroundColor:UIColor?,textAttributes:[NSAttributedString.Key : Any]?,tintColor:UIColor?){
-        if #available(iOS 13.0, *) {
-            let appearance = self.standardAppearance ?? UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            appearance.backgroundColor = backgroundColor ?? .clear
-            appearance.backgroundEffect = .none
-            appearance.shadowColor = .clear
-            appearance.titleTextAttributes=textAttributes ?? [:]
-            appearance.largeTitleTextAttributes=textAttributes ?? [:]
-            self.standardAppearance = appearance
-            self.compactAppearance = appearance
-            self.scrollEdgeAppearance = appearance
-        } else {
-        }
-        self.titleTextAttributes = textAttributes ?? [:]
-        self.tintColor = tintColor
-        
-        self.setBackgroundImage(UIImage(), for: .default)
-        self.shadowImage = UIImage()
-        self.barTintColor = backgroundColor ?? .clear
-    }
-    
-     public func bs_removeBarLine(){
-         self.setBackgroundImage(UIImage(), for: .default)
-         self.shadowImage = UIImage()
-     }
- }
  extension UIScrollView{
      public func bs_scrollToBottom(){
          let bottomOffset = CGPoint(x: 0, y: self.contentSize.height - self.bounds.height + self.contentInset.bottom)
@@ -2965,7 +2975,28 @@ public extension AVPlayer{
 }
 /*    **URL**   */
 
-extension URL {
+public extension URL {
+    static func bs_genrateLocalFile(_ searchPathDirectory:FileManager.SearchPathDirectory = .documentDirectory,
+                                 _ folderName:String?,
+                                    _ localeFileName:String?,
+                                    _ fileType:String?,
+                                    _ createPath:Bool)->URL?{
+        var tempLocalFolderUrl:URL?
+        if let folderName:String = folderName{
+            tempLocalFolderUrl = FileManager.default.bs_createFolder(searchPathDirectory,folderName:"\(folderName)",createPath:createPath)
+        }else{
+            tempLocalFolderUrl=FileManager.default.urls(for:searchPathDirectory,in: .userDomainMask).first
+        }
+        
+        if let tempLocalFolderUrl:URL=tempLocalFolderUrl,
+           let localeFileName:String=localeFileName,
+           let fileType:String=fileType{
+             let fileURL:URL = tempLocalFolderUrl.appendingPathComponent(localeFileName).appendingPathExtension("\(fileType)")
+             return fileURL;
+        }else{
+            return nil;
+        }
+    }
     func bs_fileName() -> String {
         return self.deletingPathExtension().lastPathComponent
     }
@@ -2976,6 +3007,23 @@ extension URL {
     func paramater(_ paramaterName: String) -> String? {
         guard let url = URLComponents(string: self.absoluteString) else { return nil }
         return url.queryItems?.first(where: { $0.name == paramaterName })?.value
+    }
+    func bs_equalRemoteUrl(_ url:URL?)->Bool{
+            var firstStringUrl = self.absoluteString
+            if var secondStringUrl:String = url?.absoluteString{
+                let firstUrlPrefix = String(firstStringUrl.prefix(5))
+                let secondUrlPrefix = String(secondStringUrl.prefix(5))
+                if firstUrlPrefix.lowercased() == "https"{
+                }else{
+                    firstStringUrl=firstStringUrl.bs_replace(target: String(firstStringUrl.prefix(4)), withString:"https")
+                }
+                if secondUrlPrefix.lowercased() == "https"{
+                }else{
+                    secondStringUrl=secondStringUrl.bs_replace(target: String(secondStringUrl.prefix(4)), withString:"https")
+                }
+               return firstStringUrl == secondStringUrl
+            }
+            return false;
     }
 }
 
@@ -3121,9 +3169,11 @@ extension URL {
     public var bs_html2String: String {
         return bs_html2AttributedString?.string ?? ""
     }
+#if os(iOS)
      public var bs_image:UIImage?{
          return UIImage.init(data: self);
      }
+#endif
     // used to convert device token from data to base 64 string
     public var bs_64String:String{
         var token:String = "";
@@ -3212,6 +3262,21 @@ public extension DateFormatter {
 public extension FileManager {
     public static let bs_documentsPath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 
+    public func bs_copyItem(deleteIfExist:Bool,at srcURL: URL, to dstURL: URL) -> Bool {
+        do {
+            let fileExists = self.fileExists(atPath: dstURL.path)
+            if deleteIfExist,fileExists{
+                try self.removeItem(at: dstURL)
+            }
+            if deleteIfExist || (fileExists == false){
+                try self.copyItem(at: srcURL, to: dstURL)
+            }
+        } catch (let error) {
+            print("Cannot copy item at \(srcURL) to \(dstURL): \(error)")
+            return false
+        }
+        return true
+    }
     public static let bs_documentsURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     func bs_saveToAppFiles(tempFileUrl:URL,remoteUrl:String?,success:()->(Void),fail:(Error)->(Void)){
         if  let urlString:String = remoteUrl, let fileURL:URL = URL(string:urlString){
@@ -3246,13 +3311,21 @@ public extension FileManager {
             print("could not save data")
         }
     }
+     func bs_saveTextFile(conetnt:String,url:URL){
+          let conetnt:String=conetnt
+             do {
+                 try conetnt.write(to: url, atomically: true, encoding: String.Encoding.utf8)
+             }catch {
+                 print(error);
+             }
+    }
     func bs_urls(for directory: FileManager.SearchPathDirectory, skipsHiddenFiles: Bool = true ) -> [URL]? {
         let documentsURL = urls(for: directory, in: .userDomainMask)[0]
         let fileURLs = try? contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: skipsHiddenFiles ? .skipsHiddenFiles : [] )
         return fileURLs
     }
         // folder/subfolder/subfolder
-    func bs_createFolder(_ documentDirectory:SearchPathDirectory = .documentDirectory,folderName: String) -> URL? {
+    func bs_createFolder(_ documentDirectory:SearchPathDirectory = .documentDirectory,folderName: String,createPath:Bool=true) -> URL? {
             let fileManager = FileManager.default
             // Get document directory for device, this should succeed
             if let documentDirectory = fileManager.urls(for:documentDirectory,
@@ -3260,7 +3333,7 @@ public extension FileManager {
                 // Construct a URL with desired folder name
                 let folderURL = documentDirectory.appendingPathComponent(folderName)
                 // If folder URL does not exist, create it
-                if !fileManager.fileExists(atPath: folderURL.path) {
+                if createPath,!fileManager.fileExists(atPath: folderURL.path) {
                     do {
                         // Attempt to create folder
                         try fileManager.createDirectory(atPath: folderURL.path,
@@ -3714,7 +3787,7 @@ extension Locale{
         return nil;
     }
 }
-
+#if os(iOS)
 extension CGImage {
     private var bs_thresholdModifier: Double {
         0.45
@@ -3743,6 +3816,7 @@ extension CGImage {
         return true
     }
 }
+#endif
 extension Sequence {
  
     /// Return the sequence with all duplicates removed.
@@ -3779,13 +3853,14 @@ extension NSResponder {
     }
 }
 #endif
-
+#if os(iOS)
 public extension AVRoutePickerView {
     public func bs_present() {
         let routePickerButton = subviews.first(where: { $0 is UIButton }) as? UIButton
         routePickerButton?.sendActions(for: .touchUpInside)
     }
 }
+#endif
 public extension AVAsset{
     public var bs_url:URL?{
         return (self as? AVURLAsset)?.url
@@ -3812,3 +3887,4 @@ public extension Substring{
         return String(self);
     }
 }
+

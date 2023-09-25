@@ -25,7 +25,8 @@ open class GeneralCollectionViewCell:UICollectionViewCell,GeneralListViewCellPro
     public var indexPath: IndexPath?{
         return self.list?.indexPathForItemInList(at: self.center)
     }
-    open func itemSelected() {
+    open func itemSelected(_ indexPath:IndexPath,
+                           _ data: GeneralCellData?) {
     }
     open func config(_ indexPath: IndexPath,
                      _ data:GeneralCellData?) {
@@ -197,7 +198,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     }
     func itemSelected(_ indexPath:IndexPath){
         let cell = self.cellForItem(at: indexPath) as! GeneralListViewCellProtocol
-        cell.itemSelected();
+        cell.itemSelected(indexPath,self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row))
     }
     ////////////////////////-
     // MARK: - UICollectionViewDelegate
