@@ -202,7 +202,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             if autoHandle{ self.reloadData()}
             break;
         case .appendObject(section: let section,atRow:let row, let item):
-            self.appendObject(section, row,self.converterObject(item), autoHandle: true)
+            self.appendObject(section, row,self.converterObject(item), autoHandle:autoHandle)
             break;
         case .appendNewSection(let index,let items):
             self.appendNewSection(index,self.convertObjects(items), true);
