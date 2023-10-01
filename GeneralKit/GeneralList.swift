@@ -463,15 +463,6 @@ extension GeneralRealmListViewProrocol {
     public  func realm<T: Object>(_ ofType:T.Type)->Results<T> {
         return  self.relam!.objects(ofType.self)
     }
-    public func handleRelam<T: Object>(objects:Results<T>)->[Any]{
-        var array:[Any]=[Any]();
-        for index in 0 ..< objects.count {
-            if let result = objects[index] as? T {
-            array.append(result);
-            }
-        }
-        return array;
-    }
    public func executeRealm<T: Object>(ofType:T.Type,filter:((Results<T>)->Results<T>)?,operationHandler:((GeneralListConstant.OperationsHandler)->Void)?,observeChange:(([GeneralCellData])->Void)?){
         let objects = self.realm(ofType);
         let results:Results<T> = filter?(objects) ?? objects;
@@ -479,8 +470,8 @@ extension GeneralRealmListViewProrocol {
          self.notificationToken = results.observe { change in
             switch change {
             case .initial(let results):
-                let objects = self.handleRelam(objects:results);
-                self.handleAny(.objects([[objects]]), nil,false)
+                let objects = Array(results)
+                self.handleAny(.appendItemsInSection(atRow:nil,objects),nil,false)
                 self.reloadData()
                 operationHandler?(.initial(self.objects[0]));
                 observeChange?(self.objects[0]);
