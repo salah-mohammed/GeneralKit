@@ -4,6 +4,7 @@
 //
 //  Created by SalahMohamed on 28/10/2022.
 //
+#if os(iOS)
 
 import Foundation
 import Alamofire
@@ -60,7 +61,7 @@ public protocol GeneralListViewCellProtocol{
     var list:GeneralListViewProrocol?{ get set}
     var listViewController:UIViewController?{ get set}
     var indexPath:IndexPath?{get}
-//    var object:GeneralCellData?{get}
+    var object:GeneralCellData?{get}
 
     func itemSelected(_ indexPath:IndexPath,
                       _ data: GeneralCellData?);
@@ -435,3 +436,4 @@ extension GeneralListViewProrocol where Self:GeneralConnection{
         }
     }
 }
+#endif

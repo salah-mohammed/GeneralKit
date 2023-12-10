@@ -83,7 +83,7 @@ class MaintenanceError:RemoteError{
         return statusCode == 500 || statusCode == 404
     }
     override func operation() -> Bool {
-        Alert.show(nil,.error("", nil))
+        AppAlert.show(nil,.error("", nil))
         return false
     }
 }
@@ -92,7 +92,7 @@ class NoInternetCheckError:RemoteError{
         return  (errorCode == -1009) || (errorCode == -1020)
     }
     override func operation() -> Bool {
-        Alert.show(nil,.error("", nil))
+        AppAlert.show(nil,.error("", nil))
         return false
     }
 }
@@ -101,7 +101,7 @@ class AuthError:RemoteError{
         return  self.statusCode == 401
     }
     override func operation() -> Bool {
-        Alert.show(nil,.error("", nil))
+        AppAlert.show(nil,.error("", nil))
         return false
     }
 }
@@ -111,7 +111,7 @@ class GeneralRemoteError:RemoteError{
         return self.dataResponse?.error == nil && (200..<300).contains(self.statusCode ?? 0)
     }
     override func operation() -> Bool {
-        Alert.show(nil,.error("خطأ غير معروف", nil))
+        AppAlert.show(nil,.error("خطأ غير معروف", nil))
         return false
     }
 }

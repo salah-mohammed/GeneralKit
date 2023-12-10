@@ -5,7 +5,6 @@
 //  Created by SalahMohamed on 01/04/2023.
 //
 
-import UIKit
 import Foundation
 import ObjectMapper
 import Alamofire

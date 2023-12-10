@@ -3,7 +3,7 @@ PODS:
   - AlamofireObjectMapper (6.2.0):
     - Alamofire (= 5.0.0-rc.2)
     - ObjectMapper (~> 3.5.1)
-  - AppTexts (0.0.1)
+  - AppTexts (0.0.2)
   - MBProgressHUD (1.2.0)
   - ObjectMapper (3.5.3)
   - SalahUtility (0.0.14):
@@ -12,10 +12,10 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
-  - AppTexts (from `https://github.com/salah-mohammed/AppTexts.git`)
+  - AppTexts (from `/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/AppTexts`)
   - MBProgressHUD
   - ObjectMapper
-  - SalahUtility (from `https://github.com/salah-mohammed/SalahUtility.git`)
+  - SalahUtility (from `/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/SalahUtility`)
 
 SPEC REPOS:
   trunk:
@@ -26,26 +26,26 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   AppTexts:
-    :git: https://github.com/salah-mohammed/AppTexts.git
+    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/AppTexts"
   SalahUtility:
-    :git: https://github.com/salah-mohammed/SalahUtility.git
+    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/SalahUtility"
 
 CHECKOUT OPTIONS:
   AppTexts:
-    :commit: 7db7f8b71d8ed59ff5142ec4da24c8d771e7165d
-    :git: https://github.com/salah-mohammed/AppTexts.git
+    :commit: e512b684b404a2e0384dca555ca1ab3df9ffe005
+    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/AppTexts"
   SalahUtility:
-    :commit: 928363b871f6edd5d1445cd13dc933d188963893
-    :git: https://github.com/salah-mohammed/SalahUtility.git
+    :commit: 243976542a272c4b7375ae412b4f37db06fc1251
+    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/SalahUtility"
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
-  AppTexts: 44546f1c429ac7a166e0ed96dafd3bb65ca9a25c
+  AppTexts: ae36eecd6b9a41458ceb60229c49ea11a6ad0cc5
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SalahUtility: 21678348865de36efbee5d1f3a53efd73c79d5bf
 
-PODFILE CHECKSUM: a8938706059c260bfc7e3648ec3285d0897c4cb8
+PODFILE CHECKSUM: e3f12f3800b44c52645e2ab5048bfb5faa114f8d
 
 COCOAPODS: 1.12.1

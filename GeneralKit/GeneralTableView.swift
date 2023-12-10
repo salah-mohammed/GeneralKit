@@ -4,6 +4,7 @@
 //
 //  Created by SalahMohamed on 17/10/2022.
 //
+#if os(iOS)
 
 import UIKit
 
@@ -28,12 +29,12 @@ open class GeneralTableViewCell:UITableViewCell,GeneralListViewCellProtocol,Gene
     // MARK: - GeneralListViewProrocol
     weak public var list: GeneralListViewProrocol?
     weak public var listViewController: UIViewController?
-//    public var object: GeneralCellData?{
-//        if let indexPath:IndexPath=indexPath{
-//            return self.list?.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)
-//        }
-//        return nil
-//    }
+    public var object: GeneralCellData?{
+        if let indexPath:IndexPath=indexPath{
+            return self.list?.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)
+        }
+        return nil
+    }
     public var indexPath: IndexPath?{
         return self.list?.indexPathForItemInList(at: self.center)
     }
@@ -296,3 +297,4 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         return self.headerView(forSection: forSection) as? ListSectionProtocol
     }
 }
+#endif

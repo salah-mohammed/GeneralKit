@@ -25,13 +25,13 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
     override func itemSelected(_ indexPath:IndexPath,
                                _ data: GeneralCellData?) {
         super.itemSelected(indexPath,data);
-        selection();
+        selection(data);
     }
     @IBAction func btnSelect(_ sender: Any) {
-        selection();
+        selection(self.object);
     }
-    func selection(){
-        if let  object:GeneralCellData = self.object{
+    func selection(_ object: GeneralCellData?){
+        if let  object:GeneralCellData = object{
             self.list?.selectAndDeselect(object);
         }
         self.list?.reloadData();
