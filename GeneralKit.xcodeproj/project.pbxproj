@@ -1083,7 +1083,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
-					"IOS=1",
+					"IOS=2",
 					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1121,7 +1121,7 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
 					"$(inherited)",
 					"COCOAPODS=1",
-					"IOS=1",
+					"IOS=2",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
