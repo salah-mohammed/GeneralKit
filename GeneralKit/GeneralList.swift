@@ -4,7 +4,7 @@
 //
 //  Created by SalahMohamed on 28/10/2022.
 //
-#if os(iOS)
+//#if os(iOS)
 
 import Foundation
 import Alamofire
@@ -436,4 +436,4 @@ extension GeneralListViewProrocol where Self:GeneralConnection{
         }
     }
 }
-#endif
+//#endif

@@ -6,7 +6,7 @@
 //  Created by Andrej Mihajlov on 9/4/13.
 //  Copyright (c) 2013-2015 Andrej Mihajlov. All rights reserved.
 //
-#if BUILD_PLATFORM==IOS
+//#if BUILD_PLATFORM==IOS
 
 #import <UIKit/UIKit.h>
 
@@ -166,4 +166,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-#endif
+//#endif

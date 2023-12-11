@@ -5,7 +5,7 @@
 //  Created by Salah on 12/1/18.
 //  Copyright © 2018 Salah. All rights reserved.
 //
-#if os(iOS)
+//#if os(iOS)
 
 import UIKit
 public var ErrorConnection:ListPlaceHolderData{
@@ -189,4 +189,4 @@ open class ListPlaceHolderView: UIView,ListPlaceHolder {
     }
 
 }
-#endif
+//#endif

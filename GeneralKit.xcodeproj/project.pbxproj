@@ -28,7 +28,6 @@
 		4ECFD2F728DF415E006A5087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECFD2F628DF415E006A5087 /* Assets.xcassets */; };
 		4ECFD2FB28DF415E006A5087 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECFD2FA28DF415E006A5087 /* Preview Assets.xcassets */; };
 		4ECFD30028DF41B9006A5087 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFD2FF28DF41B9006A5087 /* ContentViewModel.swift */; };
-		4ECFD30728DF4747006A5087 /* GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; platformFilter = ios; };
 		4ECFD30828DF4747006A5087 /* GeneralKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4ECFD30F28DF515B006A5087 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFD30E28DF515A006A5087 /* RequestBuilder.swift */; };
 		4EE7AF1528E8216F00B81C8B /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7AF1428E8216F00B81C8B /* ResponseHandler.swift */; };
@@ -55,6 +54,8 @@
 		8B2A0BF228FD605300244000 /* GeneralKitUIKitExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BF128FD605300244000 /* GeneralKitUIKitExampleTests.swift */; };
 		8B2A0BFC28FD605300244000 /* GeneralKitUIKitExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BFB28FD605300244000 /* GeneralKitUIKitExampleUITests.swift */; };
 		8B2A0BFE28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BFD28FD605300244000 /* GeneralKitUIKitExampleUITestsLaunchTests.swift */; };
+		8B376E4A2B275EEE00F75308 /* GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; };
+		8B376E4B2B275F5400F75308 /* GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; };
 		8B45381229D8DF21007966D1 /* RequestBuilderGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45381129D8DF21007966D1 /* RequestBuilderGroup.swift */; };
 		8B4D270029AE7A0C00E51353 /* TableSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B4D26FE29AE7A0C00E51353 /* TableSectionView.xib */; };
 		8B4D270129AE7A0C00E51353 /* TableSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D26FF29AE7A0C00E51353 /* TableSectionView.swift */; };
@@ -74,7 +75,6 @@
 		8BA6738029068A7A00A6CE14 /* NewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57749028E8BBB60075C5B0 /* NewRequest.swift */; };
 		8BA6738129068A8500A6CE14 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57749328E8BC3C0075C5B0 /* BaseResponse.swift */; };
 		8BA6738229068A8500A6CE14 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6323F728EA0951005DBE9B /* User.swift */; };
-		8BB8786828FDBBAB000D9204 /* GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; };
 		8BB8786928FDBBAB000D9204 /* GeneralKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD1493729B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1493629B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift */; };
 		E4CABBC9EB997D760A0AC168 /* Pods_GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA254326E754360B8CAA819 /* Pods_GeneralKit.framework */; };
@@ -227,7 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ECFD30728DF4747006A5087 /* GeneralKit.framework in Frameworks */,
+				8B376E4B2B275F5400F75308 /* GeneralKit.framework in Frameworks */,
 				6CE38983F54E9F4EF1FD0662 /* Pods_GeneralKitExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,7 +236,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BB8786828FDBBAB000D9204 /* GeneralKit.framework in Frameworks */,
+				8B376E4A2B275EEE00F75308 /* GeneralKit.framework in Frameworks */,
 				75D6E0A951E7F2F99D55C27D /* Pods_GeneralKitUIKitExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1082,8 +1082,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
-					"IOS=2",
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=macosx*]" = (
+					"MACOS=2",
 					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1098,6 +1098,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.salahmohamedText-wr.GeneralKit";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = GeneralKit/GeneralKitBridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1118,10 +1121,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=macosx*]" = (
 					"$(inherited)",
 					"COCOAPODS=1",
-					"IOS=2",
+					"MACOS=2",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1135,6 +1138,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.salahmohamedText-wr.GeneralKit";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = GeneralKit/GeneralKitBridge.h;
 				SWIFT_VERSION = 5.0;
