@@ -6,7 +6,6 @@
 //  Copyright © 2018 Salah. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper

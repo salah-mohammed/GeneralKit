@@ -4,7 +4,7 @@
 //
 //  Created by SalahMohamed on 17/10/2022.
 //
-//#if os(iOS)
+#if os(iOS)
 
 import UIKit
 
@@ -297,4 +297,4 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         return self.headerView(forSection: forSection) as? ListSectionProtocol
     }
 }
-//#endif
+#endif

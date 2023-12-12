@@ -4,7 +4,7 @@
 //
 //  Created by SalahMohamed on 24/10/2022.
 //
-//#if os(iOS)
+#if os(iOS)
 
 import UIKit
 
@@ -262,4 +262,4 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         return nil
     }
 }
-//#endif
+#endif

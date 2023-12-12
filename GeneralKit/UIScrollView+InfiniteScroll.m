@@ -7,6 +7,7 @@
 //  Copyright (c) 2013-2015 Andrej Mihajlov. All rights reserved.
 //
 
+#if BUILD_PLATFORM!=MACOS
 #import "UIScrollView+InfiniteScroll.h"
 #import <objc/runtime.h>
 
@@ -719,3 +720,4 @@ static const void *kPBInfiniteScrollStateKey = &kPBInfiniteScrollStateKey;
 }
 
 @end
+#endif
