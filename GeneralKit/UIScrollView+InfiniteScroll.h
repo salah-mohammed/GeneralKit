@@ -6,10 +6,11 @@
 //  Created by Andrej Mihajlov on 9/4/13.
 //  Copyright (c) 2013-2015 Andrej Mihajlov. All rights reserved.
 //
-#if BUILD_PLATFORM!=MACOS
-
+//#if BUILD_PLATFORM!=MACOS
+#include <TargetConditionals.h>
 #import <UIKit/UIKit.h>
 
+#if TARGET_OS_IPHONE
 NS_ASSUME_NONNULL_BEGIN
 
 /**
