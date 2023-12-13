@@ -8,9 +8,9 @@
 //
 //#if BUILD_PLATFORM!=MACOS
 #include <TargetConditionals.h>
-#import <UIKit/UIKit.h>
 
 #if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
 /**
