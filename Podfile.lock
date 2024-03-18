@@ -6,16 +6,16 @@ PODS:
   - AppTexts (0.0.2)
   - MBProgressHUD (1.2.0)
   - ObjectMapper (3.5.3)
-  - SalahUtility (0.0.14):
+  - SalahUtility (0.0.16):
     - AppTexts
 
 DEPENDENCIES:
   - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
-  - AppTexts (from `/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/AppTexts`)
+  - AppTexts (from `https://github.com/salah-mohammed/AppTexts.git`)
   - MBProgressHUD
   - ObjectMapper
-  - SalahUtility (from `/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/SalahUtility`)
+  - SalahUtility (from `https://github.com/salah-mohammed/SalahUtility.git`)
 
 SPEC REPOS:
   trunk:
@@ -26,17 +26,17 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   AppTexts:
-    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/AppTexts"
+    :git: https://github.com/salah-mohammed/AppTexts.git
   SalahUtility:
-    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/SalahUtility"
+    :git: https://github.com/salah-mohammed/SalahUtility.git
 
 CHECKOUT OPTIONS:
   AppTexts:
-    :commit: e512b684b404a2e0384dca555ca1ab3df9ffe005
-    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/AppTexts"
+    :commit: e7edef5b20d995e632cbb7deaa2e153c31fd7edc
+    :git: https://github.com/salah-mohammed/AppTexts.git
   SalahUtility:
-    :commit: 243976542a272c4b7375ae412b4f37db06fc1251
-    :git: "/Users/assd/Salah_Mohammed/Projects/IOSProjects/Own/MyLibraries/SalahUtility"
+    :commit: 8694c1b735701218f01ffb909f48e670f0235978
+    :git: https://github.com/salah-mohammed/SalahUtility.git
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
@@ -44,8 +44,8 @@ SPEC CHECKSUMS:
   AppTexts: ae36eecd6b9a41458ceb60229c49ea11a6ad0cc5
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  SalahUtility: 21678348865de36efbee5d1f3a53efd73c79d5bf
+  SalahUtility: b8ae24c61a2132005bd2e07cb6d9ddfd55eecb8f
 
-PODFILE CHECKSUM: e3f12f3800b44c52645e2ab5048bfb5faa114f8d
+PODFILE CHECKSUM: e313c5a13971985835414e6320a26ab4959032b4
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.0
