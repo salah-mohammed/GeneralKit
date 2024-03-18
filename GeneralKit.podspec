@@ -110,11 +110,13 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
-s.resources = 'Pod/Resources/*'
-  s.resource_bundles = {
+  s.resources = 'Pod/Resources/*'
+  s.ios.resource_bundles = {
     'GeneralKit' => ['GeneralKit/Resources/**/*.{xib,xcassets,json,imageset,bundle,strings,storyboard}','GeneralKit/View/*.{lproj,storybard}']
   }
-  
+  s.osx.resource_bundles = {
+    'GeneralKit' => ['GeneralKit/Resources/**/*.{xcassets,json,imageset,bundle,strings,storyboard}','GeneralKit/View/*.{lproj,storybard}']
+  }
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Link your library with frameworks, or libraries. Libraries do not include
