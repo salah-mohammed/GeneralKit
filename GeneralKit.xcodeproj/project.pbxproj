@@ -64,6 +64,8 @@
 		8B4EE9472BA8E7990094410B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4EE9462BA8E7990094410B /* ContentView.swift */; };
 		8B4EE9492BA8E79A0094410B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B4EE9482BA8E79A0094410B /* Assets.xcassets */; };
 		8B4EE94C2BA8E79A0094410B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B4EE94B2BA8E79A0094410B /* Preview Assets.xcassets */; };
+		8B4EE9522BA8ED600094410B /* GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; };
+		8B4EE9532BA8ED600094410B /* GeneralKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8B76580D2906F4BF0047E799 /* GeneralKitEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */; };
 		8B7658102906F6920047E799 /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580E2906F6910047E799 /* NewTableViewCell.swift */; };
 		8B7658112906F6920047E799 /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B76580F2906F6910047E799 /* NewTableViewCell.xib */; };
@@ -107,6 +109,13 @@
 			remoteGlobalIDString = 8B2A0BD728FD605200244000;
 			remoteInfo = GeneralKitUIKitExample;
 		};
+		8B4EE9542BA8ED600094410B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E20239328DE5190004DA975 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E20239B28DE5190004DA975;
+			remoteInfo = GeneralKit;
+		};
 		8BB8786A28FDBBAB000D9204 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E20239328DE5190004DA975 /* Project object */;
@@ -124,6 +133,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4ECFD30828DF4747006A5087 /* GeneralKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B4EE9562BA8ED600094410B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8B4EE9532BA8ED600094410B /* GeneralKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +232,7 @@
 		8B4EE9482BA8E79A0094410B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B4EE94B2BA8E79A0094410B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8B4EE94D2BA8E79A0094410B /* GeneralKitSwiftUIMacOsExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeneralKitSwiftUIMacOsExample.entitlements; sourceTree = "<group>"; };
+		8B4EE9512BA8ED520094410B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitEx.swift; sourceTree = "<group>"; };
 		8B76580E2906F6910047E799 /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		8B76580F2906F6910047E799 /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
@@ -273,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B4EE9522BA8ED600094410B /* GeneralKit.framework in Frameworks */,
 				31B0DDDCBE6056E1017D199B /* Pods_GeneralKitSwiftUIMacOsExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +499,7 @@
 		8B4EE9432BA8E7990094410B /* GeneralKitSwiftUIMacOsExample */ = {
 			isa = PBXGroup;
 			children = (
+				8B4EE9512BA8ED520094410B /* Info.plist */,
 				8B4EE9442BA8E7990094410B /* GeneralKitSwiftUIMacOsExampleApp.swift */,
 				8B4EE9462BA8E7990094410B /* ContentView.swift */,
 				8B4EE9482BA8E79A0094410B /* Assets.xcassets */,
@@ -667,10 +690,12 @@
 				8B4EE93F2BA8E7990094410B /* Frameworks */,
 				8B4EE9402BA8E7990094410B /* Resources */,
 				98248ED0D536D972D9E8C4B9 /* [CP] Embed Pods Frameworks */,
+				8B4EE9562BA8ED600094410B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8B4EE9552BA8ED600094410B /* PBXTargetDependency */,
 			);
 			name = GeneralKitSwiftUIMacOsExample;
 			productName = GeneralKitSwiftUIMacOsExample;
@@ -1047,6 +1072,11 @@
 			isa = PBXTargetDependency;
 			target = 8B2A0BD728FD605200244000 /* GeneralKitUIKitExample */;
 			targetProxy = 8B2A0BF828FD605300244000 /* PBXContainerItemProxy */;
+		};
+		8B4EE9552BA8ED600094410B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E20239B28DE5190004DA975 /* GeneralKit */;
+			targetProxy = 8B4EE9542BA8ED600094410B /* PBXContainerItemProxy */;
 		};
 		8BB8786B28FDBBAB000D9204 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1511,6 +1541,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GeneralKitSwiftUIMacOsExample/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1547,6 +1578,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GeneralKitSwiftUIMacOsExample/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
