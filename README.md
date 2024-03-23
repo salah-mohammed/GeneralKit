@@ -21,6 +21,8 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 # Requirements
 * IOS 13+ 
 * Swift 5+
+* OSX 10.15+ 
+
 
 
 # Pod install
