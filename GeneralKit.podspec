@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "*", "GeneralKit/*"
-  s.exclude_files = "Classes/Exclude"
+  s.exclude_files = "GeneralKit/ListPlaceHolderView.xib"
 
   # s.public_header_files = "Classes/**/*.h"
 
