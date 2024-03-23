@@ -92,8 +92,8 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "*", "GeneralKit/*"
-  s.exclude_files = "GeneralKit/ListPlaceHolderView.xib"
-
+  s.osx.exclude_files = "GeneralKit/ListPlaceHolderView.xib"
+  # s.ios.exclude_files = ""
   # s.public_header_files = "Classes/**/*.h"
 
 
@@ -111,11 +111,8 @@ Pod::Spec.new do |s|
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
   s.resources = 'Pod/Resources/*'
-  s.ios.resource_bundles = {
+  s.resource_bundles = {
     'GeneralKit' => ['GeneralKit/Resources/**/*.{xib,xcassets,json,imageset,bundle,strings,storyboard}','GeneralKit/View/*.{lproj,storybard}']
-  }
-  s.osx.resource_bundles = {
-    'GeneralKit' => ['GeneralKit/Resources/**/*.{xcassets,json,imageset,bundle,strings,storyboard}','GeneralKit/View/*.{lproj,storybard}']
   }
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
