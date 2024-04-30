@@ -190,6 +190,7 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
         for indexPath in indexPaths{
             objects[indexPath.section].remove(at: indexPath.row);
         }
+        self.objects = objects
         if autoHandle{self.deleteRowsInList(indexPaths)}
     }
     public func handleAny(_ anyHandling:AnyHandling,_ error:Error?=nil,_ autoHandle:Bool=false){
