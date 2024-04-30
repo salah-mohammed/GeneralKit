@@ -121,7 +121,7 @@ public protocol GeneralListViewProrocol:class {
     func reloadData()
     var  selectionType:SelectionType{ get set}
     func selectAndDeselect(_ object:GeneralCellData)
-    func handleRemove(_ indexPaths:[IndexPath])
+    func handleRemove(_ indexPaths:[IndexPath],_ autoHandle:Bool)
     //UI
     func insertInList(indexPaths:[IndexPath]);
     func reloadRowInList(indexPaths:[IndexPath]);
@@ -185,12 +185,12 @@ extension GeneralListViewProrocol where Self: GeneralConnection {
             }
         }
     }
-    public func handleRemove(_ indexPaths:[IndexPath]){
-        var objects = self.objects ?? []
+    public func handleRemove(_ indexPaths:[IndexPath],_ autoHandle:Bool=false){
+        var objects = self.objects
         for indexPath in indexPaths{
             objects[indexPath.section].remove(at: indexPath.row);
         }
-        self.deleteRowsInList(indexPaths)
+        if autoHandle{self.deleteRowsInList(indexPaths)}
     }
     public func handleAny(_ anyHandling:AnyHandling,_ error:Error?=nil,_ autoHandle:Bool=false){
         switch anyHandling {
