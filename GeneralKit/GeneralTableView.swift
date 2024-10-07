@@ -231,7 +231,7 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         return self.estimatedHeightForHeaderInSectionHandler?(section) ?? UITableView.automaticDimension
     }
     open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return  (self.heightForHeaderInSectionHandler?(section) ?? UITableView.automaticDimension)
+        return  (self.heightForHeaderInSectionHandler?(section) ?? 0)
     }
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         self.config(tableView: self, indexPath: indexPath, object:self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row));
