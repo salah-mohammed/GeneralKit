@@ -6,6 +6,10 @@ def custom_pods
   pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
   pod 'AlamofireObjectMapper'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
+  
+  pod 'RealmSwift'
+  pod 'ObjectMapper+Realm'#,:git =>'https://github.com/salah-mohammed/ObjectMapper-Realm.git'
+  pod 'DateToolsSwift'
 end
 
 target 'GeneralKit' do

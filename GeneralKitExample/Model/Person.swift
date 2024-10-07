@@ -3,8 +3,8 @@ import ObjectMapper
 import RealmSwift
 import ObjectMapper_Realm
 
-public class UserRealm: _UserRealm {
+public class PersonRealm: _PersonRealm {
 }
 
-public class User: _User{
+public class Person: _Person{
 }

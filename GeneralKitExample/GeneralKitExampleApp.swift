@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+public let mappingDateFormate = ""
 @main
 struct GeneralKitExampleApp: App {
     var body: some Scene {
