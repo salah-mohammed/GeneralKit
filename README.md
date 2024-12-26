@@ -23,6 +23,13 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 * Swift 5+
 * OSX 10.15+ 
 
+## Support the Project
+Buy me a coffee or support me on [Buy me acoffee](https://buymeacoffee.com/salahalimou).
+
+<a href="https://buymeacoffee.com/salahalimou">
+<img width=25% alt="yellow-button" src="https://user-images.githubusercontent.com/1888355/146226808-eb2e9ee0-c6bd-44a2-a330-3bbc8a6244cf.png">
+</a>
+
 
 
 # Pod install
@@ -386,10 +393,4 @@ it is very important framework for IOS developers to create IOS project with min
 #Note:
 i'm searching a part time job if you have opportunity, contact me in linked in or other please.
 
-## Support the Project
-Buy me a coffee or support me on [Buy me acoffee](https://buymeacoffee.com/salahalimou).
-
-<a href="https://buymeacoffee.com/salahalimou">
-<img width=25% alt="yellow-button" src="https://user-images.githubusercontent.com/1888355/146226808-eb2e9ee0-c6bd-44a2-a330-3bbc8a6244cf.png">
-</a>
 
