@@ -23,8 +23,8 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 * Swift 5+
 * OSX 10.15+ 
 
-## Support the Project
-Buy me a coffee or support me on [Buy me acoffee](https://buymeacoffee.com/salahalimou).
+## Support The Project
+Buy me a coffee and support me on [Buy me acoffee](https://buymeacoffee.com/salahalimou).
 
 <a href="https://buymeacoffee.com/salahalimou">
 <img width=25% alt="yellow-button" src="https://user-images.githubusercontent.com/1888355/146226808-eb2e9ee0-c6bd-44a2-a330-3bbc8a6244cf.png">
