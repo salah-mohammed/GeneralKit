@@ -1,6 +1,6 @@
 # GeneralKit
 
-GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code.
+GeneralKit is a Swift framework for HTTP networking and data handling in UITableView and UICollectionView, providing a complete vision to get maintainable and clean business code efficient network-driven UIKit or SwiftUI apps.
 
 # Features
 
@@ -22,6 +22,13 @@ GeneralKit  It was built  for every application that displays data in UITableVie
 * IOS 13+ 
 * Swift 5+
 * OSX 10.15+ 
+
+## Support The Project
+Buy me a coffee and support me on [Buy me acoffee](https://buymeacoffee.com/salahalimou).
+
+<a href="https://buymeacoffee.com/salahalimou">
+<img width=25% alt="yellow-button" src="https://user-images.githubusercontent.com/1888355/146226808-eb2e9ee0-c6bd-44a2-a330-3bbc8a6244cf.png">
+</a>
 
 
 
@@ -385,3 +392,5 @@ it is very important framework for IOS developers to create IOS project with min
 
 #Note:
 i'm searching a part time job if you have opportunity, contact me in linked in or other please.
+
+
