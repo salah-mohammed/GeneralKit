@@ -208,7 +208,7 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
         return self.objects.count
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)?.cellSize ?? self.itemSize ?? CGSize.zero;
+        let size = self.objects.bs_get(indexPath.section)?.bs_get(indexPath.row)?.cellSize ?? self.itemSize ?? CGSize(width:1, height:1);
         return size
     }
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

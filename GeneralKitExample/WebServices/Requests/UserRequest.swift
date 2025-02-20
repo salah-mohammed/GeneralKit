@@ -13,7 +13,7 @@ import AlamofireObjectMapper
 
 class UserRequest:BaseRequest{
     override var baseUrl:String{
-    return  "https://nfcard.online/Salah/"
+    return  "http://salahmohamed.website/ClassGeneratorPro/"
     }
     public enum Route{
         case users
