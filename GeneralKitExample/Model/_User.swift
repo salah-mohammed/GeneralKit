@@ -14,7 +14,8 @@ import ObjectMapper_Realm
 
 #if canImport(RealmSwift)
 public class _UserRealm: PersonRealm {
-     @objc dynamic var username:String?;  
+     @objc dynamic var id:NSNumber=0;
+     @objc dynamic var username:String?;
      @objc dynamic var fullname:String?;  
      @objc dynamic var datebirth:Date?;  
      @objc dynamic var yearsExpere:Int = -1;
@@ -114,8 +115,8 @@ public class _User: Person{
        case B1 = "B1"
        case B2 = "B2"
       }
-
-     var username:String?;
+    var id:NSNumber=0;
+    var username:String?;
     var fullname:String?;
     var datebirth:Date?;
     var yearsExpere:Int?;
@@ -126,6 +127,7 @@ public class _User: Person{
     
     public required init?(map: ObjectMapper.Map){
         super.init(map: map)
+        id <- map["id"]
         username <- map["username"]
         fullname <- map["fullname"]
         datebirth <- map["datebirth"]
@@ -141,6 +143,7 @@ public class _User: Person{
     
         public override func mapping(map: ObjectMapper.Map) {
         super.mapping(map:map)
+        id <- map["id"]
         username <- map["username"]
         fullname <- map["fullname"]
         datebirth <- map["datebirth"]
@@ -153,6 +156,7 @@ public class _User: Person{
     
     @objc required public override init(coder aDecoder: NSCoder){
         super.init(coder:aDecoder)
+        id = aDecoder.decodeObject(forKey:"id") as? NSNumber ?? 0
         username = aDecoder.decodeObject(forKey:"username") as? String
         fullname = aDecoder.decodeObject(forKey:"fullname") as? String
         datebirth = aDecoder.decodeObject(forKey:"datebirth") as? Date
@@ -165,6 +169,7 @@ public class _User: Person{
 
     @objc public override func encode(with aCoder: NSCoder){
         super.encode(with: aCoder)
+          aCoder.encode(id, forKey: "id")
         if username != nil{
             aCoder.encode(username, forKey: "username")
         }
@@ -189,7 +194,7 @@ public class _User: Person{
     
     public override func toDictionary() -> [String:Any]{
          var dictionary = super.toDictionary()
-
+        dictionary["id"] = id
         dictionary["username"] = username
         dictionary["fullname"] = fullname
         dictionary["datebirth"] = datebirth
@@ -211,6 +216,7 @@ public class _User: Person{
     
     public override init(fromDictionary dictionary: [String:Any]){
          super.init(fromDictionary: dictionary)
+        id = dictionary["id"] as? NSNumber ?? 0
         username = dictionary["username"] as? String
         fullname = dictionary["fullname"] as? String
         if let stringdatebirth:String = dictionary["datebirth"] as? String{
@@ -238,7 +244,7 @@ public class _User: Person{
      }
     
     public override var description: String{
-         let stringValue = ["username =\(self.username?.description ?? "nil")",
+         let stringValue = ["id =\(id),username =\(self.username?.description ?? "nil")",
          "fullname =\(self.fullname?.description ?? "nil")",
          "datebirth =\(self.datebirth?.description ?? "nil")",
          "yearsExpere =\(self.yearsExpere?.description ?? "nil")",

@@ -11,6 +11,8 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 import SalahUtility
+public let mappingDateFormate = ""
+
 extension RequestOperationBuilder<BaseResponse> {
     func executeWithCheckResponse(_ successFinish:((BaseResponse)->Void)?,
                              error:(()->Void)? = nil){

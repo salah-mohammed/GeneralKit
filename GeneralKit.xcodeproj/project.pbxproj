@@ -64,6 +64,14 @@
 		8B4EE94C2BA8E79A0094410B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B4EE94B2BA8E79A0094410B /* Preview Assets.xcassets */; };
 		8B4EE9522BA8ED600094410B /* GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; };
 		8B4EE9532BA8ED600094410B /* GeneralKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8B5BC6A92DB4EC0E0051EA4E /* _User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC112C288CDF00902F63 /* _User.swift */; };
+		8B5BC6AA2DB4EC0E0051EA4E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC1A2C28DCB400902F63 /* User.swift */; };
+		8B5BC8382DB51D810051EA4E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC1A2C28DCB400902F63 /* User.swift */; };
+		8B5BC8392DB51D8C0051EA4E /* _User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC112C288CDF00902F63 /* _User.swift */; };
+		8B5BC83A2DB51DCF0051EA4E /* _Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC142C288CDF00902F63 /* _Role.swift */; };
+		8B5BC83B2DB51DCF0051EA4E /* _Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC132C288CDF00902F63 /* _Person.swift */; };
+		8B5BC83C2DB51DCF0051EA4E /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC102C288CDF00902F63 /* Role.swift */; };
+		8B5BC83D2DB51DCF0051EA4E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC122C288CDF00902F63 /* Person.swift */; };
 		8B76580D2906F4BF0047E799 /* GeneralKitEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */; };
 		8B7658102906F6920047E799 /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580E2906F6910047E799 /* NewTableViewCell.swift */; };
 		8B7658112906F6920047E799 /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B76580F2906F6910047E799 /* NewTableViewCell.xib */; };
@@ -82,11 +90,9 @@
 		8BB8786928FDBBAB000D9204 /* GeneralKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD1493729B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1493629B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift */; };
 		8BDFBC152C288CDF00902F63 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC102C288CDF00902F63 /* Role.swift */; };
-		8BDFBC162C288CDF00902F63 /* _User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC112C288CDF00902F63 /* _User.swift */; };
 		8BDFBC172C288CDF00902F63 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC122C288CDF00902F63 /* Person.swift */; };
 		8BDFBC182C288CDF00902F63 /* _Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC132C288CDF00902F63 /* _Person.swift */; };
 		8BDFBC192C288CDF00902F63 /* _Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC142C288CDF00902F63 /* _Role.swift */; };
-		8BDFBC1B2C28DCB400902F63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC1A2C28DCB400902F63 /* User.swift */; };
 		E4CABBC9EB997D760A0AC168 /* Pods_GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA254326E754360B8CAA819 /* Pods_GeneralKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -995,12 +1001,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5BC6A92DB4EC0E0051EA4E /* _User.swift in Sources */,
+				8B5BC6AA2DB4EC0E0051EA4E /* User.swift in Sources */,
 				4E57749128E8BBB60075C5B0 /* NewRequest.swift in Sources */,
 				4ECFD2F528DF415B006A5087 /* ContentView.swift in Sources */,
 				4EE7AF1528E8216F00B81C8B /* ResponseHandler.swift in Sources */,
 				8BDFBC192C288CDF00902F63 /* _Role.swift in Sources */,
 				4ECFD30028DF41B9006A5087 /* ContentViewModel.swift in Sources */,
-				8BDFBC162C288CDF00902F63 /* _User.swift in Sources */,
 				4E57749428E8BC3C0075C5B0 /* BaseResponse.swift in Sources */,
 				4E57748E28E8BB790075C5B0 /* AppBaseRequest.swift in Sources */,
 				4E57749D28E8D2AA0075C5B0 /* ItemRequest.swift in Sources */,
@@ -1013,7 +1020,6 @@
 				4E57749628E8BF060075C5B0 /* ItemsViewModel.swift in Sources */,
 				8BDFBC172C288CDF00902F63 /* Person.swift in Sources */,
 				8BDFBC152C288CDF00902F63 /* Role.swift in Sources */,
-				8BDFBC1B2C28DCB400902F63 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1028,17 +1034,23 @@
 				8B091F4C290C327100D38C91 /* CollectionSectionListExampleViewController.swift in Sources */,
 				8B091F46290BD54300D38C91 /* SectionHeaderCollectionView.swift in Sources */,
 				8B2A0BDF28FD605200244000 /* TableListExampleViewController.swift in Sources */,
+				8B5BC83A2DB51DCF0051EA4E /* _Role.swift in Sources */,
+				8B5BC83B2DB51DCF0051EA4E /* _Person.swift in Sources */,
+				8B5BC83C2DB51DCF0051EA4E /* Role.swift in Sources */,
+				8B5BC83D2DB51DCF0051EA4E /* Person.swift in Sources */,
 				8BA6737C29068A6900A6CE14 /* ResponseHandler.swift in Sources */,
 				8B765815290703870047E799 /* NewCollectionViewCell.swift in Sources */,
 				8B7658102906F6920047E799 /* NewTableViewCell.swift in Sources */,
 				8BA6737E29068A7A00A6CE14 /* UserRequest.swift in Sources */,
 				8BA42AC62AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift in Sources */,
+				8B5BC8392DB51D8C0051EA4E /* _User.swift in Sources */,
 				8B2A0BDB28FD605200244000 /* AppDelegate.swift in Sources */,
 				8B4D270129AE7A0C00E51353 /* TableSectionView.swift in Sources */,
 				8BA6737D29068A6D00A6CE14 /* AppBaseRequest.swift in Sources */,
 				8B2A0BDD28FD605200244000 /* SceneDelegate.swift in Sources */,
 				8BA6738029068A7A00A6CE14 /* NewRequest.swift in Sources */,
 				8BA6737F29068A7A00A6CE14 /* ItemRequest.swift in Sources */,
+				8B5BC8382DB51D810051EA4E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

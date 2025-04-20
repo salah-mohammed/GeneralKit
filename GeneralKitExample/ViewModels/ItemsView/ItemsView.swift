@@ -15,7 +15,7 @@ struct ItemsView: View {
         ZStack{
             List{
                 ForEach(viewModel.list, id: \.self) { item in
-//                        Text("\(item.id?.stringValue ?? "") \(item.username ?? "")")
+                        Text("\(item.id.stringValue) \(item.username ?? "")")
                 }
                 if self.viewModel.paginationManager.hasNextPage {
                     LoadMoreView.init(action: self.viewModel.loadMore())

@@ -41,7 +41,7 @@ class NewTableViewCell: GeneralTableViewCell {
     }
     @IBAction func btnDelete(_ sender:Any?){
         if let indexPath:IndexPath = self.indexPath{
-        self.list?.handleRemove([indexPath])
+            self.list?.handleRemove([indexPath], true)
         }
     }
 }
