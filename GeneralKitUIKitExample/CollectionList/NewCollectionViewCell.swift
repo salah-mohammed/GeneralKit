@@ -15,7 +15,7 @@ class NewCollectionViewCell:GeneralCollectionViewCell {
                          _ data:GeneralCellData?) {
         super.config(indexPath, data)
         self.imgSelect.image = data?.selected ?? false ? UIImage(named:"ic_checked"):UIImage(named:"ic_not_checked")
-        lblTitle.text = (data?.object as? User)?.id?.stringValue ?? ""
+        lblTitle.text = (data?.object as? User)?.id.stringValue ?? ""
     }
     override func layoutSubviews() {
         super.layoutSubviews();
