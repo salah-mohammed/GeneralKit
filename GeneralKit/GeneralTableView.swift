@@ -181,8 +181,11 @@ open class GeneralTableView: UITableView,GeneralListViewProrocol,GeneralConnecti
         let sectionCount = self.objects.count
         self.refreshControl?.beginRefreshing();
         self.objects.removeAll();
-        let indexSet = IndexSet.init(integersIn: 0...sectionCount-1)
-        self.deleteSections(indexSet, with:.automatic);
+//        if sectionCount >= 1{
+//            let indexSet = IndexSet.init(integersIn: 0...sectionCount-1)
+//            self.deleteSections(indexSet, with:.automatic);
+//        }
+        self.reloadData()
         self.paginator?.start();
         self.refreshHandler?()
     }

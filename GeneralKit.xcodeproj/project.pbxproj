@@ -40,8 +40,6 @@
 		8B27DEDA2931438A00026312 /* NormalNetworkExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27DED82931438A00026312 /* NormalNetworkExampleViewModel.swift */; };
 		8B27DEDB2931438A00026312 /* NormalNetworkExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27DED92931438A00026312 /* NormalNetworkExampleView.swift */; };
 		8B2A0BC628FD398C00244000 /* GeneralTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC528FD398C00244000 /* GeneralTableView.swift */; };
-		8B2A0BC928FD3AF600244000 /* UIScrollView+InfiniteScroll.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */; };
-		8B2A0BCA28FD3AF600244000 /* UIScrollView+InfiniteScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */; };
 		8B2A0BD228FD57F400244000 /* ListPlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2A0BD028FD57F400244000 /* ListPlaceHolderView.xib */; platformFilter = ios; };
 		8B2A0BD328FD57F400244000 /* ListPlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BD128FD57F400244000 /* ListPlaceHolderView.swift */; };
 		8B2A0BDB28FD605200244000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2A0BDA28FD605200244000 /* AppDelegate.swift */; };
@@ -72,6 +70,8 @@
 		8B5BC83B2DB51DCF0051EA4E /* _Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC132C288CDF00902F63 /* _Person.swift */; };
 		8B5BC83C2DB51DCF0051EA4E /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC102C288CDF00902F63 /* Role.swift */; };
 		8B5BC83D2DB51DCF0051EA4E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC122C288CDF00902F63 /* Person.swift */; };
+		8B5BC8422DB52CC00051EA4E /* UIScrollView+InfiniteScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5BC8412DB52CC00051EA4E /* UIScrollView+InfiniteScroll.m */; };
+		8B5BC8432DB52CC00051EA4E /* UIScrollView+InfiniteScroll.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B5BC8402DB52CC00051EA4E /* UIScrollView+InfiniteScroll.h */; };
 		8B76580D2906F4BF0047E799 /* GeneralKitEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */; };
 		8B7658102906F6920047E799 /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76580E2906F6910047E799 /* NewTableViewCell.swift */; };
 		8B7658112906F6920047E799 /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B76580F2906F6910047E799 /* NewTableViewCell.xib */; };
@@ -212,8 +212,6 @@
 		8B27DED82931438A00026312 /* NormalNetworkExampleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalNetworkExampleViewModel.swift; sourceTree = "<group>"; };
 		8B27DED92931438A00026312 /* NormalNetworkExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalNetworkExampleView.swift; sourceTree = "<group>"; };
 		8B2A0BC528FD398C00244000 /* GeneralTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTableView.swift; sourceTree = "<group>"; };
-		8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+InfiniteScroll.h"; sourceTree = "<group>"; };
-		8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+InfiniteScroll.m"; sourceTree = "<group>"; };
 		8B2A0BCF28FD3C0900244000 /* GeneralKitBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneralKitBridge.h; sourceTree = "<group>"; };
 		8B2A0BD028FD57F400244000 /* ListPlaceHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListPlaceHolderView.xib; sourceTree = "<group>"; };
 		8B2A0BD128FD57F400244000 /* ListPlaceHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPlaceHolderView.swift; sourceTree = "<group>"; };
@@ -240,6 +238,8 @@
 		8B4EE94B2BA8E79A0094410B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8B4EE94D2BA8E79A0094410B /* GeneralKitSwiftUIMacOsExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeneralKitSwiftUIMacOsExample.entitlements; sourceTree = "<group>"; };
 		8B4EE9512BA8ED520094410B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8B5BC8402DB52CC00051EA4E /* UIScrollView+InfiniteScroll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+InfiniteScroll.h"; sourceTree = "<group>"; };
+		8B5BC8412DB52CC00051EA4E /* UIScrollView+InfiniteScroll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+InfiniteScroll.m"; sourceTree = "<group>"; };
 		8B76580C2906F4BF0047E799 /* GeneralKitEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKitEx.swift; sourceTree = "<group>"; };
 		8B76580E2906F6910047E799 /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		8B76580F2906F6910047E799 /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
@@ -354,8 +354,8 @@
 				8B091F49290C290100D38C91 /* GeneralList.swift */,
 				8B2A0BC528FD398C00244000 /* GeneralTableView.swift */,
 				8B7658122906FCB50047E799 /* GeneralCollectionView.swift */,
-				8B2A0BC728FD3AF600244000 /* UIScrollView+InfiniteScroll.h */,
-				8B2A0BC828FD3AF600244000 /* UIScrollView+InfiniteScroll.m */,
+				8B5BC8402DB52CC00051EA4E /* UIScrollView+InfiniteScroll.h */,
+				8B5BC8412DB52CC00051EA4E /* UIScrollView+InfiniteScroll.m */,
 				8B2A0BD128FD57F400244000 /* ListPlaceHolderView.swift */,
 				8B2A0BD028FD57F400244000 /* ListPlaceHolderView.xib */,
 				8B2A0BCF28FD3C0900244000 /* GeneralKitBridge.h */,
@@ -593,7 +593,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B2A0BC928FD3AF600244000 /* UIScrollView+InfiniteScroll.h in Headers */,
+				8B5BC8432DB52CC00051EA4E /* UIScrollView+InfiniteScroll.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,11 +989,11 @@
 				8B7658132906FCB50047E799 /* GeneralCollectionView.swift in Sources */,
 				8B45381229D8DF21007966D1 /* RequestBuilderGroup.swift in Sources */,
 				8B091F4A290C290100D38C91 /* GeneralList.swift in Sources */,
-				8B2A0BCA28FD3AF600244000 /* UIScrollView+InfiniteScroll.m in Sources */,
 				8B2A0BD328FD57F400244000 /* ListPlaceHolderView.swift in Sources */,
 				8B2A0BC628FD398C00244000 /* GeneralTableView.swift in Sources */,
 				4ECFD2EB28DF175B006A5087 /* ValidationObject.swift in Sources */,
 				4EE7AF1728E8249100B81C8B /* PaginationManager.swift in Sources */,
+				8B5BC8422DB52CC00051EA4E /* UIScrollView+InfiniteScroll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

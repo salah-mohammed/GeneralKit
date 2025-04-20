@@ -4,8 +4,17 @@ PODS:
     - Alamofire (= 5.0.0-rc.2)
     - ObjectMapper (~> 3.5.1)
   - AppTexts (0.0.2)
+  - DateToolsSwift (5.0.0)
   - MBProgressHUD (1.2.0)
   - ObjectMapper (3.5.3)
+  - "ObjectMapper+Realm (1.2)":
+    - ObjectMapper
+    - RealmSwift
+  - Realm (20.0.1):
+    - Realm/Headers (= 20.0.1)
+  - Realm/Headers (20.0.1)
+  - RealmSwift (20.0.1):
+    - Realm (= 20.0.1)
   - SalahUtility (0.0.16):
     - AppTexts
 
@@ -13,16 +22,23 @@ DEPENDENCIES:
   - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
   - AppTexts (from `https://github.com/salah-mohammed/AppTexts.git`)
+  - DateToolsSwift
   - MBProgressHUD
   - ObjectMapper
+  - "ObjectMapper+Realm"
+  - RealmSwift
   - SalahUtility (from `https://github.com/salah-mohammed/SalahUtility.git`)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireObjectMapper
+    - DateToolsSwift
     - MBProgressHUD
     - ObjectMapper
+    - "ObjectMapper+Realm"
+    - Realm
+    - RealmSwift
 
 EXTERNAL SOURCES:
   AppTexts:
@@ -42,10 +58,14 @@ SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
   AppTexts: ae36eecd6b9a41458ceb60229c49ea11a6ad0cc5
+  DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  SalahUtility: b8ae24c61a2132005bd2e07cb6d9ddfd55eecb8f
+  "ObjectMapper+Realm": 0f8d0ac5b0e87ba63d2d0bea76a111b4eae98b9a
+  Realm: 9572204903ef28caeb3c03bb30c1147f354ee3e7
+  RealmSwift: d230b44017a55a1ba97de6a944da1fe3bedb92b5
+  SalahUtility: fe81d1fff557d98dafc3f5b5976f6f937f49b656
 
-PODFILE CHECKSUM: e313c5a13971985835414e6320a26ab4959032b4
+PODFILE CHECKSUM: 0dd153c7e6cd177cc61241812eead7b6088f9107
 
-COCOAPODS: 1.15.0
+COCOAPODS: 1.16.2

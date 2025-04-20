@@ -177,9 +177,10 @@ open class GeneralCollectionView: UICollectionView,GeneralListViewProrocol,Gener
     @objc func performToPullToRefresh(){
         let sectionCount = self.objects.count
         self.refreshControl?.beginRefreshing();
-        self.objects.removeAll();
-        let indexSet = IndexSet.init(integersIn: 0...sectionCount-1)
-        self.deleteSections(indexSet);
+//        self.objects.removeAll();
+//        let indexSet = IndexSet.init(integersIn: 0...sectionCount-1)
+//        self.deleteSections(indexSet);
+        self.reloadData()
         self.paginator?.start();
         self.refreshHandler?()
     }
