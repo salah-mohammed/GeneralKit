@@ -20,7 +20,7 @@ func loadNextPage()
 func start();
 }
 
-public class PaginationManager<T:Mappable>:NSObject,PaginationManagerProtocol{
+public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationManagerProtocol{
     public typealias CheckPagainatorHandler = (PaginationManager<T>,RequestOperationBuilder<T>.FinishData?) -> Bool;
     public typealias CurrentPageHandler = (PaginationManager<T>,RequestOperationBuilder<T>.FinishData?) -> Int;
     
