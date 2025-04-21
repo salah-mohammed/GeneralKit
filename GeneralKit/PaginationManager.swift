@@ -38,7 +38,7 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
     public var hasNextPage:Bool=false
     @Published public var isLoading:Bool=false
    
-    func isLoadingNow()->Bool{
+    public func isLoadingNow()->Bool{
         if self.requestBuilder.dataRequest  == nil{return false;}
         return true;
     }
