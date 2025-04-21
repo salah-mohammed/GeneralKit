@@ -36,8 +36,9 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
     }
 
     public var hasNextPage:Bool=false
-    public var isLoading:Bool
-    {
+    @Published public var isLoading:Bool=false
+   
+    func isLoadingNow()->Bool{
         if self.requestBuilder.dataRequest  == nil{return false;}
         return true;
     }
@@ -53,6 +54,7 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
     }
     // for refresh
     public func start(){
+        self.isLoading=true
         if self.requestBuilder.dataRequest != nil {
             self.requestBuilder.dataRequest?.cancel();
         }
@@ -78,6 +80,7 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
             self.requestBuilder.baseRequest(baseRequest);
         }
         self.requestBuilder.responseHandler {[weak self] response in
+            self?.isLoading=false
             self?.hasNextPage = self?.hasNextPageHandler?(self!,response) ?? false
             self?.hasPreviousPage = self?.hasPreviousPageHandler?(self!,response) ?? false
             self?.responseHandler?(response);
