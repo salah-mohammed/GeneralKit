@@ -17,19 +17,18 @@ public class RequestBuilderGroup<T:Mappable>:NSObject{
             self.processs = items
         }
     }
-    private func executeNext(){
-        
-    }
-    @discardableResult public func build()->Self{
-    for procesItem in processs{
-        procesItem.request.responseHandler({ a in
-            
+    func nextProcess(){
         if let current:Int = self.current{
             if let nextProcesItem:Process = self.processs.bs_get(current+1){
                 self.current = current+1
                 nextProcesItem.request.execute()
             }
         }
+    }
+    @discardableResult public func build()->Self{
+    for procesItem in processs{
+        procesItem.request.responseHandler({ a in
+        self.nextProcess()
      procesItem.handler(a)
             
         })
