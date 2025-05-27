@@ -70,11 +70,11 @@ public class RequestBuilder {
 public class RequestOperationBuilder<T:Mappable>:NSObject{
     public typealias FinishData = DataResponse<T,AFError>
     public typealias FinishHandler = ((FinishData)->Void)
-    var responseHandler:FinishHandler?
+    public var responseHandler:FinishHandler?
     var dataRequest:DataRequest!;
     var request:URLRequest?
     var dataResponse:FinishData?
-    var baseRequest:BaseRequest?
+    public var baseRequest:BaseRequest?
     var multipart : Bool = false
     var timeout : TimeInterval = 60
     var showLoader:Bool=true;
