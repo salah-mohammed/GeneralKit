@@ -17,7 +17,7 @@ public class RequestBuilderGroup<T:Mappable>:NSObject{
             self.processs = items
         }
     }
-    func nextProcess(){
+    private func executeNextProcess(){
         if let current:Int = self.current{
             if let nextProcesItem:Process = self.processs.bs_get(current+1){
                 self.current = current+1
@@ -28,7 +28,7 @@ public class RequestBuilderGroup<T:Mappable>:NSObject{
     @discardableResult public func build()->Self{
     for procesItem in processs{
         procesItem.request.responseHandler({ a in
-        self.nextProcess()
+        self.executeNextProcess()
      procesItem.handler(a)
             
         })
