@@ -10,6 +10,7 @@ import ObjectMapper
 import Alamofire
 public class RequestBuilderGroup<T:Mappable>:NSObject{
     public typealias Process = (request:RequestOperationBuilder<T>,handler:RequestOperationBuilder<T>.FinishHandler)
+    public var finishHandler:(()->Void)?
     private var processs = [Process]()
     var current:Int?
     public init(_ processs:[Process]?) {
@@ -22,15 +23,16 @@ public class RequestBuilderGroup<T:Mappable>:NSObject{
             if let nextProcesItem:Process = self.processs.bs_get(current+1){
                 self.current = current+1
                 nextProcesItem.request.execute()
+            }else{
+                finishHandler?();
             }
         }
     }
     @discardableResult public func build()->Self{
     for procesItem in processs{
         procesItem.request.responseHandler({ a in
+        procesItem.handler(a)
         self.executeNextProcess()
-     procesItem.handler(a)
-            
         })
         procesItem.request.build();
     }
