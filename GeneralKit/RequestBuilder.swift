@@ -71,7 +71,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
     public typealias FinishData = DataResponse<T,AFError>
     public typealias FinishHandler = ((FinishData)->Void)
     public var responseHandler:FinishHandler?
-    var dataRequest:DataRequest!;
+    var dataRequest:DataRequest?;
     var request:URLRequest?
     var dataResponse:FinishData?
     public var baseRequest:BaseRequest?
@@ -79,6 +79,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
     var timeout : TimeInterval = 60
     var showLoader:Bool=true;
     open var encoding:ParameterEncoding =  URLEncoding.default
+    @Published public var isLoading:Bool=false
 
     var partAlamofire:((MultipartFormData) -> Void)={ (formData:MultipartFormData) in}
     // MARK: intenral
@@ -140,6 +141,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
      }
     public func execute(){
         if let request:URLRequest = self.request{
+            self.isLoading = true;
             if showLoader{
             RequestBuilder.shared.waitingView?(true);
             }
@@ -148,7 +150,8 @@ public class RequestOperationBuilder<T:Mappable>:NSObject{
             }else{
                 self.dataRequest = AF.request(request)
             }
-            self.dataRequest.responseObject{ [weak self] (response:DataResponse<T,AFError>) in
+            self.dataRequest?.responseObject{ [weak self] (response:DataResponse<T,AFError>) in
+                self?.isLoading=false;
                 self?.dataRequest=nil;
                 if self?.showLoader ?? false{
                     RequestBuilder.shared.waitingView?(false);

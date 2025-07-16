@@ -13,6 +13,7 @@ public class RequestBuilderGroup<T:Mappable>:NSObject{
     public var finishHandler:(()->Void)?
     private var processs = [Process]()
     var current:Int?
+    @Published public var isLoading:Bool=false
     public init(_ processs:[Process]?) {
         if let items: [Process] = processs{
             self.processs = items
@@ -24,6 +25,7 @@ public class RequestBuilderGroup<T:Mappable>:NSObject{
                 self.current = current+1
                 nextProcesItem.request.execute()
             }else{
+                self.isLoading=false;
                 finishHandler?();
             }
         }
@@ -40,6 +42,7 @@ public class RequestBuilderGroup<T:Mappable>:NSObject{
     }
     public func execute(){
         if let procesItem:Process = processs.first{
+            self.isLoading=true;
             procesItem.request.execute()
             current=0
         }
