@@ -628,7 +628,7 @@
 				4ECFD2ED28DF415B006A5087 /* Frameworks */,
 				4ECFD2EE28DF415B006A5087 /* Resources */,
 				4ECFD30B28DF4747006A5087 /* Embed Frameworks */,
-				2725C4493EAEB2CF305A2478 /* [CP] Embed Pods Frameworks */,
+				AED9C1A72E8D6D6E813FC5BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -705,8 +705,8 @@
 				8B4EE93E2BA8E7990094410B /* Sources */,
 				8B4EE93F2BA8E7990094410B /* Frameworks */,
 				8B4EE9402BA8E7990094410B /* Resources */,
-				98248ED0D536D972D9E8C4B9 /* [CP] Embed Pods Frameworks */,
 				8B4EE9562BA8ED600094410B /* Embed Frameworks */,
+				466C6C99AEBCD758CCFF25E4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -837,21 +837,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2725C4493EAEB2CF305A2478 /* [CP] Embed Pods Frameworks */ = {
+		466C6C99AEBCD758CCFF25E4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitExample/Pods-GeneralKitExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitSwiftUIMacOsExample/Pods-GeneralKitSwiftUIMacOsExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitExample/Pods-GeneralKitExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitSwiftUIMacOsExample/Pods-GeneralKitSwiftUIMacOsExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeneralKitExample/Pods-GeneralKitExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeneralKitSwiftUIMacOsExample/Pods-GeneralKitSwiftUIMacOsExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4A7B54975DC0F1EEBFD39CF8 /* [CP] Check Pods Manifest.lock */ = {
@@ -915,21 +915,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		98248ED0D536D972D9E8C4B9 /* [CP] Embed Pods Frameworks */ = {
+		AED9C1A72E8D6D6E813FC5BA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitSwiftUIMacOsExample/Pods-GeneralKitSwiftUIMacOsExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitExample/Pods-GeneralKitExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitSwiftUIMacOsExample/Pods-GeneralKitSwiftUIMacOsExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-GeneralKitExample/Pods-GeneralKitExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeneralKitSwiftUIMacOsExample/Pods-GeneralKitSwiftUIMacOsExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeneralKitExample/Pods-GeneralKitExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D4095C91FBF6041B468A5535 /* [CP] Check Pods Manifest.lock */ = {

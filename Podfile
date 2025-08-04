@@ -1,10 +1,10 @@
 # Uncomment the next line to define a global platform for your project
 #source 'https://github.com/CocoaPods/Specs.git'
 def custom_pods
-  pod 'Alamofire', '5.0.0-rc.2'
+  pod 'Alamofire', '5.7'
   pod 'ObjectMapper'
   pod 'SalahUtility', :git => 'https://github.com/salah-mohammed/SalahUtility.git'
-  pod 'AlamofireObjectMapper'
+  pod 'AlamofireObjectMapper', :git =>'https://github.com/salah-mohammed/AlamofireObjectMapper.git'
   pod 'AppTexts', :git => 'https://github.com/salah-mohammed/AppTexts.git'
   
   pod 'RealmSwift'
