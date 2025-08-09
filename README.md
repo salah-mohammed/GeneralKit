@@ -9,8 +9,11 @@ A complete Swift framework to supercharge networking and data handling in UIKit 
 
 # Why Use This?
 
-> Stop writing the same boilerplate networking and table/collection view code again and again.  
+> Write less code, get more done, and keep your Swift projects elegant.
+> Stop writing the same boilerplate networking for list and table/collection view code again and again.  
 > **GeneralKit** gives you a clean, reusable, and lightning-fast way to load, paginate, and present data — so you can focus on building features that matter.
+
+
 
 # Features
 
