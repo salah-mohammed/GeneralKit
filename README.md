@@ -63,7 +63,7 @@ pod 'GeneralKit', :git => "https://github.com/salah-mohammed/GeneralKit.git"
 
 2. **Add via CocoaPods**
 ```ruby
-Import in your file
+import GeneralKit
 ```
 3. **Use configuration bellow**
 
