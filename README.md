@@ -23,7 +23,7 @@ GeneralKit is a Swift framework for HTTP networking and data handling in UITable
 * Swift 5+
 * OSX 10.15+ 
 
-## Support The Project
+## Support & Commercial Services
 If GeneralKit helps speed up your app development, please consider supporting the project:
 
 - [Buy me acoffee](https://buymeacoffee.com/salahalimou)
