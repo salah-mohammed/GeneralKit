@@ -26,13 +26,8 @@ GeneralKit is a Swift framework for HTTP networking and data handling in UITable
 ## Support & Commercial Services
 If GeneralKit helps speed up your app development, please consider supporting the project:
 
-## Support & Commercial Services
-
-If GeneralKit helps speed up your app development, please consider supporting the project:
-
-- [Buy Me a Coffee](https://buymeacoffee.com/salahalimou)  
-- **Become a GitHub Sponsor**: [https://github.com/sponsors/salah-mohammed](https://github.com/sponsors/salah-mohammed)
-
+[![Buy Me a Coffee](https://img.shields.io/badge/☕-Buy%20Me%20a%20Coffee-yellow)](https://buymeacoffee.com/salahalimou)  
+[![GitHub Sponsors](https://img.shields.io/badge/❤️-Become%20a%20Sponsor-brightgreen)](https://github.com/sponsors/salah-mohammed)
 
 
 # Pod install
