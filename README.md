@@ -36,10 +36,11 @@ A complete Swift framework to supercharge networking and data handling in UIKit 
 * Swift 5+
 * OSX 10.15+ 
 
-## Support & Commercial Services
-If GeneralKit helps speed up your app development, please consider supporting the project:
+## ❤️ Support GeneralKit  & Commercial Services
+I’m building and maintaining GeneralKit in my free time to help developers save hours of work.  
+If you find it useful, please consider:
 
-
+Even $5 helps me keep improving the library and adding features.
 
 * [Buy me acoffee](https://buymeacoffee.com/salahalimou).
 <a href="https://buymeacoffee.com/salahalimou">
@@ -420,8 +421,29 @@ it is very important framework for IOS developers to create IOS project with min
 - +201096710204 (whatsApp And PhoneNumber)
 - https://www.linkedin.com/in/salah-mohamed-676b6a17a (Linkedin)
 - https://www.upwork.com/freelancers/~01d5d99dadac372b6d (Upwork)
+> 💼 **Premium Support Available**  
+> Need help integrating **GeneralKit** into your app, customizing features, or speeding up delivery?  
+> I offer **one-on-one premium support** and consulting for Swift projects.  
 
-#Note:
-i'm searching a part time job if you have opportunity, contact me in linked in or other please.
+
+
+
+
+## ❤️ Support GeneralKit  & Commercial Services
+I’m building and maintaining GeneralKit in my free time to help developers save hours of work.  
+If you find it useful, please consider:
+
+Even $5 helps me keep improving the library and adding features.
+
+* [Buy me acoffee](https://buymeacoffee.com/salahalimou).
+<a href="https://buymeacoffee.com/salahalimou">
+    <img width="25%" alt="yellow-button" src="https://user-images.githubusercontent.com/1888355/146226808-eb2e9ee0-c6bd-44a2-a330-3bbc8a6244cf.png">
+</a>
+
+* [GitHub Sponsor](https://buymeacoffee.com/salahalimou).
+<a href="https://github.com/sponsors/salah-mohammed">
+    <img width="25%" alt="GitHub Sponsors" src="https://img.shields.io/badge/Sponsor%20on%20GitHub-💖-brightgreen?style=for-the-badge">
+</a>
+
 
 
