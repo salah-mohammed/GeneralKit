@@ -33,7 +33,7 @@ If GeneralKit helps speed up your app development, please consider supporting th
 
 
 <a href="https://github.com/sponsors/salah-mohammed">
-    <img width="25%" alt="GitHub Sponsors" src="https://img.shields.io/badge/Sponsor%20on%20GitHub-💖-brightgreen?style=for-the-badge">
+  <img alt="Sponsor on GitHub" src="https://img.shields.io/github/sponsors/salah-mohammed?label=Sponsor&logo=GitHub&style=flat">
 </a>
 
 
