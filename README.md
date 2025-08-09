@@ -61,7 +61,7 @@ pod 'GeneralKit', :git => "https://github.com/salah-mohammed/GeneralKit.git"
 
 ```
 
-2. **Add via CocoaPods**
+2. **Import in your file**
 ```ruby
 import GeneralKit
 ```
