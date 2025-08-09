@@ -1,5 +1,5 @@
 # GeneralKit 🚀
-*A complete Swift framework to supercharge networking and data handling in UIKit & SwiftUI.
+A complete Swift framework to supercharge networking and data handling in UIKit & SwiftUI.
 
 [![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)](#)
 [![iOS](https://img.shields.io/badge/iOS-13+-blue.svg)](#)
