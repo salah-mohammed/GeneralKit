@@ -52,11 +52,22 @@ If GeneralKit helps speed up your app development, please consider supporting th
 </a>
 
 
-# Pod install
+# Quick install + first run in under 30 seconds
+## 🚀 Install in 3 Steps
+
+1. **Add via CocoaPods**
 ```ruby
-pod 'GeneralKit',:git => "https://github.com/salah-mohammed/GeneralKit.git"
- 
+pod 'GeneralKit', :git => "https://github.com/salah-mohammed/GeneralKit.git"
+
 ```
+
+2. **Add via CocoaPods**
+```ruby
+Import in your file
+```
+3. **Use configuration bellow**
+
+
 # How used (Webservice configuration):
 - Base Request
 ```swift
