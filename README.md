@@ -1,3 +1,6 @@
+[![Swift](https://img.shields.io/badge/Swift-5.0-blue.svg)]
+[![Platform](https://img.shields.io/badge/iOS-13%2B-brightgreen.svg)]
+[![License](https://img.shields.io/badge/License-MIT-orange.svg)]
 # GeneralKit
 
 GeneralKit is a Swift framework for HTTP networking and data handling in UITableView and UICollectionView, providing a complete vision to get maintainable and clean business code efficient network-driven UIKit or SwiftUI apps.
