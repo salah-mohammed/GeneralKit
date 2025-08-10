@@ -151,13 +151,15 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
                 self.dataRequest = AF.request(request)
             }
             self.dataRequest?.responseObject{ [weak self] (response:DataResponse<T,AFError>) in
-                self?.isLoading=false;
-                self?.dataRequest=nil;
-                if self?.showLoader ?? false{
-                    RequestBuilder.shared.waitingView?(false);
+                DispatchQueue.main.async {
+                    self?.isLoading=false;
+                    self?.dataRequest=nil;
+                    if self?.showLoader ?? false{
+                        RequestBuilder.shared.waitingView?(false);
+                    }
+                    self?.dataResponse=response;
+                    self?.responseHandler?(response);
                 }
-                self?.dataResponse=response;
-                self?.responseHandler?(response);
             }
         }
     }

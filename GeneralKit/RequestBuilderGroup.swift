@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 import Alamofire
-public class RequestBuilderGroup<T:Mappable>:NSObject{
+public class RequestBuilderGroup<T:Mappable>:NSObject,ObservableObject{
     public typealias Process = (request:RequestOperationBuilder<T>,handler:RequestOperationBuilder<T>.FinishHandler)
     public var finishHandler:(()->Void)?
     private var processs = [Process]()
