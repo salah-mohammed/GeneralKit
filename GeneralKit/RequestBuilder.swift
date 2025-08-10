@@ -67,7 +67,7 @@ public class RequestBuilder {
 //        self.currentPageHandler = currentPageHandler
 //    }
 }
-public class RequestOperationBuilder<T:Mappable>:NSObject{
+public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
     public typealias FinishData = DataResponse<T,AFError>
     public typealias FinishHandler = ((FinishData)->Void)
     public var responseHandler:FinishHandler?
