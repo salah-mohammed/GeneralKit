@@ -10,8 +10,10 @@ import Foundation
 import Alamofire
 open class BaseRequest:NSObject{
     public var page : String?
-    public var peerPage : String?
-
+    //
+    public var offset : Int?
+    public var limit : Int?
+    //
     var fullURL:String{
         return "\(baseUrl)\(path ?? "")"
     }

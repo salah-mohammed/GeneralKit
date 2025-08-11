@@ -23,11 +23,16 @@ func start();
 public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationManagerProtocol{
     public typealias CheckPagainatorHandler = (PaginationManager<T>,RequestOperationBuilder<T>.FinishData?) -> Bool;
     public typealias CurrentPageHandler = (PaginationManager<T>,RequestOperationBuilder<T>.FinishData?) -> Int;
-    
+    public typealias RequestOperationSettingsHandler = (RequestOperationBuilder<T>)->Void
+
     var baseRequest:BaseRequest?
     var responseHandler:RequestOperationBuilder<T>.FinishHandler?
     
-    var requestBuilder:RequestOperationBuilder<T>
+    var requestBuilder:RequestOperationBuilder<T> = RequestOperationBuilder<T>.init(){
+        didSet{
+            self.requestOperationSettingsHandler?(requestBuilder);
+        }
+    }
     var testHandler:RequestOperationBuilder<T>.FinishHandler?
     public var showLoader:Bool=true{
         didSet{
@@ -48,9 +53,20 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
     private var hasPreviousPageHandler:CheckPagainatorHandler?
     public var hasNextPageHandler:CheckPagainatorHandler?
     public var currentPageHandler:CurrentPageHandler?
-    
+    public var requestOperationSettingsHandler:RequestOperationSettingsHandler?
+
+    public func getOffsetValue(limit:Int?)->Int?{
+        if let limit:Int=limit,
+           let currentPage:Int = currentPage{
+            return (currentPage - 1) * limit
+        }
+        return nil
+    }
+    static public func getPageValueFrom(offset:Int,limit:Int)->Int?{
+     return  (offset/limit)+1
+    }
     public override init() {
-        self.requestBuilder = RequestOperationBuilder<T>.init();
+        super.init()
     }
     // for refresh
     public func start(){
@@ -74,22 +90,28 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
         }
     }
     private func paginatorRequest(){
+        self.requestBuilder = RequestOperationBuilder<T>.init();
+
         self.requestBuilder.showLoader = self.showLoader
         self.baseRequest?.page=self.currentPage?.bs_string ?? "1"
+        self.baseRequest?.offset=self.getOffsetValue(limit:self.baseRequest?.limit)
         if let baseRequest:BaseRequest = self.baseRequest{
             self.requestBuilder.baseRequest(baseRequest);
         }
         self.requestBuilder.responseHandler {[weak self] response in
-            self?.isLoading=false
             self?.hasNextPage = self?.hasNextPageHandler?(self!,response) ?? false
             self?.hasPreviousPage = self?.hasPreviousPageHandler?(self!,response) ?? false
             self?.responseHandler?(response);
             self?.currentPage = self?.currentPageHandler?(self!,response);
+            self?.isLoading=false
         }
         self.requestBuilder.build();
         self.requestBuilder.execute();
     }
-    
+    @discardableResult public func requestOperationSettingsHandler(_ requestOperationSettingsHandler:@escaping RequestOperationSettingsHandler)->Self{
+        self.requestOperationSettingsHandler=requestOperationSettingsHandler;
+        return self
+    }
     @discardableResult private func hasPreviousPageHandler(_ hasPreviousPageHandler:@escaping CheckPagainatorHandler)->Self{
         self.hasPreviousPageHandler=hasPreviousPageHandler;
         return self
