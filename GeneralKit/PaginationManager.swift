@@ -28,7 +28,7 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
     var baseRequest:BaseRequest?
     var responseHandler:RequestOperationBuilder<T>.FinishHandler?
     
-    var requestBuilder:RequestOperationBuilder<T> = RequestOperationBuilder<T>.init(){
+    public private(set) var requestBuilder:RequestOperationBuilder<T> = RequestOperationBuilder<T>.init(){
         didSet{
             self.requestOperationSettingsHandler?(requestBuilder);
         }
@@ -91,7 +91,6 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
     }
     private func paginatorRequest(){
         self.requestBuilder = RequestOperationBuilder<T>.init();
-
         self.requestBuilder.showLoader = self.showLoader
         self.baseRequest?.page=self.currentPage?.bs_string ?? "1"
         self.baseRequest?.offset=self.getOffsetValue(limit:self.baseRequest?.limit)
