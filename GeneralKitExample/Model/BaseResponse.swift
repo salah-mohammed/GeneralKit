@@ -37,10 +37,46 @@ class Pagination:Mappable{
 class BaseResponse: BaseModel {
     var users:[User]=[User]();
     var user:User?
+    // MARK: - PaginationResponseHandler if api base on page number
     var pagination:Pagination?
+    // MARK: - PaginationResponseHandler if api base on offset
+    var metadata: Metadata?
+
     open override func mapping(map: ObjectMapper.Map) {
         users <- map["users"]
         user <- map["user"]
         pagination <- map["pagination"]
+        metadata <- map["metadata"]
+
+    }
+}
+
+class Metadata: Mappable {
+    var resultset: ResultSet?
+
+    required init?(map: Map) {
+        resultset <- map["resultset"]
+    }
+
+    func mapping(map: Map) {
+        resultset <- map["resultset"]
+    }
+}
+
+class ResultSet: Mappable {
+    var count: Int?
+    var limit: Int?
+    var offset: Int?
+
+    required init?(map: Map) {
+        count <- map["count"]
+        limit <- map["limit"]
+        offset <- map["offset"]
+    }
+
+    func mapping(map: Map) {
+        count <- map["count"]
+        limit <- map["limit"]
+        offset <- map["offset"]
     }
 }

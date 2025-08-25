@@ -37,6 +37,7 @@ public class ResponseHandler:NSObject{
         
     }
 }
+// MARK: - PaginationResponseHandler if api base on page number
  class PaginationResponseHandler:NSObject{
     weak var paginationManager:PaginationManager<BaseResponse>?
      init(_ paginationManager: PaginationManager<BaseResponse>) {
@@ -54,7 +55,31 @@ public class ResponseHandler:NSObject{
          }
      }
 }
-
+// MARK: - PaginationResponseHandler if api base on offset
+class OffsetPaginationResponseHandler:NSObject{
+    weak var paginationManager:PaginationManager<BaseResponse>?
+     init(_ paginationManager: PaginationManager<BaseResponse>) {
+         self.paginationManager = paginationManager
+         self.paginationManager?.hasNextPageHandler{ paginationManager ,response in
+             if let limit:Int = response?.value?.metadata?.resultset?.limit,
+                let count:Int = response?.value?.metadata?.resultset?.count,
+                let offset:Int = response?.value?.metadata?.resultset?.offset{
+                 return (offset + limit) >= count
+             }else{
+               return false
+             }
+         }
+         self.paginationManager?.currentPageHandler {_ ,response in
+             if let resultset = response?.value?.metadata?.resultset,
+                let offset:Int = resultset.offset,
+                let limit:Int = resultset.limit{
+                 return PaginationManager<BaseResponse>.getPageValueFrom(offset: offset, limit: limit) ?? 1
+             }else{
+               return 1
+             }
+         }
+     }
+}
 
 protocol RemoteErrorProtocol{
 var dataResponse:DataResponse<BaseResponse,AFError>?{set get}
@@ -70,8 +95,8 @@ class RemoteError:ConditionProtocol,RemoteErrorProtocol{
     var check: Bool{
       return false
     }
-    func operation() -> Bool {
-        return false;
+    func operation(){
+
     }
     var statusCode:Int?{
       return self.dataResponse?.response?.statusCode
@@ -84,27 +109,24 @@ class MaintenanceError:RemoteError{
     override var check:Bool{
         return statusCode == 500 || statusCode == 404
     }
-    override func operation() -> Bool {
+    override func operation(){
         AppAlert.show(nil,.error("", nil))
-        return false
     }
 }
 class NoInternetCheckError:RemoteError{
     override var check: Bool{
         return  (errorCode == -1009) || (errorCode == -1020)
     }
-    override func operation() -> Bool {
+    override func operation(){
         AppAlert.show(nil,.error("", nil))
-        return false
     }
 }
 class AuthError:RemoteError{
     override var check: Bool{
         return  self.statusCode == 401
     }
-    override func operation() -> Bool {
+    override func operation(){
         AppAlert.show(nil,.error("", nil))
-        return false
     }
 }
 
@@ -112,8 +134,7 @@ class GeneralRemoteError:RemoteError{
     override var check: Bool{
         return self.dataResponse?.error == nil && (200..<300).contains(self.statusCode ?? 0)
     }
-    override func operation() -> Bool {
+    override func operation(){
         AppAlert.show(nil,.error("خطأ غير معروف", nil))
-        return false
     }
 }
