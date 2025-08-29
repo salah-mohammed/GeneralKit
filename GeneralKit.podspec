@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GeneralKit"
-  s.version      = "0.0.7"
+  s.version      = "0.0.8"
   s.summary      = "GeneralKit  It was built  for every application that displays data in UITableView and UICollectionView from the network or from local data, support network management in Very clean code."
 
   # This description is used to generate tags and improve search results.

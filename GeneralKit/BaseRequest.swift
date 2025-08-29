@@ -21,6 +21,10 @@ open class BaseRequest:NSObject{
    open var baseUrl:String{
         return  ""
     }
+    // this for
+    open var localJsonURL:String?{
+         return  nil
+    }
     open var path:String?{
         return nil;
     }  // for request path

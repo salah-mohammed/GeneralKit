@@ -24,6 +24,12 @@ open class BaseModel:Mappable{
 }
 
 public class RequestBuilder {
+    public enum SimulateLocalResponse{
+    case local // read local file only
+    case remote // read remote json file only
+    case combain // if local file not not use it
+    }
+    
     var unauthrzeRequests = [RequestOperationBuilder<BaseModel>]()
     public typealias WaitingView = (Bool) -> Void;
     public typealias ErrorMessage = (String,String) -> Void;
@@ -35,6 +41,8 @@ public class RequestBuilder {
     var waitingView: WaitingView? = nil
     var errorMessage: ErrorMessage? = nil
     var enableDebug: Bool = false
+    public var simulateLocalResponse: SimulateLocalResponse = .remote
+
     var responseDebug: ResponseDebug? = nil
 //    var responseBuilderDebug: ResponseBuilderDebug? = nil
 //    var hasPreviousPageHandler:CheckPagainatorHandler?
@@ -141,24 +149,90 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
      }
     public func execute(){
         if let request:URLRequest = self.request{
-            self.isLoading = true;
-            if showLoader{
-            RequestBuilder.shared.waitingView?(true);
+            switch  RequestBuilder.shared.simulateLocalResponse {
+            case .local:
+                // ✅ Check for local JSON first
+                if let localURL = baseRequest?.localJsonURL?.bs_fileURL {
+                    simulateLocalResponse(from: localURL)
+                }
+                break;
+            case .remote:
+                remoteResponse(request:request)
+                break;
+            case .combain:
+                if let localURL = baseRequest?.localJsonURL?.bs_fileURL{
+                    simulateLocalResponse(from: localURL)
+                }else{
+                    remoteResponse(request:request)
+                }
+                break;
             }
-            if self.isMultipart{
-                self.dataRequest = AF.upload(multipartFormData:self.partAlamofire, with:request)
-            }else{
-                self.dataRequest = AF.request(request)
+        }
+    }
+    private func remoteResponse(request:URLRequest){
+        self.isLoading = true;
+        if showLoader{
+        RequestBuilder.shared.waitingView?(true);
+        }
+        if self.isMultipart{
+            self.dataRequest = AF.upload(multipartFormData:self.partAlamofire, with:request)
+        }else{
+            self.dataRequest = AF.request(request)
+        }
+        self.dataRequest?.responseObject{ [weak self] (response:DataResponse<T,AFError>) in
+            DispatchQueue.main.async {
+                self?.isLoading=false;
+                self?.dataRequest=nil;
+                if self?.showLoader ?? false{
+                    RequestBuilder.shared.waitingView?(false);
+                }
+                self?.dataResponse=response;
+                self?.responseHandler?(response);
             }
-            self.dataRequest?.responseObject{ [weak self] (response:DataResponse<T,AFError>) in
-                DispatchQueue.main.async {
-                    self?.isLoading=false;
-                    self?.dataRequest=nil;
-                    if self?.showLoader ?? false{
-                        RequestBuilder.shared.waitingView?(false);
+        }
+    }
+    private func simulateLocalResponse(from localURL: URL) {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            do {
+                let data = try Data(contentsOf: localURL)
+                if let jsonString = String(data: data, encoding: .utf8),
+                   let mappedObject = T(JSONString: jsonString) {
+                    
+                    let urlResponse = HTTPURLResponse(
+                        url: localURL,
+                        statusCode: 200,
+                        httpVersion: nil,
+                        headerFields: nil
+                    )
+                    
+                    let dataResponse = DataResponse<T, AFError>(
+                        request: nil,
+                        response: urlResponse,
+                        data: data,
+                        metrics: nil,
+                        serializationDuration: 0,
+                        result: .success(mappedObject)
+                    )
+                    
+                    DispatchQueue.main.async {
+                        self?.isLoading = false
+                        self?.dataResponse = dataResponse
+                        self?.responseHandler?(dataResponse)
                     }
-                    self?.dataResponse=response;
-                    self?.responseHandler?(response);
+                }
+            } catch {
+                let afError = AFError.explicitlyCancelled
+                let dataResponse = DataResponse<T, AFError>(
+                    request: nil,
+                    response: nil,
+                    data: nil,
+                    metrics: nil,
+                    serializationDuration: 0,
+                    result: .failure(afError)
+                )
+                DispatchQueue.main.async {
+                    self?.isLoading = false
+                    self?.responseHandler?(dataResponse)
                 }
             }
         }
