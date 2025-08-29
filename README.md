@@ -29,7 +29,7 @@ A complete Swift framework to supercharge networking and data handling in UIKit 
 * URL / JSON Parameter Encoding.
 * You can develop a project with very clear code
 * Swift Concurrency Support Back to iOS 13.
-
+* Simulate Remote Response by local file.
 
 # Requirements
 * IOS 13+ 
