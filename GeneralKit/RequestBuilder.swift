@@ -153,7 +153,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
             case .local:
                 // ✅ Check for local JSON first
                 if let localURL = baseRequest?.localJsonURL?.bs_fileURL {
-                    simulateLocalResponse(from: localURL)
+                    simulateRemoteResponseByLocalFile(from: localURL)
                 }
                 break;
             case .remote:
@@ -161,7 +161,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
                 break;
             case .combain:
                 if let localURL = baseRequest?.localJsonURL?.bs_fileURL{
-                    simulateLocalResponse(from: localURL)
+                    simulateRemoteResponseByLocalFile(from: localURL)
                 }else{
                     remoteResponse(request:request)
                 }
@@ -191,7 +191,7 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
             }
         }
     }
-    private func simulateLocalResponse(from localURL: URL) {
+    private func simulateRemoteResponseByLocalFile(from localURL: URL) {
         DispatchQueue.global(qos: .background).async { [weak self] in
             do {
                 let data = try Data(contentsOf: localURL)

@@ -15,7 +15,11 @@ class UserRequest:BaseRequest{
     override var baseUrl:String{
     return  "https://salahmohamed.website/ClassGeneratorPro/"
     }
+    open override var localJsonURL:String?{
+         return  Bundle.main.path(forResource:"usersList\(page ?? "")", ofType:"json")
+    }
     public enum Route{
+        case users_simulateRemoteResponse
         case users
         case login
         case profile(image:Data?=nil)
@@ -26,6 +30,8 @@ class UserRequest:BaseRequest{
     }
     override var path:String?{
         switch self.route{
+        case .users_simulateRemoteResponse:
+            return "usersList\(self.page ?? "1").json";
         case .users:
             return "usersList\(self.page ?? "1").json";
         case .login:
@@ -40,6 +46,8 @@ class UserRequest:BaseRequest{
     override var parameters:Parameters{
         let parameters =  super.parameters
         switch self.route{
+        case .users_simulateRemoteResponse:
+            break;
         case .users:
             break;
         case .login:
@@ -53,14 +61,14 @@ class UserRequest:BaseRequest{
         switch self.route{
         case .profile,.login:
             return .post
-        case .users:
+        case .users,.users_simulateRemoteResponse:
             return .get
         }
     } // for post type : .post,.get,.delete
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
         var items = [ValidationObject.MultiPartObject]();
         switch self.route{
-        case .users,.login:
+        case .users,.login,.users_simulateRemoteResponse:
             return items
         case .profile(image:let imageData):
             if let imageData:Data = imageData{

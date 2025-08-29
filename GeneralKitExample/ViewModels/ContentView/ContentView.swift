@@ -11,6 +11,7 @@ struct ContentView: View {
     @StateObject var viewModel = ContentViewModel()
     @State var listFromNetworkWithPagination:Int? = 0
     @State var loginScreen:Int? = 0
+    @State var simulateRemoteResponse:Int? = 0
 
     var body: some View {
         VStack {
@@ -24,6 +25,10 @@ struct ContentView: View {
             NavigationLink(destination: NormalNetworkExampleView(), tag: 1, selection: $loginScreen) {
                EmptyView()
              }
+            NavigationLink(destination: SimulateRemoteResponseView(), tag: 1, selection: $simulateRemoteResponse) {
+               EmptyView()
+             }
+            
             List{
 
             Button.init {
@@ -47,7 +52,18 @@ struct ContentView: View {
                     Text("List With Pagination Request Example(Data From Network)").font(.system(size: 16,weight:.semibold))
                 }
             }
+                Button.init {
+                    simulateRemoteResponse=1;
+                } label: {
+                    HStack{
+                        Image(systemName: "globe")
+                            .imageScale(.large)
+                            .foregroundColor(.accentColor)
+                        Text("Simulate Remote Response By Local File Json").font(.system(size: 16,weight:.semibold))
+                    }
+                }
             }.listStyle(InsetListStyle.init()).navigationTitle("How Use GeneralKit")
+            
 
         }
         .padding()

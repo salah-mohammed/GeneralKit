@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import GeneralKit
 @main
 struct GeneralKitExampleApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView{
-                ContentView()
+                ContentView().onAppear(){
+                    RequestBuilder.shared.simulateLocalResponse = .combain
+                }
                 
             }
         }

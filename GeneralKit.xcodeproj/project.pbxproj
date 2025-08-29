@@ -89,6 +89,8 @@
 		8BA6738129068A8500A6CE14 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57749328E8BC3C0075C5B0 /* BaseResponse.swift */; };
 		8BB8786928FDBBAB000D9204 /* GeneralKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E20239C28DE5190004DA975 /* GeneralKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD1493729B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1493629B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift */; };
+		8BD1CC0C2E626B6A00661B76 /* SimulateRemoteResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1CC092E626B6900661B76 /* SimulateRemoteResponseView.swift */; };
+		8BD1CC0D2E626B6A00661B76 /* SimulateRemoteResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1CC0A2E626B6900661B76 /* SimulateRemoteResponseViewModel.swift */; };
 		8BDFBC152C288CDF00902F63 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC102C288CDF00902F63 /* Role.swift */; };
 		8BDFBC172C288CDF00902F63 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC122C288CDF00902F63 /* Person.swift */; };
 		8BDFBC182C288CDF00902F63 /* _Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC132C288CDF00902F63 /* _Person.swift */; };
@@ -250,6 +252,8 @@
 		8B7DA027290AA20900D65C97 /* TableSectionListExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionListExampleViewController.swift; sourceTree = "<group>"; };
 		8BA42AC52AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionSectionListWithCompositionalLayoutExampleViewController .swift"; sourceTree = "<group>"; };
 		8BD1493629B1D02F0024EDD8 /* NormalNetworkExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalNetworkExampleViewController.swift; sourceTree = "<group>"; };
+		8BD1CC092E626B6900661B76 /* SimulateRemoteResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulateRemoteResponseView.swift; sourceTree = "<group>"; };
+		8BD1CC0A2E626B6900661B76 /* SimulateRemoteResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulateRemoteResponseViewModel.swift; sourceTree = "<group>"; };
 		8BDFBC102C288CDF00902F63 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		8BDFBC112C288CDF00902F63 /* _User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _User.swift; sourceTree = "<group>"; };
 		8BDFBC122C288CDF00902F63 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -422,6 +426,7 @@
 				4E57749A28E8BF5C0075C5B0 /* ContentView */,
 				8B27DED72931438A00026312 /* NormalNetworkExampleViewModel */,
 				4E57749928E8BF510075C5B0 /* ItemsView */,
+				8BD1CC0B2E626B6900661B76 /* SimulateRemoteResponse */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -558,6 +563,15 @@
 				8BA42AC52AC027C30092CF2F /* CollectionSectionListWithCompositionalLayoutExampleViewController .swift */,
 			);
 			path = CollectionList;
+			sourceTree = "<group>";
+		};
+		8BD1CC0B2E626B6900661B76 /* SimulateRemoteResponse */ = {
+			isa = PBXGroup;
+			children = (
+				8BD1CC092E626B6900661B76 /* SimulateRemoteResponseView.swift */,
+				8BD1CC0A2E626B6900661B76 /* SimulateRemoteResponseViewModel.swift */,
+			);
+			path = SimulateRemoteResponse;
 			sourceTree = "<group>";
 		};
 		BE318A347E2C89068BBE3181 /* Pods */ = {
@@ -1002,6 +1016,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5BC6A92DB4EC0E0051EA4E /* _User.swift in Sources */,
+				8BD1CC0C2E626B6A00661B76 /* SimulateRemoteResponseView.swift in Sources */,
+				8BD1CC0D2E626B6A00661B76 /* SimulateRemoteResponseViewModel.swift in Sources */,
 				8B5BC6AA2DB4EC0E0051EA4E /* User.swift in Sources */,
 				4E57749128E8BBB60075C5B0 /* NewRequest.swift in Sources */,
 				4ECFD2F528DF415B006A5087 /* ContentView.swift in Sources */,
