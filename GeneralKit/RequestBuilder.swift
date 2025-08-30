@@ -192,7 +192,11 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
         }
     }
     private func simulateRemoteResponseByLocalFile(from localURL: URL) {
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        self.isLoading = true;
+        if showLoader{
+        RequestBuilder.shared.waitingView?(true);
+        }
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1.0) { [weak self] in
             do {
                 let data = try Data(contentsOf: localURL)
                 if let jsonString = String(data: data, encoding: .utf8),
@@ -215,6 +219,9 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
                     )
                     
                     DispatchQueue.main.async {
+                        if self?.showLoader ?? false{
+                            RequestBuilder.shared.waitingView?(false);
+                        }
                         self?.isLoading = false
                         self?.dataResponse = dataResponse
                         self?.responseHandler?(dataResponse)
@@ -231,6 +238,9 @@ public class RequestOperationBuilder<T:Mappable>:NSObject,ObservableObject{
                     result: .failure(afError)
                 )
                 DispatchQueue.main.async {
+                    if self?.showLoader ?? false{
+                        RequestBuilder.shared.waitingView?(false);
+                    }
                     self?.isLoading = false
                     self?.responseHandler?(dataResponse)
                 }
