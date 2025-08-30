@@ -137,6 +137,10 @@ class UserRequest:BaseRequest{
             return items
         }
     }
+    override var localJsonURL:String?{
+         return  Bundle.main.path(forResource:"usersList\(page ?? "")", ofType:"json")
+    }
+
 }
 ```
 - Normal request example
@@ -214,6 +218,15 @@ second: in Your request class for Example: in UserRequest.swift
         })
    }).execute()
 ```
+- Simulate Remote Response by local file json by(local,remote,combain)
+  for local // read local file only
+  for remote // read remote json file only
+  for combain // if local file not not use it
+
+```swift       
+RequestBuilder.shared.simulateLocalResponse = .combain
+```
+
 # How used (Webservice and UIKit):
 - UITableView with Pagination Example
 ```swift
