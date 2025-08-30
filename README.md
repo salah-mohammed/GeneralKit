@@ -224,13 +224,16 @@ second: in Your request class for Example: in UserRequest.swift
    }).execute()
 ```
 - Simulate Remote Response by local file json by(local,remote,combain)
-  for local // read local file only
-  for remote // read remote json file only
-  for combain // if local file not not use it
-
 ```swift       
-RequestBuilder.shared.simulateLocalResponse = .combain
+RequestBuilder.shared.simulateLocalResponse = .combain  // ✅ Prefers local, else remote
 ```
+```swift
+RequestBuilder.shared.simulateLocalResponse = .remote   // ✅ Calls remote API only
+```
+```swift   
+RequestBuilder.shared.simulateLocalResponse = .local    // ✅ Reads only local file
+```
+
 
 # How used (Webservice and UIKit):
 - UITableView with Pagination Example
