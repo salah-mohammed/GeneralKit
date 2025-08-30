@@ -223,7 +223,7 @@ second: in Your request class for Example: in UserRequest.swift
         })
    }).execute()
 ```
-- Simulate Remote Response by local file json by(local,remote,combain)
+- Simulate Remote Response by local file json
 ```swift       
 RequestBuilder.shared.simulateLocalResponse = .combain  // ✅ Prefers local, else remote
 ```
