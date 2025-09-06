@@ -1,5 +1,5 @@
 //
-//  ItemsView.swift
+//  PageUserListView.swift
 //  GeneralKitExample
 //
 //  Created by Salah on 10/1/22.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 import SalahUtility
-struct ItemsView: View {
-    @StateObject var viewModel = ItemsViewModel()
+struct PageUserListView: View {
+    @StateObject var viewModel = PageUserListViewModel()
     @State var headerSize: CGSize = .zero
 
     var body: some View {
@@ -28,9 +28,9 @@ struct ItemsView: View {
       
     }
 
-struct ItemsView_Previews: PreviewProvider {
+struct PageUserListView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemsView()
+        PageUserListView()
     }
 }
 struct LoadMoreView: View {

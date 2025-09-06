@@ -38,7 +38,7 @@ public class ResponseHandler:NSObject{
     }
 }
 // MARK: - PaginationResponseHandler if api base on page number
- class PaginationResponseHandler:NSObject{
+ class PagePaginationResponseHandler:NSObject{
     weak var paginationManager:PaginationManager<BaseResponse>?
      init(_ paginationManager: PaginationManager<BaseResponse>) {
          self.paginationManager = paginationManager

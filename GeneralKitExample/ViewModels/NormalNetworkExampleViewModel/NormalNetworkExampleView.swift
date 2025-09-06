@@ -19,7 +19,7 @@ struct NormalNetworkExampleView: View {
             }.padding([.leading],20)
             Spacer()
             VStack(spacing:8) {
-                NavigationLink(destination: ItemsView(), tag: 1, selection: $showItems) {
+                NavigationLink(destination: PageUserListView(), tag: 1, selection: $showItems) {
                     EmptyView()
                 }
                 Text("How Use Normal Request:")

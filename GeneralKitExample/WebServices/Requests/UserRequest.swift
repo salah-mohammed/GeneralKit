@@ -16,7 +16,12 @@ class UserRequest:BaseRequest{
     return  "https://salahmohamed.website/ClassGeneratorPro/"
     }
     open override var localJsonURL:String?{
-         return  Bundle.main.path(forResource:"usersList\(page ?? "")", ofType:"json")
+        switch self.route{
+        case .users_simulateRemoteResponse:
+            return  Bundle.main.path(forResource:"usersList\(page ?? "")", ofType:"json")
+        default:
+            return  nil
+        }
     }
     public enum Route{
         case users_simulateRemoteResponse

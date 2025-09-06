@@ -1,5 +1,5 @@
 //
-//  SimulateRemoteResponseView.swift
+//  OffsetUserListView.swift
 //  GeneralKitExample
 //
 //  Created by Salah on 10/1/22.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 import SalahUtility
-struct SimulateRemoteResponseView: View {
-    @StateObject var viewModel = SimulateRemoteResponseViewModel()
+struct OffsetUserListView: View {
+    @StateObject var viewModel = OffsetUserListViewModel()
     @State var headerSize: CGSize = .zero
 
     var body: some View {
@@ -28,9 +28,8 @@ struct SimulateRemoteResponseView: View {
       
     }
 
-struct SimulateRemoteResponseView_Previews: PreviewProvider {
+struct OffsetUserListView_Previews: PreviewProvider {
     static var previews: some View {
-        SimulateRemoteResponseView()
+        PageUserListView()
     }
 }
-

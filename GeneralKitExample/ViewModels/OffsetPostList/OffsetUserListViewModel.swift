@@ -1,5 +1,5 @@
 //
-//  ItemsViewModel.swift
+//  OffsetUserListViewModel.swift
 //  GeneralKitExample
 //
 //  Created by Salah on 10/1/22.
@@ -11,13 +11,12 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 //https://island-bramble.glitch.me/data?page=1
-typealias ActionHandler = ()->Void
-class ItemsViewModel:NSObject,ObservableObject{
+class OffsetUserListViewModel:NSObject,ObservableObject{
     @Published  var list:[User] = []
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
-    var paginationResponseHandler:PaginationResponseHandler
+    var paginationResponseHandler:OffsetPaginationResponseHandler
     override init() {
-        paginationResponseHandler=PaginationResponseHandler.init(self.paginationManager);
+        paginationResponseHandler=OffsetPaginationResponseHandler.init(self.paginationManager);
         super.init();
         paginationSetup();
 

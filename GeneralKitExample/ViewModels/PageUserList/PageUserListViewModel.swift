@@ -1,5 +1,5 @@
 //
-//  SimulateRemoteResponseViewModel.swift
+//  PageUserListViewModel.swift
 //  GeneralKitExample
 //
 //  Created by Salah on 10/1/22.
@@ -11,7 +11,8 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 //https://island-bramble.glitch.me/data?page=1
-class SimulateRemoteResponseViewModel:NSObject,ObservableObject{
+typealias ActionHandler = ()->Void
+class PageUserListViewModel:NSObject,ObservableObject{
     @Published  var list:[User] = []
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
     var paginationResponseHandler:PagePaginationResponseHandler
@@ -34,7 +35,7 @@ class SimulateRemoteResponseViewModel:NSObject,ObservableObject{
         return actionHandler;
     }
     func paginationSetup(){
-        paginationManager.baseRequest(UserRequest.init(.users_simulateRemoteResponse));
+        paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
             ResponseHandler.check(response,{ baseResponse in
                 
