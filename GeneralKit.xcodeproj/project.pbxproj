@@ -97,6 +97,10 @@
 		8BDFBC172C288CDF00902F63 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC122C288CDF00902F63 /* Person.swift */; };
 		8BDFBC182C288CDF00902F63 /* _Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC132C288CDF00902F63 /* _Person.swift */; };
 		8BDFBC192C288CDF00902F63 /* _Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFBC142C288CDF00902F63 /* _Role.swift */; };
+		8BEC97352E6E33E400F3F44A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC97342E6E33E400F3F44A /* Post.swift */; };
+		8BEC97362E6E33E400F3F44A /* _Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC97332E6E33E400F3F44A /* _Post.swift */; };
+		8BEC97372E6E33E400F3F44A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC97342E6E33E400F3F44A /* Post.swift */; };
+		8BEC97382E6E33E400F3F44A /* _Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC97332E6E33E400F3F44A /* _Post.swift */; };
 		E4CABBC9EB997D760A0AC168 /* Pods_GeneralKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA254326E754360B8CAA819 /* Pods_GeneralKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -264,6 +268,8 @@
 		8BDFBC132C288CDF00902F63 /* _Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Person.swift; sourceTree = "<group>"; };
 		8BDFBC142C288CDF00902F63 /* _Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Role.swift; sourceTree = "<group>"; };
 		8BDFBC1A2C28DCB400902F63 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8BEC97332E6E33E400F3F44A /* _Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Post.swift; sourceTree = "<group>"; };
+		8BEC97342E6E33E400F3F44A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AF20E814DCE5C8DAB96E13F8 /* Pods-GeneralKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeneralKit.debug.xcconfig"; path = "Target Support Files/Pods-GeneralKit/Pods-GeneralKit.debug.xcconfig"; sourceTree = "<group>"; };
 		CF79ADAEA97AE0AA548AE8D5 /* Pods_GeneralKitSwiftUIMacOsExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeneralKitSwiftUIMacOsExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D362F567F333A3308FFF0A8C /* Pods-GeneralKitUIKitExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeneralKitUIKitExample.release.xcconfig"; path = "Target Support Files/Pods-GeneralKitUIKitExample/Pods-GeneralKitUIKitExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -402,6 +408,8 @@
 				8BDFBC1A2C28DCB400902F63 /* User.swift */,
 				8BDFBC122C288CDF00902F63 /* Person.swift */,
 				8BDFBC102C288CDF00902F63 /* Role.swift */,
+				8BEC97332E6E33E400F3F44A /* _Post.swift */,
+				8BEC97342E6E33E400F3F44A /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1043,6 +1051,8 @@
 				4E57749428E8BC3C0075C5B0 /* BaseResponse.swift in Sources */,
 				4E57748E28E8BB790075C5B0 /* AppBaseRequest.swift in Sources */,
 				4E57749D28E8D2AA0075C5B0 /* ItemRequest.swift in Sources */,
+				8BEC97372E6E33E400F3F44A /* Post.swift in Sources */,
+				8BEC97382E6E33E400F3F44A /* _Post.swift in Sources */,
 				4E57749828E8BF210075C5B0 /* PageUserListView.swift in Sources */,
 				8B27DEDB2931438A00026312 /* NormalNetworkExampleView.swift in Sources */,
 				8B27DEDA2931438A00026312 /* NormalNetworkExampleViewModel.swift in Sources */,
@@ -1064,6 +1074,8 @@
 				8BA6738129068A8500A6CE14 /* BaseResponse.swift in Sources */,
 				8B7DA028290AA20900D65C97 /* TableSectionListExampleViewController.swift in Sources */,
 				8B091F4C290C327100D38C91 /* CollectionSectionListExampleViewController.swift in Sources */,
+				8BEC97352E6E33E400F3F44A /* Post.swift in Sources */,
+				8BEC97362E6E33E400F3F44A /* _Post.swift in Sources */,
 				8B091F46290BD54300D38C91 /* SectionHeaderCollectionView.swift in Sources */,
 				8B2A0BDF28FD605200244000 /* TableListExampleViewController.swift in Sources */,
 				8B5BC83A2DB51DCF0051EA4E /* _Role.swift in Sources */,
