@@ -25,9 +25,19 @@ public class ResponseHandler:NSObject{
     static func check(_ dataReponse:(DataResponse<BaseResponse,AFError>)?,
                                _ successFinish:((BaseResponse)->Void)?,
                                error:(()->Void)? = nil){
+
         if let value:BaseResponse = dataReponse?.value {
             successFinish?(value)
-        }else{
+        }else if let jsonArray:String = dataReponse?.data?.utf8String,
+                 let value:BaseResponse = Mapper<BaseResponse>().map(JSONString:"{ \"data\": \(jsonArray)}"){
+            successFinish?(value)
+        }else
+        if dataReponse?.response?.statusCode == 200 ||
+           dataReponse?.response?.statusCode == 204,
+          let emptyBaseResponse = Mapper<BaseResponse>().map(JSON: [:]) ?? BaseResponse(map: Map(mappingType: .fromJSON, JSON: [:])){
+            successFinish?(emptyBaseResponse)
+        }
+        else{
             [MaintenanceError.init(dataReponse),
              NoInternetCheckError.init(dataReponse),
              AuthError.init(dataReponse),

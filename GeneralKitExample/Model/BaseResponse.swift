@@ -36,6 +36,8 @@ class Pagination:Mappable{
 }
 class BaseResponse: BaseModel {
     var users:[User]=[User]();
+    var posts:[Post]=[Post]();
+
     var user:User?
     // MARK: - PaginationResponseHandler if api base on page number
     var pagination:Pagination?
@@ -43,6 +45,7 @@ class BaseResponse: BaseModel {
     var metadata: Metadata?
 
     open override func mapping(map: ObjectMapper.Map) {
+        posts <- map["data"]
         users <- map["users"]
         user <- map["user"]
         pagination <- map["pagination"]

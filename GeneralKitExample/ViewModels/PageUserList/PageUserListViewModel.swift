@@ -38,13 +38,13 @@ class PageUserListViewModel:NSObject,ObservableObject{
         paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
             ResponseHandler.check(response,{ baseResponse in
-                
+                if self.paginationManager.currentPage == 1{
+                    self.list = baseResponse.users
+                }else{
+                    self.list.append(contentsOf: baseResponse.users)
+                }
             })
-            if response.value?.pagination?.i_current_page == 1{
-                self.list = response.value?.users ?? []
-            }else{
-                self.list.append(contentsOf: response.value?.users ?? [])
-            }
+
         }
         self.paginationManager.start();
     }

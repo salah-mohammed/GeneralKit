@@ -13,7 +13,7 @@ import ObjectMapper_Realm
 #endif
 
 #if canImport(RealmSwift)
-public class _PostRealm: PersonRealm {
+public class _PostRealm: Object,Mappable {
      @objc dynamic var userId:Int=0;
      @objc dynamic var id:Int=0;
      @objc dynamic var title:String?;
@@ -21,7 +21,6 @@ public class _PostRealm: PersonRealm {
      @objc dynamic var createdDate:Date?;
     
     public required init?(map: ObjectMapper.Map){
-        super.init(map: map)
         userId <- map["userId"]
         id <- map["id"]
         title <- map["title"]
@@ -33,8 +32,7 @@ public class _PostRealm: PersonRealm {
         return "id"
     }
     
-    public override func mapping(map: ObjectMapper.Map) {
-          super.mapping(map:map)
+    public func mapping(map: ObjectMapper.Map) {
           userId <- map["userId"]
           id <- map["id"]
           title <- map["title"]
@@ -42,8 +40,8 @@ public class _PostRealm: PersonRealm {
           createdDate <- map["createdDate"]
     }
     
-    public override func toDictionary() -> [String:Any]{
-          var dictionary = super.toDictionary()
+    public func toDictionary() -> [String:Any]{
+          var dictionary = [String:Any] ()
           dictionary["userId"] = userId
           dictionary["id"] = id
           dictionary["title"] = title
@@ -64,7 +62,7 @@ public class _PostRealm: PersonRealm {
 }
 #endif
 
-public class _Post: Person{
+public class _Post: NSObject,Mappable,NSCoding{
      enum UserEnum:String{
        case userId = "userId"
        case id = "id"
@@ -79,7 +77,6 @@ public class _Post: Person{
     var createdDate:Date?;
     
     public required init?(map: ObjectMapper.Map){
-        super.init(map: map)
         userId <- map["userId"]
         id <- map["id"]
         title <- map["title"]
@@ -87,12 +84,11 @@ public class _Post: Person{
         createdDate <- map["createdDate"]
     }
     
-    public override class func primaryKey() -> String?{
+    public class func primaryKey() -> String?{
         return "id"
     }
     
-        public override func mapping(map: ObjectMapper.Map) {
-        super.mapping(map:map)
+        public func mapping(map: ObjectMapper.Map) {
         userId <- map["userId"]
         id <- map["id"]
         title <- map["title"]
@@ -100,8 +96,7 @@ public class _Post: Person{
         createdDate <- map["createdDate"]
     }
     
-    @objc required public override init(coder aDecoder: NSCoder){
-        super.init(coder:aDecoder)
+    @objc required public init(coder aDecoder: NSCoder){
         userId = aDecoder.decodeObject(forKey:"userId") as? Int ?? 0
         id = aDecoder.decodeObject(forKey:"id") as? Int ?? 0
         title = aDecoder.decodeObject(forKey:"title") as? String
@@ -109,8 +104,7 @@ public class _Post: Person{
         createdDate = aDecoder.decodeObject(forKey:"createdDate") as? Date
     }
 
-    @objc public override func encode(with aCoder: NSCoder){
-        super.encode(with: aCoder)
+    @objc public func encode(with aCoder: NSCoder){
         aCoder.encode(userId, forKey: "userId")
         aCoder.encode(id, forKey: "id")
 
@@ -125,8 +119,8 @@ public class _Post: Person{
         }
     }
     
-    public override func toDictionary() -> [String:Any]{
-         var dictionary = super.toDictionary()
+    public func toDictionary() -> [String:Any]{
+        var dictionary = [String:Any] ()
         dictionary["userId"] = userId
         dictionary["id"] = id
         dictionary["title"] = title
@@ -135,8 +129,7 @@ public class _Post: Person{
         return dictionary
     }
     
-    public override init(fromDictionary dictionary: [String:Any]){
-         super.init(fromDictionary: dictionary)
+    public init(fromDictionary dictionary: [String:Any]){
         userId = dictionary["userId"] as? Int ?? 0
         id = dictionary["id"] as? Int ?? 0
         title = dictionary["title"] as? String

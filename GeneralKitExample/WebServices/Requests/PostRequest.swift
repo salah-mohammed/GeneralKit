@@ -1,5 +1,5 @@
 //
-//  ItemRequest.swift
+//  PostRequest.swift
 //  GeneralKitExample
 //
 //  Created by Salah on 10/1/22.
@@ -11,12 +11,12 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
-class ItemRequest:AppBaseRequest{
+class PostRequest:AppBaseRequest{
     override var baseUrl:String{
-    return  "https://island-bramble.glitch.me"
+    return  "https://jsonplaceholder.typicode.com"
     }
     public enum Route{
-        case list(s_phone:String?)
+        case list
     }
     private var route:Route
     init(_ route:Route) {
@@ -24,17 +24,20 @@ class ItemRequest:AppBaseRequest{
     }
     override var path:String?{
         switch self.route{
-        case .list(_):
-            return "/data";
+        case .list:
+            return "/posts";
         }
     }  // for request path
     override var header : HTTPHeaders?{
         return nil
     }
     override var parameters:Parameters{
-        let parameters =  super.parameters
+        var parameters =  super.parameters
         switch self.route{
-        case .list(_):
+        case .list:
+            parameters["_limit"]=10
+            parameters["_start"]=self.offset
+
             break;
         }
         return parameters;
@@ -47,7 +50,7 @@ class ItemRequest:AppBaseRequest{
     } // for post type : .post,.get,.delete
     override var multiPartObjects : [ValidationObject.MultiPartObject]{
         switch self.route{
-        case .list(_):
+        case .list:
             break;
         }
         let items = [ValidationObject.MultiPartObject]();

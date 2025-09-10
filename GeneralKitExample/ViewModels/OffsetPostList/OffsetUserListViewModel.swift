@@ -12,14 +12,15 @@ import ObjectMapper
 import AlamofireObjectMapper
 //https://island-bramble.glitch.me/data?page=1
 class OffsetUserListViewModel:NSObject,ObservableObject{
-    @Published  var list:[User] = []
+    @Published  var list:[Post] = []
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
     var paginationResponseHandler:OffsetPaginationResponseHandler
     override init() {
         paginationResponseHandler=OffsetPaginationResponseHandler.init(self.paginationManager);
         super.init();
         paginationSetup();
-
+        
+        
     }
     func refresh()->ActionHandler{
         let actionHandler = {
@@ -34,16 +35,15 @@ class OffsetUserListViewModel:NSObject,ObservableObject{
         return actionHandler;
     }
     func paginationSetup(){
-        paginationManager.baseRequest(UserRequest.init(.users));
+        paginationManager.baseRequest(PostRequest.init(.list));
         self.paginationManager.responseHandler { response in
             ResponseHandler.check(response,{ baseResponse in
-                
+                            if self.paginationManager.currentPage == 1{
+                                self.list = baseResponse.posts
+                            }else{
+                                self.list.append(contentsOf: baseResponse.posts)
+                            }
             })
-            if response.value?.pagination?.i_current_page == 1{
-                self.list = response.value?.users ?? []
-            }else{
-                self.list.append(contentsOf: response.value?.users ?? [])
-            }
         }
         self.paginationManager.start();
     }
