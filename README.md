@@ -392,9 +392,8 @@ import GeneralKit
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
-
 typealias ActionHandler = ()->Void
-class ItemsViewModel:NSObject,ObservableObject{
+class PageUserListViewModel:NSObject,ObservableObject{
     @Published  var list:[User] = []
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
     var paginationResponseHandler:PagePaginationResponseHandler
@@ -420,13 +419,13 @@ class ItemsViewModel:NSObject,ObservableObject{
         paginationManager.baseRequest(UserRequest.init(.users));
         self.paginationManager.responseHandler { response in
             ResponseHandler.check(response,{ baseResponse in
-                
+                if self.paginationManager.currentPage == 1{
+                    self.list = baseResponse.users
+                }else{
+                    self.list.append(contentsOf: baseResponse.users)
+                }
             })
-            if response.value?.pagination?.i_current_page == 1{
-                self.list = response.value?.users ?? []
-            }else{
-                self.list.append(contentsOf: response.value?.users ?? [])
-            }
+
         }
         self.paginationManager.start();
     }
@@ -434,22 +433,22 @@ class ItemsViewModel:NSObject,ObservableObject{
 ```
 - List with Pagination Example by (Offset)
 ```swift
+
 import Foundation
 import GeneralKit
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
-
-typealias ActionHandler = ()->Void
-class ItemsViewModel:NSObject,ObservableObject{
-    @Published  var list:[User] = []
+class OffsetUserListViewModel:NSObject,ObservableObject{
+    @Published  var list:[Post] = []
     var paginationManager:PaginationManager<BaseResponse>=PaginationManager<BaseResponse>.init()
     var paginationResponseHandler:OffsetPaginationResponseHandler
     override init() {
         paginationResponseHandler=OffsetPaginationResponseHandler.init(self.paginationManager);
         super.init();
         paginationSetup();
-
+        
+        
     }
     func refresh()->ActionHandler{
         let actionHandler = {
@@ -464,16 +463,15 @@ class ItemsViewModel:NSObject,ObservableObject{
         return actionHandler;
     }
     func paginationSetup(){
-        paginationManager.baseRequest(UserRequest.init(.users));
+        paginationManager.baseRequest(PostRequest.init(.list));
         self.paginationManager.responseHandler { response in
             ResponseHandler.check(response,{ baseResponse in
-                
+                            if self.paginationManager.currentPage == 1{
+                                self.list = baseResponse.posts
+                            }else{
+                                self.list.append(contentsOf: baseResponse.posts)
+                            }
             })
-            if response.value?.pagination?.i_current_page == 1{
-                self.list = response.value?.users ?? []
-            }else{
-                self.list.append(contentsOf: response.value?.users ?? [])
-            }
         }
         self.paginationManager.start();
     }
