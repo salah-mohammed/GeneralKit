@@ -19,7 +19,7 @@ A complete Swift framework to supercharge networking and data handling in UIKit 
 
 * It is a Data management Library  support HTTP networking.
 * Data display management in UITableView and UICollectionView,In an easy and simple way and with the least possible code by GeneralKit tools.
-* Pagination.
+* Pagination by page number and offset.
 * Support UIKit and SwiftUI(WithExample).
 * Very clean code.
 * Tools to present data in UITableView and UICollectionView.
