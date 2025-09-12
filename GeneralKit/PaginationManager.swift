@@ -27,7 +27,12 @@ public class PaginationManager<T:Mappable>:NSObject,ObservableObject,PaginationM
 
     var baseRequest:BaseRequest?
     var responseHandler:RequestOperationBuilder<T>.FinishHandler?
-    
+    public var offset : Int?{
+        return baseRequest?.offset
+    }
+    public var limit : Int?{
+        return baseRequest?.limit
+    }
     public private(set) var requestBuilder:RequestOperationBuilder<T> = RequestOperationBuilder<T>.init(){
         didSet{
             self.requestOperationSettingsHandler?(requestBuilder);

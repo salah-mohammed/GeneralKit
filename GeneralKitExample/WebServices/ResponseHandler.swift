@@ -69,20 +69,31 @@ public class ResponseHandler:NSObject{
 class OffsetPaginationResponseHandler:NSObject{
     weak var paginationManager:PaginationManager<BaseResponse>?
      init(_ paginationManager: PaginationManager<BaseResponse>) {
+         
          self.paginationManager = paginationManager
+         // get limit and offset from response
+//         self.paginationManager?.hasNextPageHandler{ paginationManager ,response in
+//             if let limit:Int = response?.value?.metadata?.resultset?.limit,
+//                let count:Int = response?.value?.metadata?.resultset?.count,
+//                let offset:Int = response?.value?.metadata?.resultset?.offset{
+//                 return (offset + limit) >= count
+//             }else{
+//               return false
+//             }
+//         }
          self.paginationManager?.hasNextPageHandler{ paginationManager ,response in
-             if let limit:Int = response?.value?.metadata?.resultset?.limit,
-                let count:Int = response?.value?.metadata?.resultset?.count,
-                let offset:Int = response?.value?.metadata?.resultset?.offset{
-                 return (offset + limit) >= count
+             if let limit:Int = paginationManager.limit,
+                let offset:Int = paginationManager.offset//,
+             //   let count:Int = response?.value?.metadata?.resultset?.count this value from pagination data
+             {
+                 return true
              }else{
                return false
              }
          }
-         self.paginationManager?.currentPageHandler {_ ,response in
-             if let resultset = response?.value?.metadata?.resultset,
-                let offset:Int = resultset.offset,
-                let limit:Int = resultset.limit{
+         self.paginationManager?.currentPageHandler {paginationManager ,response in
+             if let offset:Int = paginationManager.offset,
+                let limit:Int = paginationManager.limit{
                  return PaginationManager<BaseResponse>.getPageValueFrom(offset: offset, limit: limit) ?? 1
              }else{
                return 1
